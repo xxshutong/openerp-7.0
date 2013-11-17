@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--定义表单视图-->
+        <record model="ir.ui.view" id="wjzpw_product_form_view">
+            <field name="name">wjzpw.product.form</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.product</field>
+            <field name="arch" type="xml">
+                <field name="name"/>
+                <field name="description"/>
+            </field>
+        </record>
+        <!--定义列表视图-->
+        <record model="ir.ui.view" id="wjzpw_product_tree_view">
+            <field name="name">wjzpw.product.tree</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.product</field>
+            <field name="arch" type="xml">
+                <field name="name"/>
+                <field name="description"/>
+            </field>
+        </record>
+        <!--定义视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_product">
+            <field name="name">wjzpw.product.action</field>
+            <field name="res_model">wjzpw.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wjzpw_product_tree_view"/>
+        </record>
+        <!--定义菜单-->
+        <menuitem id="wjzpw_menu" name="WJZPW"/>
+        <menuitem id="product_menu1" name="inventory" parent="wjzpw_menu"/>
+        <menuitem id="product_menu2" name="Product Management" parent="product_menu1" action="action_wjzpw_product"/>
+    </data>
+</openerp>
