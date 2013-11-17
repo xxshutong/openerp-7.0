@@ -1,0 +1,7 @@
+.idea/
+.ve
+build
+dist
+download
+openerp.egg-info
+*.pyc
