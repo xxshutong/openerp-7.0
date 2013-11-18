@@ -29,9 +29,5 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="wjzpw_product_tree_view"/>
         </record>
-        <!--定义菜单-->
-        <menuitem id="wjzpw_menu" name="WJZPW"/>
-        <menuitem id="product_menu1" name="inventory" parent="wjzpw_menu"/>
-        <menuitem id="product_menu2" name="Product Management" parent="product_menu1" action="action_wjzpw_product"/>
     </data>
 </openerp>

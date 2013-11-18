@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--定义菜单-->
+        <menuitem id="wjzpw_inventory_menu" name="库存"/>
+        <!-- 坯布库存 -->
+        <menuitem id="wjzpw_cloth_menu" name="坯布库存" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_cloth_inventory_menu" name="库存" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_machine_output_menu" name="机台产量" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_cloth_input_menu" name="入库" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_cloth_output_menu" name="出库" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
+        <!-- 原料库存 -->
+        <menuitem id="wjzpw_organzine_menu" name="经丝库存" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_organzine_inventory_menu" name="车间剩余" parent="wjzpw_organzine_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_organzine_input_menu" name="入库" parent="wjzpw_organzine_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_organzine_output_menu" name="出库" parent="wjzpw_organzine_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_tram_menu" name="纬丝库存" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_tram_inventory_menu" name="车间剩余" parent="wjzpw_tram_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_tram_input_menu" name="入库" parent="wjzpw_tram_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_tram_output_menu" name="出库" parent="wjzpw_tram_menu" action="wjzpw.action_wjzpw_product"/>
+        <!-- 经轴库存 -->
+        <menuitem id="wjzpw_beam_menu" name="经轴库存" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_beam_inventory_menu" name="库存" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_czpk_menu" name="传宗扒筘" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>
+    </data>
+</openerp>
