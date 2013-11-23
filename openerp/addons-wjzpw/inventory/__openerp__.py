@@ -5,7 +5,7 @@
     'author': "xxshutong@gmail.com",
     'website': "http://www.wj-zpw.com",
     'category': "Textile",
-    'sequence': 1,
+    'sequence': 2,
     'depends': ['wjzpw'],
     'data': [
         'wjzpw_inventory_view.xml',

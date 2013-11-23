@@ -3,7 +3,7 @@
     <data>
         <!--定义表单视图-->
         <record model="ir.ui.view" id="wjzpw_product_form_view">
-            <field name="name">wjzpw.product.form</field>
+            <field name="name">wjzpw.inventory.pinMingGuanLi</field>
             <field name="type">form</field>
             <field name="model">wjzpw.product</field>
             <field name="arch" type="xml">
@@ -23,7 +23,7 @@
         </record>
         <!--定义视图动作-->
         <record model="ir.actions.act_window" id="action_wjzpw_product">
-            <field name="name">wjzpw.product.action</field>
+            <field name="name">wjzpw.inventory.pinMingGuanLi</field>
             <field name="res_model">wjzpw.product</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>

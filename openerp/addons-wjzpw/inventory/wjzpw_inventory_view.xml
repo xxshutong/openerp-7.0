@@ -2,29 +2,29 @@
 <openerp>
     <data>
         <!--定义菜单-->
-        <menuitem id="wjzpw_inventory_menu" name="库存"/>
+        <menuitem id="wjzpw_inventory_menu" name="wjzpw.inventory.kuCun"/>
         <!-- 坯布库存 -->
-        <menuitem id="wjzpw_cloth_menu" name="坯布库存" parent="wjzpw_inventory_menu"/>
-        <menuitem id="wjzpw_cloth_inventory_menu" name="库存" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_machine_output_menu" name="机台产量" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_cloth_input_menu" name="入库" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_cloth_output_menu" name="出库" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_cloth_menu" name="wjzpw.inventory.piBuKuCun" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_cloth_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_machine_output_menu" name="wjzpw.inventory.jiTaiChanLiang" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_cloth_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_cloth_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
         <!-- 原料库存 -->
-        <menuitem id="wjzpw_organzine_menu" name="经丝库存" parent="wjzpw_inventory_menu"/>
-        <menuitem id="wjzpw_organzine_inventory_menu" name="车间剩余" parent="wjzpw_organzine_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_organzine_input_menu" name="入库" parent="wjzpw_organzine_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_organzine_output_menu" name="出库" parent="wjzpw_organzine_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_tram_menu" name="纬丝库存" parent="wjzpw_inventory_menu"/>
-        <menuitem id="wjzpw_tram_inventory_menu" name="车间剩余" parent="wjzpw_tram_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_tram_input_menu" name="入库" parent="wjzpw_tram_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_tram_output_menu" name="出库" parent="wjzpw_tram_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_organzine_menu" name="wjzpw.inventory.jingSiKuCun" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_organzine_inventory_menu" name="wjzpw.inventory.cheJianShengYu" parent="wjzpw_organzine_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_organzine_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_organzine_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_organzine_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_organzine_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_tram_menu" name="wjzpw.inventory.weiSiKuCun" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_tram_inventory_menu" name="wjzpw.inventory.cheJianShengYu" parent="wjzpw_tram_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_tram_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_tram_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_tram_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_tram_menu" action="wjzpw.action_wjzpw_product"/>
         <!-- 经轴库存 -->
-        <menuitem id="wjzpw_beam_menu" name="经轴库存" parent="wjzpw_inventory_menu"/>
-        <menuitem id="wjzpw_beam_inventory_menu" name="库存" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_czpk_menu" name="穿综扒筘" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_beam_menu" name="wjzpw.inventory.jingZhouKuCun" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_beam_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_czpk_menu" name="wjzpw.inventory.chuanZongPaKou" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>
         <!-- 经轴库存 -->
-        <menuitem id="wjzpw_setting_menu" name="设置" parent="wjzpw_inventory_menu"/>
-        <menuitem id="wjzpw_product_menu" name="品名" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_batch_no_menu" name="批号" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_setting_menu" name="wjzpw.inventory.sheZhi" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_product_menu" name="wjzpw.inventory.pinMing" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_batch_no_menu" name="wjzpw.inventory.piHao" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_product"/>
     </data>
 </openerp>
