@@ -31,7 +31,7 @@ class wjzpw_product(osv.osv):
     _description = "Product Management"
 
     _columns = {
-        'name': fields.char('Product Name', size=64, required=True, translate=True),
+        'name': fields.char('Product Name', size=64, required=True),
         'description': fields.text('Description')
     }
     _defaults = {

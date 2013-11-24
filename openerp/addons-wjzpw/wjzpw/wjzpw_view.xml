@@ -7,8 +7,14 @@
             <field name="type">form</field>
             <field name="model">wjzpw.product</field>
             <field name="arch" type="xml">
-                <field name="name"/>
-                <field name="description"/>
+                <form string="product" version="7.0">
+                    <sheet>
+                        <group col="2">
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
             </field>
         </record>
         <!--定义列表视图-->
@@ -17,8 +23,10 @@
             <field name="type">tree</field>
             <field name="model">wjzpw.product</field>
             <field name="arch" type="xml">
-                <field name="name"/>
-                <field name="description"/>
+                <tree string="product">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
             </field>
         </record>
         <!--定义视图动作-->
