@@ -38,5 +38,17 @@ class wjzpw_product(osv.osv):
     }
     _order = "name"
 
+class wjzpw_batch_no(osv.osv):
+    _name = "wjzpw.batch.no"
+    _description = "Batch No Management"
+
+    _columns = {
+        'name': fields.char('Batch No', size=64, required=True),
+        'description': fields.text('Description')
+    }
+    _defaults = {
+    }
+    _order = "name"
 
 wjzpw_product()
+wjzpw_batch_no()
