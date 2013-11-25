@@ -25,18 +25,27 @@ from openerp.osv import fields, osv
 
 _logger = logging.getLogger(__name__)
 
+class wjzpw_inventory_input(osv.osv):
+    _name = "wjzpw.inventory.input"
+    _description = "wjzpw.inventory.ruKuGuanLi"
 
-# class wjzpw_product(osv.osv):
-#     _name = "wjzpw.product"
-#     _description = "Product Management"
-#
-#     _columns = {
-#         'name': fields.char('Product Name', size=64, required=True, translate=True),
-#         'description': fields.text('Description')
-#     }
-#     _defaults = {
-#     }
-#     _order = "name"
-#
-#
-# wjzpw_product()
+    _columns = {
+        'machine_no': fields.integer('wjzpw.inventory.jiHao', required=True),
+        'input_date': fields.datetime('wjzpw.inventory.luRuRiQi', required=True),
+        'superior_number': fields.float('wjzpw.inventory.youDengPin', required=True),
+        'grade_a_number': fields.float('wjzpw.inventory.yiDengPin', required=True),
+        'grade_b_number': fields.float('wjzpw.inventory.erDengPin', required=True),
+        'product_id': fields.many2one('wjzpw.product','wjzpw.pinMing', required=True),
+        'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', required=True),
+        # 'machineOutputId': fields.many2one('wjzpw.inventory', 'wjzpw.inventory.jiTaiChanChu', required=False)
+    }
+
+    _defaults = {
+        "superior_number": 0,
+        "grade_a_number": 0,
+        "grade_b_number": 0
+    }
+
+    _order = "product_id"
+
+wjzpw_inventory_input()

@@ -1,13 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+        <!--定义InventoryInput表单视图-->
+        <record model="ir.ui.view" id="wjzpw_inventory_input_form_view">
+            <field name="name">wjzpw.inventory.ruKuGuanLi</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.inventory.input</field>
+            <field name="arch" type="xml">
+                <form string="inventoryInput" version="7.0">
+                    <sheet>
+                        <group col="4">
+                            <field name="machine_no"/>
+                            <field name="input_date"/>
+                            <field name="superior_number"/>
+                            <field name="grade_a_number"/>
+                            <field name="grade_b_number"/>
+                            <field name="product_id"/>
+                            <field name="batch_no"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义InventoryInput列表视图-->
+        <record model="ir.ui.view" id="wjzpw_inventory_input_tree_view">
+            <field name="name">wjzpw.inventory.ruKuGuanLi</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.inventory.input</field>
+            <field name="arch" type="xml">
+                <tree string="inventoryInput">
+                    <field name="machine_no"/>
+                    <field name="input_date"/>
+                    <field name="superior_number"/>
+                    <field name="grade_a_number"/>
+                    <field name="grade_b_number"/>
+                    <field name="product_id"/>
+                    <field name="batch_no"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义InventoryInput视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_inventory_input">
+            <field name="name">wjzpw.inventory.ruKuGuanLi</field>
+            <field name="res_model">wjzpw.inventory.input</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wjzpw_inventory_input_tree_view"/>
+        </record>
+
         <!--定义菜单-->
         <menuitem id="wjzpw_inventory_menu" name="wjzpw.inventory.kuCun"/>
         <!-- 坯布库存 -->
         <menuitem id="wjzpw_cloth_menu" name="wjzpw.inventory.piBuKuCun" parent="wjzpw_inventory_menu"/>
         <menuitem id="wjzpw_cloth_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
         <menuitem id="wjzpw_machine_output_menu" name="wjzpw.inventory.jiTaiChanLiang" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_cloth_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_cloth_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_cloth_menu" action="inventory.action_wjzpw_inventory_input"/>
         <menuitem id="wjzpw_cloth_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
         <!-- 原料库存 -->
         <menuitem id="wjzpw_organzine_menu" name="wjzpw.inventory.jingSiKuCun" parent="wjzpw_inventory_menu"/>
