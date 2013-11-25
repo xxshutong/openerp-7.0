@@ -12,11 +12,11 @@
                         <group col="4">
                             <field name="machine_no"/>
                             <field name="input_date"/>
+                            <field name="product_id"/>
+                            <field name="batch_no"/>
                             <field name="superior_number"/>
                             <field name="grade_a_number"/>
                             <field name="grade_b_number"/>
-                            <field name="product_id"/>
-                            <field name="batch_no"/>
                         </group>
                     </sheet>
                 </form>
@@ -31,11 +31,11 @@
                 <tree string="inventoryInput">
                     <field name="machine_no"/>
                     <field name="input_date"/>
+                    <field name="product_id"/>
+                    <field name="batch_no"/>
                     <field name="superior_number"/>
                     <field name="grade_a_number"/>
                     <field name="grade_b_number"/>
-                    <field name="product_id"/>
-                    <field name="batch_no"/>
                 </tree>
             </field>
         </record>
