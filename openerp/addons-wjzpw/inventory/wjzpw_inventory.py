@@ -25,6 +25,7 @@ from openerp.osv import fields, osv
 
 _logger = logging.getLogger(__name__)
 
+
 class wjzpw_inventory_input(osv.osv):
     _name = "wjzpw.inventory.input"
     _description = "wjzpw.inventory.ruKuGuanLi"
@@ -35,7 +36,7 @@ class wjzpw_inventory_input(osv.osv):
         'superior_number': fields.float('wjzpw.inventory.youDengPin', required=True),
         'grade_a_number': fields.float('wjzpw.inventory.yiDengPin', required=True),
         'grade_b_number': fields.float('wjzpw.inventory.erDengPin', required=True),
-        'product_id': fields.many2one('wjzpw.product','wjzpw.pinMing', required=True),
+        'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing', required=True),
         'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', required=True),
         # 'machineOutputId': fields.many2one('wjzpw.inventory', 'wjzpw.inventory.jiTaiChanChu', required=False)
     }
@@ -48,4 +49,31 @@ class wjzpw_inventory_input(osv.osv):
 
     _order = "product_id"
 
+
+class wjzpw_inventory_output(osv.osv):
+    _name = "wjzpw.inventory.output"
+    _description = "wjzpw.inventory.chuKuGuanLi"
+
+    _columns = {
+        'input_date': fields.datetime('wjzpw.inventory.luRuRiQi', required=True),
+        'code': fields.char('wjzpw.inventory.maDan', size=60, required=False),
+        'superior_number': fields.float('wjzpw.inventory.youDengPin', required=True),
+        'grade_a_number': fields.float('wjzpw.inventory.yiDengPin', required=True),
+        'grade_b_number': fields.float('wjzpw.inventory.erDengPin', required=True),
+        'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing', required=True),
+        'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', required=True),
+        'customer': fields.many2one('res.partner', 'wjzpw.inventory.keHu', domain=[('customer', '=', True)],
+                                    required=True)
+    }
+
+    _defaults = {
+        "superior_number": 0,
+        "grade_a_number": 0,
+        "grade_b_number": 0
+    }
+
+    _order = "product_id"
+
+
 wjzpw_inventory_input()
+wjzpw_inventory_output()
