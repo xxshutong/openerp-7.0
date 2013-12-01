@@ -126,8 +126,8 @@
                     <field name="product_id"/>
                     <field name="batch_no"/>
                     <field name="beam_amount"/>
-                    <field name="output_amount"/>
-                    <field name="complete_date_str"/>
+                    <field name="output_amount_fun"/>
+                    <field name="complete_date_fun"/>
                     <field name="woven_shrinkage"/>
                 </tree>
             </field>

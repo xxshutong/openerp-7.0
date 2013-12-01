@@ -38,7 +38,7 @@ class wjzpw_inventory_input(osv.osv):
         'grade_b_number': fields.float('wjzpw.inventory.erDengPin', required=True),
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing', required=True),
         'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', required=True),
-        # 'machineOutputId': fields.many2one('wjzpw.inventory', 'wjzpw.inventory.jiTaiChanChu', required=False)
+        'machine_output_id': fields.many2one('wjzpw.inventory.machine.output', 'wjzpw.inventory.jiTaiChanChu', required=False)
     }
 
     _defaults = {
@@ -89,6 +89,38 @@ class wjzpw_inventory_machine_output(osv.osv):
                 res[rec.id] = '未完成'
         return res
 
+    def _output_amount(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for id in ids:
+            # Get current machine output instance
+            get_sql = """
+            SELECT output_amount, machine_no, product_id, batch_no
+            FROM wjzpw_inventory_machine_output
+            WHERE id = %d
+            """ % id
+            cr.execute(get_sql)
+            machine_output = cr.dictfetchone()
+            if machine_output and machine_output['output_amount']:
+                res[id] = machine_output['output_amount']
+                continue
+
+            # Get total output by now
+            sum_sql = """
+            SELECT sum(superior_number) AS total_superior, sum(grade_a_number) AS total_a, sum(grade_b_number) AS total_b
+            FROM wjzpw_inventory_input
+            WHERE machine_output_id IS NULL AND machine_no = %d AND product_id = %d AND batch_no = %d
+            """ % (machine_output['machine_no'], machine_output['product_id'], machine_output['batch_no'])
+            cr.execute(sum_sql)
+            sum_res = cr.dictfetchone()
+            total = 0.0
+            if sum_res:
+                total += sum_res['total_superior'] if sum_res['total_superior'] else 0.0
+                total += sum_res['total_a'] if sum_res['total_a'] else 0.0
+                total += sum_res['total_b'] if sum_res['total_b'] else 0.0
+            res[id] = total
+        return res
+
+
     _columns = {
         'machine_no': fields.integer('wjzpw.inventory.jiHao', required=True),
         'beam_amount': fields.float('wjzpw.inventory.jingZhouChangDu', required=True),
@@ -100,7 +132,11 @@ class wjzpw_inventory_machine_output(osv.osv):
         'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', required=True),
 
         # Function fields
-        'complete_date_str': fields.function(_complete_date, string='wjzpw.inventory.wanChengShiJian', type='char', method=True)
+        'complete_date_fun': fields.function(_complete_date, string='wjzpw.inventory.wanChengShiJian', type='char',
+                                             method=True),
+        'output_amount_fun': fields.function(_output_amount, string='wjzpw.inventory.leiJiChanLiang', type='float',
+                                             method=True)
+
     }
 
     _default = {
