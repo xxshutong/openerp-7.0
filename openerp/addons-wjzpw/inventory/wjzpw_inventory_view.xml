@@ -127,7 +127,7 @@
                     <field name="batch_no"/>
                     <field name="beam_amount"/>
                     <field name="output_amount"/>
-                    <field name="complete_date" attrs="{}"/>
+                    <field name="complete_date_str"/>
                     <field name="woven_shrinkage"/>
                 </tree>
             </field>

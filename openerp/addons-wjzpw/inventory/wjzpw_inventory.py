@@ -78,6 +78,17 @@ class wjzpw_inventory_machine_output(osv.osv):
     _name = "wjzpw.inventory.machine.output"
     _description = "wjzpw.inventory.jiTaiChanLiang"
 
+    def _complete_date(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for id in ids:
+            res.setdefault(id, '未完成')
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.complete_date:
+                res[rec.id] = rec.complete_date
+            else:
+                res[rec.id] = '未完成'
+        return res
+
     _columns = {
         'machine_no': fields.integer('wjzpw.inventory.jiHao', required=True),
         'beam_amount': fields.float('wjzpw.inventory.jingZhouChangDu', required=True),
@@ -87,6 +98,9 @@ class wjzpw_inventory_machine_output(osv.osv):
         'woven_shrinkage': fields.float('wjzpw.inventory.zhiSuoLv'),
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing', required=True),
         'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', required=True),
+
+        # Function fields
+        'complete_date_str': fields.function(_complete_date, string='wjzpw.inventory.wanChengShiJian', type='char', method=True)
     }
 
     _default = {
