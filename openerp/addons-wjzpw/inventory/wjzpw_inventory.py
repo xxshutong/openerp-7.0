@@ -74,6 +74,28 @@ class wjzpw_inventory_output(osv.osv):
 
     _order = "product_id"
 
+class wjzpw_inventory_machine_output(osv.osv):
+    _name = "wjzpw.inventory.machine.output"
+    _description = "wjzpw.inventory.jiTaiChanLiang"
+
+    _columns = {
+        'machine_no': fields.integer('wjzpw.inventory.jiHao', required=True),
+        'beam_amount': fields.float('wjzpw.inventory.jingZhouChangDu', required=True),
+        'output_amount': fields.float('wjzpw.inventory.leiJiChanLiang'),
+        'is_completed': fields.boolean('wjzpw.inventory.yiWanCheng', required=True),
+        'complete_date': fields.datetime('wjzpw.inventory.wanChengShiJian'),
+        'woven_shrinkage': fields.float('wjzpw.inventory.zhiSuoLv'),
+        'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing', required=True),
+        'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', required=True),
+    }
+
+    _default = {
+        'output_amount': 0,
+        'is_completed': False
+    }
+
+    _order = "machine_no,product_id,batch_no"
 
 wjzpw_inventory_input()
 wjzpw_inventory_output()
+wjzpw_inventory_machine_output()
