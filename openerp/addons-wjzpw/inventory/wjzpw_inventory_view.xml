@@ -128,7 +128,12 @@
                     <field name="beam_amount"/>
                     <field name="output_amount_fun"/>
                     <field name="complete_date_fun"/>
-                    <field name="woven_shrinkage"/>
+                    <field name="woven_shrinkage_fun"/>
+                    <button string="wjzpw.inventory.wanChengBingJiSuanZhiSuoLv"
+                            type="object"
+                            name="action_button_complete_machine_output"
+                            icon="gtk-index"
+                            attrs="{'invisible':[ ('woven_shrinkage_fun','!=','未知')]}"/>
                 </tree>
             </field>
         </record>

@@ -20,6 +20,7 @@
 ##############################################################################
 
 import logging
+import datetime
 
 from openerp.osv import fields, osv
 
@@ -38,7 +39,8 @@ class wjzpw_inventory_input(osv.osv):
         'grade_b_number': fields.float('wjzpw.inventory.erDengPin', required=True),
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing', required=True),
         'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', required=True),
-        'machine_output_id': fields.many2one('wjzpw.inventory.machine.output', 'wjzpw.inventory.jiTaiChanChu', required=False)
+        'machine_output_id': fields.many2one('wjzpw.inventory.machine.output', 'wjzpw.inventory.jiTaiChanChu',
+                                             required=False)
     }
 
     _defaults = {
@@ -89,37 +91,84 @@ class wjzpw_inventory_machine_output(osv.osv):
                 res[rec.id] = '未完成'
         return res
 
+    def _woven_shrinkage(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for id in ids:
+            res.setdefault(id, '未知')
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.woven_shrinkage:
+                res[rec.id] = rec.woven_shrinkage
+        return res
+
     def _output_amount(self, cr, uid, ids, field_name, arg, context):
         res = {}
         for id in ids:
-            # Get current machine output instance
-            get_sql = """
-            SELECT output_amount, machine_no, product_id, batch_no
-            FROM wjzpw_inventory_machine_output
-            WHERE id = %d
-            """ % id
-            cr.execute(get_sql)
-            machine_output = cr.dictfetchone()
+            machine_output = self.get_machine_output_by_id(cr, id)
             if machine_output and machine_output['output_amount']:
                 res[id] = machine_output['output_amount']
                 continue
+            res[id] = self.get_total_output_amount(cr, machine_output)
+        return res
 
-            # Get total output by now
-            sum_sql = """
+    @classmethod
+    def get_machine_output_by_id(cls, cr, id):
+        # Get current machine output instance
+        get_sql = """
+            SELECT *
+            FROM wjzpw_inventory_machine_output
+            WHERE id = %d
+            """ % id
+        cr.execute(get_sql)
+        return cr.dictfetchone()
+
+    @classmethod
+    def get_total_output_amount(cls, cr, machine_output):
+        # Get total output by now
+        sum_sql = """
             SELECT sum(superior_number) AS total_superior, sum(grade_a_number) AS total_a, sum(grade_b_number) AS total_b
             FROM wjzpw_inventory_input
             WHERE machine_output_id IS NULL AND machine_no = %d AND product_id = %d AND batch_no = %d
             """ % (machine_output['machine_no'], machine_output['product_id'], machine_output['batch_no'])
-            cr.execute(sum_sql)
-            sum_res = cr.dictfetchone()
-            total = 0.0
-            if sum_res:
-                total += sum_res['total_superior'] if sum_res['total_superior'] else 0.0
-                total += sum_res['total_a'] if sum_res['total_a'] else 0.0
-                total += sum_res['total_b'] if sum_res['total_b'] else 0.0
-            res[id] = total
-        return res
+        cr.execute(sum_sql)
+        sum_res = cr.dictfetchone()
+        total = 0.0
+        if sum_res:
+            total += sum_res['total_superior'] if sum_res['total_superior'] else 0.0
+            total += sum_res['total_a'] if sum_res['total_a'] else 0.0
+            total += sum_res['total_b'] if sum_res['total_b'] else 0.0
+        return total
 
+    @classmethod
+    def get_input_ids_by_machine_output(cls, cr, machine_output):
+        # Get total output by now
+        sum_sql = """
+            SELECT id
+            FROM wjzpw_inventory_input
+            WHERE machine_output_id IS NULL AND machine_no = %d AND product_id = %d AND batch_no = %d
+            """ % (machine_output['machine_no'], machine_output['product_id'], machine_output['batch_no'])
+        cr.execute(sum_sql)
+        ids = []
+        for inventory_input in cr.fetchall():
+            ids.append(inventory_input[0])
+        return ids
+
+    # Button to complete machine output
+    def action_button_complete_machine_output(self, cr, uid, ids, context=None):
+        for id in ids:
+            # Get current machine output instance
+            machine_output = self.get_machine_output_by_id(cr, id)
+            if machine_output:
+                total = self.get_total_output_amount(cr, machine_output)
+                # Update Machine output record
+                self.pool.get('wjzpw.inventory.machine.output') \
+                    .write(cr, uid, [id],
+                           {'output_amount': total, 'is_completed': 'Y', 'complete_date': datetime.datetime.now(),
+                            'woven_shrinkage':
+                                (0.0 if machine_output['beam_amount'] <= 0.0
+                                 else (machine_output['beam_amount'] - total) / machine_output['beam_amount'])})
+                # Update all input records which have the same batch No and product type
+                input_ids = self.get_input_ids_by_machine_output(cr, machine_output)
+                self.pool.get('wjzpw.inventory.input').write(cr, uid, input_ids, {'machine_output_id': machine_output['id']})
 
     _columns = {
         'machine_no': fields.integer('wjzpw.inventory.jiHao', required=True),
@@ -135,7 +184,9 @@ class wjzpw_inventory_machine_output(osv.osv):
         'complete_date_fun': fields.function(_complete_date, string='wjzpw.inventory.wanChengShiJian', type='char',
                                              method=True),
         'output_amount_fun': fields.function(_output_amount, string='wjzpw.inventory.leiJiChanLiang', type='float',
-                                             method=True)
+                                             method=True),
+        'woven_shrinkage_fun': fields.function(_woven_shrinkage, string="wjzpw.inventory.zhiSuoLv", type='char',
+                                               method=True)
 
     }
 
