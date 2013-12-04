@@ -159,10 +159,10 @@
         <menuitem id="wjzpw_organzine_inventory_menu" name="wjzpw.inventory.cheJianShengYu" parent="wjzpw_organzine_menu" action="wjzpw.action_wjzpw_product"/>
         <menuitem id="wjzpw_organzine_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_organzine_menu" action="wjzpw.action_wjzpw_product"/>
         <menuitem id="wjzpw_organzine_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_organzine_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_tram_menu" name="wjzpw.inventory.weiSiKuCun" parent="wjzpw_inventory_menu"/>
-        <menuitem id="wjzpw_tram_inventory_menu" name="wjzpw.inventory.cheJianShengYu" parent="wjzpw_tram_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_tram_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_tram_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_tram_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_tram_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_weft_menu" name="wjzpw.inventory.weiSiKuCun" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_weft_inventory_menu" name="wjzpw.inventory.cheJianShengYu" parent="wjzpw_weft_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_weft_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_weft_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_tweft_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_weft_menu" action="wjzpw.action_wjzpw_product"/>
         <!-- 经轴库存 -->
         <menuitem id="wjzpw_beam_menu" name="wjzpw.inventory.jingZhouKuCun" parent="wjzpw_inventory_menu"/>
         <menuitem id="wjzpw_beam_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>
