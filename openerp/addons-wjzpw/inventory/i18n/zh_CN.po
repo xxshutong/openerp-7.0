@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-23 13:39+0000\n"
-"PO-Revision-Date: 2013-11-23 13:39+0000\n"
+"POT-Creation-Date: 2013-12-15 08:46+0000\n"
+"PO-Revision-Date: 2013-12-15 08:46+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,20 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_product_menu
-msgid "wjzpw.inventory.pinMing"
-msgstr "品名"
+#: view:wjzpw.inventory.machine.output:0
+msgid "wjzpw.inventory.wanChengBingJiSuanZhiSuoLv"
+msgstr "完成并计算织缩率"
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_organzine_inventory_menu
-#: model:ir.ui.menu,name:inventory.wjzpw_tram_inventory_menu
-msgid "wjzpw.inventory.cheJianShengYu"
-msgstr "车间剩余"
-
-#. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_setting_menu
-msgid "wjzpw.inventory.sheZhi"
-msgstr "设置"
+#: field:wjzpw.inventory.machine.output,is_completed:0
+msgid "wjzpw.inventory.yiWanCheng"
+msgstr "已完成"
 
 #. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_batch_no_menu
@@ -37,26 +31,32 @@ msgid "wjzpw.inventory.piHao"
 msgstr "批号"
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_tram_menu
-msgid "wjzpw.inventory.weiSiKuCun"
-msgstr "纬丝库存"
-
-#. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_inventory_machine_output
+#: model:ir.model,name:inventory.model_wjzpw_inventory_machine_output
 #: model:ir.ui.menu,name:inventory.wjzpw_machine_output_menu
 msgid "wjzpw.inventory.jiTaiChanLiang"
 msgstr "机台产量"
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_cloth_menu
-msgid "wjzpw.inventory.piBuKuCun"
-msgstr "坯布库存"
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_inventory_output
+#: model:ir.model,name:inventory.model_wjzpw_inventory_ouput
+#: model:ir.model,name:inventory.model_wjzpw_inventory_output
+msgid "wjzpw.inventory.chuKuGuanLi"
+msgstr "出库管理"
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_czpk_menu
-msgid "wjzpw.inventory.chuanZongPaKou"
-msgstr "穿综扒筘"
+#: view:wjzpw.inventory.machine.output:0
+msgid "inventoryMachineOutput"
+msgstr "机台产出"
 
 #. module: inventory
+#: field:wjzpw.inventory.machine.output,output_amount:0
+#: field:wjzpw.inventory.machine.output,output_amount_fun:0
+msgid "wjzpw.inventory.leiJiChanLiang"
+msgstr "累计产量"
+
+#. module: inventory
+#: model:ir.model,name:inventory.model_wjzpw_inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_beam_inventory_menu
 #: model:ir.ui.menu,name:inventory.wjzpw_cloth_inventory_menu
 #: model:ir.ui.menu,name:inventory.wjzpw_inventory_menu
@@ -64,16 +64,94 @@ msgid "wjzpw.inventory.kuCun"
 msgstr "库存"
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_cloth_output_menu
-#: model:ir.ui.menu,name:inventory.wjzpw_organzine_output_menu
-#: model:ir.ui.menu,name:inventory.wjzpw_tram_output_menu
-msgid "wjzpw.inventory.chuKu"
+#: model:ir.ui.menu,name:inventory.wjzpw_product_menu
+msgid "wjzpw.inventory.pinMing"
+msgstr "品名"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_organzine_inventory_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_weft_inventory_menu
+msgid "wjzpw.inventory.cheJianShengYu"
+msgstr "车间剩余"
+
+#. module: inventory
+#: field:wjzpw.inventory.output,code:0
+msgid "wjzpw.inventory.maDan"
+msgstr "码单"
+
+#. module: inventory
+#: field:wjzpw.inventory.input,input_date:0
+#: field:wjzpw.inventory.output,input_date:0
+msgid "wjzpw.inventory.luRuRiQi"
+msgstr "录入日期"
+
+#. module: inventory
+#: field:wjzpw.inventory.machine.output,woven_shrinkage:0
+#: field:wjzpw.inventory.machine.output,woven_shrinkage_fun:0
+msgid "wjzpw.inventory.zhiSuoLv"
+msgstr "织缩率"
+
+#. module: inventory
+#: field:wjzpw.inventory.machine.output,complete_date:0
+#: field:wjzpw.inventory.machine.output,complete_date_fun:0
+msgid "wjzpw.inventory.wanChengShiJian"
+msgstr "完成时间"
+
+#. module: inventory
+#: field:wjzpw.inventory.machine.output,beam_amount:0
+msgid "wjzpw.inventory.jingZhouChangDu"
+msgstr "经轴长度"
+
+#. module: inventory
+#: field:wjzpw.inventory,batch_no:0
+#: field:wjzpw.inventory.input,batch_no:0
+#: field:wjzpw.inventory.machine.output,batch_no:0
+#: field:wjzpw.inventory.output,batch_no:0
+msgid "wjzpw.piHao"
+msgstr "批号"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_setting_menu
+msgid "wjzpw.inventory.sheZhi"
+msgstr "设置"
+
+#. module: inventory
+#: field:wjzpw.inventory.input,machine_output_id:0
+msgid "wjzpw.inventory.jiTaiChanChu"
+msgstr "机台产出"
+
+#. module: inventory
+#: field:wjzpw.inventory.input,machine_no:0
+#: field:wjzpw.inventory.machine.output,machine_no:0
+msgid "wjzpw.inventory.jiHao"
+msgstr "机号"
+
+#. module: inventory
+#: field:wjzpw.inventory,b_amount:0
+#: field:wjzpw.inventory.input,grade_b_number:0
+#: field:wjzpw.inventory.output,grade_b_number:0
+msgid "wjzpw.inventory.erDengPin"
+msgstr "二等品"
+
+#. module: inventory
+#: view:wjzpw.inventory.output:0
+msgid "inventoryOutput"
 msgstr "出库"
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_organzine_menu
-msgid "wjzpw.inventory.jingSiKuCun"
-msgstr "经丝库存"
+#: model:ir.ui.menu,name:inventory.wjzpw_cloth_menu
+msgid "wjzpw.inventory.piBuKuCun"
+msgstr "坯布库存"
+
+#. module: inventory
+#: field:wjzpw.inventory.output,customer:0
+msgid "wjzpw.inventory.keHu"
+msgstr "客户"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_weft_menu
+msgid "wjzpw.inventory.weiSiKuCun"
+msgstr "纬丝库存"
 
 #. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_beam_menu
@@ -81,9 +159,61 @@ msgid "wjzpw.inventory.jingZhouKuCun"
 msgstr "经轴库存"
 
 #. module: inventory
+#: field:wjzpw.inventory,a_amount:0
+#: field:wjzpw.inventory.input,grade_a_number:0
+#: field:wjzpw.inventory.output,grade_a_number:0
+msgid "wjzpw.inventory.yiDengPin"
+msgstr "一等品"
+
+#. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_cloth_input_menu
 #: model:ir.ui.menu,name:inventory.wjzpw_organzine_input_menu
-#: model:ir.ui.menu,name:inventory.wjzpw_tram_input_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_weft_input_menu
 msgid "wjzpw.inventory.ruKu"
 msgstr "入库"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_czpk_menu
+msgid "wjzpw.inventory.chuanZongPaKou"
+msgstr "穿综扒筘"
+
+#. module: inventory
+#: field:wjzpw.inventory,superior_amount:0
+#: field:wjzpw.inventory.input,superior_number:0
+#: field:wjzpw.inventory.output,superior_number:0
+msgid "wjzpw.inventory.youDengPin"
+msgstr "优等品"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_cloth_output_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_organzine_output_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_tweft_output_menu
+msgid "wjzpw.inventory.chuKu"
+msgstr "出库"
+
+#. module: inventory
+#: view:wjzpw.inventory:0
+#: view:wjzpw.inventory.input:0
+msgid "inventoryInput"
+msgstr "入库"
+
+#. module: inventory
+#: field:wjzpw.inventory,product_id:0
+#: field:wjzpw.inventory.input,product_id:0
+#: field:wjzpw.inventory.machine.output,product_id:0
+#: field:wjzpw.inventory.output,product_id:0
+msgid "wjzpw.pinMing"
+msgstr "品名"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_organzine_menu
+msgid "wjzpw.inventory.jingSiKuCun"
+msgstr "经丝库存"
+
+#. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_cloth_inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_inventory_input
+#: model:ir.model,name:inventory.model_wjzpw_inventory_input
+msgid "wjzpw.inventory.ruKuGuanLi"
+msgstr "入库管理"
 
