@@ -18,7 +18,7 @@
 > vi ~/.openerp_serverrc
 
 * 通过命令运行服务器
-> ./openerp-server
+> ./openerp-server -s # -s 将生成一个配置文件http://code.zoia.org/2013/05/09/setting-up-openerp7-on-osx-using-virtualenv
 
 * 访问注册页面下方的Manage Databases进行数据库管理
 > **注:** 1. master password是管理数据库的主密码,在(~/.openerp_serverrc)中进行配置，默认为admin.
@@ -39,4 +39,6 @@ http://code.zoia.org/2013/05/09/setting-up-openerp7-on-osx-using-virtualenv
 ### 2. 目录
 * openerp/addons-wjzpw
 
+
+./openerp-server --addons-path=/mnt/workspace/openerp-7.0/openerp/addons,/mnt/workspace/openerp-7.0/openerp/addons-wjzpw
 

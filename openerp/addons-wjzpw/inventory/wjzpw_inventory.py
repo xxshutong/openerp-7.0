@@ -52,68 +52,6 @@ class wjzpw_inventory_input(osv.osv):
 
     _order = "product_id"
 
-
-class wjzpw_inventory(osv.osv):
-    '''
-    培布库存，数据库视图，非是体表
-    '''
-    _name = "wjzpw.inventory"
-    _auto = False
-    _description = "wjzpw.inventory.kuCun"
-    _rec_name = 'product_id'
-
-    _columns = {
-        'superior_amount': fields.float('wjzpw.inventory.youDengPin', readonly=True),  # 优等品数量
-        'a_amount': fields.float('wjzpw.inventory.yiDengPin', readonly=True),  # 一等品数量
-        'b_amount': fields.float('wjzpw.inventory.erDengPin', readonly=True),  # 二等品数量
-        'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing', readonly=True),  # 品名
-        'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', readonly=True)  # 批号
-    }
-
-    def init(self, cr):
-        """
-            培布库存
-            @param cr: the current row, from the database cursor
-        """
-        tools.drop_view_if_exists(cr, 'wjzpw_inventory')
-        cr.execute("""
-            CREATE OR REPLACE VIEW wjzpw_inventory AS (
-                SELECT row_number() over (order by product_id, batch_no) AS id,product_id, batch_no,
-                CASE
-                    WHEN ((SELECT count(wio.id) AS count
-                        FROM wjzpw_inventory_output wio
-                        WHERE wio.product_id = wii.product_id AND wio.batch_no = wii.batch_no)) <> 0
-                        THEN
-                            (sum(wii.superior_number) -
-                            (SELECT sum(superior_number) FROM wjzpw_inventory_output wio WHERE wio.product_id = wii.product_id and wio.batch_no = wii.batch_no))
-                        ELSE
-                           sum(wii.superior_number)
-                END AS superior_amount
-                ,CASE
-                    WHEN ((SELECT count(wio.id) AS count
-                        FROM wjzpw_inventory_output wio
-                        WHERE wio.product_id = wii.product_id AND wio.batch_no = wii.batch_no)) <> 0
-                        THEN
-                            (sum(wii.grade_a_number) -
-                            (SELECT sum(grade_a_number) FROM wjzpw_inventory_output wio WHERE wio.product_id = wii.product_id and wio.batch_no = wii.batch_no))
-                        ELSE
-                           sum(wii.grade_a_number)
-                END AS a_amount
-                ,CASE
-                    WHEN ((SELECT count(wio.id) AS count
-                        FROM wjzpw_inventory_output wio
-                        WHERE wio.product_id = wii.product_id AND wio.batch_no = wii.batch_no)) <> 0
-                        THEN
-                            (sum(wii.grade_b_number) -
-                            (SELECT sum(grade_b_number) FROM wjzpw_inventory_output wio WHERE wio.product_id = wii.product_id and wio.batch_no = wii.batch_no))
-                        ELSE
-                           sum(wii.grade_b_number)
-                END AS b_amount
-                FROM wjzpw_inventory_input wii GROUP BY wii.product_id, wii.batch_no
-            )""")
-
-    _order = "product_id, batch_no"
-
 class wjzpw_inventory_output(osv.osv):
     _name = "wjzpw.inventory.output"
     _description = "wjzpw.inventory.chuKuGuanLi"
@@ -259,7 +197,69 @@ class wjzpw_inventory_machine_output(osv.osv):
 
     _order = "machine_no,product_id,batch_no"
 
+
+class wjzpw_inventory(osv.osv):
+    '''
+    培布库存，数据库视图，非是体表
+    '''
+    _name = "wjzpw.inventory"
+    _auto = False
+    _description = "wjzpw.inventory.kuCun"
+    _rec_name = 'product_id'
+
+    _columns = {
+        'superior_amount': fields.float('wjzpw.inventory.youDengPin', readonly=True),  # 优等品数量
+        'a_amount': fields.float('wjzpw.inventory.yiDengPin', readonly=True),  # 一等品数量
+        'b_amount': fields.float('wjzpw.inventory.erDengPin', readonly=True),  # 二等品数量
+        'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing', readonly=True),  # 品名
+        'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', readonly=True)  # 批号
+    }
+
+    def init(self, cr):
+        """
+            培布库存
+            @param cr: the current row, from the database cursor
+        """
+        tools.drop_view_if_exists(cr, 'wjzpw_inventory')
+        cr.execute("""
+            CREATE OR REPLACE VIEW wjzpw_inventory AS (
+                SELECT row_number() over (order by product_id, batch_no) AS id,product_id, batch_no,
+                CASE
+                    WHEN ((SELECT count(wio.id) AS count
+                        FROM wjzpw_inventory_output wio
+                        WHERE wio.product_id = wii.product_id AND wio.batch_no = wii.batch_no)) <> 0
+                        THEN
+                            (sum(wii.superior_number) -
+                            (SELECT sum(superior_number) FROM wjzpw_inventory_output wio WHERE wio.product_id = wii.product_id and wio.batch_no = wii.batch_no))
+                        ELSE
+                           sum(wii.superior_number)
+                END AS superior_amount
+                ,CASE
+                    WHEN ((SELECT count(wio.id) AS count
+                        FROM wjzpw_inventory_output wio
+                        WHERE wio.product_id = wii.product_id AND wio.batch_no = wii.batch_no)) <> 0
+                        THEN
+                            (sum(wii.grade_a_number) -
+                            (SELECT sum(grade_a_number) FROM wjzpw_inventory_output wio WHERE wio.product_id = wii.product_id and wio.batch_no = wii.batch_no))
+                        ELSE
+                           sum(wii.grade_a_number)
+                END AS a_amount
+                ,CASE
+                    WHEN ((SELECT count(wio.id) AS count
+                        FROM wjzpw_inventory_output wio
+                        WHERE wio.product_id = wii.product_id AND wio.batch_no = wii.batch_no)) <> 0
+                        THEN
+                            (sum(wii.grade_b_number) -
+                            (SELECT sum(grade_b_number) FROM wjzpw_inventory_output wio WHERE wio.product_id = wii.product_id and wio.batch_no = wii.batch_no))
+                        ELSE
+                           sum(wii.grade_b_number)
+                END AS b_amount
+                FROM wjzpw_inventory_input wii GROUP BY wii.product_id, wii.batch_no
+            )""")
+
+    _order = "product_id, batch_no"
+
 wjzpw_inventory_input()
-wjzpw_inventory()
 wjzpw_inventory_output()
 wjzpw_inventory_machine_output()
+wjzpw_inventory()
