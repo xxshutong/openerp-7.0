@@ -5,6 +5,10 @@
 ### 步骤
 * 创建数据库用户openerp，密码openerp
 
+* 创建虚拟环境
+> pip install virtualenv
+>
+
 * 安装依赖包
 > sudo pip install python-dateutil docutils feedparser mock unittest2 gdata python-ldap lxml mako python-openid psycopg2 Babel reportlab simplejson pytz vatnumber vobject python_webdav Werkzeug pyparsing==1.5.7 pydot PyYAML xlwt ZSI PIL
 
@@ -33,7 +37,6 @@ http://code.zoia.org/2013/05/09/setting-up-openerp7-on-osx-using-virtualenv
 * .gitignore
 
 ### 2. 目录
-* openerp/addons/inventory
-* openerp/addons/wjzpw
+* openerp/addons-wjzpw
 
 

@@ -146,11 +146,35 @@
             <field name="view_id" ref="wjzpw_inventory_machine_output_tree_view"/>
         </record>
 
+        <!--定义Inventory列表视图-->
+        <record model="ir.ui.view" id="wjzpw_inventory_tree_view">
+            <field name="name">wjzpw.inventory.ruKuGuanLi</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.inventory</field>
+            <field name="arch" type="xml">
+                <tree string="inventoryInput" create="false" edit="false">
+                    <field name="product_id"/>
+                    <field name="batch_no"/>
+                    <field name="superior_amount"/>
+                    <field name="a_amount"/>
+                    <field name="b_amount"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义Inventory视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_cloth_inventory">
+            <field name="name">wjzpw.inventory.ruKuGuanLi</field>
+            <field name="res_model">wjzpw.inventory</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="wjzpw_inventory_tree_view"/>
+        </record>
+
         <!--定义菜单-->
         <menuitem id="wjzpw_inventory_menu" name="wjzpw.inventory.kuCun"/>
         <!-- 坯布库存 -->
         <menuitem id="wjzpw_cloth_menu" name="wjzpw.inventory.piBuKuCun" parent="wjzpw_inventory_menu"/>
-        <menuitem id="wjzpw_cloth_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_cloth_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_cloth_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_cloth_menu" action="action_wjzpw_cloth_inventory"/>
         <menuitem id="wjzpw_machine_output_menu" name="wjzpw.inventory.jiTaiChanLiang" parent="wjzpw_cloth_menu" action="inventory.action_wjzpw_inventory_machine_output"/>
         <menuitem id="wjzpw_cloth_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_cloth_menu" action="inventory.action_wjzpw_inventory_input"/>
         <menuitem id="wjzpw_cloth_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_cloth_menu" action="inventory.action_wjzpw_inventory_output"/>
