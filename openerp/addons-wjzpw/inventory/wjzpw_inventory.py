@@ -34,7 +34,7 @@ class wjzpw_inventory_input(osv.osv):
 
     _columns = {
         'machine_no': fields.integer('wjzpw.inventory.jiHao', required=True),
-        'input_date': fields.datetime('wjzpw.inventory.luRuRiQi', required=True),
+        'input_date': fields.date('wjzpw.inventory.luRuRiQi', required=True),
         'superior_number': fields.float('wjzpw.inventory.youDengPin', required=True),
         'grade_a_number': fields.float('wjzpw.inventory.yiDengPin', required=True),
         'grade_b_number': fields.float('wjzpw.inventory.erDengPin', required=True),
@@ -57,7 +57,7 @@ class wjzpw_inventory_output(osv.osv):
     _description = "wjzpw.inventory.chuKuGuanLi"
 
     _columns = {
-        'input_date': fields.datetime('wjzpw.inventory.luRuRiQi', required=True),
+        'input_date': fields.date('wjzpw.inventory.luRuRiQi', required=True),
         'code': fields.char('wjzpw.inventory.maDan', size=60, required=False),
         'superior_number': fields.float('wjzpw.inventory.youDengPin', required=True),
         'grade_a_number': fields.float('wjzpw.inventory.yiDengPin', required=True),
