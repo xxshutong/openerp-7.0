@@ -6,14 +6,50 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-23 13:44+0000\n"
-"PO-Revision-Date: 2013-11-23 13:44+0000\n"
+"POT-Creation-Date: 2013-12-16 13:52+0000\n"
+"PO-Revision-Date: 2013-12-16 13:52+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: wjzpw
+#: model:ir.model,name:wjzpw.model_wjzpw_batch_no
+msgid "Batch No Management"
+msgstr "批号管理"
+
+#. module: wjzpw
+#: view:wjzpw.product:0
+msgid "product"
+msgstr "品名"
+
+#. module: wjzpw
+#: field:wjzpw.batch.no,description:0
+#: field:wjzpw.product,description:0
+msgid "Description"
+msgstr "描述"
+
+#. module: wjzpw
+#: view:wjzpw.batch.no:0
+msgid "batchNo"
+msgstr "批号"
+
+#. module: wjzpw
+#: model:ir.actions.act_window,name:wjzpw.action_wjzpw_batch_no
+msgid "wjzpw.inventory.piHaoGuanLi"
+msgstr "批号管理"
+
+#. module: wjzpw
+#: field:wjzpw.batch.no,name:0
+msgid "Batch No"
+msgstr "批号"
+
+#. module: wjzpw
+#: field:wjzpw.product,name:0
+msgid "Product Name"
+msgstr "品名"
 
 #. module: wjzpw
 #: model:ir.model,name:wjzpw.model_wjzpw_product
@@ -24,14 +60,4 @@ msgstr "品名管理"
 #: model:ir.actions.act_window,name:wjzpw.action_wjzpw_product
 msgid "wjzpw.inventory.pinMingGuanLi"
 msgstr "品名管理"
-
-#. module: wjzpw
-#: field:wjzpw.product,description:0
-msgid "wjzpw.description"
-msgstr "描述"
-
-#. module: wjzpw
-#: field:wjzpw.product,name:0
-msgid "wjzpw.product.name"
-msgstr "品名"
 
