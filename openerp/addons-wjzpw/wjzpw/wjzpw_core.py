@@ -42,6 +42,7 @@ class wjzpw_product(osv.osv):
     }
     _order = "name"
 
+
 class wjzpw_batch_no(osv.osv):
     """
     批号管理
@@ -65,12 +66,19 @@ class wjzpw_material_specifications(osv.osv):
     _name = "wjzpw.material.specification"
     _description = "wjzpw.yuanLiaoGuiGeGuanLi"
 
+    def _name_get(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for rec in self.browse(cr, uid, ids, context=context):
+            res[rec.id] = rec.specification
+        return res
+
     _columns = {
         'specification': fields.char('wjzpw.guiGe', size=64, required=True),
-        'description': fields.text('Description')
+        'description': fields.text('Description'),
+        'name': fields.function(_name_get, string="wjzpw.inventory.yuanLiaoGuiGe", type='char',
+                                method=True)
     }
-    _defaults = {
-    }
+
     _order = "specification"
 
 
@@ -104,6 +112,7 @@ class wjzpw_weft_batch_no(osv.osv):
     _defaults = {
     }
     _order = "name"
+
 
 wjzpw_product()
 wjzpw_batch_no()

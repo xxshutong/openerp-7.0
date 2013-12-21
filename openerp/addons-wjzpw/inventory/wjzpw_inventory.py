@@ -29,6 +29,9 @@ _logger = logging.getLogger(__name__)
 
 
 class wjzpw_inventory_input(osv.osv):
+    """
+    坯布入库
+    """
     _name = "wjzpw.inventory.input"
     _description = "wjzpw.inventory.ruKuGuanLi"
 
@@ -52,7 +55,11 @@ class wjzpw_inventory_input(osv.osv):
 
     _order = "product_id"
 
+
 class wjzpw_inventory_output(osv.osv):
+    """
+    坯布出库
+    """
     _name = "wjzpw.inventory.output"
     _description = "wjzpw.inventory.chuKuGuanLi"
 
@@ -75,6 +82,35 @@ class wjzpw_inventory_output(osv.osv):
     }
 
     _order = "product_id"
+
+
+class wjzpw_organzine_input(osv.osv):
+    """
+    经丝入库
+    """
+    _name = "wjzpw.organzine.input"
+    _description = "wjzpw.inventory.jingSiRuKuGuanLi"
+
+    _columns = {
+        'input_date': fields.date('wjzpw.inventory.luRuRiQi', required=True),
+        'process_unit': fields.char('wjzpw.inventory.jiaGongDanWei'),  # 加工单位
+        'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
+        'material_area': fields.char('wjzpw.inventory.yuanLiaoChanDi'),  # 原料产地
+        'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.piHao', required=True),  # 批号
+        'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
+        'height': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
+        'count': fields.integer('wjzpw.inventory.geShu'),  # 二次入库零散个数
+        'is_second': fields.boolean('wjzpw.inventory.shiFouErCiRuKu')  # 是否为二次入库
+    }
+
+    _default = {
+        'quantity': 0,
+        'count': 0,
+        'is_second': False
+    }
+
+    _order = "input_date desc"
+
 
 class wjzpw_inventory_machine_output(osv.osv):
     _name = "wjzpw.inventory.machine.output"
@@ -199,9 +235,9 @@ class wjzpw_inventory_machine_output(osv.osv):
 
 
 class wjzpw_inventory(osv.osv):
-    '''
+    """
     培布库存，数据库视图，非是体表
-    '''
+    """
     _name = "wjzpw.inventory"
     _auto = False
     _description = "wjzpw.inventory.kuCun"
@@ -261,5 +297,6 @@ class wjzpw_inventory(osv.osv):
 
 wjzpw_inventory_input()
 wjzpw_inventory_output()
+wjzpw_organzine_input()
 wjzpw_inventory_machine_output()
 wjzpw_inventory()
