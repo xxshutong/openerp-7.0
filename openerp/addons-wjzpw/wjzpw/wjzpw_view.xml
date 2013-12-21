@@ -149,5 +149,42 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="wjzpw_organzine_batch_no_tree_view"/>
         </record>
+
+        <!--定义WeftBatchNo表单视图-->
+        <record model="ir.ui.view" id="wjzpw_weft_batch_no_form_view">
+            <field name="name">wjzpw.weiSiPiHaoGuanLi</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.weft.batch.no</field>
+            <field name="arch" type="xml">
+                <form string="weftBatchNo" version="7.0">
+                    <sheet>
+                        <group col="2">
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义WeftBatchNo列表视图-->
+        <record model="ir.ui.view" id="wjzpw_weft_batch_no_tree_view">
+            <field name="name">wjzpw.weiSiPiHaoLieBiao</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.weft.batch.no</field>
+            <field name="arch" type="xml">
+                <tree string="weftBatchNo">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义WeftBatchNo视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_weft_batch_no">
+            <field name="name">wjzpw.inventory.weiSiPiHaoGuanLi</field>
+            <field name="res_model">wjzpw.weft.batch.no</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wjzpw_weft_batch_no_tree_view"/>
+        </record>
     </data>
 </openerp>
