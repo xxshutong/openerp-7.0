@@ -195,5 +195,6 @@
         <menuitem id="wjzpw_setting_menu" name="wjzpw.inventory.sheZhi" parent="wjzpw_inventory_menu"/>
         <menuitem id="wjzpw_product_menu" name="wjzpw.inventory.pinMing" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_product"/>
         <menuitem id="wjzpw_batch_no_menu" name="wjzpw.inventory.piHao" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_batch_no"/>
+        <menuitem id="wjzpw_material_specification_menu" name="wjzpw.inventory.yuanLiaoGuiGe" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_material_specification"/>
     </data>
 </openerp>

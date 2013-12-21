@@ -74,5 +74,42 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="wjzpw_batch_no_tree_view"/>
         </record>
+
+        <!--定义MaterialSpecification表单视图-->
+        <record model="ir.ui.view" id="wjzpw_material_specification_form_view">
+            <field name="name">wjzpw.yuanLiaoGuiGeGuanLi</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.material.specification</field>
+            <field name="arch" type="xml">
+                <form string="materialSpecification" version="7.0">
+                    <sheet>
+                        <group col="2">
+                            <field name="specification"/>
+                            <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义MaterialSpecification列表视图-->
+        <record model="ir.ui.view" id="wjzpw_material_specification_tree_view">
+            <field name="name">wjzpw.yuanLiaoGuiGeLieBiao</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.material.specification</field>
+            <field name="arch" type="xml">
+                <tree string="materialSpecification">
+                    <field name="specification"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义MaterialSpecification视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_material_specification">
+            <field name="name">wjzpw.inventory.yuanLiaoGuiGeGuanLi</field>
+            <field name="res_model">wjzpw.material.specification</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wjzpw_material_specification_tree_view"/>
+        </record>
     </data>
 </openerp>

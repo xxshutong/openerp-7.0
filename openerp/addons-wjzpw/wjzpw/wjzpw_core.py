@@ -27,6 +27,10 @@ _logger = logging.getLogger(__name__)
 
 
 class wjzpw_product(osv.osv):
+    """
+    品名管理
+    """
+
     _name = "wjzpw.product"
     _description = "Product Management"
 
@@ -39,6 +43,9 @@ class wjzpw_product(osv.osv):
     _order = "name"
 
 class wjzpw_batch_no(osv.osv):
+    """
+    批号管理
+    """
     _name = "wjzpw.batch.no"
     _description = "Batch No Management"
 
@@ -50,5 +57,22 @@ class wjzpw_batch_no(osv.osv):
     }
     _order = "name"
 
+
+class wjzpw_material_specifications(osv.osv):
+    """
+    原料规格管理
+    """
+    _name = "wjzpw.material.specification"
+    _description = "wjzpw.yuanLiaoGuiGeGuanLi"
+
+    _columns = {
+        'specification': fields.char('wjzpw.guiGe', size=64, required=True),
+        'description': fields.text('Description')
+    }
+    _defaults = {
+    }
+    _order = "specification"
+
 wjzpw_product()
 wjzpw_batch_no()
+wjzpw_material_specifications()

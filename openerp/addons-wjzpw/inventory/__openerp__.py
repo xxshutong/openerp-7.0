@@ -1,6 +1,6 @@
 {
     'name': "Wj-zpw.com 纺织织造库存管理",
-    'description': "对培布、原料、经轴等统一管理",
+    'description': "对培布、原料、经轴、钢筘等统一管理",
     'version': "1.0",
     'author': "xxshutong@gmail.com",
     'website': "http://www.wj-zpw.com",
