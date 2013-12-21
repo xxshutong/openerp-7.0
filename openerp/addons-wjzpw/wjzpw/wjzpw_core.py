@@ -73,6 +73,23 @@ class wjzpw_material_specifications(osv.osv):
     }
     _order = "specification"
 
+
+class wjzpw_organzine_batch_no(osv.osv):
+    """
+    经丝批号管理
+    """
+    _name = "wjzpw.organzine.batch.no"
+    _description = "wjzpw.jingSiPiHaoGuanLi"
+
+    _columns = {
+        'name': fields.char('wjzpw.jingSiPiHao', size=64, required=True),
+        'description': fields.text('Description')
+    }
+    _defaults = {
+    }
+    _order = "name"
+
 wjzpw_product()
 wjzpw_batch_no()
 wjzpw_material_specifications()
+wjzpw_organzine_batch_no()
