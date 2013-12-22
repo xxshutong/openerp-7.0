@@ -92,7 +92,7 @@ class wjzpw_organzine_input(osv.osv):
     _description = "wjzpw.inventory.jingSiRuKuGuanLi"
 
     _columns = {
-        'input_date': fields.date('wjzpw.inventory.luRuRiQi', required=True),
+        'input_date': fields.date('wjzpw.inventory.ruKuRiQi', required=True),
         'process_unit': fields.char('wjzpw.inventory.jiaGongDanWei'),  # 加工单位
         'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
         'material_area': fields.char('wjzpw.inventory.yuanLiaoChanDi'),  # 原料产地
@@ -110,6 +110,32 @@ class wjzpw_organzine_input(osv.osv):
     }
 
     _order = "input_date desc"
+
+
+class wjzpw_organzine_output(osv.osv):
+    """
+    经丝出库
+    """
+    _name = "wjzpw.organzine.output"
+    _description = "wjzpw.inventory.chuKuGuanLi"
+
+    _columns = {
+        'output_date': fields.date('wjzpw.inventory.chuKuRiQi', required=True),
+        'process_unit': fields.char('wjzpw.inventory.jiaGongDanWei'),  # 加工单位
+        'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
+        'material_area': fields.char('wjzpw.inventory.yuanLiaoChanDi'),  # 原料产地
+        'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.piHao', required=True),  # 批号
+        'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
+        'count': fields.integer('wjzpw.inventory.geShu'),  # 零散个数
+        'height': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
+    }
+
+    _defaults = {
+        "quantity": 0,
+        "count": 0,
+    }
+
+    _order = "output_date desc"
 
 
 class wjzpw_inventory_machine_output(osv.osv):
@@ -298,5 +324,6 @@ class wjzpw_inventory(osv.osv):
 wjzpw_inventory_input()
 wjzpw_inventory_output()
 wjzpw_organzine_input()
+wjzpw_organzine_output()
 wjzpw_inventory_machine_output()
 wjzpw_inventory()
