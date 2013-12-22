@@ -119,9 +119,21 @@ class wjzpw_organzine_output(osv.osv):
     _name = "wjzpw.organzine.output"
     _description = "wjzpw.inventory.chuKuGuanLi"
 
+    def _get_process_unit_options(self, cr, uid, context=None):
+        query_sql = """
+            SELECT DISTINCT process_unit
+            FROM wjzpw_organzine_input
+            """
+        cr.execute(query_sql)
+        keyValues = []
+        for process_unit in cr.fetchall():
+            keyValues.append((process_unit[0], process_unit[0]))
+        return tuple(keyValues)
+
+
     _columns = {
         'output_date': fields.date('wjzpw.inventory.chuKuRiQi', required=True),
-        'process_unit': fields.char('wjzpw.inventory.jiaGongDanWei'),  # 加工单位
+        'process_unit': fields.selection(_get_process_unit_options, 'wjzpw.inventory.jiaGongDanWei', required=True),  # 加工单位
         'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
         'material_area': fields.char('wjzpw.inventory.yuanLiaoChanDi'),  # 原料产地
         'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.piHao', required=True),  # 批号
