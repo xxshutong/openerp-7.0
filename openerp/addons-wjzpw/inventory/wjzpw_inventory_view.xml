@@ -111,6 +111,13 @@
                             <field name="material_specification"/>
                             <field name="material_area"/>
                             <field name="batch_no"/>
+                        </group>
+                        <group col="2">
+                            <field name="is_second"/>
+                        </group>
+                        <group col="4">
+                            <field name="quantity"/>
+                            <field name="count" attrs="{'invisible':[('is_second','=',False)]}"/>
                             <field name="height"/>
                         </group>
                     </sheet>
@@ -129,6 +136,9 @@
                     <field name="material_specification"/>
                     <field name="material_area"/>
                     <field name="batch_no"/>
+                    <field name="is_second"/>
+                    <field name="quantity"/>
+                    <field name="count"/>
                     <field name="height"/>
                 </tree>
             </field>
