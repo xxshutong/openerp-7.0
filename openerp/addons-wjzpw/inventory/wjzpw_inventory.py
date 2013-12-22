@@ -130,6 +130,22 @@ class wjzpw_organzine_output(osv.osv):
             keyValues.append((process_unit[0], process_unit[0]))
         return tuple(keyValues)
 
+    def onchange_process_unit(self, cr, uid, ids, process_unit):
+        query_sql = """
+            SELECT DISTINCT material_specification
+            FROM wjzpw_organzine_input
+            WHERE process_unit = '%s' ORDER BY material_specification
+            """ % process_unit
+        cr.execute(query_sql)
+        specification_ids = []
+        for specification_id in cr.fetchall():
+            specification_ids.append(specification_id[0])
+
+        return {
+            'domain': {
+                'material_specification': [('id', 'in', specification_ids)]
+            }
+        }
 
     _columns = {
         'output_date': fields.date('wjzpw.inventory.chuKuRiQi', required=True),
