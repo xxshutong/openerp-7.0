@@ -98,7 +98,7 @@ class wjzpw_organzine_input(osv.osv):
         'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', required=True),  # 原料产地
         'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.piHao', required=True),  # 批号
         'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
-        'height': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
+        'weight': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
         'count': fields.integer('wjzpw.inventory.geShu'),  # 二次入库零散个数
         'is_second': fields.boolean('wjzpw.inventory.shiFouErCiRuKu')  # 是否为二次入库
     }
@@ -189,7 +189,7 @@ class wjzpw_organzine_output(osv.osv):
         'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.piHao', required=True),  # 批号
         'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
         'count': fields.integer('wjzpw.inventory.geShu'),  # 零散个数
-        'height': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
+        'weight': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
     }
 
     _defaults = {
@@ -322,6 +322,45 @@ class wjzpw_inventory_machine_output(osv.osv):
     _order = "machine_no,product_id,batch_no"
 
 
+class wjzpw_weft_input(osv.osv):
+    """
+    纬丝入库
+    """
+    _name = "wjzpw.weft.input"
+    _description = "wjzpw.inventory.weiSiRuKuGuanLi"
+
+    def _calculate_weight_avg(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for id in ids:
+            res.setdefault(id, '未知')
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.weight and rec.quantity:
+                res[rec.id] = rec.weight / rec.quantity
+        return res
+
+    _columns = {
+        'input_date': fields.date('wjzpw.inventory.ruKuRiQi', required=True),
+        'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
+        'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', required=True),  # 原料产地
+        'batch_no': fields.many2one('wjzpw.weft.batch.no', 'wjzpw.piHao', required=True),  # 批号
+        'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
+        'level': fields.selection((('A', 'A'), ('AA', 'AA')), 'wjzpw.inventory.dengJi'),  # 等级
+        'weight': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
+        'weight_avg': fields.function(_calculate_weight_avg, string='wjzpw.inventory.meiXiangZhongLiang', type='float', method=True),  # 计算得出每箱重量
+        'count': fields.integer('wjzpw.inventory.geShu'),  # 二次入库零散个数
+        'is_second': fields.boolean('wjzpw.inventory.shiFouErCiRuKu')  # 是否为二次入库
+    }
+
+    _default = {
+        'quantity': 0,
+        'count': 0,
+        'weight': 0,
+        'is_second': False
+    }
+
+    _order = "input_date desc"
+
+
 class wjzpw_inventory(osv.osv):
     """
     培布库存，数据库视图，非是体表
@@ -399,7 +438,7 @@ class wjzpw_organzine_inventory(osv.osv):
         'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.piHao', readonly=True),  # 批号
         'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
         'count': fields.integer('wjzpw.inventory.geShu'),  # 二次入库零散个数
-        'height': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
+        'weight': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
     }
 
     def init(self, cr):
@@ -436,11 +475,11 @@ class wjzpw_organzine_inventory(osv.osv):
                         FROM wjzpw_organzine_output woo
                         WHERE woo.process_unit = woi.process_unit AND woo.material_specification = woi.material_specification AND woo.material_area = woi.material_area AND woo.batch_no = woi.batch_no)) <> 0
                         THEN
-                            (sum(woi.height) -
-                            (SELECT sum(height) FROM wjzpw_organzine_output woo WHERE woo.process_unit = woi.process_unit AND woo.material_specification = woi.material_specification AND woo.material_area = woi.material_area and woo.batch_no = woi.batch_no))
+                            (sum(woi.weight) -
+                            (SELECT sum(weight) FROM wjzpw_organzine_output woo WHERE woo.process_unit = woi.process_unit AND woo.material_specification = woi.material_specification AND woo.material_area = woi.material_area and woo.batch_no = woi.batch_no))
                         ELSE
-                           sum(woi.height)
-                END AS height
+                           sum(woi.weight)
+                END AS weight
                 FROM wjzpw_organzine_input woi GROUP BY woi.process_unit, woi.material_specification, woi.material_area, woi.batch_no
             )""")
 
@@ -454,3 +493,4 @@ wjzpw_organzine_output()
 wjzpw_inventory_machine_output()
 wjzpw_inventory()
 wjzpw_organzine_inventory()
+wjzpw_weft_input()
