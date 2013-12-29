@@ -343,12 +343,13 @@ class wjzpw_weft_input(osv.osv):
         'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
         'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', required=True),  # 原料产地
         'batch_no': fields.many2one('wjzpw.weft.batch.no', 'wjzpw.piHao', required=True),  # 批号
-        'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
         'level': fields.selection((('A', 'A'), ('AA', 'AA')), 'wjzpw.inventory.dengJi'),  # 等级
-        'weight': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
-        'weight_avg': fields.function(_calculate_weight_avg, string='wjzpw.inventory.meiXiangZhongLiang', type='float', method=True),  # 计算得出每箱重量
-        'count': fields.integer('wjzpw.inventory.geShu'),  # 二次入库零散个数
-        'is_second': fields.boolean('wjzpw.inventory.shiFouErCiRuKu')  # 是否为二次入库
+        'is_second': fields.boolean('wjzpw.inventory.shiFouErCiRuKu'),  # 是否为二次入库
+        'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
+        'weight': fields.float('wjzpw.inventory.xiangShuZhongLiang', required=True),  # 箱数重量（KG）
+        'count': fields.integer('wjzpw.inventory.zhiShu'),  # 二次入库零散个数
+        'count_weight': fields.float('wjzpw.inventory.zhiShuZhongLiang'),  # 只数重量
+        'weight_avg': fields.function(_calculate_weight_avg, string='wjzpw.inventory.meiXiangZhongLiang', type='float', method=True)  # 计算得出每箱重量
     }
 
     _default = {
@@ -567,3 +568,4 @@ wjzpw_inventory_machine_output()
 wjzpw_inventory()
 wjzpw_organzine_inventory()
 wjzpw_weft_input()
+wjzpw_weft_output()
