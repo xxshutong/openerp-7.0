@@ -95,7 +95,7 @@ class wjzpw_organzine_input(osv.osv):
         'input_date': fields.date('wjzpw.inventory.ruKuRiQi', required=True),
         'process_unit': fields.char('wjzpw.inventory.jiaGongDanWei'),  # 加工单位
         'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
-        'material_area': fields.char('wjzpw.inventory.yuanLiaoChanDi'),  # 原料产地
+        'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', required=True),  # 原料产地
         'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.piHao', required=True),  # 批号
         'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
         'height': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
@@ -147,11 +147,26 @@ class wjzpw_organzine_output(osv.osv):
             }
         }
 
+    # def onchange_material_specification(self, cr, uid, ids, process_unit=None, material_specification=None):
+    #     query_sql = """
+    #         SELECT DISTINCT material_area
+    #         FROM wjzpw_organzine_input
+    #         WHERE process_unit = '%s' AND material_specification = %d
+    #         """ % (process_unit, material_specification)
+    #     if process_unit:
+    #         query_sql = (query_sql +
+    #
+    #     cr.execute(query_sql)
+    #     keyValues = []
+    #     for material_area in cr.fetchall():
+    #         keyValues.append((material_area[0], material_area[0]))
+    #     return tuple(keyValues)
+
     _columns = {
         'output_date': fields.date('wjzpw.inventory.chuKuRiQi', required=True),
         'process_unit': fields.selection(_get_process_unit_options, 'wjzpw.inventory.jiaGongDanWei', required=True),  # 加工单位
         'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
-        'material_area': fields.char('wjzpw.inventory.yuanLiaoChanDi'),  # 原料产地
+        'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', required=True),  # 原料产地
         'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.piHao', required=True),  # 批号
         'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
         'count': fields.integer('wjzpw.inventory.geShu'),  # 零散个数

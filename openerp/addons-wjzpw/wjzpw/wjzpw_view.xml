@@ -186,5 +186,32 @@
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="wjzpw_weft_batch_no_tree_view"/>
         </record>
+
+        <!--定义MaterialArea表单视图-->
+        <record model="ir.ui.view" id="wjzpw_material_area_form_view">
+            <field name="name">wjzpw.chanDiGuanLi</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.material.area</field>
+            <field name="arch" type="xml">
+                <form string="materialArea" version="7.0" delete="false">
+                    <sheet>
+                        <group col="2">
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义MaterialArea列表视图-->
+        <record model="ir.ui.view" id="wjzpw_material_area_tree_view">
+            <field name="name">wjzpw.chanDiLieBiao</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.material.area</field>
+            <field name="arch" type="xml">
+                <tree string="materialArea">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
     </data>
 </openerp>

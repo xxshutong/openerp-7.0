@@ -22,6 +22,7 @@
 import logging
 
 from openerp.osv import fields, osv
+from reportlab.pdfbase._fontdata import _Name2StandardEncodingMap
 
 _logger = logging.getLogger(__name__)
 
@@ -114,8 +115,22 @@ class wjzpw_weft_batch_no(osv.osv):
     _order = "name"
 
 
+class wjzpw_material_area(osv.osv):
+    """
+    产地管理
+    """
+    _name = "wjzpw.material.area"
+    _description = "wjzpw.chanDiGuanLi"
+
+    _columns = {
+        'name': fields.char('wjzpw.chanDi', size=64, required=True)
+    }
+
+    _order = "name"
+
 wjzpw_product()
 wjzpw_batch_no()
 wjzpw_material_specifications()
 wjzpw_organzine_batch_no()
 wjzpw_weft_batch_no()
+wjzpw_material_area()
