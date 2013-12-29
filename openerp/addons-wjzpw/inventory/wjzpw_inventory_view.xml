@@ -164,8 +164,8 @@
                         <group col="4">
                             <field name="output_date"/>
                             <field name="process_unit" on_change="onchange_process_unit(process_unit)"/>
-                            <field name="material_specification"/>
-                            <field name="material_area"/>
+                            <field name="material_specification" on_change="onchange_material_specification(process_unit, material_specification)"/>
+                            <field name="material_area" on_change="onchange_material_area(process_unit, material_specification, material_area)"/>
                             <field name="batch_no"/>
                         </group>
                         <group col="4">

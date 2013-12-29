@@ -147,20 +147,39 @@ class wjzpw_organzine_output(osv.osv):
             }
         }
 
-    # def onchange_material_specification(self, cr, uid, ids, process_unit=None, material_specification=None):
-    #     query_sql = """
-    #         SELECT DISTINCT material_area
-    #         FROM wjzpw_organzine_input
-    #         WHERE process_unit = '%s' AND material_specification = %d
-    #         """ % (process_unit, material_specification)
-    #     if process_unit:
-    #         query_sql = (query_sql +
-    #
-    #     cr.execute(query_sql)
-    #     keyValues = []
-    #     for material_area in cr.fetchall():
-    #         keyValues.append((material_area[0], material_area[0]))
-    #     return tuple(keyValues)
+    def onchange_material_specification(self, cr, uid, ids, process_unit=None, material_specification=None):
+        query_sql = """
+            SELECT DISTINCT material_area
+            FROM wjzpw_organzine_input
+            WHERE process_unit = '%s' AND material_specification = %d ORDER BY material_area
+            """ % (process_unit, material_specification)
+        cr.execute(query_sql)
+        area_ids = []
+        for material_area_id in cr.fetchall():
+            area_ids.append(material_area_id[0])
+
+        return {
+            'domain': {
+                'material_area': [('id', 'in', area_ids)]
+            }
+        }
+
+    def onchange_material_area(self, cr, uid, ids, process_unit=None, material_specification=None, material_area=None):
+        query_sql = """
+            SELECT DISTINCT batch_no
+            FROM wjzpw_organzine_input
+            WHERE process_unit = '%s' AND material_specification = %d AND material_area = %d ORDER BY batch_no
+            """ % (process_unit, material_specification, material_area)
+        cr.execute(query_sql)
+        batch_no_ids = []
+        for batch_no in cr.fetchall():
+            batch_no_ids.append(batch_no[0])
+
+        return {
+            'domain': {
+                'batch_no': [('id', 'in', batch_no_ids)]
+            }
+        }
 
     _columns = {
         'output_date': fields.date('wjzpw.inventory.chuKuRiQi', required=True),
