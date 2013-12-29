@@ -361,6 +361,79 @@ class wjzpw_weft_input(osv.osv):
     _order = "input_date desc"
 
 
+class wjzpw_weft_output(osv.osv):
+    """
+    纬丝出库
+    """
+    _name = "wjzpw.weft.output"
+    _description = "wjzpw.inventory.chuKuGuanLi"
+
+    # def _get_material_specification_options(self, cr, uid, context=None):
+    #     query_sql = """
+    #         SELECT DISTINCT material_specification
+    #         FROM wjzpw_weft_input
+    #         """
+    #     cr.execute(query_sql)
+    #     material_specification_ids = []
+    #     for material_specification in cr.fetchall():
+    #         material_specification_ids.append((material_specification[0]))
+    #     return material_specification_ids
+
+    def onchange_material_specification(self, cr, uid, ids, material_specification=None):
+        query_sql = """
+            SELECT DISTINCT material_area
+            FROM wjzpw_weft_input
+            WHERE material_specification = %d ORDER BY material_area
+            """ % material_specification
+        cr.execute(query_sql)
+        area_ids = []
+        for material_area_id in cr.fetchall():
+            area_ids.append(material_area_id[0])
+
+        return {
+            'domain': {
+                'material_area': [('id', 'in', area_ids)]
+            }
+        }
+
+    def onchange_material_area(self, cr, uid, ids, material_specification=None, material_area=None):
+        query_sql = """
+            SELECT DISTINCT batch_no
+            FROM wjzpw_weft_input
+            WHERE material_specification = %d AND material_area = %d ORDER BY batch_no
+            """ % (material_specification, material_area)
+        cr.execute(query_sql)
+        batch_no_ids = []
+        for batch_no in cr.fetchall():
+            batch_no_ids.append(batch_no[0])
+
+        return {
+            'domain': {
+                'batch_no': [('id', 'in', batch_no_ids)]
+            }
+        }
+
+    _columns = {
+        'output_date': fields.date('wjzpw.inventory.chuKuRiQi', required=True),
+        'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
+        'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', required=True),  # 原料产地
+        'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.piHao', required=True),  # 批号
+        'level': fields.selection((('A', 'A'), ('AA', 'AA')), 'wjzpw.inventory.dengJi'),  # 等级
+        'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
+        'count': fields.integer('wjzpw.inventory.geShu'),  # 零散个数
+        'weight': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
+        'department': fields.many2one('hr.department', 'wjzpw.inventory.shiYongBuMen', required=True)  # 使用部门
+    }
+
+    _defaults = {
+        'quantity': 0,
+        'count': 0,
+        'weight': 0
+    }
+
+    _order = "output_date desc"
+
+
 class wjzpw_inventory(osv.osv):
     """
     培布库存，数据库视图，非是体表

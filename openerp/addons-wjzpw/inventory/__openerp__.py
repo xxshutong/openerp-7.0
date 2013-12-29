@@ -6,7 +6,7 @@
     'website': "http://www.wj-zpw.com",
     'category': "Textile",
     'sequence': 2,
-    'depends': ['wjzpw'],
+    'depends': ['wjzpw', 'hr'],
     'data': [
         'wjzpw_inventory_view.xml',
         # 'wjzpw_data.xml',
