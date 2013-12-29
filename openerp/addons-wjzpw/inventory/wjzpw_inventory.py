@@ -383,9 +383,74 @@ class wjzpw_inventory(osv.osv):
 
     _order = "product_id, batch_no"
 
+
+class wjzpw_organzine_inventory(osv.osv):
+    """
+    经丝库存，数据库视图，非实体表
+    """
+    _name = "wjzpw.organzine.inventory"
+    _auto = False
+    _description = "wjzpw.inventory.kuCun"
+
+    _columns = {
+        'process_unit': fields.char('wjzpw.inventory.jiaGongDanWei', readonly=True),  # 加工单位
+        'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', readonly=True),  # 原料规格
+        'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', readonly=True),  # 原料产地
+        'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.piHao', readonly=True),  # 批号
+        'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
+        'count': fields.integer('wjzpw.inventory.geShu'),  # 二次入库零散个数
+        'height': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
+    }
+
+    def init(self, cr):
+        """
+            经丝库存
+            @param cr: the current row, from the database cursor
+        """
+        tools.drop_view_if_exists(cr, 'wjzpw_organzine_inventory')
+        cr.execute("""
+            CREATE OR REPLACE VIEW wjzpw_organzine_inventory AS (
+                SELECT row_number() over (order by process_unit, material_specification, material_area, batch_no) AS id,process_unit, material_specification,material_area,batch_no,
+                CASE
+                    WHEN ((SELECT count(woo.id) AS count
+                        FROM wjzpw_organzine_output woo
+                        WHERE woo.process_unit = woi.process_unit AND woo.material_specification = woi.material_specification AND woo.material_area = woi.material_area AND woo.batch_no = woi.batch_no)) <> 0
+                        THEN
+                            (sum(woi.quantity) -
+                            (SELECT sum(quantity) FROM wjzpw_organzine_output woo WHERE woo.process_unit = woi.process_unit AND woo.material_specification = woi.material_specification AND woo.material_area = woi.material_area and woo.batch_no = woi.batch_no))
+                        ELSE
+                           sum(woi.quantity)
+                END AS quantity
+                ,CASE
+                    WHEN ((SELECT count(woo.id) AS count
+                        FROM wjzpw_organzine_output woo
+                        WHERE woo.process_unit = woi.process_unit AND woo.material_specification = woi.material_specification AND woo.material_area = woi.material_area AND woo.batch_no = woi.batch_no)) <> 0
+                        THEN
+                            (sum(woi.count) -
+                            (SELECT sum(count) FROM wjzpw_organzine_output woo WHERE woo.process_unit = woi.process_unit AND woo.material_specification = woi.material_specification AND woo.material_area = woi.material_area and woo.batch_no = woi.batch_no))
+                        ELSE
+                           sum(woi.count)
+                END AS count
+                ,CASE
+                    WHEN ((SELECT count(woo.id) AS count
+                        FROM wjzpw_organzine_output woo
+                        WHERE woo.process_unit = woi.process_unit AND woo.material_specification = woi.material_specification AND woo.material_area = woi.material_area AND woo.batch_no = woi.batch_no)) <> 0
+                        THEN
+                            (sum(woi.height) -
+                            (SELECT sum(height) FROM wjzpw_organzine_output woo WHERE woo.process_unit = woi.process_unit AND woo.material_specification = woi.material_specification AND woo.material_area = woi.material_area and woo.batch_no = woi.batch_no))
+                        ELSE
+                           sum(woi.height)
+                END AS height
+                FROM wjzpw_organzine_input woi GROUP BY woi.process_unit, woi.material_specification, woi.material_area, woi.batch_no
+            )""")
+
+    _order = "process_unit, material_specification, material_area, batch_no"
+
+
 wjzpw_inventory_input()
 wjzpw_inventory_output()
 wjzpw_organzine_input()
 wjzpw_organzine_output()
 wjzpw_inventory_machine_output()
 wjzpw_inventory()
+wjzpw_organzine_inventory()

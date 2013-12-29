@@ -277,6 +277,32 @@
             <field name="view_id" ref="wjzpw_inventory_tree_view"/>
         </record>
 
+        <!--定义OrganzineInventory列表视图-->
+        <record model="ir.ui.view" id="wjzpw_organzine_inventory_tree_view">
+            <field name="name">wjzpw.inventory.kuCun</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.organzine.inventory</field>
+            <field name="arch" type="xml">
+                <tree string="organzineInventory" create="false" edit="false" delete="false">
+                    <field name="process_unit"/>
+                    <field name="material_specification"/>
+                    <field name="material_area"/>
+                    <field name="batch_no"/>
+                    <field name="quantity"/>
+                    <field name="count"/>
+                    <field name="height"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义OrganzineInventory视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_organzine_inventory">
+            <field name="name">wjzpw.inventory.kuCun</field>
+            <field name="res_model">wjzpw.organzine.inventory</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="wjzpw_organzine_inventory_tree_view"/>
+        </record>
+
         <!--定义菜单-->
         <menuitem id="wjzpw_inventory_menu" name="wjzpw.inventory.kuCun"/>
         <!-- 坯布库存 -->
@@ -287,7 +313,7 @@
         <menuitem id="wjzpw_cloth_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_cloth_menu" action="inventory.action_wjzpw_inventory_output"/>
         <!-- 原料库存 -->
         <menuitem id="wjzpw_organzine_menu" name="wjzpw.inventory.jingSiKuCun" parent="wjzpw_inventory_menu"/>
-        <menuitem id="wjzpw_organzine_inventory_menu" name="wjzpw.inventory.cheJianShengYu" parent="wjzpw_organzine_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_organzine_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_organzine_menu" action="action_wjzpw_organzine_inventory"/>
         <menuitem id="wjzpw_organzine_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_organzine_menu" action="action_wjzpw_organzine_input"/>
         <menuitem id="wjzpw_organzine_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_organzine_menu" action="action_wjzpw_organzine_output"/>
 
