@@ -414,11 +414,31 @@ class wjzpw_weft_output(osv.osv):
             }
         }
 
+    def onchange_quantity(self, cr, uid, ids, material_specification=None, material_area=None, batch_no=None, level=None, quantity=None):
+        if not material_specification or not material_area or not batch_no or not level or not quantity:
+            return {}
+        query_sql = """
+            SELECT quantity, weight
+            FROM wjzpw_weft_inventory
+            WHERE material_specification = %d AND material_area = %d AND batch_no = %d AND level = '%s'
+        """ % (material_specification, material_area, batch_no, level)
+        cr.execute(query_sql)
+        weft_inventory = cr.dictfetchone()
+        if weft_inventory:
+            value = weft_inventory['weight'] / weft_inventory['quantity'] * quantity
+            return {
+                'value': {
+                    'weight': value
+                }
+            }
+        else:
+            return {}
+
     _columns = {
         'output_date': fields.date('wjzpw.inventory.chuKuRiQi', required=True),
         'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
         'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', required=True),  # 原料产地
-        'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.piHao', required=True),  # 批号
+        'batch_no': fields.many2one('wjzpw.weft.batch.no', 'wjzpw.piHao', required=True),  # 批号
         'level': fields.selection((('A', 'A'), ('AA', 'AA')), 'wjzpw.inventory.dengJi'),  # 等级
         'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
         'weight': fields.float('wjzpw.inventory.xiangShuZhongLiang', required=True),  # 重量（KG）
