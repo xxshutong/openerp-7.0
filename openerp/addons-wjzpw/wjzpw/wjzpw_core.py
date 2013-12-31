@@ -117,9 +117,23 @@ class wjzpw_weft_batch_no(osv.osv):
 
 class wjzpw_material_area(osv.osv):
     """
-    产地管理
+    原料产地管理
     """
     _name = "wjzpw.material.area"
+    _description = "wjzpw.chanDiGuanLi"
+
+    _columns = {
+        'name': fields.char('wjzpw.chanDi', size=64, required=True)
+    }
+
+    _order = "name"
+
+
+class wjzpw_reed_area(osv.osv):
+    """
+    钢筘产地管理
+    """
+    _name = "wjzpw.reed.area"
     _description = "wjzpw.chanDiGuanLi"
 
     _columns = {
@@ -134,3 +148,4 @@ wjzpw_material_specifications()
 wjzpw_organzine_batch_no()
 wjzpw_weft_batch_no()
 wjzpw_material_area()
+wjzpw_reed_area()

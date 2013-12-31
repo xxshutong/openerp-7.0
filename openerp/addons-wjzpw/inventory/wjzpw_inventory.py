@@ -456,6 +456,37 @@ class wjzpw_weft_output(osv.osv):
     _order = "output_date desc"
 
 
+class wjzpw_reed_input(osv.osv):
+    """
+    钢筘入库
+    """
+    _name = "wjzpw.reed.input"
+    _description = "wjzpw.reed.ruKuGuanLi"
+
+    def onchange_calculate_price(self, cr, uid, ids, count=None, price=None):
+        if not count or not price:
+            return {}
+        total_price = count * price
+        return {
+            'value': {
+                'total_price': total_price
+            }
+        }
+
+    _columns = {
+        'input_date': fields.date('wjzpw.inventory.ruKuRiQi', required=True),  # 入库日期
+        'reed_no': fields.integer('wjzpw.inventory.kouHao', required=True),  # 扣号
+        'reed_width': fields.integer('wjzpw.inventory.kouFu', required=True),  # 扣辐
+        'count': fields.integer('wjzpw.inventory.shuLiang', required=True),  # 数量
+        'price': fields.float('wjzpw.inventory.danJia', required=True),  # 单价
+        'total_price': fields.float('wjzpw.inventory.jinEr', required=True),  # 金额
+        'reed_area': fields.many2one('wjzpw.reed.area', 'wjzpw.inventory.gangKouChanDi'),  # 钢筘产地
+        'remark': fields.text('wjzpw.inventory.beiZhu')  # 备注
+    }
+
+    _order = "input_date desc"
+
+
 class wjzpw_inventory(osv.osv):
     """
     培布库存，数据库视图，非是体表
@@ -664,3 +695,4 @@ wjzpw_organzine_inventory()
 wjzpw_weft_input()
 wjzpw_weft_output()
 wjzpw_weft_inventory()
+wjzpw_reed_input()

@@ -443,6 +443,59 @@
             <field name="view_id" ref="wjzpw_weft_inventory_tree_view"/>
         </record>
 
+        <!--定义ReedInput表单视图-->
+        <record model="ir.ui.view" id="wjzpw_reed_input_form_view">
+            <field name="name">wjzpw.inventory.ruKuGuanLi</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.reed.input</field>
+            <field name="arch" type="xml">
+                <form string="reedInput" version="7.0">
+                    <sheet>
+                        <group col="2">
+                            <field name="input_date"/>
+                        </group>
+                        <group col="4">
+                            <field name="reed_no"/>
+                            <field name="reed_width"/>
+                            <field name="count" on_change="onchange_calculate_price(count, price)"/>
+                            <field name="price" on_change="onchange_calculate_price(count, price)"/>
+                            <field name="total_price"/>
+                        </group>
+                        <group col="2">
+                            <field name="reed_area"/>
+                            <field name="remark"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义ReedInput列表视图-->
+        <record model="ir.ui.view" id="wjzpw_reed_input_tree_view">
+            <field name="name">wjzpw.inventory.ruKuGuanLi</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.reed.input</field>
+            <field name="arch" type="xml">
+                <tree string="reedInput">
+                    <field name="input_date"/>
+                    <field name="reed_no"/>
+                    <field name="reed_width"/>
+                    <field name="count"/>
+                    <field name="price"/>
+                    <field name="total_price"/>
+                    <field name="reed_area"/>
+                    <field name="remark"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义ReedInput视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_reed_input">
+            <field name="name">wjzpw.inventory.ruKuGuanLi</field>
+            <field name="res_model">wjzpw.reed.input</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wjzpw_reed_input_tree_view"/>
+        </record>
+
         <!--定义菜单-->
         <menuitem id="wjzpw_inventory_menu" name="wjzpw.inventory.kuCun"/>
         <!-- 坯布库存 -->
@@ -460,7 +513,12 @@
         <menuitem id="wjzpw_weft_menu" name="wjzpw.inventory.weiSiKuCun" parent="wjzpw_inventory_menu"/>
         <menuitem id="wjzpw_weft_inventory_menu" name="wjzpw.inventory.cheJianShengYu" parent="wjzpw_weft_menu" action="action_wjzpw_weft_inventory"/>
         <menuitem id="wjzpw_weft_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_weft_menu" action="action_wjzpw_weft_input"/>
-        <menuitem id="wjzpw_tweft_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_weft_menu" action="action_wjzpw_weft_output"/>
+        <menuitem id="wjzpw_weft_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_weft_menu" action="action_wjzpw_weft_output"/>
+        <!-- 钢筘库存 -->
+        <menuitem id="wjzpw_reed_menu" name="wjzpw.inventory.gangKouKuCun" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_reed_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_reed_menu" action="action_wjzpw_reed_input"/>
+        <menuitem id="wjzpw_reed_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_reed_menu" action="action_wjzpw_reed_input"/>
+        <menuitem id="wjzpw_reed_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_reed_menu" action="action_wjzpw_reed_input"/>
         <!-- 经轴库存 -->
         <menuitem id="wjzpw_beam_menu" name="wjzpw.inventory.jingZhouKuCun" parent="wjzpw_inventory_menu"/>
         <menuitem id="wjzpw_beam_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>

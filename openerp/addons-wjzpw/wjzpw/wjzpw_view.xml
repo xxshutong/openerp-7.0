@@ -213,5 +213,32 @@
                 </tree>
             </field>
         </record>
+
+        <!--定义ReedArea表单视图-->
+        <record model="ir.ui.view" id="wjzpw_reed_area_form_view">
+            <field name="name">wjzpw.chanDiGuanLi</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.reed.area</field>
+            <field name="arch" type="xml">
+                <form string="reedArea" version="7.0" delete="false">
+                    <sheet>
+                        <group col="2">
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义ReedArea列表视图-->
+        <record model="ir.ui.view" id="wjzpw_reed_area_tree_view">
+            <field name="name">wjzpw.chanDiLieBiao</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.reed.area</field>
+            <field name="arch" type="xml">
+                <tree string="reedArea">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
     </data>
 </openerp>
