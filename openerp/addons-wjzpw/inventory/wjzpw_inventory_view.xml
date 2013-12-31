@@ -496,6 +496,57 @@
             <field name="view_id" ref="wjzpw_reed_input_tree_view"/>
         </record>
 
+        <!--定义ReedOutput表单视图-->
+        <record model="ir.ui.view" id="wjzpw_reed_output_form_view">
+            <field name="name">wjzpw.inventory.chuKuGuanLi</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.reed.output</field>
+            <field name="arch" type="xml">
+                <form string="reedOutput" version="7.0">
+                    <sheet>
+                        <group col="2">
+                            <field name="output_date"/>
+                        </group>
+                        <group col="4">
+                            <field name="reed_no"/>
+                            <field name="reed_width"/>
+                            <field name="count"/>
+                            <field name="reed_area_to"/>
+                            <field name="status"/>
+                        </group>
+                        <group col="2">
+                            <field name="remark"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义ReedOutput列表视图-->
+        <record model="ir.ui.view" id="wjzpw_reed_output_tree_view">
+            <field name="name">wjzpw.inventory.chuKuGuanLi</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.reed.output</field>
+            <field name="arch" type="xml">
+                <tree string="reedOutput">
+                    <field name="output_date"/>
+                    <field name="reed_no"/>
+                    <field name="reed_width"/>
+                    <field name="count"/>
+                    <field name="reed_area_to"/>
+                    <field name="status"/>
+                    <field name="remark"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义WeftOutput视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_reed_output">
+            <field name="name">wjzpw.inventory.chuKuGuanLi</field>
+            <field name="res_model">wjzpw.reed.output</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wjzpw_reed_output_tree_view"/>
+        </record>
+
         <!--定义菜单-->
         <menuitem id="wjzpw_inventory_menu" name="wjzpw.inventory.kuCun"/>
         <!-- 坯布库存 -->
@@ -518,7 +569,7 @@
         <menuitem id="wjzpw_reed_menu" name="wjzpw.inventory.gangKouKuCun" parent="wjzpw_inventory_menu"/>
         <menuitem id="wjzpw_reed_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_reed_menu" action="action_wjzpw_reed_input"/>
         <menuitem id="wjzpw_reed_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_reed_menu" action="action_wjzpw_reed_input"/>
-        <menuitem id="wjzpw_reed_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_reed_menu" action="action_wjzpw_reed_input"/>
+        <menuitem id="wjzpw_reed_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_reed_menu" action="action_wjzpw_reed_output"/>
         <!-- 经轴库存 -->
         <menuitem id="wjzpw_beam_menu" name="wjzpw.inventory.jingZhouKuCun" parent="wjzpw_inventory_menu"/>
         <menuitem id="wjzpw_beam_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>

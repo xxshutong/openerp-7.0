@@ -461,7 +461,7 @@ class wjzpw_reed_input(osv.osv):
     钢筘入库
     """
     _name = "wjzpw.reed.input"
-    _description = "wjzpw.reed.ruKuGuanLi"
+    _description = "wjzpw.inventory.ruKuGuanLi"
 
     def onchange_calculate_price(self, cr, uid, ids, count=None, price=None):
         if not count or not price:
@@ -485,6 +485,26 @@ class wjzpw_reed_input(osv.osv):
     }
 
     _order = "input_date desc"
+
+
+class wjzpw_reed_output(osv.osv):
+    """
+    钢筘出库
+    """
+    _name = "wjzpw.reed.output"
+    _description = "wjzpw.inventory.ruKuGuanLi"
+
+    _columns = {
+        'output_date': fields.date('wjzpw.inventory.chuKuRiQi', required=True),  # 出库日期
+        'reed_no': fields.integer('wjzpw.inventory.kouHao', required=True),  # 扣号
+        'reed_width': fields.integer('wjzpw.inventory.kouFu', required=True),  # 扣辐
+        'count': fields.integer('wjzpw.inventory.shuLiang', required=True),  # 数量
+        'reed_area_to': fields.many2one('wjzpw.reed.area.to', 'wjzpw.inventory.faWangDi'),  # 钢筘发往地
+        'status': fields.selection((('wx', '维修'), ('bf', '报废')),'wjzpw.inventory.baoFeiHuoWeiXiu', required=True), # 报废或维修
+        'remark': fields.text('wjzpw.inventory.beiZhu')  # 备注
+    }
+
+    _order = "output_date desc"
 
 
 class wjzpw_inventory(osv.osv):
@@ -696,3 +716,4 @@ wjzpw_weft_input()
 wjzpw_weft_output()
 wjzpw_weft_inventory()
 wjzpw_reed_input()
+wjzpw_reed_output()

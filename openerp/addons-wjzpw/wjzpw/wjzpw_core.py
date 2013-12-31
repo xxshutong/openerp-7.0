@@ -142,6 +142,20 @@ class wjzpw_reed_area(osv.osv):
 
     _order = "name"
 
+
+class wjzpw_reed_area_to(osv.osv):
+    """
+    钢筘发往地管理
+    """
+    _name = "wjzpw.reed.area.to"
+    _description = "wjzpw.faWangDiGuanLi"
+
+    _columns = {
+        'name': fields.char('wjzpw.faWangDi', size=64, required=True)
+    }
+
+    _order = "name"
+
 wjzpw_product()
 wjzpw_batch_no()
 wjzpw_material_specifications()
@@ -149,3 +163,4 @@ wjzpw_organzine_batch_no()
 wjzpw_weft_batch_no()
 wjzpw_material_area()
 wjzpw_reed_area()
+wjzpw_reed_area_to()
