@@ -494,13 +494,21 @@ class wjzpw_reed_output(osv.osv):
     _name = "wjzpw.reed.output"
     _description = "wjzpw.inventory.ruKuGuanLi"
 
+    def _get_reed_no_options(self, cr, uid, context=None):
+        cr.execute('SELECT DISTINCT reed_no FROM wjzpw_reed_input')
+        return [(int(wri[0]), int(wri[0])) for wri in cr.fetchall()]
+
+    def _get_reed_width_options(self, cr, uid, context=None):
+        cr.execute('SELECT DISTINCT reed_width FROM wjzpw_reed_input')
+        return [(int(wri[0]), int(wri[0])) for wri in cr.fetchall()]
+
     _columns = {
         'output_date': fields.date('wjzpw.inventory.chuKuRiQi', required=True),  # 出库日期
-        'reed_no': fields.integer('wjzpw.inventory.kouHao', required=True),  # 扣号
-        'reed_width': fields.integer('wjzpw.inventory.kouFu', required=True),  # 扣辐
+        'reed_no': fields.selection(_get_reed_no_options, 'wjzpw.inventory.kouHao', size=-1, required=True),  # 扣号
+        'reed_width': fields.selection(_get_reed_width_options, 'wjzpw.inventory.kouFu', size=-1, required=True),  # 扣辐
         'count': fields.integer('wjzpw.inventory.shuLiang', required=True),  # 数量
         'reed_area_to': fields.many2one('wjzpw.reed.area.to', 'wjzpw.inventory.faWangDi'),  # 钢筘发往地
-        'status': fields.selection((('wx', '维修'), ('bf', '报废')),'wjzpw.inventory.baoFeiHuoWeiXiu', required=True), # 报废或维修
+        'status': fields.selection((('wx', u'维修'), ('bf', u'报废')), 'wjzpw.inventory.baoFeiHuoWeiXiu', required=True),  # 报废或维修
         'remark': fields.text('wjzpw.inventory.beiZhu')  # 备注
     }
 
