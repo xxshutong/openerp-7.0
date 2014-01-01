@@ -713,6 +713,46 @@ class wjzpw_weft_inventory(osv.osv):
 
     _order = "material_specification, material_area, batch_no, level"
 
+
+class wjzpw_reed_inventory(osv.osv):
+    """
+    钢筘库存，数据库视图，非实体表
+    """
+    _name = "wjzpw.reed.inventory"
+    _auto = False
+    _description = "wjzpw.inventory.kuCun"
+
+    _columns = {
+        'reed_no': fields.integer('wjzpw.inventory.kouHao', readonly=True),  # 筘号
+        'reed_width': fields.integer('wjzpw.inventory.kouFu', readonly=True),  # 筘幅
+        'count': fields.integer('wjzpw.inventory.shuLiang'),  # 数量
+    }
+
+    def init(self, cr):
+        """
+            钢筘库存
+            @param cr: the current row, from the database cursor
+        """
+        tools.drop_view_if_exists(cr, 'wjzpw_reed_inventory')
+        cr.execute("""
+            CREATE OR REPLACE VIEW wjzpw_reed_inventory AS (
+                SELECT row_number() over (order by reed_no, reed_width) AS id,reed_no, reed_width,
+                CASE
+                    WHEN ((SELECT count(wro.id) AS count
+                        FROM wjzpw_reed_output wro
+                        WHERE wro.reed_no = wri.reed_no AND wro.reed_width = wri.reed_width)) <> 0
+                        THEN
+                            (sum(wri.count) -
+                            (SELECT sum(count) FROM wjzpw_reed_output wro WHERE wro.reed_no = wri.reed_no AND wro.reed_width = wri.reed_width))
+                        ELSE
+                           sum(wri.count)
+                END AS count
+                FROM wjzpw_reed_input wri GROUP BY wri.reed_no, wri.reed_width
+            )""")
+
+    _order = "reed_no, reed_width"
+
+
 wjzpw_inventory_input()
 wjzpw_inventory_output()
 wjzpw_inventory_machine_output()
@@ -725,3 +765,4 @@ wjzpw_weft_output()
 wjzpw_weft_inventory()
 wjzpw_reed_input()
 wjzpw_reed_output()
+wjzpw_reed_inventory()

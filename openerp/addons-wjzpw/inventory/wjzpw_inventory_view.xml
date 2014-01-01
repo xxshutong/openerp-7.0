@@ -547,6 +547,28 @@
             <field name="view_id" ref="wjzpw_reed_output_tree_view"/>
         </record>
 
+        <!--定义ReedInventory列表视图-->
+        <record model="ir.ui.view" id="wjzpw_reed_inventory_tree_view">
+            <field name="name">wjzpw.inventory.kuCun</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.reed.inventory</field>
+            <field name="arch" type="xml">
+                <tree string="reedInventory" create="false" edit="false" delete="false">
+                    <field name="reed_no"/>
+                    <field name="reed_width"/>
+                    <field name="count"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义ReedInventory视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_reed_inventory">
+            <field name="name">wjzpw.inventory.kuCun</field>
+            <field name="res_model">wjzpw.reed.inventory</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="wjzpw_reed_inventory_tree_view"/>
+        </record>
+
         <!--定义菜单-->
         <menuitem id="wjzpw_inventory_menu" name="wjzpw.inventory.kuCun"/>
         <!-- 坯布库存 -->
@@ -567,19 +589,19 @@
         <menuitem id="wjzpw_weft_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_weft_menu" action="action_wjzpw_weft_output"/>
         <!-- 钢筘库存 -->
         <menuitem id="wjzpw_reed_menu" name="wjzpw.inventory.gangKouKuCun" parent="wjzpw_inventory_menu"/>
-        <menuitem id="wjzpw_reed_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_reed_menu" action="action_wjzpw_reed_input"/>
+        <menuitem id="wjzpw_reed_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_reed_menu" action="action_wjzpw_reed_inventory"/>
         <menuitem id="wjzpw_reed_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_reed_menu" action="action_wjzpw_reed_input"/>
         <menuitem id="wjzpw_reed_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_reed_menu" action="action_wjzpw_reed_output"/>
         <!-- 经轴库存 -->
-        <menuitem id="wjzpw_beam_menu" name="wjzpw.inventory.jingZhouKuCun" parent="wjzpw_inventory_menu"/>
-        <menuitem id="wjzpw_beam_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_czpk_menu" name="wjzpw.inventory.chuanZongPaKou" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>
+        <!--<menuitem id="wjzpw_beam_menu" name="wjzpw.inventory.jingZhouKuCun" parent="wjzpw_inventory_menu"/>-->
+        <!--<menuitem id="wjzpw_beam_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>-->
+        <!--<menuitem id="wjzpw_czpk_menu" name="wjzpw.inventory.chuanZongPaKou" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>-->
         <!-- 设置 -->
-        <menuitem id="wjzpw_setting_menu" name="wjzpw.inventory.sheZhi" parent="wjzpw_inventory_menu"/>
-        <menuitem id="wjzpw_product_menu" name="wjzpw.inventory.pinMing" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_product"/>
-        <menuitem id="wjzpw_batch_no_menu" name="wjzpw.inventory.piHao" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_batch_no"/>
-        <menuitem id="wjzpw_organzine_batch_no_menu" name="wjzpw.inventory.jingSiPiHao" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_organzine_batch_no"/>
-        <menuitem id="wjzpw_weft_batch_no_menu" name="wjzpw.inventory.weiSiPiHao" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_weft_batch_no"/>
-        <menuitem id="wjzpw_material_specification_menu" name="wjzpw.inventory.yuanLiaoGuiGe" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_material_specification"/>
+        <!--<menuitem id="wjzpw_setting_menu" name="wjzpw.inventory.sheZhi" parent="wjzpw_inventory_menu"/>-->
+        <!--<menuitem id="wjzpw_product_menu" name="wjzpw.inventory.pinMing" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_product"/>-->
+        <!--<menuitem id="wjzpw_batch_no_menu" name="wjzpw.inventory.piHao" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_batch_no"/>-->
+        <!--<menuitem id="wjzpw_organzine_batch_no_menu" name="wjzpw.inventory.jingSiPiHao" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_organzine_batch_no"/>-->
+        <!--<menuitem id="wjzpw_weft_batch_no_menu" name="wjzpw.inventory.weiSiPiHao" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_weft_batch_no"/>-->
+        <!--<menuitem id="wjzpw_material_specification_menu" name="wjzpw.inventory.yuanLiaoGuiGe" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_material_specification"/>-->
     </data>
 </openerp>
