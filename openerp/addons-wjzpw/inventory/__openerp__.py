@@ -7,6 +7,9 @@
     'category': "Textile",
     'sequence': 2,
     'depends': ['wjzpw', 'hr'],
+    'css': [
+        'static/src/css/show.css'
+    ],
     'data': [
         'wjzpw_inventory_view.xml',
         # 'wjzpw_data.xml',
