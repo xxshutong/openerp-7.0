@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-16 13:53+0000\n"
-"PO-Revision-Date: 2013-12-16 13:53+0000\n"
+"POT-Creation-Date: 2014-01-01 04:12+0000\n"
+"PO-Revision-Date: 2014-01-01 04:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,48 +16,153 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: wjzpw
-#: model:ir.model,name:wjzpw.model_wjzpw_batch_no
-msgid "Batch No Management"
-msgstr "批号管理"
-
-#. module: wjzpw
-#: view:wjzpw.product:0
-msgid "product"
-msgstr "品名"
-
-#. module: wjzpw
-#: field:wjzpw.batch.no,description:0
-#: field:wjzpw.product,description:0
-msgid "Description"
-msgstr "描述"
+#: view:wjzpw.reed.area.to:0
+msgid "reedAreaTo"
+msgstr ""
 
 #. module: wjzpw
 #: view:wjzpw.batch.no:0
 msgid "batchNo"
-msgstr "批号"
+msgstr ""
 
 #. module: wjzpw
-#: model:ir.actions.act_window,name:wjzpw.action_wjzpw_batch_no
-msgid "wjzpw.inventory.piHaoGuanLi"
-msgstr "批号管理"
+#: field:wjzpw.material.specification,name:0
+msgid "wjzpw.inventory.yuanLiaoGuiGe"
+msgstr ""
 
 #. module: wjzpw
 #: field:wjzpw.batch.no,name:0
 msgid "Batch No"
-msgstr "批号"
+msgstr ""
 
 #. module: wjzpw
-#: field:wjzpw.product,name:0
-msgid "Product Name"
-msgstr "品名"
+#: field:wjzpw.weft.batch.no,name:0
+msgid "wjzpw.weiSiPiHao"
+msgstr ""
 
 #. module: wjzpw
-#: model:ir.model,name:wjzpw.model_wjzpw_product
-msgid "Product Management"
-msgstr "品名管理"
+#: model:ir.model,name:wjzpw.model_wjzpw_organzine_batch_no
+msgid "wjzpw.jingSiPiHaoGuanLi"
+msgstr ""
 
 #. module: wjzpw
 #: model:ir.actions.act_window,name:wjzpw.action_wjzpw_product
 msgid "wjzpw.inventory.pinMingGuanLi"
-msgstr "品名管理"
+msgstr ""
+
+#. module: wjzpw
+#: model:ir.model,name:wjzpw.model_wjzpw_weft_batch_no
+msgid "wjzpw.weiSiPiHaoGuanLi"
+msgstr ""
+
+#. module: wjzpw
+#: field:wjzpw.batch.no,description:0
+#: field:wjzpw.material.specification,description:0
+#: field:wjzpw.organzine.batch.no,description:0
+#: field:wjzpw.product,description:0
+#: field:wjzpw.weft.batch.no,description:0
+msgid "Description"
+msgstr ""
+
+#. module: wjzpw
+#: field:wjzpw.organzine.batch.no,name:0
+msgid "wjzpw.jingSiPiHao"
+msgstr ""
+
+#. module: wjzpw
+#: model:ir.actions.act_window,name:wjzpw.action_wjzpw_batch_no
+msgid "wjzpw.inventory.piHaoGuanLi"
+msgstr ""
+
+#. module: wjzpw
+#: field:wjzpw.product,name:0
+msgid "Product Name"
+msgstr ""
+
+#. module: wjzpw
+#: field:wjzpw.material.specification,specification:0
+msgid "wjzpw.guiGe"
+msgstr ""
+
+#. module: wjzpw
+#: field:wjzpw.reed.area.to,name:0
+msgid "wjzpw.faWangDi"
+msgstr ""
+
+#. module: wjzpw
+#: view:wjzpw.product:0
+msgid "product"
+msgstr ""
+
+#. module: wjzpw
+#: model:ir.actions.act_window,name:wjzpw.action_wjzpw_weft_batch_no
+msgid "wjzpw.inventory.weiSiPiHaoGuanLi"
+msgstr ""
+
+#. module: wjzpw
+#: field:wjzpw.material.area,name:0
+#: field:wjzpw.reed.area,name:0
+msgid "wjzpw.chanDi"
+msgstr ""
+
+#. module: wjzpw
+#: view:wjzpw.organzine.batch.no:0
+msgid "organzineBatchNo"
+msgstr ""
+
+#. module: wjzpw
+#: view:wjzpw.weft.batch.no:0
+msgid "weftBatchNo"
+msgstr ""
+
+#. module: wjzpw
+#: model:ir.actions.act_window,name:wjzpw.action_wjzpw_material_specification
+msgid "wjzpw.inventory.yuanLiaoGuiGeGuanLi"
+msgstr ""
+
+#. module: wjzpw
+#: model:ir.model,name:wjzpw.model_wjzpw_reed_area_to
+msgid "wjzpw.faWangDiGuanLi"
+msgstr ""
+
+#. module: wjzpw
+#: model:ir.model,name:wjzpw.model_wjzpw_batch_no
+msgid "Batch No Management"
+msgstr ""
+
+#. module: wjzpw
+#: view:wjzpw.reed.area:0
+msgid "reedArea"
+msgstr ""
+
+#. module: wjzpw
+#: view:wjzpw.material.specification:0
+msgid "materialSpecification"
+msgstr ""
+
+#. module: wjzpw
+#: model:ir.actions.act_window,name:wjzpw.action_wjzpw_organzine_batch_no
+msgid "wjzpw.inventory.jingSiPiHaoGuanLi"
+msgstr ""
+
+#. module: wjzpw
+#: model:ir.model,name:wjzpw.model_wjzpw_material_specification
+msgid "wjzpw.yuanLiaoGuiGeGuanLi"
+msgstr ""
+
+#. module: wjzpw
+#: model:ir.model,name:wjzpw.model_wjzpw_product
+msgid "Product Management"
+msgstr ""
+
+#. module: wjzpw
+#: view:wjzpw.material.area:0
+msgid "materialArea"
+msgstr ""
+
+#. module: wjzpw
+#: model:ir.model,name:wjzpw.model_wjzpw_material_area
+#: model:ir.model,name:wjzpw.model_wjzpw_reed_area
+msgid "wjzpw.chanDiGuanLi"
+msgstr ""
 
