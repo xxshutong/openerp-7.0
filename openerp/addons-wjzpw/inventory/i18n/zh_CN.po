@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-01 04:55+0000\n"
-"PO-Revision-Date: 2014-01-01 04:55+0000\n"
+"POT-Creation-Date: 2014-01-01 14:24+0000\n"
+"PO-Revision-Date: 2014-01-01 14:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -50,6 +50,11 @@ msgid "wjzpw.inventory.jingZhouChangDu"
 msgstr "经轴长度"
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_batch_no_menu
+msgid "wjzpw.inventory.piHao"
+msgstr "批号"
+
+#. module: inventory
 #: field:wjzpw.organzine.input,count:0
 #: field:wjzpw.organzine.inventory,count:0
 #: field:wjzpw.organzine.output,count:0
@@ -88,6 +93,7 @@ msgid "wjzpw.inventory.zhiShu"
 msgstr "只数"
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_material_specification_menu
 #: field:wjzpw.organzine.input,material_specification:0
 #: field:wjzpw.organzine.inventory,material_specification:0
 #: field:wjzpw.organzine.output,material_specification:0
@@ -136,11 +142,11 @@ msgid "wjzpw.inventory.kuCun"
 msgstr "库存"
 
 #. module: inventory
-#: field:wjzpw.organzine.input,weight:0
-#: field:wjzpw.organzine.inventory,weight:0
-#: field:wjzpw.organzine.output,weight:0
-msgid "wjzpw.inventory.zhongLiang"
-msgstr "重量 (KG)"
+#: field:wjzpw.inventory,superior_amount:0
+#: field:wjzpw.inventory.input,superior_number:0
+#: field:wjzpw.inventory.output,superior_number:0
+msgid "wjzpw.inventory.youDengPin"
+msgstr "优等品"
 
 #. module: inventory
 #: field:wjzpw.reed.input,count:0
@@ -150,11 +156,9 @@ msgid "wjzpw.inventory.shuLiang"
 msgstr "数量"
 
 #. module: inventory
-#: field:wjzpw.inventory,superior_amount:0
-#: field:wjzpw.inventory.input,superior_number:0
-#: field:wjzpw.inventory.output,superior_number:0
-msgid "wjzpw.inventory.youDengPin"
-msgstr "优等品"
+#: model:ir.ui.menu,name:inventory.wjzpw_product_menu
+msgid "wjzpw.inventory.pinMing"
+msgstr "品名"
 
 #. module: inventory
 #: field:wjzpw.weft.output,department:0
@@ -197,6 +201,13 @@ msgid "wjzpw.inventory.chuKuRiQi"
 msgstr "出库日期"
 
 #. module: inventory
+#: field:wjzpw.organzine.input,weight:0
+#: field:wjzpw.organzine.inventory,weight:0
+#: field:wjzpw.organzine.output,weight:0
+msgid "wjzpw.inventory.zhongLiang"
+msgstr "重量 (KG)"
+
+#. module: inventory
 #: field:wjzpw.inventory.machine.output,complete_date:0
 #: field:wjzpw.inventory.machine.output,complete_date_fun:0
 msgid "wjzpw.inventory.wanChengShiJian"
@@ -229,6 +240,11 @@ msgid "wjzpw.inventory.faWangDi"
 msgstr "发往地"
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_setting_menu
+msgid "wjzpw.inventory.sheZhi"
+msgstr "设置"
+
+#. module: inventory
 #: view:wjzpw.organzine.output:0
 msgid "organzineOutput"
 msgstr "经丝出库"
@@ -249,6 +265,11 @@ msgstr "录入日期"
 #: view:wjzpw.weft.input:0
 msgid "weftInput"
 msgstr "纬丝入库"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_weft_batch_no_menu
+msgid "wjzpw.inventory.weiSiPiHao"
+msgstr "纬丝批号"
 
 #. module: inventory
 #: field:wjzpw.inventory,b_amount:0
@@ -358,6 +379,11 @@ msgstr "包（箱数）"
 #: field:wjzpw.reed.output,remark:0
 msgid "wjzpw.inventory.beiZhu"
 msgstr "备注"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_organzine_batch_no_menu
+msgid "wjzpw.inventory.jingSiPiHao"
+msgstr "经丝批号"
 
 #. module: inventory
 #: selection:wjzpw.reed.output,status:0

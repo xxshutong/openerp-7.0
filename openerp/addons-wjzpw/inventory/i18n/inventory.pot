@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-01 04:56+0000\n"
-"PO-Revision-Date: 2014-01-01 04:56+0000\n"
+"POT-Creation-Date: 2014-01-01 14:27+0000\n"
+"PO-Revision-Date: 2014-01-01 14:27+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -50,6 +50,11 @@ msgid "wjzpw.inventory.jingZhouChangDu"
 msgstr ""
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_batch_no_menu
+msgid "wjzpw.inventory.piHao"
+msgstr ""
+
+#. module: inventory
 #: field:wjzpw.organzine.input,count:0
 #: field:wjzpw.organzine.inventory,count:0
 #: field:wjzpw.organzine.output,count:0
@@ -88,6 +93,7 @@ msgid "wjzpw.inventory.zhiShu"
 msgstr ""
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_material_specification_menu
 #: field:wjzpw.organzine.input,material_specification:0
 #: field:wjzpw.organzine.inventory,material_specification:0
 #: field:wjzpw.organzine.output,material_specification:0
@@ -136,10 +142,10 @@ msgid "wjzpw.inventory.kuCun"
 msgstr ""
 
 #. module: inventory
-#: field:wjzpw.organzine.input,weight:0
-#: field:wjzpw.organzine.inventory,weight:0
-#: field:wjzpw.organzine.output,weight:0
-msgid "wjzpw.inventory.zhongLiang"
+#: field:wjzpw.inventory,superior_amount:0
+#: field:wjzpw.inventory.input,superior_number:0
+#: field:wjzpw.inventory.output,superior_number:0
+msgid "wjzpw.inventory.youDengPin"
 msgstr ""
 
 #. module: inventory
@@ -150,10 +156,8 @@ msgid "wjzpw.inventory.shuLiang"
 msgstr ""
 
 #. module: inventory
-#: field:wjzpw.inventory,superior_amount:0
-#: field:wjzpw.inventory.input,superior_number:0
-#: field:wjzpw.inventory.output,superior_number:0
-msgid "wjzpw.inventory.youDengPin"
+#: model:ir.ui.menu,name:inventory.wjzpw_product_menu
+msgid "wjzpw.inventory.pinMing"
 msgstr ""
 
 #. module: inventory
@@ -197,6 +201,13 @@ msgid "wjzpw.inventory.chuKuRiQi"
 msgstr ""
 
 #. module: inventory
+#: field:wjzpw.organzine.input,weight:0
+#: field:wjzpw.organzine.inventory,weight:0
+#: field:wjzpw.organzine.output,weight:0
+msgid "wjzpw.inventory.zhongLiang"
+msgstr ""
+
+#. module: inventory
 #: field:wjzpw.inventory.machine.output,complete_date:0
 #: field:wjzpw.inventory.machine.output,complete_date_fun:0
 msgid "wjzpw.inventory.wanChengShiJian"
@@ -229,6 +240,11 @@ msgid "wjzpw.inventory.faWangDi"
 msgstr ""
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_setting_menu
+msgid "wjzpw.inventory.sheZhi"
+msgstr ""
+
+#. module: inventory
 #: view:wjzpw.organzine.output:0
 msgid "organzineOutput"
 msgstr ""
@@ -248,6 +264,11 @@ msgstr ""
 #. module: inventory
 #: view:wjzpw.weft.input:0
 msgid "weftInput"
+msgstr ""
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_weft_batch_no_menu
+msgid "wjzpw.inventory.weiSiPiHao"
 msgstr ""
 
 #. module: inventory
@@ -357,6 +378,11 @@ msgstr ""
 #: field:wjzpw.reed.input,remark:0
 #: field:wjzpw.reed.output,remark:0
 msgid "wjzpw.inventory.beiZhu"
+msgstr ""
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_organzine_batch_no_menu
+msgid "wjzpw.inventory.jingSiPiHao"
 msgstr ""
 
 #. module: inventory
