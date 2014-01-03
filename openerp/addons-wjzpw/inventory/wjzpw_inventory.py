@@ -335,7 +335,7 @@ class wjzpw_weft_input(osv.osv):
             res.setdefault(id, '未知')
         for rec in self.browse(cr, uid, ids, context=context):
             if rec.weight and rec.quantity:
-                res[rec.id] = rec.weight / rec.quantity
+                res[rec.id] = '%0.2f' % (rec.weight / rec.quantity)
         return res
 
     _columns = {
@@ -349,7 +349,7 @@ class wjzpw_weft_input(osv.osv):
         'weight': fields.float('wjzpw.inventory.xiangShuZhongLiang', required=True),  # 箱数重量（KG）
         'count': fields.integer('wjzpw.inventory.zhiShu'),  # 二次入库零散个数
         'count_weight': fields.float('wjzpw.inventory.zhiShuZhongLiang'),  # 只数重量
-        'weight_avg': fields.function(_calculate_weight_avg, string='wjzpw.inventory.meiXiangZhongLiang', type='float', method=True)  # 计算得出每箱重量
+        'weight_avg': fields.function(_calculate_weight_avg, string='wjzpw.inventory.meiXiangZhongLiang', type='char', method=True)  # 计算得出每箱重量
     }
 
     _default = {
