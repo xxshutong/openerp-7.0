@@ -39,6 +39,10 @@ class wjzpw_product(osv.osv):
         'name': fields.char('Product Name', size=64, required=True),
         'description': fields.text('Description')
     }
+    _sql_constraints = [
+        ('name_unique', 'unique(name)', u'该品名已经存在'),
+    ]
+
     _defaults = {
     }
     _order = "name"
@@ -55,6 +59,9 @@ class wjzpw_batch_no(osv.osv):
         'name': fields.char('Batch No', size=64, required=True),
         'description': fields.text('Description')
     }
+    _sql_constraints = [
+        ('name_unique', 'unique(name)', u'该批号已经存在'),
+    ]
     _defaults = {
     }
     _order = "name"
@@ -79,6 +86,9 @@ class wjzpw_material_specifications(osv.osv):
         'name': fields.function(_name_get, string="wjzpw.inventory.yuanLiaoGuiGe", type='char',
                                 method=True)
     }
+    _sql_constraints = [
+        ('specification_unique', 'unique(specification)', u'该原料规格已经存在'),
+    ]
 
     _order = "specification"
 
@@ -94,6 +104,9 @@ class wjzpw_organzine_batch_no(osv.osv):
         'name': fields.char('wjzpw.jingSiPiHao', size=64, required=True),
         'description': fields.text('Description')
     }
+    _sql_constraints = [
+        ('name_unique', 'unique(name)', u'该经丝批号已经存在'),
+    ]
     _defaults = {
     }
     _order = "name"
@@ -110,6 +123,9 @@ class wjzpw_weft_batch_no(osv.osv):
         'name': fields.char('wjzpw.weiSiPiHao', size=64, required=True),
         'description': fields.text('Description')
     }
+    _sql_constraints = [
+        ('name_unique', 'unique(name)', u'该纬丝批号已经存在'),
+    ]
     _defaults = {
     }
     _order = "name"
@@ -125,6 +141,9 @@ class wjzpw_material_area(osv.osv):
     _columns = {
         'name': fields.char('wjzpw.chanDi', size=64, required=True)
     }
+    _sql_constraints = [
+        ('name_unique', 'unique(name)', u'该原料产地已经存在'),
+    ]
 
     _order = "name"
 
@@ -139,6 +158,9 @@ class wjzpw_reed_area(osv.osv):
     _columns = {
         'name': fields.char('wjzpw.chanDi', size=64, required=True)
     }
+    _sql_constraints = [
+        ('name_unique', 'unique(name)', u'该产地已经存在'),
+    ]
 
     _order = "name"
 
@@ -153,6 +175,9 @@ class wjzpw_reed_area_to(osv.osv):
     _columns = {
         'name': fields.char('wjzpw.faWangDi', size=64, required=True)
     }
+    _sql_constraints = [
+        ('name_unique', 'unique(name)', u'该发往地已经存在'),
+    ]
 
     _order = "name"
 
