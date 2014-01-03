@@ -320,7 +320,7 @@ msgstr "金额"
 #: field:wjzpw.organzine.input,is_second:0
 #: field:wjzpw.weft.input,is_second:0
 msgid "wjzpw.inventory.shiFouErCiRuKu"
-msgstr "是否二次入库"
+msgstr "是否是车间剩余入库"
 
 #. module: inventory
 #: field:wjzpw.inventory.output,customer:0
