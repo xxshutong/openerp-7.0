@@ -475,7 +475,7 @@ class wjzpw_reed_input(osv.osv):
 
     _columns = {
         'input_date': fields.date('wjzpw.inventory.ruKuRiQi', required=True),  # 入库日期
-        'reed_no': fields.integer('wjzpw.inventory.kouHao', required=True),  # 扣号
+        'reed_no': fields.float('wjzpw.inventory.kouHao', required=True),  # 扣号
         'reed_width': fields.integer('wjzpw.inventory.kouFu', required=True),  # 扣辐
         'count': fields.integer('wjzpw.inventory.shuLiang', required=True),  # 数量
         'price': fields.float('wjzpw.inventory.danJia', required=True),  # 单价
@@ -496,7 +496,7 @@ class wjzpw_reed_output(osv.osv):
 
     def _get_reed_no_options(self, cr, uid, context=None):
         cr.execute('SELECT DISTINCT reed_no FROM wjzpw_reed_input')
-        return [(int(wri[0]), int(wri[0])) for wri in cr.fetchall()]
+        return [(wri[0], wri[0]) for wri in cr.fetchall()]
 
     def _get_reed_width_options(self, cr, uid, context=None):
         cr.execute('SELECT DISTINCT reed_width FROM wjzpw_reed_input')
@@ -504,7 +504,7 @@ class wjzpw_reed_output(osv.osv):
 
     _columns = {
         'output_date': fields.date('wjzpw.inventory.chuKuRiQi', required=True),  # 出库日期
-        'reed_no': fields.selection(_get_reed_no_options, 'wjzpw.inventory.kouHao', size=-1, required=True),  # 扣号
+        'reed_no': fields.selection(_get_reed_no_options, 'wjzpw.inventory.kouHao', required=True),  # 扣号
         'reed_width': fields.selection(_get_reed_width_options, 'wjzpw.inventory.kouFu', size=-1, required=True),  # 扣辐
         'count': fields.integer('wjzpw.inventory.shuLiang', required=True),  # 数量
         'reed_area_to': fields.many2one('wjzpw.reed.area.to', 'wjzpw.inventory.faWangDi'),  # 钢筘发往地
@@ -740,10 +740,10 @@ class wjzpw_reed_inventory(osv.osv):
                 CASE
                     WHEN ((SELECT count(wro.id) AS count
                         FROM wjzpw_reed_output wro
-                        WHERE wro.reed_no = wri.reed_no AND wro.reed_width = wri.reed_width)) <> 0
+                        WHERE wro.reed_no = to_char(wri.reed_no, '999D99S') AND wro.reed_width = wri.reed_width)) <> 0
                         THEN
                             (sum(wri.count) -
-                            (SELECT sum(count) FROM wjzpw_reed_output wro WHERE wro.reed_no = wri.reed_no AND wro.reed_width = wri.reed_width))
+                            (SELECT sum(count) FROM wjzpw_reed_output wro WHERE wro.reed_no = to_char(wri.reed_no, '999D99S') AND wro.reed_width = wri.reed_width))
                         ELSE
                            sum(wri.count)
                 END AS count
