@@ -202,6 +202,7 @@ class wjzpw_organzine_output(osv.osv):
         'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
         'count': fields.integer('wjzpw.inventory.geShu'),  # 零散个数
         'weight': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
+        'department': fields.many2one('hr.department', 'wjzpw.inventory.shiYongBuMen', required=True)  # 使用部门
     }
 
     _defaults = {
