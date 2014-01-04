@@ -91,15 +91,27 @@ class wjzpw_organzine_input(osv.osv):
     _name = "wjzpw.organzine.input"
     _description = "wjzpw.inventory.jingSiRuKuGuanLi"
 
+    def onchange_quantity_weight_avg_weight(self, cr, uid, ids, quantity, weight_avg, weight):
+        if not quantity or not weight_avg or not weight:
+            return {}
+        count = weight / (quantity * weight_avg)
+        return {
+            'value': {
+                'count': count
+            }
+        }
+
     _columns = {
         'input_date': fields.date('wjzpw.inventory.ruKuRiQi', required=True),
         'process_unit': fields.char('wjzpw.inventory.jiaGongDanWei'),  # 加工单位
         'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
         'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', required=True),  # 原料产地
         'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.piHao', required=True),  # 批号
+        'weight_avg': fields.float('wjzpw.inventory.tongZiJingZhong'),  # 筒子净重
         'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
-        'weight': fields.float('wjzpw.inventory.zhongLiang', required=True),  # 重量（KG）
-        'count': fields.integer('wjzpw.inventory.geShu'),  # 二次入库零散个数
+        'weight': fields.float('wjzpw.inventory.xiangShuZhongLiang', required=True),  # 箱数重量（KG）
+        'count': fields.integer('wjzpw.inventory.zhiShu'),  # 只数
+        'count_weight': fields.float('wjzpw.inventory.zhiShuZhongLiang'),  # 只数重量
         'is_second': fields.boolean('wjzpw.inventory.shiFouErCiRuKu')  # 是否为二次入库
     }
 
