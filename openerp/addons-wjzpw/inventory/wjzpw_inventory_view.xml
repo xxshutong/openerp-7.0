@@ -173,15 +173,24 @@
                     <sheet>
                         <group col="4">
                             <field name="output_date"/>
+                        </group>
+                        <group col="4">
                             <field name="process_unit" on_change="onchange_process_unit(process_unit)"/>
                             <field name="material_specification" on_change="onchange_material_specification(process_unit, material_specification)"/>
                             <field name="material_area" on_change="onchange_material_area(process_unit, material_specification, material_area)"/>
                             <field name="batch_no"/>
+                            <field name="department"/>
                         </group>
                         <group col="4">
-                            <field name="quantity"/>
-                            <field name="count"/>
+                            <field name="quantity" on_change="onchange_quantity_quantity_avg_weight_avg(quantity, quantity_avg, weight_avg)"/>
+                            <field name="quantity_avg" on_change="onchange_quantity_quantity_avg_weight_avg(quantity, quantity_avg, weight_avg)"/>
+                            <field name="weight_avg" on_change="onchange_quantity_quantity_avg_weight_avg(quantity, quantity_avg, weight_avg)"/>
+                            <field name="quantity_count"/>
                             <field name="weight"/>
+                        </group>
+                        <group col="4">
+                            <field name="count"/>
+                            <field name="count_weight"/>
                         </group>
                     </sheet>
                 </form>
@@ -199,9 +208,16 @@
                     <field name="material_specification"/>
                     <field name="material_area"/>
                     <field name="batch_no"/>
+                    <field name="department"/>
                     <field name="quantity"/>
-                    <field name="count"/>
+                    <field name="quantity_avg"/>
+                    <field name="weight_avg"/>
+                    <field name="quantity_count"/>
                     <field name="weight"/>
+                    <field name="count"/>
+                    <field name="count_weight"/>
+                    <field name="total_count"/>
+                    <field name="total_weight"/>
                 </tree>
             </field>
         </record>
