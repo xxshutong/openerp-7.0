@@ -635,6 +635,49 @@ class wjzpw_weft_workshop_left(osv.osv):
         else:
             return {}
 
+    def create(self, cr, uid, vals, *args, **kwargs):
+        left_obj = super(wjzpw_weft_workshop_left, self).create(cr, uid, vals, *args, **kwargs)
+        # Get total input
+        cr.execute(
+            '''
+            SELECT sum(quantity) as quantity, sum(weight) as weight, sum(count) as count, sum(count_weight) as count_weight
+            FROM wjzpw_weft_output
+            WHERE department = 'hdcj' AND material_specification = %d AND material_area = %d AND batch_no = %d AND level = '%s'
+            ''' %
+            (vals['material_specification'], vals['material_area'], vals['batch_no'], vals['level'])
+        )
+        input = cr.dictfetchone()
+        # Get total output
+        cr.execute(
+            '''
+            SELECT sum(quantity) as quantity, sum(weight) as weight, sum(count) as count, sum(count_weight) as count_weight
+            FROM wjzpw_weft_workshop_output
+            WHERE material_specification = %d AND material_area = %d AND batch_no = %d AND level = '%s'
+            ''' %
+            (vals['material_specification'], vals['material_area'], vals['batch_no'], vals['level'])
+        )
+        output = cr.dictfetchone()
+        # Calculate
+        if not input['quantity'] and not input['weight'] and not input['count'] and not input['count_weight']:
+            return left_obj
+        new_vals = vals.copy()
+        if output['quantity'] or output['weight'] or output['count'] or output['count_weight']:
+            new_vals['quantity'] = input['quantity'] - output['quantity'] - vals['quantity']
+            new_vals['weight'] = input['weight'] - output['weight'] - vals['weight']
+            new_vals['count'] = input['count'] - output['count'] - vals['count']
+            new_vals['count_weight'] = input['count_weight'] - output['count_weight'] - vals['count_weight']
+        else:
+            new_vals['quantity'] = input['quantity'] - vals['quantity']
+            new_vals['weight'] = input['weight'] - vals['weight']
+            new_vals['count'] = input['count'] - vals['count']
+            new_vals['count_weight'] = input['count_weight'] - vals['count_weight']
+        output_date = datetime.datetime.strptime(new_vals['input_date'], "%Y-%m-%d") - datetime.timedelta(1)
+        new_vals['output_date'] = output_date.strftime('%Y-%m-%d')
+        del new_vals['input_date']
+        weft_workshop_output_obj = self.pool.get('wjzpw.weft.workshop.output')
+        weft_workshop_output_obj.create(cr, uid, new_vals, context=None)
+        return left_obj
+
     _columns = {
         'input_date': fields.date('wjzpw.inventory.ruKuRiQi', required=True),
         'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
@@ -654,6 +697,34 @@ class wjzpw_weft_workshop_left(osv.osv):
         }
 
     _order = "input_date desc"
+
+
+class wjzpw_weft_workshop_output(osv.osv):
+    """
+    纬丝的日消耗
+    """
+    _name = "wjzpw.weft.workshop.output"
+    _description = "wjzpw.inventory.riXiaoHao"
+
+    _columns = {
+        'output_date': fields.date('wjzpw.inventory.riQi', required=True),
+        'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
+        'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', required=True),  # 原料产地
+        'batch_no': fields.many2one('wjzpw.weft.batch.no', 'wjzpw.piHao', required=True),  # 批号
+        'level': fields.char('wjzpw.inventory.dengJi'),  # 等级
+        'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
+        'weight': fields.float('wjzpw.inventory.xiangShuZhongLiang', required=True),  # 箱数重量（KG）
+        'count': fields.integer('wjzpw.inventory.zhiShu'),  # 二次入库零散个数
+        'count_weight': fields.float('wjzpw.inventory.zhiShuZhongLiang'),  # 只数重量
+    }
+
+    _default = {
+        'quantity': 0,
+        'count': 0,
+        'weight': 0,
+        }
+
+    _order = "output_date desc"
 
 
 class wjzpw_reed_input(osv.osv):
