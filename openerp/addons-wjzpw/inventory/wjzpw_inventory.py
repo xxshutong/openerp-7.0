@@ -985,6 +985,80 @@ class wjzpw_weft_inventory(osv.osv):
     _order = "material_specification, material_area, batch_no, level"
 
 
+class wjzpw_weft_total_inventory(osv.osv):
+    """
+    纬丝总库存，包括仓库库存和车间库存，数据库视图，非实体表
+    """
+    _name = "wjzpw.weft.total.inventory"
+    _auto = False
+    _description = "wjzpw.inventory.zongKuCun"
+
+    _columns = {
+        'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', readonly=True),  # 原料规格
+        'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', readonly=True),  # 原料产地
+        'batch_no': fields.many2one('wjzpw.weft.batch.no', 'wjzpw.piHao', readonly=True),  # 批号
+        'level': fields.char('wjzpw.inventory.dengJi', readonly=True),  # 等级
+        'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu', readonly=True),  # 包（或箱）数
+        'weight': fields.float('wjzpw.inventory.xiangShuZhongLiang', required=True),  # 重量（KG）
+        'count': fields.integer('wjzpw.inventory.zhiShu', readonly=True),  # 二次入库零散个数
+        'count_weight': fields.float('wjzpw.inventory.zhiShuZhongLiang', readonly=True)
+    }
+
+    def init(self, cr):
+        """
+            纬丝总库存
+            @param cr: the current row, from the database cursor
+        """
+        tools.drop_view_if_exists(cr, 'wjzpw_weft_total_inventory')
+        cr.execute("""
+            CREATE OR REPLACE VIEW wjzpw_weft_total_inventory AS (
+                SELECT row_number() over (order by material_specification, material_area, batch_no, level) AS id, material_specification,material_area,batch_no,level,
+                CASE
+                    WHEN ((SELECT count(wwwl.id) AS count
+                        FROM wjzpw_weft_workshop_left wwwl
+                        WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area AND wwwl.batch_no = wwi.batch_no)) <> 0
+                        THEN
+                            (wwi.quantity +
+                            (SELECT quantity FROM wjzpw_weft_workshop_left wwwl WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area and wwwl.batch_no = wwi.batch_no order by input_date desc limit 1))
+                        ELSE
+                            wwi.quantity
+                END AS quantity
+                ,CASE
+                    WHEN ((SELECT count(wwwl.id) AS count
+                        FROM wjzpw_weft_workshop_left wwwl
+                        WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area AND wwwl.batch_no = wwi.batch_no)) <> 0
+                        THEN
+                            (wwi.count +
+                            (SELECT count FROM wjzpw_weft_workshop_left wwwl WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area and wwwl.batch_no = wwi.batch_no order by input_date desc limit 1))
+                        ELSE
+                           wwi.count
+                END AS count
+                ,CASE
+                    WHEN ((SELECT count(wwwl.id) AS count
+                        FROM wjzpw_weft_workshop_left wwwl
+                        WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area AND wwwl.batch_no = wwi.batch_no)) <> 0
+                        THEN
+                            (wwi.weight +
+                            (SELECT weight FROM wjzpw_weft_workshop_left wwwl WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area and wwwl.batch_no = wwi.batch_no order by input_date desc limit 1))
+                        ELSE
+                           wwi.weight
+                END AS weight
+                ,CASE
+                    WHEN ((SELECT count(wwwl.id) AS count
+                        FROM wjzpw_weft_workshop_left wwwl
+                        WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area AND wwwl.batch_no = wwi.batch_no)) <> 0
+                        THEN
+                            (wwi.count_weight +
+                            (SELECT count_weight FROM wjzpw_weft_workshop_left wwwl WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area and wwwl.batch_no = wwi.batch_no order by input_date desc limit 1))
+                        ELSE
+                           wwi.count_weight
+                END AS count_weight
+                FROM wjzpw_weft_inventory wwi
+            )""")
+
+    _order = "material_specification, material_area, batch_no, level"
+
+
 class wjzpw_reed_inventory(osv.osv):
     """
     钢筘库存，数据库视图，非实体表
@@ -1037,3 +1111,4 @@ wjzpw_weft_inventory()
 wjzpw_reed_input()
 wjzpw_reed_output()
 wjzpw_reed_inventory()
+wjzpw_weft_total_inventory()
