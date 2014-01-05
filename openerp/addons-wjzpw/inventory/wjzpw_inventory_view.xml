@@ -368,9 +368,9 @@
                     <field name="level"/>
                     <field name="quantity"/>
                     <field name="weight"/>
+                    <field name="weight_avg"/>
                     <field name="count"/>
                     <field name="count_weight"/>
-                    <field name="weight_avg"/>
                 </tree>
             </field>
         </record>
