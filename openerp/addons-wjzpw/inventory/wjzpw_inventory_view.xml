@@ -114,6 +114,7 @@
                             <field name="material_area"/>
                             <field name="batch_no"/>
                         </group>
+                        <separator string="wjzpw.inventory.zhengXiangRuKu" colspan="4"/>
                         <group col="4">
                             <field name="quantity" on_change="onchange_quantity_quantity_avg_weight_avg(quantity, quantity_avg, weight_avg)"/>
                             <field name="quantity_avg" on_change="onchange_quantity_quantity_avg_weight_avg(quantity, quantity_avg, weight_avg)"/>
@@ -121,6 +122,7 @@
                             <field name="quantity_count"/>
                             <field name="weight"/>
                         </group>
+                        <separator string="wjzpw.inventory.zhiShuRuKu" colspan="4"/>
                         <group col="4">
                             <field name="count"/>
                             <field name="count_weight"/>
@@ -181,6 +183,7 @@
                             <field name="batch_no"/>
                             <field name="department"/>
                         </group>
+                        <separator string="wjzpw.inventory.zhengXiangChuKu" colspan="4"/>
                         <group col="4">
                             <field name="quantity" on_change="onchange_quantity_quantity_avg_weight_avg(quantity, quantity_avg, weight_avg)"/>
                             <field name="quantity_avg" on_change="onchange_quantity_quantity_avg_weight_avg(quantity, quantity_avg, weight_avg)"/>
@@ -188,6 +191,7 @@
                             <field name="quantity_count"/>
                             <field name="weight"/>
                         </group>
+                        <separator string="wjzpw.inventory.zhiShuChuKu" colspan="4"/>
                         <group col="4">
                             <field name="count"/>
                             <field name="count_weight"/>
@@ -593,6 +597,88 @@
             <field name="view_id" ref="wjzpw_reed_inventory_tree_view"/>
         </record>
 
+        <!-- 定义WeftWorkshopInput列表视图-->
+        <record model="ir.ui.view" id="wjzpw_weft_workshop_input_view">
+            <field name="name">wjzpw.inventory.cheJianRuKu</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.weft.output</field>
+            <field name="arch" type="xml">
+                <tree string="wjzpw.inventory.cheJianRuKu" create="false" edit="false" delete="false">
+                    <field name="output_date"/>
+                    <field name="material_specification"/>
+                    <field name="material_area"/>
+                    <field name="batch_no"/>
+                    <field name="level"/>
+                    <field name="quantity"/>
+                    <field name="weight"/>
+                    <field name="count"/>
+                    <field name="count_weight"/>
+                    <field name="department"/>
+                </tree>
+            </field>
+        </record>
+        <!-- 定义WeftWorkshopInput视图动作 -->
+        <record model="ir.actions.act_window" id="action_wjzpw_weft_workshop_input">
+            <field name="name">wjzpw.inventory.cheJianRuKu</field>
+            <field name="res_model">wjzpw.weft.output</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="wjzpw_weft_workshop_input_view"/>
+        </record>
+
+        <!--定义WeftWorkshopLeft表单视图-->
+        <record model="ir.ui.view" id="wjzpw_weft_workshop_left_form_view">
+            <field name="name">wjzpw.inventory.cheJianShengYu</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.weft.workshop.left</field>
+            <field name="arch" type="xml">
+                <form string="weftWorkshopLeft" version="7.0">
+                    <sheet>
+                        <group col="2">
+                            <field name="input_date"/>
+                        </group>
+                        <group col="4">
+                            <field name="material_specification" on_change="onchange_material_specification(material_specification)"/>
+                            <field name="material_area" on_change="onchange_material_area(material_specification, material_area)"/>
+                            <field name="batch_no"/>
+                            <field name="level"/>
+                            <field name="quantity"/>
+                            <field name="weight"/>
+                            <field name="count"/>
+                            <field name="count_weight"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义WeftWorkshopLeft列表视图-->
+        <record model="ir.ui.view" id="wjzpw_weft_workshop_left_tree_view">
+            <field name="name">wjzpw.inventory.cheJianShengYu</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.weft.workshop.left</field>
+            <field name="arch" type="xml">
+                <tree string="weftWorkshopLeft">
+                    <field name="input_date"/>
+                    <field name="material_specification"/>
+                    <field name="material_area"/>
+                    <field name="batch_no"/>
+                    <field name="level"/>
+                    <field name="quantity"/>
+                    <field name="weight"/>
+                    <field name="count"/>
+                    <field name="count_weight"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义WeftWorkshopLeft视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_weft_workshop_left">
+            <field name="name">wjzpw.inventory.cheJianShengYu</field>
+            <field name="res_model">wjzpw.weft.workshop.left</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wjzpw_weft_workshop_left_tree_view"/>
+        </record>
+
         <!--定义菜单-->
         <menuitem id="wjzpw_inventory_menu" name="wjzpw.inventory.kuCun"/>
         <!-- 坯布库存 -->
@@ -601,16 +687,25 @@
         <menuitem id="wjzpw_machine_output_menu" name="wjzpw.inventory.jiTaiChanLiang" parent="wjzpw_cloth_menu" action="inventory.action_wjzpw_inventory_machine_output"/>
         <menuitem id="wjzpw_cloth_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_cloth_menu" action="inventory.action_wjzpw_inventory_input"/>
         <menuitem id="wjzpw_cloth_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_cloth_menu" action="inventory.action_wjzpw_inventory_output"/>
-        <!-- 原料库存 -->
+        <!-- 经丝库存 -->
         <menuitem id="wjzpw_organzine_menu" name="wjzpw.inventory.jingSiKuCun" parent="wjzpw_inventory_menu"/>
         <menuitem id="wjzpw_organzine_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_organzine_menu" action="action_wjzpw_organzine_inventory"/>
         <menuitem id="wjzpw_organzine_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_organzine_menu" action="action_wjzpw_organzine_input"/>
         <menuitem id="wjzpw_organzine_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_organzine_menu" action="action_wjzpw_organzine_output"/>
 
+        <!-- 纬丝库存 -->
         <menuitem id="wjzpw_weft_menu" name="wjzpw.inventory.weiSiKuCun" parent="wjzpw_inventory_menu"/>
-        <menuitem id="wjzpw_weft_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_weft_menu" action="action_wjzpw_weft_inventory"/>
-        <menuitem id="wjzpw_weft_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_weft_menu" action="action_wjzpw_weft_input"/>
-        <menuitem id="wjzpw_weft_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_weft_menu" action="action_wjzpw_weft_output"/>
+        <menuitem id="wjzpw_weft_total_inventory_menu" name="wjzpw.inventory.zongKuCun" parent="wjzpw_weft_menu"/>
+        <!-- 纬丝仓库库存 -->
+        <menuitem id="wjzpw_weft_warehouse_menu" name="wjzpw.inventory.cangKuKuCun" parent="wjzpw_weft_menu"/>
+        <menuitem id="wjzpw_weft_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_weft_warehouse_menu" action="action_wjzpw_weft_inventory"/>
+        <menuitem id="wjzpw_weft_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_weft_warehouse_menu" action="action_wjzpw_weft_input"/>
+        <menuitem id="wjzpw_weft_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_weft_warehouse_menu" action="action_wjzpw_weft_output"/>
+        <!-- 纬丝车间库存 -->
+        <menuitem id="wjzpw_weft_workshop_menu" name="wjzpw.inventory.cheJianShengYu" parent="wjzpw_weft_menu"/>
+        <menuitem id="wjzpw_weft_workshop_input_menu" name="wjzpw.inventory.cheJianRuKu" parent="wjzpw_weft_workshop_menu" action="action_wjzpw_weft_workshop_input"/>
+        <menuitem id="wjzpw_weft_workshop_left_menu" name="wjzpw.inventory.cheJianShengYu" parent="wjzpw_weft_workshop_menu" action="action_wjzpw_weft_workshop_left"/>
+
         <!-- 钢筘库存 -->
         <menuitem id="wjzpw_reed_menu" name="wjzpw.inventory.gangKouKuCun" parent="wjzpw_inventory_menu"/>
         <menuitem id="wjzpw_reed_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_reed_menu" action="action_wjzpw_reed_inventory"/>
