@@ -1,0 +1,481 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* inventory
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-01 14:24+0000\n"
+"PO-Revision-Date: 2014-01-01 14:24+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: inventory
+#: field:wjzpw.inventory,batch_no:0
+#: field:wjzpw.inventory.input,batch_no:0
+#: field:wjzpw.inventory.machine.output,batch_no:0
+#: field:wjzpw.inventory.output,batch_no:0
+#: field:wjzpw.organzine.input,batch_no:0
+#: field:wjzpw.organzine.inventory,batch_no:0
+#: field:wjzpw.organzine.output,batch_no:0
+#: field:wjzpw.weft.input,batch_no:0
+#: field:wjzpw.weft.inventory,batch_no:0
+#: field:wjzpw.weft.output,batch_no:0
+msgid "wjzpw.piHao"
+msgstr "批号"
+
+#. module: inventory
+#: view:wjzpw.reed.inventory:0
+msgid "reedInventory"
+msgstr "钢筘库存"
+
+#. module: inventory
+#: view:wjzpw.inventory.machine.output:0
+msgid "wjzpw.inventory.wanChengBingJiSuanZhiSuoLv"
+msgstr "完成并计算织缩率"
+
+#. module: inventory
+#: view:wjzpw.reed.output:0
+msgid "reedOutput"
+msgstr "钢筘出库"
+
+#. module: inventory
+#: field:wjzpw.inventory.machine.output,beam_amount:0
+msgid "wjzpw.inventory.jingZhouChangDu"
+msgstr "经轴长度"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_batch_no_menu
+msgid "wjzpw.inventory.piHao"
+msgstr "批号"
+
+#. module: inventory
+#: field:wjzpw.organzine.input,count:0
+#: field:wjzpw.organzine.inventory,count:0
+#: field:wjzpw.organzine.output,count:0
+msgid "wjzpw.inventory.geShu"
+msgstr "只数"
+
+#. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_inventory_machine_output
+#: model:ir.model,name:inventory.model_wjzpw_inventory_machine_output
+#: model:ir.ui.menu,name:inventory.wjzpw_machine_output_menu
+msgid "wjzpw.inventory.jiTaiChanLiang"
+msgstr "机台产量"
+
+#. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_inventory_output
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_organzine_output
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_reed_output
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_weft_output
+#: model:ir.model,name:inventory.model_wjzpw_inventory_ouput
+#: model:ir.model,name:inventory.model_wjzpw_inventory_output
+#: model:ir.model,name:inventory.model_wjzpw_organzine_output
+#: model:ir.model,name:inventory.model_wjzpw_weft_output
+msgid "wjzpw.inventory.chuKuGuanLi"
+msgstr "出库管理"
+
+#. module: inventory
+#: view:wjzpw.organzine.inventory:0
+msgid "organzineInventory"
+msgstr "经丝库存"
+
+#. module: inventory
+#: field:wjzpw.weft.input,count:0
+#: field:wjzpw.weft.inventory,count:0
+#: field:wjzpw.weft.output,count:0
+msgid "wjzpw.inventory.zhiShu"
+msgstr "只数"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_material_specification_menu
+#: field:wjzpw.organzine.input,material_specification:0
+#: field:wjzpw.organzine.inventory,material_specification:0
+#: field:wjzpw.organzine.output,material_specification:0
+#: field:wjzpw.weft.input,material_specification:0
+#: field:wjzpw.weft.inventory,material_specification:0
+#: field:wjzpw.weft.output,material_specification:0
+msgid "wjzpw.inventory.yuanLiaoGuiGe"
+msgstr "原料规格"
+
+#. module: inventory
+#: field:wjzpw.weft.input,weight_avg:0
+msgid "wjzpw.inventory.meiXiangZhongLiang"
+msgstr "每箱重量 (KG)"
+
+#. module: inventory
+#: view:wjzpw.inventory.machine.output:0
+msgid "inventoryMachineOutput"
+msgstr "机台产出"
+
+#. module: inventory
+#: model:ir.model,name:inventory.model_wjzpw_weft_input
+msgid "wjzpw.inventory.weiSiRuKuGuanLi"
+msgstr "纬丝入库管理"
+
+#. module: inventory
+#: field:wjzpw.inventory.machine.output,output_amount:0
+#: field:wjzpw.inventory.machine.output,output_amount_fun:0
+msgid "wjzpw.inventory.leiJiChanLiang"
+msgstr "累计产量"
+
+#. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_cloth_inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_organzine_inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_reed_inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_weft_inventory
+#: model:ir.model,name:inventory.model_wjzpw_inventory
+#: model:ir.model,name:inventory.model_wjzpw_organzine_inventory
+#: model:ir.model,name:inventory.model_wjzpw_reed_inventory
+#: model:ir.model,name:inventory.model_wjzpw_weft_inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_cloth_inventory_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_inventory_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_organzine_inventory_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_reed_inventory_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_weft_inventory_menu
+msgid "wjzpw.inventory.kuCun"
+msgstr "库存"
+
+#. module: inventory
+#: field:wjzpw.inventory,superior_amount:0
+#: field:wjzpw.inventory.input,superior_number:0
+#: field:wjzpw.inventory.output,superior_number:0
+msgid "wjzpw.inventory.youDengPin"
+msgstr "优等品"
+
+#. module: inventory
+#: field:wjzpw.reed.input,count:0
+#: field:wjzpw.reed.inventory,count:0
+#: field:wjzpw.reed.output,count:0
+msgid "wjzpw.inventory.shuLiang"
+msgstr "数量"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_product_menu
+msgid "wjzpw.inventory.pinMing"
+msgstr "品名"
+
+#. module: inventory
+#: field:wjzpw.weft.output,department:0
+msgid "wjzpw.inventory.shiYongBuMen"
+msgstr "使用部门"
+
+#. module: inventory
+#: model:ir.model,name:inventory.model_wjzpw_organzine_input
+msgid "wjzpw.inventory.jingSiRuKuGuanLi"
+msgstr "经丝入库管理"
+
+#. module: inventory
+#: field:wjzpw.inventory.output,code:0
+msgid "wjzpw.inventory.maDan"
+msgstr "码单"
+
+#. module: inventory
+#: field:wjzpw.reed.input,reed_no:0
+#: field:wjzpw.reed.inventory,reed_no:0
+#: field:wjzpw.reed.output,reed_no:0
+msgid "wjzpw.inventory.kouHao"
+msgstr "筘号"
+
+#. module: inventory
+#: field:wjzpw.inventory.machine.output,woven_shrinkage:0
+#: field:wjzpw.inventory.machine.output,woven_shrinkage_fun:0
+msgid "wjzpw.inventory.zhiSuoLv"
+msgstr "织缩率"
+
+#. module: inventory
+#: field:wjzpw.reed.input,reed_area:0
+msgid "wjzpw.inventory.gangKouChanDi"
+msgstr "钢筘产地"
+
+#. module: inventory
+#: field:wjzpw.organzine.output,output_date:0
+#: field:wjzpw.reed.output,output_date:0
+#: field:wjzpw.weft.output,output_date:0
+msgid "wjzpw.inventory.chuKuRiQi"
+msgstr "出库日期"
+
+#. module: inventory
+#: field:wjzpw.organzine.input,weight:0
+#: field:wjzpw.organzine.inventory,weight:0
+#: field:wjzpw.organzine.output,weight:0
+msgid "wjzpw.inventory.zhongLiang"
+msgstr "重量 (KG)"
+
+#. module: inventory
+#: field:wjzpw.inventory.machine.output,complete_date:0
+#: field:wjzpw.inventory.machine.output,complete_date_fun:0
+msgid "wjzpw.inventory.wanChengShiJian"
+msgstr "完成时间"
+
+#. module: inventory
+#: field:wjzpw.weft.input,level:0
+#: field:wjzpw.weft.inventory,level:0
+#: field:wjzpw.weft.output,level:0
+msgid "wjzpw.inventory.dengJi"
+msgstr "等级"
+
+#. module: inventory
+#: field:wjzpw.organzine.input,input_date:0
+#: field:wjzpw.reed.input,input_date:0
+#: field:wjzpw.weft.input,input_date:0
+msgid "wjzpw.inventory.ruKuRiQi"
+msgstr "入库日期"
+
+#. module: inventory
+#: field:wjzpw.weft.input,count_weight:0
+#: field:wjzpw.weft.inventory,count_weight:0
+#: field:wjzpw.weft.output,count_weight:0
+msgid "wjzpw.inventory.zhiShuZhongLiang"
+msgstr "只数重量 (KG)"
+
+#. module: inventory
+#: field:wjzpw.reed.output,reed_area_to:0
+msgid "wjzpw.inventory.faWangDi"
+msgstr "发往地"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_setting_menu
+msgid "wjzpw.inventory.sheZhi"
+msgstr "设置"
+
+#. module: inventory
+#: view:wjzpw.organzine.output:0
+msgid "organzineOutput"
+msgstr "经丝出库"
+
+#. module: inventory
+#: selection:wjzpw.weft.input,level:0
+#: selection:wjzpw.weft.output,level:0
+msgid "AA"
+msgstr "AA"
+
+#. module: inventory
+#: field:wjzpw.inventory.input,input_date:0
+#: field:wjzpw.inventory.output,input_date:0
+msgid "wjzpw.inventory.luRuRiQi"
+msgstr "录入日期"
+
+#. module: inventory
+#: view:wjzpw.weft.input:0
+msgid "weftInput"
+msgstr "纬丝入库"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_weft_batch_no_menu
+msgid "wjzpw.inventory.weiSiPiHao"
+msgstr "纬丝批号"
+
+#. module: inventory
+#: field:wjzpw.inventory,b_amount:0
+#: field:wjzpw.inventory.input,grade_b_number:0
+#: field:wjzpw.inventory.output,grade_b_number:0
+msgid "wjzpw.inventory.erDengPin"
+msgstr "二等品"
+
+#. module: inventory
+#: model:ir.model,name:inventory.model_wjzpw_reed_input
+msgid "wjzpw.reed.ruKuGuanLi"
+msgstr "入库管理"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_cloth_input_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_organzine_input_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_reed_input_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_weft_input_menu
+msgid "wjzpw.inventory.ruKu"
+msgstr "入库"
+
+#. module: inventory
+#: view:wjzpw.weft.output:0
+msgid "weftOutput"
+msgstr "纬丝出库"
+
+#. module: inventory
+#: view:wjzpw.inventory.output:0
+msgid "inventoryOutput"
+msgstr "出库"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_cloth_menu
+msgid "wjzpw.inventory.piBuKuCun"
+msgstr "坯布库存"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_reed_menu
+msgid "wjzpw.inventory.gangKouKuCun"
+msgstr "钢筘库存"
+
+#. module: inventory
+#: field:wjzpw.reed.input,total_price:0
+msgid "wjzpw.inventory.jinEr"
+msgstr "金额"
+
+#. module: inventory
+#: field:wjzpw.organzine.input,is_second:0
+#: field:wjzpw.weft.input,is_second:0
+msgid "wjzpw.inventory.shiFouErCiRuKu"
+msgstr "车间剩余入库"
+
+#. module: inventory
+#: field:wjzpw.inventory.output,customer:0
+msgid "wjzpw.inventory.keHu"
+msgstr "客户"
+
+#. module: inventory
+#: field:wjzpw.inventory.machine.output,is_completed:0
+msgid "wjzpw.inventory.yiWanCheng"
+msgstr "已完成"
+
+#. module: inventory
+#: field:wjzpw.organzine.input,material_area:0
+#: field:wjzpw.organzine.inventory,material_area:0
+#: field:wjzpw.organzine.output,material_area:0
+#: field:wjzpw.weft.input,material_area:0
+#: field:wjzpw.weft.inventory,material_area:0
+#: field:wjzpw.weft.output,material_area:0
+msgid "wjzpw.inventory.yuanLiaoChanDi"
+msgstr "原料产地"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_weft_menu
+msgid "wjzpw.inventory.weiSiKuCun"
+msgstr "纬丝库存"
+
+#. module: inventory
+#: field:wjzpw.inventory,a_amount:0
+#: field:wjzpw.inventory.input,grade_a_number:0
+#: field:wjzpw.inventory.output,grade_a_number:0
+msgid "wjzpw.inventory.yiDengPin"
+msgstr "一等品"
+
+#. module: inventory
+#: view:wjzpw.weft.inventory:0
+msgid "weftInventory"
+msgstr "纬丝库存"
+
+#. module: inventory
+#: field:wjzpw.inventory.input,machine_output_id:0
+msgid "wjzpw.inventory.jiTaiChanChu"
+msgstr "机台产出"
+
+#. module: inventory
+#: view:wjzpw.reed.input:0
+msgid "reedInput"
+msgstr "钢筘入库"
+
+#. module: inventory
+#: field:wjzpw.reed.output,status:0
+msgid "wjzpw.inventory.baoFeiHuoWeiXiu"
+msgstr "包（箱数）"
+
+#. module: inventory
+#: field:wjzpw.reed.input,remark:0
+#: field:wjzpw.reed.output,remark:0
+msgid "wjzpw.inventory.beiZhu"
+msgstr "备注"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_organzine_batch_no_menu
+msgid "wjzpw.inventory.jingSiPiHao"
+msgstr "经丝批号"
+
+#. module: inventory
+#: selection:wjzpw.reed.output,status:0
+msgid "维修"
+msgstr "维修"
+
+#. module: inventory
+#: selection:wjzpw.reed.output,status:0
+msgid "报废"
+msgstr "报废"
+
+#. module: inventory
+#: field:wjzpw.weft.input,weight:0
+#: field:wjzpw.weft.inventory,weight:0
+#: field:wjzpw.weft.output,weight:0
+msgid "wjzpw.inventory.xiangShuZhongLiang"
+msgstr "箱数重量 (KG)"
+
+#. module: inventory
+#: view:wjzpw.organzine.input:0
+msgid "organzineInput"
+msgstr "经丝入库"
+
+#. module: inventory
+#: field:wjzpw.organzine.input,process_unit:0
+#: field:wjzpw.organzine.inventory,process_unit:0
+#: field:wjzpw.organzine.output,process_unit:0
+msgid "wjzpw.inventory.jiaGongDanWei"
+msgstr "加工单位"
+
+#. module: inventory
+#: field:wjzpw.reed.input,price:0
+msgid "wjzpw.inventory.danJia"
+msgstr "单价"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_cloth_output_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_organzine_output_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_reed_output_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_weft_output_menu
+msgid "wjzpw.inventory.chuKu"
+msgstr "出库"
+
+#. module: inventory
+#: view:wjzpw.inventory:0
+#: view:wjzpw.inventory.input:0
+msgid "inventoryInput"
+msgstr "入库"
+
+#. module: inventory
+#: field:wjzpw.reed.input,reed_width:0
+#: field:wjzpw.reed.inventory,reed_width:0
+#: field:wjzpw.reed.output,reed_width:0
+msgid "wjzpw.inventory.kouFu"
+msgstr "筘幅"
+
+#. module: inventory
+#: field:wjzpw.inventory,product_id:0
+#: field:wjzpw.inventory.input,product_id:0
+#: field:wjzpw.inventory.machine.output,product_id:0
+#: field:wjzpw.inventory.output,product_id:0
+msgid "wjzpw.pinMing"
+msgstr "品名"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_organzine_menu
+msgid "wjzpw.inventory.jingSiKuCun"
+msgstr "经丝库存"
+
+#. module: inventory
+#: field:wjzpw.inventory.input,machine_no:0
+#: field:wjzpw.inventory.machine.output,machine_no:0
+msgid "wjzpw.inventory.jiHao"
+msgstr "机号"
+
+#. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_inventory_input
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_organzine_input
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_reed_input
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_weft_input
+#: model:ir.model,name:inventory.model_wjzpw_inventory_input
+#: model:ir.model,name:inventory.model_wjzpw_reed_output
+msgid "wjzpw.inventory.ruKuGuanLi"
+msgstr "入库管理"
+
+#. module: inventory
+#: field:wjzpw.organzine.input,quantity:0
+#: field:wjzpw.organzine.inventory,quantity:0
+#: field:wjzpw.organzine.output,quantity:0
+#: field:wjzpw.weft.input,quantity:0
+#: field:wjzpw.weft.inventory,quantity:0
+#: field:wjzpw.weft.output,quantity:0
+msgid "wjzpw.inventory.baoHuoXiangShu"
+msgstr "包（箱）数"
+
