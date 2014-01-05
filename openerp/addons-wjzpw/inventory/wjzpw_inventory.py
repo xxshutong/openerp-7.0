@@ -737,7 +737,7 @@ class wjzpw_organzine_inventory(osv.osv):
                         FROM wjzpw_organzine_output woo
                         WHERE woo.process_unit = woi.process_unit AND woo.material_specification = woi.material_specification AND woo.material_area = woi.material_area AND woo.batch_no = woi.batch_no)) <> 0
                         THEN
-                            (sum(woi.weight) -
+                            (sum(woi.weight) + sum(woi.count_weight) -
                             (SELECT sum(weight) + sum(count_weight) FROM wjzpw_organzine_output woo WHERE woo.process_unit = woi.process_unit AND woo.material_specification = woi.material_specification AND woo.material_area = woi.material_area and woo.batch_no = woi.batch_no))
                         ELSE
                            sum(woi.weight) + sum(woi.count_weight)
