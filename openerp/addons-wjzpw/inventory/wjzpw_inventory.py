@@ -91,15 +91,51 @@ class wjzpw_organzine_input(osv.osv):
     _name = "wjzpw.organzine.input"
     _description = "wjzpw.inventory.jingSiRuKuGuanLi"
 
-    def onchange_quantity_weight_avg_weight(self, cr, uid, ids, quantity, weight_avg, weight):
-        if not quantity or not weight_avg or not weight:
-            return {}
-        count = weight / (quantity * weight_avg)
+    def onchange_quantity_quantity_avg_weight_avg(self, cr, uid, ids, quantity, quantity_avg, weight_avg):
+        quantity_count = 0
+        weight = 0.0
+        if quantity and quantity_avg:
+            quantity_count = quantity * quantity_avg
+        if quantity and quantity_avg and weight_avg:
+            weight = quantity * quantity_avg * weight_avg
         return {
             'value': {
-                'count': count
+                'quantity_count': quantity_count,
+                'weight': weight
             }
         }
+
+    def _total_count(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算总只数
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, 0)
+        for rec in self.browse(cr, uid, ids, context=context):
+            total_count = 0
+            if rec.quantity_avg and rec.quantity:
+                total_count += rec.quantity_avg * rec.quantity
+            if rec.count:
+                total_count += rec.count
+            res[rec.id] = total_count
+        return res
+
+    def _total_weight(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算总重量
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, 0.0)
+        for rec in self.browse(cr, uid, ids, context=context):
+            total_weight = 0
+            if rec.weight:
+                total_weight += rec.weight
+            if rec.count_weight:
+                total_weight += rec.count_weight
+            res[rec.id] = total_weight
+        return res
 
     _columns = {
         'input_date': fields.date('wjzpw.inventory.ruKuRiQi', required=True),
@@ -108,17 +144,21 @@ class wjzpw_organzine_input(osv.osv):
         'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', required=True),  # 原料产地
         'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.piHao', required=True),  # 批号
         'weight_avg': fields.float('wjzpw.inventory.tongZiJingZhong'),  # 筒子净重
+        'quantity_avg': fields.integer('wjzpw.inventory.meiBaoXiangZhiShu'),  # 每包箱只数
         'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
+        'quantity_count': fields.integer('wjzpw.inventory.baoXiangZhiShu'), # 包/箱只数
         'weight': fields.float('wjzpw.inventory.xiangShuZhongLiang', required=True),  # 箱数重量（KG）
         'count': fields.integer('wjzpw.inventory.zhiShu'),  # 只数
         'count_weight': fields.float('wjzpw.inventory.zhiShuZhongLiang'),  # 只数重量
-        'is_second': fields.boolean('wjzpw.inventory.shiFouErCiRuKu')  # 是否为二次入库
+
+        # Function fields
+        'total_count': fields.function(_total_count, string='wjzpw.inventory.zongZhiShu', type='integer', method=True),  # 总只数
+        'total_weight': fields.function(_total_weight, string='wjzpw.inventory.zongZhongLiang', type='float', method=True)  #总重量
     }
 
     _default = {
         'quantity': 0,
         'count': 0,
-        'is_second': False
     }
 
     _order = "input_date desc"
@@ -368,7 +408,6 @@ class wjzpw_weft_input(osv.osv):
         'quantity': 0,
         'count': 0,
         'weight': 0,
-        'is_second': False
     }
 
     _order = "input_date desc"
