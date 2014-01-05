@@ -604,7 +604,7 @@
             <field name="model">wjzpw.weft.output</field>
             <field name="arch" type="xml">
                 <tree string="wjzpw.inventory.cheJianRuKu" create="false" edit="false" delete="false">
-                    <field name="output_date"/>
+                    <field name="output_date" string="wjzpw.inventory.ruKuRiQi"/>
                     <field name="material_specification"/>
                     <field name="material_area"/>
                     <field name="batch_no"/>
