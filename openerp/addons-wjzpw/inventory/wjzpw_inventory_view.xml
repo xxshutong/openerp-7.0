@@ -312,21 +312,18 @@
             <field name="arch" type="xml">
                 <form string="weftInput" version="7.0">
                     <sheet>
-                        <group col="4">
+                        <group col="2">
                             <field name="input_date"/>
+                        </group>
+                        <group col="4">
                             <field name="material_specification"/>
                             <field name="material_area"/>
                             <field name="batch_no"/>
                             <field name="level"/>
-                        </group>
-                        <group col="2">
-                            <field name="is_second"/>
-                        </group>
-                        <group col="4">
                             <field name="quantity"/>
                             <field name="weight"/>
-                            <field name="count" attrs="{'invisible':[('is_second','=',False)]}"/>
-                            <field name="count_weight" attrs="{'invisible':[('is_second','=',False)]}"/>
+                            <field name="count"/>
+                            <field name="count_weight"/>
                         </group>
                     </sheet>
                 </form>
@@ -343,7 +340,6 @@
                     <field name="material_specification"/>
                     <field name="material_area"/>
                     <field name="batch_no"/>
-                    <field name="is_second"/>
                     <field name="level"/>
                     <field name="quantity"/>
                     <field name="weight"/>
@@ -370,8 +366,10 @@
             <field name="arch" type="xml">
                 <form string="weftOutput" version="7.0">
                     <sheet>
-                        <group col="4">
+                        <group col="2">
                             <field name="output_date"/>
+                        </group>
+                        <group col="4">
                             <field name="material_specification" on_change="onchange_material_specification(material_specification)"/>
                             <field name="material_area" on_change="onchange_material_area(material_specification, material_area)"/>
                             <field name="batch_no"/>

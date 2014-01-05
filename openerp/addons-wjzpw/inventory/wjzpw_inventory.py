@@ -357,7 +357,6 @@ class wjzpw_weft_input(osv.osv):
         'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', required=True),  # 原料产地
         'batch_no': fields.many2one('wjzpw.weft.batch.no', 'wjzpw.piHao', required=True),  # 批号
         'level': fields.selection((('A', 'A'), ('AA', 'AA')), 'wjzpw.inventory.dengJi'),  # 等级
-        'is_second': fields.boolean('wjzpw.inventory.shiFouErCiRuKu'),  # 是否为二次入库
         'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
         'weight': fields.float('wjzpw.inventory.xiangShuZhongLiang', required=True),  # 箱数重量（KG）
         'count': fields.integer('wjzpw.inventory.zhiShu'),  # 二次入库零散个数
