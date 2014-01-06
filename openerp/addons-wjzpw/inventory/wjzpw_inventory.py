@@ -550,6 +550,42 @@ class wjzpw_weft_output(osv.osv):
         else:
             return {}
 
+    def create(self, cr, uid, vals, *args, **kwargs):
+        left_output = super(wjzpw_weft_output, self).create(cr, uid, vals, *args, **kwargs)
+        if vals['department'] != 'hdcj':
+            return left_output
+        new_vals = {}
+        new_vals['material_specification'] = vals['material_specification']
+        new_vals['material_area'] = vals['material_area']
+        new_vals['batch_no'] = vals['batch_no']
+        new_vals['level'] = vals['level']
+        # Get latest weft workshop left
+        cr.execute(
+            '''
+            SELECT input_date, quantity, weight, count, count_weight
+            FROM wjzpw_weft_workshop_left
+            WHERE material_specification = %d AND material_area = %d AND batch_no = %d AND level = '%s' ORDER BY input_date desc limit 1
+            ''' % (vals['material_specification'], vals['material_area'], vals['batch_no'], vals['level'])
+        )
+        workshop_left = cr.dictfetchone()
+        # Calculate weft workshop left
+        if workshop_left:
+            new_vals['input_date'] = workshop_left['input_date']
+            new_vals['quantity'] = workshop_left['quantity'] + vals['quantity']
+            new_vals['weight'] = workshop_left['weight'] + vals['weight']
+            new_vals['count'] = workshop_left['count'] + vals['count']
+            new_vals['count_weight'] = workshop_left['count_weight'] + vals['count_weight']
+        else:
+            new_vals['input_date'] = vals['output_date']
+            new_vals['quantity'] = vals['quantity']
+            new_vals['weight'] = vals['weight']
+            new_vals['count'] = vals['count']
+            new_vals['count_weight'] = vals['count_weight']
+
+        weft_workshop_left_obj = self.pool.get('wjzpw.weft.workshop.left')
+        weft_workshop_left_obj.create(cr, uid, new_vals, context=None)
+        return left_output
+
     _columns = {
         'output_date': fields.date('wjzpw.inventory.chuKuRiQi', required=True),
         'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
@@ -695,7 +731,7 @@ class wjzpw_weft_workshop_left(osv.osv):
         'weight': 0,
         }
 
-    _order = "input_date desc"
+    _order = "input_date desc, quantity desc, count desc"
 
 
 class wjzpw_weft_workshop_output(osv.osv):
