@@ -91,17 +91,21 @@ class wjzpw_organzine_input(osv.osv):
     _name = "wjzpw.organzine.input"
     _description = "wjzpw.inventory.jingSiRuKuGuanLi"
 
-    def onchange_quantity_quantity_avg_weight_avg(self, cr, uid, ids, quantity, quantity_avg, weight_avg):
+    def onchange_fields(self, cr, uid, ids, quantity, quantity_avg, weight_avg, count):
         quantity_count = 0
         weight = 0.0
+        count_weight = 0.0
         if quantity and quantity_avg:
             quantity_count = quantity * quantity_avg
         if quantity and quantity_avg and weight_avg:
             weight = quantity * quantity_avg * weight_avg
+        if weight_avg and count:
+            count_weight = weight_avg * count
         return {
             'value': {
                 'quantity_count': quantity_count,
-                'weight': weight
+                'weight': weight,
+                'count_weight': count_weight
             }
         }
 
@@ -171,17 +175,21 @@ class wjzpw_organzine_output(osv.osv):
     _name = "wjzpw.organzine.output"
     _description = "wjzpw.inventory.chuKuGuanLi"
 
-    def onchange_quantity_quantity_avg_weight_avg(self, cr, uid, ids, quantity, quantity_avg, weight_avg):
+    def onchange_fields(self, cr, uid, ids, quantity, quantity_avg, weight_avg, count):
         quantity_count = 0
         weight = 0.0
+        count_weight = 0.0
         if quantity and quantity_avg:
             quantity_count = quantity * quantity_avg
         if quantity and quantity_avg and weight_avg:
             weight = quantity * quantity_avg * weight_avg
+        if weight_avg and count:
+            count_weight = weight_avg * count
         return {
             'value': {
                 'quantity_count': quantity_count,
-                'weight': weight
+                'weight': weight,
+                'count_weight': count_weight
             }
         }
 
