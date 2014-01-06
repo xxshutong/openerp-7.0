@@ -580,14 +580,25 @@ class wjzpw_weft_workshop_left(osv.osv):
     _name = "wjzpw.weft.workshop.left"
     _description = "wjzpw.inventory.cheJianShengYu"
 
-    def _calculate_weight_avg(self, cr, uid, ids, field_name, arg, context):
-        res = {}
-        for id in ids:
-            res.setdefault(id, '未知')
-        for rec in self.browse(cr, uid, ids, context=context):
-            if rec.weight and rec.quantity:
-                res[rec.id] = '%0.2f' % (rec.weight / rec.quantity)
-        return res
+    def onchange_quantity(self, cr, uid, ids, quantity=None, material_specification=None, material_area=None, batch_no=None, level=None):
+        if not quantity or not material_specification or not material_area or not batch_no or not level:
+            return {}
+        query_sql = """
+            SELECT weight, quantity
+            FROM wjzpw_weft_input
+            WHERE material_specification = %d and material_area = %d and batch_no = %d and level = '%s' order by input_date desc limit 1
+            """ % (material_specification, material_area, batch_no, level)
+        cr.execute(query_sql)
+        weft_input = cr.dictfetchone()
+        if weft_input:
+            weight = weft_input['weight'] / weft_input['quantity'] * quantity
+            return {
+                'value': {
+                    'weight': weight
+                }
+            }
+        else:
+            return {}
 
     def onchange_material_specification(self, cr, uid, ids, material_specification=None):
         query_sql = """
@@ -622,26 +633,6 @@ class wjzpw_weft_workshop_left(osv.osv):
                 'batch_no': [('id', 'in', batch_no_ids)]
             }
         }
-
-    def onchange_quantity(self, cr, uid, ids, material_specification=None, material_area=None, batch_no=None, level=None, quantity=None):
-        if not material_specification or not material_area or not batch_no or not level or not quantity:
-            return {}
-        query_sql = """
-            SELECT quantity, weight
-            FROM wjzpw_weft_inventory
-            WHERE material_specification = %d AND material_area = %d AND batch_no = %d AND level = '%s'
-        """ % (material_specification, material_area, batch_no, level)
-        cr.execute(query_sql)
-        weft_inventory = cr.dictfetchone()
-        if weft_inventory:
-            value = weft_inventory['weight'] / weft_inventory['quantity'] * quantity
-            return {
-                'value': {
-                    'weight': value
-                }
-            }
-        else:
-            return {}
 
     def create(self, cr, uid, vals, *args, **kwargs):
         left_obj = super(wjzpw_weft_workshop_left, self).create(cr, uid, vals, *args, **kwargs)
