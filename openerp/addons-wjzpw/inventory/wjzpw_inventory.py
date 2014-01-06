@@ -1054,7 +1054,7 @@ class wjzpw_weft_total_inventory(osv.osv):
                         WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area AND wwwl.batch_no = wwi.batch_no)) <> 0
                         THEN
                             (wwi.quantity +
-                            (SELECT quantity FROM wjzpw_weft_workshop_left wwwl WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area and wwwl.batch_no = wwi.batch_no order by input_date desc limit 1))
+                            (SELECT quantity FROM wjzpw_weft_workshop_left wwwl WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area and wwwl.batch_no = wwi.batch_no order by input_date desc, quantity desc, count desc limit 1))
                         ELSE
                             wwi.quantity
                 END AS quantity
@@ -1064,7 +1064,7 @@ class wjzpw_weft_total_inventory(osv.osv):
                         WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area AND wwwl.batch_no = wwi.batch_no)) <> 0
                         THEN
                             (wwi.count +
-                            (SELECT count FROM wjzpw_weft_workshop_left wwwl WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area and wwwl.batch_no = wwi.batch_no order by input_date desc limit 1))
+                            (SELECT count FROM wjzpw_weft_workshop_left wwwl WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area and wwwl.batch_no = wwi.batch_no order by input_date desc, quantity desc, count desc limit 1))
                         ELSE
                            wwi.count
                 END AS count
@@ -1074,7 +1074,7 @@ class wjzpw_weft_total_inventory(osv.osv):
                         WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area AND wwwl.batch_no = wwi.batch_no)) <> 0
                         THEN
                             (wwi.weight +
-                            (SELECT weight FROM wjzpw_weft_workshop_left wwwl WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area and wwwl.batch_no = wwi.batch_no order by input_date desc limit 1))
+                            (SELECT weight FROM wjzpw_weft_workshop_left wwwl WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area and wwwl.batch_no = wwi.batch_no order by input_date desc, quantity desc, count desc limit 1))
                         ELSE
                            wwi.weight
                 END AS weight
@@ -1084,7 +1084,7 @@ class wjzpw_weft_total_inventory(osv.osv):
                         WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area AND wwwl.batch_no = wwi.batch_no)) <> 0
                         THEN
                             (wwi.count_weight +
-                            (SELECT count_weight FROM wjzpw_weft_workshop_left wwwl WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area and wwwl.batch_no = wwi.batch_no order by input_date desc limit 1))
+                            (SELECT count_weight FROM wjzpw_weft_workshop_left wwwl WHERE wwwl.level = wwi.level AND wwwl.material_specification = wwi.material_specification AND wwwl.material_area = wwi.material_area and wwwl.batch_no = wwi.batch_no order by input_date desc, quantity desc, count desc limit 1))
                         ELSE
                            wwi.count_weight
                 END AS count_weight
