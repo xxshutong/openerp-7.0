@@ -782,7 +782,7 @@ class wjzpw_reed_input(osv.osv):
     _columns = {
         'input_date': fields.date('wjzpw.inventory.ruKuRiQi', required=True),  # 入库日期
         'reed_no': fields.char('wjzpw.inventory.kouHao', required=True),  # 扣号
-        'reed_width': fields.integer('wjzpw.inventory.kouFu', required=True),  # 扣辐
+        'reed_width': fields.char('wjzpw.inventory.kouFu', required=True),  # 扣辐
         'count': fields.integer('wjzpw.inventory.shuLiang', required=True),  # 数量
         'price': fields.float('wjzpw.inventory.danJia', required=True),  # 单价
         'total_price': fields.float('wjzpw.inventory.jinEr', required=True),  # 金额
@@ -806,12 +806,12 @@ class wjzpw_reed_output(osv.osv):
 
     def _get_reed_width_options(self, cr, uid, context=None):
         cr.execute('SELECT DISTINCT reed_width FROM wjzpw_reed_input')
-        return [(int(wri[0]), int(wri[0])) for wri in cr.fetchall()]
+        return [(wri[0], wri[0]) for wri in cr.fetchall()]
 
     _columns = {
         'output_date': fields.date('wjzpw.inventory.chuKuRiQi', required=True),  # 出库日期
         'reed_no': fields.selection(_get_reed_no_options, 'wjzpw.inventory.kouHao', required=True),  # 扣号
-        'reed_width': fields.selection(_get_reed_width_options, 'wjzpw.inventory.kouFu', size=-1, required=True),  # 扣辐
+        'reed_width': fields.selection(_get_reed_width_options, 'wjzpw.inventory.kouFu', required=True),  # 扣辐
         'count': fields.integer('wjzpw.inventory.shuLiang', required=True),  # 数量
         'reed_area_to': fields.many2one('wjzpw.reed.area.to', 'wjzpw.inventory.faWangDi'),  # 钢筘发往地
         'status': fields.selection((('wx', u'维修'), ('bf', u'报废')), 'wjzpw.inventory.baoFeiHuoWeiXiu', required=True),  # 报废或维修
@@ -1104,7 +1104,7 @@ class wjzpw_reed_inventory(osv.osv):
 
     _columns = {
         'reed_no': fields.char('wjzpw.inventory.kouHao', readonly=True),  # 筘号
-        'reed_width': fields.integer('wjzpw.inventory.kouFu', readonly=True),  # 筘幅
+        'reed_width': fields.char('wjzpw.inventory.kouFu', readonly=True),  # 筘幅
         'count': fields.integer('wjzpw.inventory.shuLiang'),  # 数量
     }
 
