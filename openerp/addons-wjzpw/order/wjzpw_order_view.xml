@@ -1,57 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <!--&lt;!&ndash;定义InventoryInput表单视图&ndash;&gt;-->
-        <!--<record model="ir.ui.view" id="wjzpw_inventory_input_form_view">-->
-            <!--<field name="name">wjzpw.inventory.ruKuGuanLi</field>-->
-            <!--<field name="type">form</field>-->
-            <!--<field name="model">wjzpw.inventory.input</field>-->
-            <!--<field name="arch" type="xml">-->
-                <!--<form string="inventoryInput" version="7.0">-->
-                    <!--<sheet>-->
-                        <!--<group col="4">-->
-                            <!--<field name="machine_no"/>-->
-                            <!--<field name="input_date"/>-->
-                            <!--<field name="product_id"/>-->
-                            <!--<field name="batch_no"/>-->
-                            <!--<field name="superior_number"/>-->
-                            <!--<field name="grade_a_number"/>-->
-                            <!--<field name="grade_b_number"/>-->
-                        <!--</group>-->
-                    <!--</sheet>-->
-                <!--</form>-->
-            <!--</field>-->
-        <!--</record>-->
-        <!--&lt;!&ndash;定义InventoryInput列表视图&ndash;&gt;-->
-        <!--<record model="ir.ui.view" id="wjzpw_inventory_input_tree_view">-->
-            <!--<field name="name">wjzpw.inventory.ruKuGuanLi</field>-->
-            <!--<field name="type">tree</field>-->
-            <!--<field name="model">wjzpw.inventory.input</field>-->
-            <!--<field name="arch" type="xml">-->
-                <!--<tree string="inventoryInput">-->
-                    <!--<field name="machine_no"/>-->
-                    <!--<field name="input_date"/>-->
-                    <!--<field name="product_id"/>-->
-                    <!--<field name="batch_no"/>-->
-                    <!--<field name="superior_number"/>-->
-                    <!--<field name="grade_a_number"/>-->
-                    <!--<field name="grade_b_number"/>-->
-                <!--</tree>-->
-            <!--</field>-->
-        <!--</record>-->
-        <!--&lt;!&ndash;定义InventoryInput视图动作&ndash;&gt;-->
-        <!--<record model="ir.actions.act_window" id="action_wjzpw_inventory_input">-->
-            <!--<field name="name">wjzpw.inventory.ruKuGuanLi</field>-->
-            <!--<field name="res_model">wjzpw.inventory.input</field>-->
-            <!--<field name="view_type">form</field>-->
-            <!--<field name="view_mode">tree,form</field>-->
-            <!--<field name="view_id" ref="wjzpw_inventory_input_tree_view"/>-->
-        <!--</record>-->
+        <!--定义OrderInput表单视图-->
+        <record model="ir.ui.view" id="wjzpw_order_input_form_view">
+            <field name="name">wjzpw.order.ruKuGuanLi</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.order</field>
+            <field name="arch" type="xml">
+                <form string="orderInput" version="7.0">
+                    <sheet>
+                        <group col="4">
+                            <field name="order_no"/>
+                            <field name="input_date"/>
+                            <field name="customer"/>
+                            <field name="customer_product"/>
+                            <field name="company_no"/>
+                            <field name="product_id"/>
+                            <field name="amount"/>
+                        </group>
+                        <group col="4">
+                            <field name="dead_line"/>
+                            <field name="dead_line_unit"/>
+                            <field name="product_type"/>
+                        </group>
+                        <group col="2">
+                            <field name="customer_requirement"/>
+                            <field name="remark"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义OrderInput列表视图-->
+        <record model="ir.ui.view" id="wjzpw_order_input_tree_view">
+            <field name="name">wjzpw.order.ruKuGuanLi</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.order</field>
+            <field name="arch" type="xml">
+                <tree string="orderInput">
+                    <field name="order_no"/>
+                    <field name="input_date"/>
+                    <field name="customer"/>
+                    <field name="customer_product"/>
+                    <field name="amount"/>
+                    <field name="order_type"/>
+                    <field name="product_type"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义OrderInput视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_order_input">
+            <field name="name">wjzpw.order.ruKuGuanLi</field>
+            <field name="res_model">wjzpw.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wjzpw_order_input_tree_view"/>
+        </record>
 
 
         <!--定义菜单-->
-        <menuitem id="wjzpw_order_menu" name="wjzpw.inventory.dingDanGuanLi"/>
+        <menuitem id="wjzpw_order_menu" name="wjzpw.order.dingDan"/>
         <!-- 订单入库 -->
-        <menuitem id="wjzpw_order_input_menu" name="wjzpw.inventory.dingDanRuKu" parent="wjzpw_order_menu"/>
+        <menuitem id="wjzpw_order_management_menu" name="wjzpw.order.dingDanGuanLi" parent="wjzpw_order_menu"/>
+        <menuitem id="wjzpw_order_input_menu" name="wjzpw.order.dingDanRuKu" parent="wjzpw_order_management_menu" action="action_wjzpw_order_input"/>
     </data>
 </openerp>
