@@ -26,6 +26,24 @@ from openerp.osv import fields, osv
 _logger = logging.getLogger(__name__)
 
 
+class wjzpw_order_product(osv.osv):
+    """
+    客户品名
+    """
+    _name = "wjzpw.order.product"
+    _description = "wjzpw.order.keHuPinMingGuanLi"
+
+    _columns = {
+        'name': fields.char('wjzpw.order.keHuPinMing', size=64, required=True),
+        'customer': fields.many2one('res.partner', 'wjzpw.order.keHu', domain=[('customer', '=', True)],
+                                    required=True, readonly=True),
+    }
+    _sql_constraints = [
+        ('name_customer_unique', 'unique(name, customer)', u'该客户品名已经存在'),
+        ]
+
+    _order = "name"
+
 class wjzpw_order(osv.osv):
     """
     订单入库
@@ -36,7 +54,7 @@ class wjzpw_order(osv.osv):
 
     def _default_order_no(self, cr, uid, context=None):
         default_no = self._default_no(cr, uid, context=context)
-        return  '%s%4d' % (self._order_prefix, default_no)
+        return  '%s%04d' % (self._order_prefix, default_no)
 
     def _default_no(self, cr, uid, context=None):
         query_sql = """
@@ -50,12 +68,13 @@ class wjzpw_order(osv.osv):
         else:
             return order + 1
 
-    def _default_cashbox_line_ids(self, cr, uid, context=None):
-        # Return a list of coins in Euros.
-        result = [
-            dict(pieces=value) for value in [0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100, 200, 500]
-        ]
-        return result
+    def onchange_customer(self, cr, uid, ids, customer=None, context={}):
+        context['customer'] = customer
+        return {
+            'domain': {
+                'customer_product': [('customer', '=', customer)]
+            }
+        }
 
     _columns = {
         'order_no': fields.char('wjzpw.order.dingDanHao', required=True, readonly=True),
@@ -63,7 +82,7 @@ class wjzpw_order(osv.osv):
         'input_date': fields.date('wjzpw.order.xiaDanRiQi', required=True),
         'customer': fields.many2one('res.partner', 'wjzpw.order.keHu', domain=[('customer', '=', True)],
                                     required=True),
-        'customer_product': fields.char('wjzpw.order.keHuPinMing'),
+        'customer_product': fields.many2one('wjzpw.order.product', 'wjzpw.order.keHuPinMing'),
         'company_no': fields.char('wjzpw.order.gongSiBianHao'),
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.order.gongSiPinMing', required=True),
         'amount': fields.float('wjzpw.order.shuLiangMi', required=True),

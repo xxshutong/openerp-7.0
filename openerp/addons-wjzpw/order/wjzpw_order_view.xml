@@ -12,8 +12,8 @@
                         <group col="4">
                             <field name="order_no"/>
                             <field name="input_date"/>
-                            <field name="customer"/>
-                            <field name="customer_product"/>
+                            <field name="customer" on_change="onchange_customer(customer)"/>
+                            <field name="customer_product" context="{'default_customer': customer}"/>
                             <field name="company_no"/>
                             <field name="product_id"/>
                             <field name="amount"/>
@@ -56,6 +56,35 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="wjzpw_order_input_tree_view"/>
+        </record>
+
+        <!--定义OrderProduct表单视图-->
+        <record model="ir.ui.view" id="wjzpw_order_product_form_view">
+            <field name="name">wjzpw.order.keHuPinMingGuanLi</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.order.product</field>
+            <field name="arch" type="xml">
+                <form string="wjzpw.order.keHuPinMing" version="7.0" delete="false">
+                    <sheet>
+                        <group col="2">
+                            <field name="customer"/>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义OrderProduct列表视图-->
+        <record model="ir.ui.view" id="wjzpw_order_product_tree_view">
+            <field name="name">wjzpw.order.keHuPinMingGuanLi</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.order.product</field>
+            <field name="arch" type="xml">
+                <tree string="wjzpw.order.keHuPinMing">
+                    <field name="customer"/>
+                    <field name="name"/>
+                </tree>
+            </field>
         </record>
 
 
