@@ -69,10 +69,25 @@ class wjzpw_order(osv.osv):
             return order + 1
 
     def onchange_customer(self, cr, uid, ids, customer=None, context={}):
-        context['customer'] = customer
+        if not customer:
+            return {}
+        # Get existing company no
+        query_sql = """
+            SELECT count(company_no) AS num, company_no
+            FROM wjzpw_order
+            WHERE customer = %d GROUP BY company_no order by num desc limit 1
+        """ % customer
+        cr.execute(query_sql)
+        company_no_result = cr.dictfetchone()
+        company_no_value = ''
+        if company_no_result:
+            company_no_value = company_no_result['company_no']
         return {
             'domain': {
                 'customer_product': [('customer', '=', customer)]
+            },
+            'value': {
+                'company_no': company_no_value
             }
         }
 
