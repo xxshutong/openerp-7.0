@@ -91,6 +91,58 @@ class wjzpw_order(osv.osv):
             }
         }
 
+    def _company_no_product(self, cr, uid, ids, field_name, arg, context):
+        """
+        公司编号及品名
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, u'无')
+        for rec in self.browse(cr, uid, ids, context=context):
+            company_no_product = ''
+            if rec.company_no:
+                company_no_product += rec.company_no
+            if rec.product_id:
+                company_no_product += rec.product_id['name']
+            res[rec.id] = company_no_product
+        return res
+
+    def _dead_line_str(self, cr, uid, ids, field_name, arg, context):
+        """
+        交货期
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, u'无')
+        for rec in self.browse(cr, uid, ids, context=context):
+            dead_line = ''
+            if rec.dead_line and rec.dead_line_unit:
+                dead_line = str(rec.dead_line) + ' ' + rec.dead_line_unit
+            res[rec.id] = dead_line
+        return res
+
+    def _order_type(self, cr, uid, ids, field_name, arg, context):
+        """
+        订单类型，新品或者翻单
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, u'新品')
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.product_id and rec.input_date:
+                query_sql = """
+                    SELECT id
+                    FROM wjzpw_order
+                    WHERE product_id = %d AND input_date < '%s'
+                    """ % (rec.product_id, rec.input_date)
+                cr.execute(query_sql)
+                existing_order = cr.dictfetchone()
+                if existing_order:
+                    res[rec.id] = u'翻单'
+                else:
+                    res[rec.id] = u'新品'
+        return res
+
     _columns = {
         'order_no': fields.char('wjzpw.order.dingDanHao', required=True, readonly=True),
         'no': fields.integer('wjzpw.order.dingDanZhengShuHaoMa', required=True, readonly=True),
@@ -103,11 +155,16 @@ class wjzpw_order(osv.osv):
         'amount': fields.float('wjzpw.order.shuLiangMi', required=True),
         'dead_line': fields.float('wjzpw.order.jiaoHuoQi'),
         'dead_line_unit': fields.selection((('d', u'天'), ('w', u'周'), ('m', u'月')), 'wjzpw.order.danWei', required=True),
-        'order_type': fields.selection((('new', u'新品'), ('old', u'翻单')), 'wjzpw.order.xinPinHuoFanDan'),
+        # 'order_type': fields.selection((('new', u'新品'), ('old', u'翻单')), 'wjzpw.order.xinPinHuoFanDan'),
         'product_type': fields.selection((('order', u'订单'), ('inventory', u'库存')), 'wjzpw.order.dingDanHuoKuCun'),
         'customer_requirement': fields.text('wjzpw.order.keHuYaoQiu'),
         'remark': fields.text('wjzpw.order.beiZhu'),
-        'status': fields.selection((('unfinished', u'未完成'), ('finished', u'完成')), 'wjzpw.order.shiFouWanCheng')
+        'status': fields.selection((('unfinished', u'未完成'), ('finished', u'完成')), 'wjzpw.order.shiFouWanCheng'),
+
+        # Function fields
+        'company_no_product': fields.function(_company_no_product, string='wjzpw.order.gongSiBianHaoJiPinMing', type='char', method=True),  # 公司编号及品名
+        'dead_line_str': fields.function(_dead_line_str, string='wjzpw.order.jiaoHuoQi', type='char', method=True),  # 交货期
+        'order_type': fields.function(_order_type, string='wjzpw.order.xinPinHuoFanDan', type='char', method=True)  # 新品或翻单
     }
 
     _defaults = {

@@ -44,7 +44,9 @@
                     <field name="input_date"/>
                     <field name="customer"/>
                     <field name="customer_product"/>
+                    <field name="company_no_product"/>
                     <field name="amount"/>
+                    <field name="dead_line_str"/>
                     <field name="order_type"/>
                     <field name="product_type"/>
                     <field name="status"/>
