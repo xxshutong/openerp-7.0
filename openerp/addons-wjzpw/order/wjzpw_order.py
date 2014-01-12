@@ -154,7 +154,7 @@ class wjzpw_order(osv.osv):
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.order.gongSiPinMing', required=True),
         'amount': fields.float('wjzpw.order.shuLiangMi', required=True),
         'dead_line': fields.float('wjzpw.order.jiaoHuoQi'),
-        'dead_line_unit': fields.selection((('d', u'天'), ('w', u'周'), ('m', u'月')), 'wjzpw.order.danWei', required=True),
+        'dead_line_unit': fields.selection(((u'天', u'天'), (u'周', u'周'), (u'月', u'月')), 'wjzpw.order.danWei', required=True),
         # 'order_type': fields.selection((('new', u'新品'), ('old', u'翻单')), 'wjzpw.order.xinPinHuoFanDan'),
         'product_type': fields.selection((('order', u'订单'), ('inventory', u'库存')), 'wjzpw.order.dingDanHuoKuCun'),
         'customer_requirement': fields.text('wjzpw.order.keHuYaoQiu'),
@@ -170,7 +170,7 @@ class wjzpw_order(osv.osv):
     _defaults = {
         'order_no': _default_order_no,
         'no': _default_no,
-        'dead_line_unit': 'd',
+        'dead_line_unit': u'天',
         'status': 'unfinished'
     }
 

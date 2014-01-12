@@ -8,6 +8,8 @@
             <field name="model">wjzpw.order</field>
             <field name="arch" type="xml">
                 <form string="orderInput" version="7.0">
+                    <header>
+                    </header>
                     <sheet>
                         <group col="2">
                             <field name="order_no"/>

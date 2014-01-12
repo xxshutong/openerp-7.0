@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-12 14:50+0000\n"
-"PO-Revision-Date: 2014-01-12 14:50+0000\n"
+"POT-Creation-Date: 2014-01-12 14:51+0000\n"
+"PO-Revision-Date: 2014-01-12 14:51+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,160 +18,160 @@ msgstr ""
 #. module: order
 #: selection:wjzpw.order,dead_line_unit:0
 msgid "月"
-msgstr "月"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,no:0
 msgid "wjzpw.order.dingDanZhengShuHaoMa"
-msgstr "订单整数号码"
+msgstr ""
 
 #. module: order
 #: selection:wjzpw.order,dead_line_unit:0
 msgid "天"
-msgstr "天"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,customer:0
 #: field:wjzpw.order.product,customer:0
 msgid "wjzpw.order.keHu"
-msgstr "客户"
+msgstr ""
 
 #. module: order
 #: model:ir.actions.act_window,name:order.action_wjzpw_order_input
 msgid "wjzpw.order.ruKuGuanLi"
-msgstr "入库管理"
+msgstr ""
 
 #. module: order
 #: model:ir.model,name:order.model_wjzpw_order
 #: model:ir.ui.menu,name:order.wjzpw_order_management_menu
 msgid "wjzpw.order.dingDanGuanLi"
-msgstr "订单管理"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,dead_line:0
 #: field:wjzpw.order,dead_line_str:0
 msgid "wjzpw.order.jiaoHuoQi"
-msgstr "交货期"
+msgstr ""
 
 #. module: order
 #: sql_constraint:wjzpw.order.product:0
 msgid "该客户品名已经存在"
-msgstr "该客户品名已经存在"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,dead_line_unit:0
 msgid "wjzpw.order.danWei"
-msgstr "单位"
+msgstr ""
 
 #. module: order
 #: sql_constraint:wjzpw.order:0
 msgid "该订单号已经存在"
-msgstr "该订单号已经存在"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,company_no_product:0
 msgid "wjzpw.order.gongSiBianHaoJiPinMing"
-msgstr "公司编号及品名"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,remark:0
 msgid "wjzpw.order.beiZhu"
-msgstr "备注"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,status:0
 msgid "wjzpw.order.shiFouWanCheng"
-msgstr "是否完成"
+msgstr ""
 
 #. module: order
 #: selection:wjzpw.order,status:0
 msgid "未完成"
-msgstr "未完成"
+msgstr ""
 
 #. module: order
 #: model:ir.model,name:order.model_wjzpw_order_product
 msgid "wjzpw.order.keHuPinMingGuanLi"
-msgstr "客户品名管理"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,order_type:0
 msgid "wjzpw.order.xinPinHuoFanDan"
-msgstr "新品或翻单"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,input_date:0
 msgid "wjzpw.order.xiaDanRiQi"
-msgstr "下单日期"
+msgstr ""
 
 #. module: order
 #: model:ir.ui.menu,name:order.wjzpw_order_input_menu
 msgid "wjzpw.order.dingDanRuKu"
-msgstr "订单入库"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,customer_product:0
 #: view:wjzpw.order.product:0
 #: field:wjzpw.order.product,name:0
 msgid "wjzpw.order.keHuPinMing"
-msgstr "客户品名"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,amount:0
 msgid "wjzpw.order.shuLiangMi"
-msgstr "数量（米）"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,order_no:0
 msgid "wjzpw.order.dingDanHao"
-msgstr "订单号"
+msgstr ""
 
 #. module: order
 #: selection:wjzpw.order,dead_line_unit:0
 msgid "周"
-msgstr "周"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,product_id:0
 msgid "wjzpw.order.gongSiPinMing"
-msgstr "公司品名"
+msgstr ""
 
 #. module: order
 #: model:ir.ui.menu,name:order.wjzpw_order_menu
 msgid "wjzpw.order.dingDan"
-msgstr "订单"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,customer_requirement:0
 msgid "wjzpw.order.keHuYaoQiu"
-msgstr "客户要求"
+msgstr ""
 
 #. module: order
 #: selection:wjzpw.order,status:0
 msgid "完成"
-msgstr "完成"
+msgstr ""
 
 #. module: order
 #: view:wjzpw.order:0
 msgid "orderInput"
-msgstr "订单入库"
+msgstr ""
 
 #. module: order
 #: selection:wjzpw.order,product_type:0
 msgid "库存"
-msgstr "库存"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,company_no:0
 msgid "wjzpw.order.gongSiBianHao"
-msgstr "公司编号"
+msgstr ""
 
 #. module: order
 #: field:wjzpw.order,product_type:0
 msgid "wjzpw.order.dingDanHuoKuCun"
-msgstr "订单或库存"
+msgstr ""
 
 #. module: order
 #: selection:wjzpw.order,product_type:0
 msgid "订单"
-msgstr "订单"
+msgstr ""
 
