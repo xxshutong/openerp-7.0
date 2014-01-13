@@ -150,7 +150,7 @@ class wjzpw_order(osv.osv):
         'customer': fields.many2one('res.partner', 'wjzpw.order.keHu', domain=[('customer', '=', True)],
                                     required=True),
         'customer_product': fields.many2one('wjzpw.order.product', 'wjzpw.order.keHuPinMing'),
-        'company_no': fields.char('wjzpw.order.gongSiBianHao'),
+        'company_no': fields.char('wjzpw.order.keHuBianHao'),
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.order.gongSiPinMing', required=True),
         'amount': fields.float('wjzpw.order.shuLiangMi', required=True),
         'dead_line': fields.float('wjzpw.order.jiaoHuoQi'),

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-12 14:51+0000\n"
-"PO-Revision-Date: 2014-01-12 14:51+0000\n"
+"POT-Creation-Date: 2014-01-13 15:11+0000\n"
+"PO-Revision-Date: 2014-01-13 15:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -39,6 +39,11 @@ msgstr ""
 #. module: order
 #: model:ir.actions.act_window,name:order.action_wjzpw_order_input
 msgid "wjzpw.order.ruKuGuanLi"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order,company_no:0
+msgid "wjzpw.order.keHuBianHao"
 msgstr ""
 
 #. module: order
@@ -158,11 +163,6 @@ msgstr ""
 #. module: order
 #: selection:wjzpw.order,product_type:0
 msgid "库存"
-msgstr ""
-
-#. module: order
-#: field:wjzpw.order,company_no:0
-msgid "wjzpw.order.gongSiBianHao"
 msgstr ""
 
 #. module: order
