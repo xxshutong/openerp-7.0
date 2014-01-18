@@ -159,7 +159,7 @@ class wjzpw_order(osv.osv):
         'product_type': fields.selection((('order', u'订单'), ('inventory', u'库存')), 'wjzpw.order.dingDanHuoKuCun'),
         'customer_requirement': fields.text('wjzpw.order.keHuYaoQiu'),
         'remark': fields.text('wjzpw.order.beiZhu'),
-        'status': fields.selection((('unfinished', u'未完成'), ('finished', u'完成')), 'wjzpw.order.shiFouWanCheng'),
+        'status': fields.selection((('unfinished', u'已录入'), ('processing', u'安排生产计划'), ('finished', u'完成')), 'wjzpw.order.zhuangTai'),
 
         # Function fields
         'company_no_product': fields.function(_company_no_product, string='wjzpw.order.gongSiBianHaoJiPinMing', type='char', method=True),  # 公司编号及品名
