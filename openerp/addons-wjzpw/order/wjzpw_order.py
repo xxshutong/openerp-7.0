@@ -44,6 +44,7 @@ class wjzpw_order_product(osv.osv):
 
     _order = "name"
 
+
 class wjzpw_order(osv.osv):
     """
     订单入库
@@ -143,6 +144,18 @@ class wjzpw_order(osv.osv):
                     res[rec.id] = u'新品'
         return res
 
+    def write(self, cr, user, ids, vals, context=None):
+        result = super(wjzpw_order, self).write(cr, user, ids, vals, context=context)
+        # TODO
+        # Generate order plan if new status is 'processing'
+        for id in ids:
+            if vals.get('status') and vals.get('status') == 'processing':
+                new_vals = {}
+                new_vals['order'] = id
+                wjzpw_order_plan_obj = self.pool.get('wjzpw.order.plan')
+                wjzpw_order_plan_obj.create(cr, user, new_vals, context=None)
+        return result
+
     _columns = {
         'order_no': fields.char('wjzpw.order.dingDanHao', required=True, readonly=True),
         'no': fields.integer('wjzpw.order.dingDanZhengShuHaoMa', required=True, readonly=True),
@@ -181,4 +194,67 @@ class wjzpw_order(osv.osv):
 
     _order = "order_no desc"
 
+
+class wjzpw_order_plan(osv.osv):
+    """
+    生产计划
+    """
+    _name = "wjzpw.order.plan"
+    _description = "wjzpw.order.shengChanGongYiJiJiHuaAnPai"
+
+    _columns = {
+        'order': fields.many2one('wjzpw.order', 'wjzpw.order.dingDan', required=True),
+        'amount': fields.float('wjzpw.order.shengChanShuLiangMi', required=True),  # 生产数量
+        'dead_line': fields.char('wjzpw.order.jiaoHuoQi'),  # 交货期
+        'machine_assign': fields.integer('wjzpw.order.anPaiJiTai'),  # 安排机台
+        'machine_type': fields.selection((('pingJi', u'平机'), ('kuanPingJi', u'宽平机'), ('longTouJi', u'龙头机'), ('daLongTou', u'大龙头'), ('xiaoLongTou', u'小龙头')), 'wjzpw.order.jiXing'),  # 机型
+        'texture_axis': fields.float('wjzpw.order.zhiZhou'),  # 织轴
+        # 规格要求
+        'reed_no_and_penetration_number': fields.char('wjzpw.order.kouHaoJiChuanRuShu'),  # 筘号及穿入数
+        'door_width': fields.char('wjzpw.order.menFu'),  # 门幅
+        'total_head_pattern': fields.char('wjzpw.order.zongTouWen'),  # 总头纹
+        'p_luo_pu_da_juan': fields.char('wjzpw.order.luoBuDaJuanDingChang'),  # 落布打卷定长
+        'on_weft': fields.char('wjzpw.order.shangJiWeiMi'),  # 上机纬密
+        'off_weft': fields.char('wjzpw.order.xiaJiWeiMi'),  # 下机纬密
+        'heald_number': fields.char('wjzpw.order.zongKuangShu'),  # 综框数
+        'basic_organize': fields.char('wjzpw.order.jiBenZuZhi'),  # 基本组织
+        'cloth_requirement': fields.char('wjzpw.order.piBuYaoQiu'),  # 坯布要求
+        'organzine_a': fields.char('wjzpw.order.jiaJing'),  # 甲经
+        'organzine_a_twist': fields.char('wjzpw.order.jiaJingNianDuXiang'),  # 甲经捻度（向）
+        'organzine_a_amount': fields.char('wjzpw.order.jiaJingYongLiang'),  # 甲经用量
+        'organzine_b': fields.char('wjzpw.order.yiJing'),  # 乙经
+        'organzine_b_twist': fields.char('wjzpw.order.yiJingNianDuXiang'),  # 乙经捻度（向）
+        'organzine_b_amount': fields.char('wjzpw.order.yiJingYongLiang'),  # 乙经用量
+        'weft_a': fields.char('wjzpw.order.jiaWei'),  # 甲纬
+        'weft_a_twist': fields.char('wjzpw.order.jiaWeiNianDuXiang'),  # 甲纬捻度（向）
+        'weft_a_amount': fields.char('wjzpw.order.jiaWeiYongLiang'),  # 甲纬用量
+        'weft_b': fields.char('wjzpw.order.yiWei'),  # 乙纬
+        'weft_b_twist': fields.char('wjzpw.order.yiWeiNianDuXiang'),  # 乙纬捻度（向）
+        'weft_b_amount': fields.char('wjzpw.order.yiWeiYongLiang'),  # 乙纬用量
+        # 循环排列
+        'cycle_organzine': fields.char('wjzpw.order.jing'),  # 循环经轴
+        'cycle_weft': fields.char('wjzpw.order.wei'),  # 循环纬轴
+        # 落机校对数据
+        'plan_per_day': fields.float('wjzpw.order.meiTaiMeiTianShengChanJiHua'),  # 每台每天生产计划
+        # 扒综发
+        'p_pa_zong_fa': fields.text('wjzpw.order.paZongFa'),  # 扒综法
+        # 纹版及注意事项
+        'grain_version': fields.text('wjzpw.order.wenBan'),  # 纹版
+        'note': fields.text('wjzpw.order.zhuYiShiXiang'),  # 注意事项
+        'remark': fields.text('wjzpw.order.beiZhu')
+    }
+
+    _defaults = {
+        'amount': 0.0
+    }
+
+    _sql_constraints = [
+        ('order_unique', 'unique(order)', u'该订单号已经存在'),
+        ]
+
+    _order = "order desc"
+
+
+wjzpw_order_product()
 wjzpw_order()
+wjzpw_order_plan()
