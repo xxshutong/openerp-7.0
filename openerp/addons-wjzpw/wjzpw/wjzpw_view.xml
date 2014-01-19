@@ -267,5 +267,86 @@
                 </tree>
             </field>
         </record>
+
+        <!--定义ClothRequirement表单视图-->
+        <record model="ir.ui.view" id="wjzpw_cloth_requirement_form_view">
+            <field name="name">wjzpw.piBuYaoQiu</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.cloth.requirement</field>
+            <field name="arch" type="xml">
+                <form string="wjzpw.piBuYaoQiu" version="7.0" edit="false">
+                    <sheet>
+                        <group col="2">
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义ClothRequirement列表视图-->
+        <record model="ir.ui.view" id="wjzpw_cloth_requirement_tree_view">
+            <field name="name">wjzpw.piBuYaoQiu</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.cloth.requirement</field>
+            <field name="arch" type="xml">
+                <tree string="wjzpw.piBuYaoQiu">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--定义BasicOrganization表单视图-->
+        <record model="ir.ui.view" id="wjzpw_basic_organization_form_view">
+            <field name="name">wjzpw.jiBenZuZhi</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.basic.organization</field>
+            <field name="arch" type="xml">
+                <form string="wjzpw.jiBenZuZhi" version="7.0" edit="false">
+                    <sheet>
+                        <group col="2">
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义BasicOrganization列表视图-->
+        <record model="ir.ui.view" id="wjzpw_basic_organization_tree_view">
+            <field name="name">wjzpw.jiBenZuZhi</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.basic.organization</field>
+            <field name="arch" type="xml">
+                <tree string="wjzpw.jiBenZuZhi">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--&lt;!&ndash;定义OrderPlanRemark表单视图&ndash;&gt;-->
+        <!--<record model="ir.ui.view" id="wjzpw_order_plan_remark_form_view">-->
+            <!--<field name="name">wjzpw.shengChanJiHuaBeiZhu</field>-->
+            <!--<field name="type">form</field>-->
+            <!--<field name="model">wjzpw.order.plan.remark</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form string="wjzpw.shengChanJiHuaBeiZhu" version="7.0" edit="false">-->
+                    <!--<sheet>-->
+                        <!--<group col="2">-->
+                            <!--<field name="name"/>-->
+                        <!--</group>-->
+                    <!--</sheet>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+        <!--&lt;!&ndash;定义OrderPlanRemark列表视图&ndash;&gt;-->
+        <!--<record model="ir.ui.view" id="wjzpw_order_plan_remark_tree_view">-->
+            <!--<field name="name">wjzpw.shengChanJiHuaBeiZhu</field>-->
+            <!--<field name="type">tree</field>-->
+            <!--<field name="model">wjzpw.order.plan.remark</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree string="wjzpw.shengChanJiHuaBeiZhu">-->
+                    <!--<field name="name"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
     </data>
 </openerp>

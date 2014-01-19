@@ -256,8 +256,8 @@ class wjzpw_order_plan(osv.osv):
         'on_weft': fields.char('wjzpw.order.shangJiWeiMi'),  # 上机纬密
         'off_weft': fields.char('wjzpw.order.xiaJiWeiMi'),  # 下机纬密
         'heald_number': fields.char('wjzpw.order.zongKuangShu'),  # 综框数
-        'basic_organize': fields.char('wjzpw.order.jiBenZuZhi'),  # 基本组织
-        'cloth_requirement': fields.text('wjzpw.order.piBuYaoQiu'),  # 坯布要求
+        'basic_organize': fields.many2one('wjzpw.basic.organization', 'wjzpw.order.jiBenZuZhi'),  # 基本组织
+        'cloth_requirement': fields.many2one('wjzpw.cloth.requirement', 'wjzpw.order.piBuYaoQiu'),  # 坯布要求
         'organzine_a': fields.many2one('wjzpw.material.specification', 'wjzpw.order.jiaJing'),  # 甲经
         'organzine_a_twist': fields.char('wjzpw.order.jiaJingNianDuXiang'),  # 甲经捻度（向）
         'organzine_a_amount': fields.char('wjzpw.order.jiaJingYongLiang'),  # 甲经用量

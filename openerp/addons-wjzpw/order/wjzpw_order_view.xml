@@ -131,7 +131,7 @@
                             <field name="off_weft"/>
                             <field name="heald_number"/>
                             <field name="basic_organize"/>
-                            <field name="cloth_requirement"/>
+                            <field name="cloth_requirement" colspan="3"/>
                         </group>
                         <group col="8">
                             <field name="organzine_a" colspan="4"/>

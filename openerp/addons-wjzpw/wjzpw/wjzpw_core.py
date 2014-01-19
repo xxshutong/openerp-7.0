@@ -181,6 +181,57 @@ class wjzpw_reed_area_to(osv.osv):
 
     _order = "name"
 
+
+class wjzpw_cloth_requirement(osv.osv):
+    """
+    坯布要求
+    """
+    _name = "wjzpw.cloth.requirement"
+    _description = "wjzpw.piBuYaoQiu"
+
+    _columns = {
+        'name': fields.char('wjzpw.piBuYaoQiu', size=164, required=True)
+    }
+    _sql_constraints = [
+        ('name_unique', 'unique(name)', u'该坯布要求已经存在'),
+        ]
+
+    _order = "name"
+
+
+class wjzpw_basic_organization(osv.osv):
+    """
+    基本组织
+    """
+    _name = "wjzpw.basic.organization"
+    _description = "wjzpw.jiBenZuZhi"
+
+    _columns = {
+        'name': fields.char('wjzpw.jiBenZuZhi', size=64, required=True)
+    }
+    _sql_constraints = [
+        ('name_unique', 'unique(name)', u'该基本组织已经存在'),
+        ]
+
+    _order = "name"
+
+
+# class wjzpw_order_plan_remark(osv.osv):
+#     """
+#     生产计划备注
+#     """
+#     _name = "wjzpw.order.plan.remark"
+#     _description = "wjzpw.shengChanJiHuaBeiZhu"
+#
+#     _columns = {
+#         'name': fields.char('wjzpw.shengChanJiHuaBeiZhu', size=164, required=True)
+#     }
+#     _sql_constraints = [
+#         ('name_unique', 'unique(name)', u'该生产计划备注已存在'),
+#         ]
+#
+#     _order = "name"
+
 wjzpw_product()
 wjzpw_batch_no()
 wjzpw_material_specifications()
@@ -189,3 +240,6 @@ wjzpw_weft_batch_no()
 wjzpw_material_area()
 wjzpw_reed_area()
 wjzpw_reed_area_to()
+wjzpw_cloth_requirement()
+wjzpw_basic_organization()
+# wjzpw_order_plan_remark()
