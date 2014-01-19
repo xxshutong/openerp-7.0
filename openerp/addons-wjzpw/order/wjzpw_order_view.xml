@@ -189,8 +189,6 @@
                     <field name="door_width"/>
                     <field name="off_weft"/>
                     <field name="machine_assign"/>
-                    <field name="texture_axis_number"/>
-                    <field name="texture_axis"/>
                     <field name="texture_axis_total"/>
                     <field name="amount"/>
                     <field name="dead_line"/>
