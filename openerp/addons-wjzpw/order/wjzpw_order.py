@@ -211,6 +211,7 @@ class wjzpw_order_plan(osv.osv):
 
     _columns = {
         'order_id': fields.many2one('wjzpw.order', 'wjzpw.order.dingDan', required=True),
+        'create_date': fields.date('wjzpw.order.anPaiRiQi', readonly=True),  # 安排日期
         'amount': fields.float('wjzpw.order.shengChanShuLiangMi', required=True),  # 生产数量
         'dead_line': fields.char('wjzpw.order.jiaoHuoQi'),  # 交货期
         'machine_assign': fields.integer('wjzpw.order.anPaiJiTai'),  # 安排机台

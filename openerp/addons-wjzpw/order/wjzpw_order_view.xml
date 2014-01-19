@@ -179,6 +179,7 @@
             <field name="arch" type="xml">
                 <tree string="wjzpw.order.shengChanGongYiJiJiHuaAnPai" create="false">
                     <field name="order_id"/>
+                    <field name="create_date"/>
                     <field name="reed_no"/>
                     <field name="penetration_number"/>
                     <field name="door_width"/>
