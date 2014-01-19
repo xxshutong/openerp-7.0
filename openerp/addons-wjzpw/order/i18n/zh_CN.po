@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-19 06:01+0000\n"
-"PO-Revision-Date: 2014-01-19 06:01+0000\n"
+"POT-Creation-Date: 2014-01-19 09:12+0000\n"
+"PO-Revision-Date: 2014-01-19 09:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,9 +21,9 @@ msgid "wjzpw.order.jiaWeiYongLiang"
 msgstr "甲纬用量"
 
 #. module: order
-#: selection:wjzpw.order,dead_line_unit:0
-msgid "月"
-msgstr "月"
+#: field:wjzpw.order.plan,penetration_number:0
+msgid "wjzpw.order.chuanRuShu"
+msgstr "穿入数"
 
 #. module: order
 #: field:wjzpw.order,amount:0
@@ -39,6 +39,11 @@ msgstr "每天每台生产计划"
 #: field:wjzpw.order,no:0
 msgid "wjzpw.order.dingDanZhengShuHaoMa"
 msgstr "订单整数号码"
+
+#. module: order
+#: field:wjzpw.order.plan,texture_axis_total:0
+msgid "wjzpw.order.zhiZhouZongMiShu"
+msgstr "织轴总米数"
 
 #. module: order
 #: field:wjzpw.order.plan,cycle_organzine:0
@@ -83,6 +88,7 @@ msgstr "落机校对数据"
 
 #. module: order
 #: field:wjzpw.order,product_id:0
+#: field:wjzpw.order.plan,company_product:0
 msgid "wjzpw.order.gongSiPinMing"
 msgstr "公司品名"
 
@@ -181,9 +187,9 @@ msgid "wjzpw.order.wenBanJiZhuYiShiXiang"
 msgstr "纹版及注意事项"
 
 #. module: order
-#: selection:wjzpw.order,product_type:0
-msgid "订单"
-msgstr "订单"
+#: selection:wjzpw.order,dead_line_unit:0
+msgid "月"
+msgstr "月"
 
 #. module: order
 #: selection:wjzpw.order.plan,machine_type:0
@@ -213,9 +219,19 @@ msgid "wjzpw.order.beiZhu"
 msgstr "备注"
 
 #. module: order
+#: selection:wjzpw.order,product_type:0
+msgid "订单"
+msgstr "订单"
+
+#. module: order
 #: selection:wjzpw.order.plan,machine_type:0
 msgid "宽平机"
 msgstr "宽平机"
+
+#. module: order
+#: selection:wjzpw.order.plan,status:0
+msgid "yiWanCheng"
+msgstr "已完成"
 
 #. module: order
 #: selection:wjzpw.order,dead_line_unit:0
@@ -234,6 +250,7 @@ msgstr "下机纬密"
 
 #. module: order
 #: field:wjzpw.order,order_type:0
+#: field:wjzpw.order.plan,order_type:0
 msgid "wjzpw.order.xinPinHuoFanDan"
 msgstr "新品或翻单"
 
@@ -273,12 +290,13 @@ msgid "周"
 msgstr "周"
 
 #. module: order
-#: sql_constraint:wjzpw.order.product:0
-msgid "该客户品名已经存在"
-msgstr "该客户品名已经存在"
+#: selection:wjzpw.order.plan,status:0
+msgid "wjzpw.order.shengChanZhong"
+msgstr "生产中"
 
 #. module: order
 #: field:wjzpw.order,status:0
+#: field:wjzpw.order.plan,status:0
 msgid "wjzpw.order.zhuangTai"
 msgstr "状态"
 
@@ -345,9 +363,9 @@ msgid "wjzpw.order.yiJingNianDuXiang"
 msgstr "乙经捻度（向）"
 
 #. module: order
-#: field:wjzpw.order.plan,penetration_number:0
-msgid "wjzpw.order.chuanRuShu"
-msgstr "穿入数"
+#: field:wjzpw.order.plan,create_date:0
+msgid "wjzpw.order.anPaiRiQi"
+msgstr "安排日期"
 
 #. module: order
 #: model:ir.ui.menu,name:order.wjzpw_order_menu
@@ -407,6 +425,11 @@ msgstr "甲经捻度（向）"
 #: field:wjzpw.order,product_type:0
 msgid "wjzpw.order.dingDanHuoKuCun"
 msgstr "订单或库存"
+
+#. module: order
+#: sql_constraint:wjzpw.order.product:0
+msgid "该客户品名已经存在"
+msgstr "该客户品名已经存在"
 
 #. module: order
 #: model:ir.actions.act_window,name:order.action_wjzpw_order_input

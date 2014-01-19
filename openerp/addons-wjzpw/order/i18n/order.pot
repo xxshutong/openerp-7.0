@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-19 06:15+0000\n"
-"PO-Revision-Date: 2014-01-19 06:15+0000\n"
+"POT-Creation-Date: 2014-01-19 09:14+0000\n"
+"PO-Revision-Date: 2014-01-19 09:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,8 +21,8 @@ msgid "wjzpw.order.jiaWeiYongLiang"
 msgstr ""
 
 #. module: order
-#: selection:wjzpw.order,dead_line_unit:0
-msgid "月"
+#: field:wjzpw.order.plan,penetration_number:0
+msgid "wjzpw.order.chuanRuShu"
 msgstr ""
 
 #. module: order
@@ -38,6 +38,11 @@ msgstr ""
 #. module: order
 #: field:wjzpw.order,no:0
 msgid "wjzpw.order.dingDanZhengShuHaoMa"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,texture_axis_total:0
+msgid "wjzpw.order.zhiZhouZongMiShu"
 msgstr ""
 
 #. module: order
@@ -83,6 +88,7 @@ msgstr ""
 
 #. module: order
 #: field:wjzpw.order,product_id:0
+#: field:wjzpw.order.plan,company_product:0
 msgid "wjzpw.order.gongSiPinMing"
 msgstr ""
 
@@ -181,8 +187,8 @@ msgid "wjzpw.order.wenBanJiZhuYiShiXiang"
 msgstr ""
 
 #. module: order
-#: selection:wjzpw.order,product_type:0
-msgid "订单"
+#: selection:wjzpw.order,dead_line_unit:0
+msgid "月"
 msgstr ""
 
 #. module: order
@@ -213,8 +219,18 @@ msgid "wjzpw.order.beiZhu"
 msgstr ""
 
 #. module: order
+#: selection:wjzpw.order,product_type:0
+msgid "订单"
+msgstr ""
+
+#. module: order
 #: selection:wjzpw.order.plan,machine_type:0
 msgid "宽平机"
+msgstr ""
+
+#. module: order
+#: selection:wjzpw.order.plan,status:0
+msgid "yiWanCheng"
 msgstr ""
 
 #. module: order
@@ -234,6 +250,7 @@ msgstr ""
 
 #. module: order
 #: field:wjzpw.order,order_type:0
+#: field:wjzpw.order.plan,order_type:0
 msgid "wjzpw.order.xinPinHuoFanDan"
 msgstr ""
 
@@ -273,12 +290,13 @@ msgid "周"
 msgstr ""
 
 #. module: order
-#: sql_constraint:wjzpw.order.product:0
-msgid "该客户品名已经存在"
+#: selection:wjzpw.order.plan,status:0
+msgid "wjzpw.order.shengChanZhong"
 msgstr ""
 
 #. module: order
 #: field:wjzpw.order,status:0
+#: field:wjzpw.order.plan,status:0
 msgid "wjzpw.order.zhuangTai"
 msgstr ""
 
@@ -345,8 +363,8 @@ msgid "wjzpw.order.yiJingNianDuXiang"
 msgstr ""
 
 #. module: order
-#: field:wjzpw.order.plan,penetration_number:0
-msgid "wjzpw.order.chuanRuShu"
+#: field:wjzpw.order.plan,create_date:0
+msgid "wjzpw.order.anPaiRiQi"
 msgstr ""
 
 #. module: order
@@ -406,6 +424,11 @@ msgstr ""
 #. module: order
 #: field:wjzpw.order,product_type:0
 msgid "wjzpw.order.dingDanHuoKuCun"
+msgstr ""
+
+#. module: order
+#: sql_constraint:wjzpw.order.product:0
+msgid "该客户品名已经存在"
 msgstr ""
 
 #. module: order

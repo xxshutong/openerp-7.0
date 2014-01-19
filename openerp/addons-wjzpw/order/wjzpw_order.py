@@ -168,7 +168,7 @@ class wjzpw_order(osv.osv):
         'input_date': fields.date('wjzpw.order.xiaDanRiQi', required=True),
         'customer': fields.many2one('res.partner', 'wjzpw.order.keHu', domain=[('customer', '=', True)],
                                     required=True),
-        'customer_product': fields.many2one('wjzpw.order.product', 'wjzpw.order.keHuPinMing'),
+        'customer_product': fields.many2one('wjzpw.order.product', 'wjzpw.order.keHuPinMing'),  # 公司品名
         'company_no': fields.char('wjzpw.order.keHuBianHao'),
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.order.gongSiPinMing', required=True),
         'amount': fields.float('wjzpw.order.shuLiangMi', required=True),
@@ -209,15 +209,43 @@ class wjzpw_order_plan(osv.osv):
     _name = "wjzpw.order.plan"
     _description = "wjzpw.order.shengChanGongYiJiJiHuaAnPai"
 
+    def _total_texture_axis(self, cr, uid, ids, field_name, arg, context):
+        """
+        经轴总米数
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, u'无')
+        for rec in self.browse(cr, uid, ids, context=context):
+            total_meter = ''
+            if rec.texture_axis and rec.texture_axis_number:
+                total_meter = rec.texture_axis * rec.texture_axis_number
+            res[rec.id] = total_meter
+        return res
+
+    def _order_type(self, cr, uid, ids, field_name, arg, context):
+        """
+        订单类型，新品或者翻单
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, u'新品')
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.order_id:
+                res[rec.id] = rec.order_id.order_type
+        return res
+
     _columns = {
         'order_id': fields.many2one('wjzpw.order', 'wjzpw.order.dingDan', required=True),
         'create_date': fields.date('wjzpw.order.anPaiRiQi', readonly=True),  # 安排日期
+        'company_product': fields.related('order_id', 'product_id', type='many2one', relation='wjzpw.product', string='wjzpw.order.gongSiPinMing', store=False, readonly=True),  # 公司品名
         'amount': fields.float('wjzpw.order.shengChanShuLiangMi', required=True),  # 生产数量
         'dead_line': fields.char('wjzpw.order.jiaoHuoQi'),  # 交货期
         'machine_assign': fields.integer('wjzpw.order.anPaiJiTai'),  # 安排机台
         'machine_type': fields.selection((('pingJi', u'平机'), ('kuanPingJi', u'宽平机'), ('longTouJi', u'龙头机'), ('daLongTou', u'大龙头'), ('xiaoLongTou', u'小龙头')), 'wjzpw.order.jiXing'),  # 机型
         'texture_axis': fields.float('wjzpw.order.zhiZhouMiShi'),  # 织轴米数
         'texture_axis_number': fields.integer('wjzpw.order.zhiZhouGeShu'),  # 织轴个数
+        'status': fields.selection((('unfinished', 'wjzpw.order.shengChanZhong'), ('finished', 'yiWanCheng')), 'wjzpw.order.zhuangTai'),  # 状态，是否完成
         # 规格要求
         'reed_no': fields.char('wjzpw.order.kouHao'),  # 筘号
         'penetration_number': fields.char('wjzpw.order.chuanRuShu'),  # 穿入数
@@ -252,11 +280,17 @@ class wjzpw_order_plan(osv.osv):
         # 纹版及注意事项
         'grain_version': fields.text('wjzpw.order.wenBan'),  # 纹版
         'note': fields.text('wjzpw.order.zhuYiShiXiang'),  # 注意事项
-        'remark': fields.text('wjzpw.order.beiZhu')
+        'remark': fields.text('wjzpw.order.beiZhu'),  # 备注
+
+
+        # functions
+        'texture_axis_total': fields.function(_total_texture_axis, string='wjzpw.order.zhiZhouZongMiShu', type='char', method=True),  # 织轴总米数
+        'order_type': fields.function(_order_type, string='wjzpw.order.xinPinHuoFanDan', type='char', method=True),  # 新品或翻单
     }
 
     _defaults = {
-        'amount': 0.0
+        'amount': 0.0,
+        'status': 'unfinished'
     }
 
     _sql_constraints = [
