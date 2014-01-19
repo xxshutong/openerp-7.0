@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-13 15:11+0000\n"
-"PO-Revision-Date: 2014-01-13 15:11+0000\n"
+"POT-Creation-Date: 2014-01-19 06:15+0000\n"
+"PO-Revision-Date: 2014-01-19 06:15+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,23 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: order
+#: field:wjzpw.order.plan,weft_a_amount:0
+msgid "wjzpw.order.jiaWeiYongLiang"
+msgstr ""
+
+#. module: order
 #: selection:wjzpw.order,dead_line_unit:0
 msgid "月"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order,amount:0
+msgid "wjzpw.order.shuLiangMi"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,plan_per_day:0
+msgid "wjzpw.order.meiTaiMeiTianShengChanJiHua"
 msgstr ""
 
 #. module: order
@@ -26,8 +41,18 @@ msgid "wjzpw.order.dingDanZhengShuHaoMa"
 msgstr ""
 
 #. module: order
-#: selection:wjzpw.order,dead_line_unit:0
-msgid "天"
+#: field:wjzpw.order.plan,cycle_organzine:0
+msgid "wjzpw.order.jing"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,grain_version:0
+msgid "wjzpw.order.wenBan"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,weft_a_twist:0
+msgid "wjzpw.order.jiaWeiNianDuXiang"
 msgstr ""
 
 #. module: order
@@ -37,8 +62,41 @@ msgid "wjzpw.order.keHu"
 msgstr ""
 
 #. module: order
-#: model:ir.actions.act_window,name:order.action_wjzpw_order_input
-msgid "wjzpw.order.ruKuGuanLi"
+#: field:wjzpw.order.plan,weft_b_amount:0
+msgid "wjzpw.order.yiWeiYongLiang"
+msgstr ""
+
+#. module: order
+#: selection:wjzpw.order.plan,machine_type:0
+msgid "大龙头"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,note:0
+msgid "wjzpw.order.zhuYiShiXiang"
+msgstr ""
+
+#. module: order
+#: view:wjzpw.order.plan:0
+msgid "wjzpw.order.luoBuJiaoDuiShuJu"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order,product_id:0
+msgid "wjzpw.order.gongSiPinMing"
+msgstr ""
+
+#. module: order
+#: model:ir.actions.act_window,name:order.action_wjzpw_order_plan
+#: model:ir.model,name:order.model_wjzpw_order_plan
+#: model:ir.ui.menu,name:order.wjzpw_order_plan_menu
+#: view:wjzpw.order.plan:0
+msgid "wjzpw.order.shengChanGongYiJiJiHuaAnPai"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,amount:0
+msgid "wjzpw.order.shengChanShuLiangMi"
 msgstr ""
 
 #. module: order
@@ -53,14 +111,33 @@ msgid "wjzpw.order.dingDanGuanLi"
 msgstr ""
 
 #. module: order
-#: field:wjzpw.order,dead_line:0
-#: field:wjzpw.order,dead_line_str:0
-msgid "wjzpw.order.jiaoHuoQi"
+#: field:wjzpw.order.plan,machine_type:0
+msgid "wjzpw.order.jiXing"
 msgstr ""
 
 #. module: order
-#: sql_constraint:wjzpw.order.product:0
-msgid "该客户品名已经存在"
+#: field:wjzpw.order.plan,basic_organize:0
+msgid "wjzpw.order.jiBenZuZhi"
+msgstr ""
+
+#. module: order
+#: selection:wjzpw.order,status:0
+msgid "安排生产计划"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,texture_axis_number:0
+msgid "wjzpw.order.zhiZhouGeShu"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,organzine_a_amount:0
+msgid "wjzpw.order.jiaJingYongLiang"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,texture_axis:0
+msgid "wjzpw.order.zhiZhouMiShi"
 msgstr ""
 
 #. module: order
@@ -69,8 +146,59 @@ msgid "wjzpw.order.danWei"
 msgstr ""
 
 #. module: order
+#: field:wjzpw.order.plan,clot_meter:0
+msgid "wjzpw.order.daJuanMiShu"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,weft_a:0
+msgid "wjzpw.order.jiaWei"
+msgstr ""
+
+#. module: order
+#: selection:wjzpw.order.plan,machine_type:0
+msgid "龙头机"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order,name:0
+msgid "wjzpw.inventory.dingDanMing"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,cloth_requirement:0
+msgid "wjzpw.order.piBuYaoQiu"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,machine_assign:0
+msgid "wjzpw.order.anPaiJiTai"
+msgstr ""
+
+#. module: order
+#: view:wjzpw.order.plan:0
+msgid "wjzpw.order.wenBanJiZhuYiShiXiang"
+msgstr ""
+
+#. module: order
+#: selection:wjzpw.order,product_type:0
+msgid "订单"
+msgstr ""
+
+#. module: order
+#: selection:wjzpw.order.plan,machine_type:0
+msgid "平机"
+msgstr ""
+
+#. module: order
 #: sql_constraint:wjzpw.order:0
+#: sql_constraint:wjzpw.order.plan:0
 msgid "该订单号已经存在"
+msgstr ""
+
+#. module: order
+#: selection:wjzpw.order,status:0
+msgid "已录入"
 msgstr ""
 
 #. module: order
@@ -80,22 +208,28 @@ msgstr ""
 
 #. module: order
 #: field:wjzpw.order,remark:0
+#: field:wjzpw.order.plan,remark:0
 msgid "wjzpw.order.beiZhu"
 msgstr ""
 
 #. module: order
-#: field:wjzpw.order,status:0
-msgid "wjzpw.order.shiFouWanCheng"
+#: selection:wjzpw.order.plan,machine_type:0
+msgid "宽平机"
 msgstr ""
 
 #. module: order
-#: selection:wjzpw.order,status:0
-msgid "未完成"
+#: selection:wjzpw.order,dead_line_unit:0
+msgid "天"
 msgstr ""
 
 #. module: order
 #: model:ir.model,name:order.model_wjzpw_order_product
 msgid "wjzpw.order.keHuPinMingGuanLi"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,off_weft:0
+msgid "wjzpw.order.xiaJiWeiMi"
 msgstr ""
 
 #. module: order
@@ -109,25 +243,28 @@ msgid "wjzpw.order.xiaDanRiQi"
 msgstr ""
 
 #. module: order
+#: selection:wjzpw.order.plan,machine_type:0
+msgid "小龙头"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,weft_b_twist:0
+msgid "wjzpw.order.yiWeiNianDuXiang"
+msgstr ""
+
+#. module: order
+#: view:wjzpw.order.plan:0
+msgid "wjzpw.order.xunHuanPaiLie"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,total_head_pattern:0
+msgid "wjzpw.order.zongTouWen"
+msgstr ""
+
+#. module: order
 #: model:ir.ui.menu,name:order.wjzpw_order_input_menu
 msgid "wjzpw.order.dingDanRuKu"
-msgstr ""
-
-#. module: order
-#: field:wjzpw.order,customer_product:0
-#: view:wjzpw.order.product:0
-#: field:wjzpw.order.product,name:0
-msgid "wjzpw.order.keHuPinMing"
-msgstr ""
-
-#. module: order
-#: field:wjzpw.order,amount:0
-msgid "wjzpw.order.shuLiangMi"
-msgstr ""
-
-#. module: order
-#: field:wjzpw.order,order_no:0
-msgid "wjzpw.order.dingDanHao"
 msgstr ""
 
 #. module: order
@@ -136,12 +273,85 @@ msgid "周"
 msgstr ""
 
 #. module: order
-#: field:wjzpw.order,product_id:0
-msgid "wjzpw.order.gongSiPinMing"
+#: sql_constraint:wjzpw.order.product:0
+msgid "该客户品名已经存在"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order,status:0
+msgid "wjzpw.order.zhuangTai"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,weft_b:0
+msgid "wjzpw.order.yiWei"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,drop_cloth_meter:0
+msgid "wjzpw.order.luoBuMiShu"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order,dead_line:0
+#: field:wjzpw.order,dead_line_str:0
+#: field:wjzpw.order.plan,dead_line:0
+msgid "wjzpw.order.jiaoHuoQi"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,on_weft:0
+msgid "wjzpw.order.shangJiWeiMi"
+msgstr ""
+
+#. module: order
+#: view:wjzpw.order.plan:0
+msgid "wjzpw.order.guiGeYaoQiu"
+msgstr ""
+
+#. module: order
+#: selection:wjzpw.order,product_type:0
+msgid "库存"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,cycle_weft:0
+msgid "wjzpw.order.wei"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order,order_no:0
+msgid "wjzpw.order.dingDanHao"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,organzine_b:0
+msgid "wjzpw.order.yiJing"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,reed_no:0
+msgid "wjzpw.order.kouHao"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,organzine_a:0
+msgid "wjzpw.order.jiaJing"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,organzine_b_twist:0
+msgid "wjzpw.order.yiJingNianDuXiang"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,penetration_number:0
+msgid "wjzpw.order.chuanRuShu"
 msgstr ""
 
 #. module: order
 #: model:ir.ui.menu,name:order.wjzpw_order_menu
+#: field:wjzpw.order.plan,order_id:0
 msgid "wjzpw.order.dingDan"
 msgstr ""
 
@@ -161,8 +371,36 @@ msgid "orderInput"
 msgstr ""
 
 #. module: order
-#: selection:wjzpw.order,product_type:0
-msgid "库存"
+#: field:wjzpw.order,customer_product:0
+#: view:wjzpw.order.product:0
+#: field:wjzpw.order.product,name:0
+msgid "wjzpw.order.keHuPinMing"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,door_width:0
+msgid "wjzpw.order.menFu"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,heald_number:0
+msgid "wjzpw.order.zongKuangShu"
+msgstr ""
+
+#. module: order
+#: view:wjzpw.order.plan:0
+#: field:wjzpw.order.plan,p_pa_zong_fa:0
+msgid "wjzpw.order.paZongFa"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,organzine_b_amount:0
+msgid "wjzpw.order.yiJingYongLiang"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.plan,organzine_a_twist:0
+msgid "wjzpw.order.jiaJingNianDuXiang"
 msgstr ""
 
 #. module: order
@@ -171,7 +409,7 @@ msgid "wjzpw.order.dingDanHuoKuCun"
 msgstr ""
 
 #. module: order
-#: selection:wjzpw.order,product_type:0
-msgid "订单"
+#: model:ir.actions.act_window,name:order.action_wjzpw_order_input
+msgid "wjzpw.order.ruKuGuanLi"
 msgstr ""
 
