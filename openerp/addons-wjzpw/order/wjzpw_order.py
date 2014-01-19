@@ -152,6 +152,27 @@ class wjzpw_order(osv.osv):
             if vals.get('status') and vals.get('status') == 'processing':
                 new_vals = {}
                 new_vals['order_id'] = id
+                # 检查是否已经有做过这个品名,有则把数据复制过来
+                updated_order = self.browse(cr, user, id, context=None)
+                query_sql = """
+                    SELECT *
+                    FROM wjzpw_order_plan
+                    WHERE order_id in (SELECT id FROM wjzpw_order WHERE product_id = %d) ORDER BY create_date desc LIMIT 1
+                """ % updated_order.product_id.id
+                cr.execute(query_sql)
+                existing_order_plan = cr.dictfetchone()
+                if existing_order_plan:
+                    new_vals = existing_order_plan.copy()
+                    new_vals['create_date'] = None
+                    new_vals['create_uid'] = None
+                    new_vals['write_date'] = None
+                    new_vals['write_uid'] = None
+                    new_vals['order_id'] = id
+                    new_vals['dead_line'] = None
+                    new_vals['machine_assign'] = None
+                    new_vals['texture_axis'] = None
+                    new_vals['texture_axis_number'] = None
+                # 创建一个新的生产工艺及计划安排
                 wjzpw_order_plan_obj = self.pool.get('wjzpw.order.plan')
                 wjzpw_order_plan_obj.create(cr, user, new_vals, context=None)
         return result
