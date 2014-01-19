@@ -258,16 +258,16 @@ class wjzpw_order_plan(osv.osv):
         'heald_number': fields.char('wjzpw.order.zongKuangShu'),  # 综框数
         'basic_organize': fields.char('wjzpw.order.jiBenZuZhi'),  # 基本组织
         'cloth_requirement': fields.text('wjzpw.order.piBuYaoQiu'),  # 坯布要求
-        'organzine_a': fields.char('wjzpw.order.jiaJing'),  # 甲经
+        'organzine_a': fields.many2one('wjzpw.material.specification', 'wjzpw.order.jiaJing'),  # 甲经
         'organzine_a_twist': fields.char('wjzpw.order.jiaJingNianDuXiang'),  # 甲经捻度（向）
         'organzine_a_amount': fields.char('wjzpw.order.jiaJingYongLiang'),  # 甲经用量
-        'organzine_b': fields.char('wjzpw.order.yiJing'),  # 乙经
+        'organzine_b': fields.many2one('wjzpw.material.specification', 'wjzpw.order.yiJing'),  # 乙经
         'organzine_b_twist': fields.char('wjzpw.order.yiJingNianDuXiang'),  # 乙经捻度（向）
         'organzine_b_amount': fields.char('wjzpw.order.yiJingYongLiang'),  # 乙经用量
-        'weft_a': fields.char('wjzpw.order.jiaWei'),  # 甲纬
+        'weft_a': fields.many2one('wjzpw.material.specification', 'wjzpw.order.jiaWei'),  # 甲纬
         'weft_a_twist': fields.char('wjzpw.order.jiaWeiNianDuXiang'),  # 甲纬捻度（向）
         'weft_a_amount': fields.char('wjzpw.order.jiaWeiYongLiang'),  # 甲纬用量
-        'weft_b': fields.char('wjzpw.order.yiWei'),  # 乙纬
+        'weft_b': fields.many2one('wjzpw.material.specification', 'wjzpw.order.yiWei'),  # 乙纬
         'weft_b_twist': fields.char('wjzpw.order.yiWeiNianDuXiang'),  # 乙纬捻度（向）
         'weft_b_amount': fields.char('wjzpw.order.yiWeiYongLiang'),  # 乙纬用量
         # 循环排列

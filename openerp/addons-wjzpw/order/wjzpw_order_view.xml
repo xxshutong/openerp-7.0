@@ -133,19 +133,19 @@
                             <field name="basic_organize"/>
                             <field name="cloth_requirement"/>
                         </group>
-                        <group col="6">
-                            <field name="organzine_a"/>
+                        <group col="8">
+                            <field name="organzine_a" colspan="4"/>
                             <field name="organzine_a_twist"/>
                             <field name="organzine_a_amount"/>
-                            <field name="organzine_b"/>
+                            <field name="organzine_b" colspan="4"/>
                             <field name="organzine_b_twist"/>
                             <field name="organzine_b_amount"/>
                         </group>
-                        <group col="6">
-                            <field name="weft_a"/>
+                        <group col="8">
+                            <field name="weft_a" colspan="4"/>
                             <field name="weft_a_twist"/>
                             <field name="weft_a_amount"/>
-                            <field name="weft_b"/>
+                            <field name="weft_b" colspan="4"/>
                             <field name="weft_b_twist"/>
                             <field name="weft_b_amount"/>
                         </group>
