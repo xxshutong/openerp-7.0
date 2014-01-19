@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-01 03:55+0000\n"
-"PO-Revision-Date: 2014-01-01 03:55+0000\n"
+"POT-Creation-Date: 2014-01-19 15:25+0000\n"
+"PO-Revision-Date: 2014-01-19 15:25+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,9 +16,21 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: wjzpw
+#: model:ir.model,name:wjzpw.model_wjzpw_cloth_requirement
+#: view:wjzpw.cloth.requirement:0
+#: field:wjzpw.cloth.requirement,name:0
+msgid "wjzpw.piBuYaoQiu"
+msgstr "坯布要求"
+
+#. module: wjzpw
 #: view:wjzpw.reed.area.to:0
 msgid "reedAreaTo"
 msgstr "发往地"
+
+#. module: wjzpw
+#: sql_constraint:wjzpw.reed.area.to:0
+msgid "该发往地已经存在"
+msgstr "该发往地已经存在"
 
 #. module: wjzpw
 #: view:wjzpw.batch.no:0
@@ -29,6 +41,11 @@ msgstr "批号"
 #: field:wjzpw.material.specification,name:0
 msgid "wjzpw.inventory.yuanLiaoGuiGe"
 msgstr "原料规格"
+
+#. module: wjzpw
+#: sql_constraint:wjzpw.cloth.requirement:0
+msgid "该坯布要求已经存在"
+msgstr "该坯布要求已经存在"
 
 #. module: wjzpw
 #: field:wjzpw.batch.no,name:0
@@ -51,6 +68,13 @@ msgid "wjzpw.inventory.pinMingGuanLi"
 msgstr "品名管理"
 
 #. module: wjzpw
+#: model:ir.model,name:wjzpw.model_wjzpw_basic_organization
+#: view:wjzpw.basic.organization:0
+#: field:wjzpw.basic.organization,name:0
+msgid "wjzpw.jiBenZuZhi"
+msgstr "基本组织"
+
+#. module: wjzpw
 #: model:ir.model,name:wjzpw.model_wjzpw_weft_batch_no
 msgid "wjzpw.weiSiPiHaoGuanLi"
 msgstr "纬丝批号管理"
@@ -70,6 +94,11 @@ msgid "wjzpw.jingSiPiHao"
 msgstr "经丝批号"
 
 #. module: wjzpw
+#: sql_constraint:wjzpw.weft.batch.no:0
+msgid "该纬丝批号已经存在"
+msgstr "该纬丝批号已经存在"
+
+#. module: wjzpw
 #: model:ir.actions.act_window,name:wjzpw.action_wjzpw_batch_no
 msgid "wjzpw.inventory.piHaoGuanLi"
 msgstr "批号管理"
@@ -85,9 +114,24 @@ msgid "wjzpw.guiGe"
 msgstr "规格"
 
 #. module: wjzpw
+#: sql_constraint:wjzpw.basic.organization:0
+msgid "该基本组织已经存在"
+msgstr "该基本组织已经存在"
+
+#. module: wjzpw
 #: field:wjzpw.reed.area.to,name:0
 msgid "wjzpw.faWangDi"
 msgstr "发往地"
+
+#. module: wjzpw
+#: sql_constraint:wjzpw.organzine.batch.no:0
+msgid "该经丝批号已经存在"
+msgstr "该经丝批号已经存在"
+
+#. module: wjzpw
+#: sql_constraint:wjzpw.material.area:0
+msgid "该原料产地已经存在"
+msgstr "该原料产地已经存在"
 
 #. module: wjzpw
 #: view:wjzpw.product:0
@@ -98,6 +142,16 @@ msgstr "品名"
 #: model:ir.actions.act_window,name:wjzpw.action_wjzpw_weft_batch_no
 msgid "wjzpw.inventory.weiSiPiHaoGuanLi"
 msgstr "纬丝批号管理"
+
+#. module: wjzpw
+#: sql_constraint:wjzpw.material.specification:0
+msgid "该原料规格已经存在"
+msgstr "该原料规格已经存在"
+
+#. module: wjzpw
+#: sql_constraint:wjzpw.reed.area:0
+msgid "该产地已经存在"
+msgstr "该产地已经存在"
 
 #. module: wjzpw
 #: field:wjzpw.material.area,name:0
@@ -129,6 +183,11 @@ msgstr "发往地管理"
 #: model:ir.model,name:wjzpw.model_wjzpw_batch_no
 msgid "Batch No Management"
 msgstr "批号管理"
+
+#. module: wjzpw
+#: sql_constraint:wjzpw.product:0
+msgid "该品名已经存在"
+msgstr "该品名已经存在"
 
 #. module: wjzpw
 #: view:wjzpw.reed.area:0
@@ -165,4 +224,9 @@ msgstr "原料产地"
 #: model:ir.model,name:wjzpw.model_wjzpw_reed_area
 msgid "wjzpw.chanDiGuanLi"
 msgstr "产地管理"
+
+#. module: wjzpw
+#: sql_constraint:wjzpw.batch.no:0
+msgid "该批号已经存在"
+msgstr "该批号已经存在"
 
