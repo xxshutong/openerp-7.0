@@ -97,11 +97,114 @@
             </field>
         </record>
 
+        <!--定义OrderPlan表单视图-->
+        <record model="ir.ui.view" id="wjzpw_order_plan_form_view">
+            <field name="name">wjzpw.order.shengChanGongYiJiJiHuaAnPai</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.order.plan</field>
+            <field name="arch" type="xml">
+                <form string="wjzpw.order.shengChanGongYiJiJiHuaAnPai" version="7.0">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group col="4">
+                            <field name="order_id" attrs="{'readonly': 'true'}"/>
+                            <field name="amount"/>
+                            <field name="dead_line"/>
+                            <field name="machine_assign"/>
+                            <field name="machine_type"/>
+                            <field name="texture_axis"/>
+                            <field name="texture_axis_number"/>
+                        </group>
+                        <separator string="wjzpw.order.guiGeYaoQiu" colspan="4"/>
+                        <group col="4">
+                            <field name="reed_no"/>
+                            <field name="penetration_number"/>
+                            <field name="door_width"/>
+                            <field name="total_head_pattern"/>
+                            <field name="drop_cloth_meter"/>
+                            <field name="clot_meter"/>
+                            <field name="on_weft"/>
+                            <field name="off_weft"/>
+                            <field name="heald_number"/>
+                            <field name="basic_organize"/>
+                            <field name="cloth_requirement"/>
+                        </group>
+                        <group col="6">
+                            <field name="organzine_a"/>
+                            <field name="organzine_a_twist"/>
+                            <field name="organzine_a_amount"/>
+                            <field name="organzine_b"/>
+                            <field name="organzine_b_twist"/>
+                            <field name="organzine_b_amount"/>
+                        </group>
+                        <group col="6">
+                            <field name="weft_a"/>
+                            <field name="weft_a_twist"/>
+                            <field name="weft_a_amount"/>
+                            <field name="weft_b"/>
+                            <field name="weft_b_twist"/>
+                            <field name="weft_b_amount"/>
+                        </group>
+                        <separator string="wjzpw.order.xunHuanPaiLie" colspan="4"/>
+                        <group col="2">
+                            <field name="cycle_organzine"/>
+                            <field name="cycle_weft"/>
+                        </group>
+                        <separator string="wjzpw.order.luoBuJiaoDuiShuJu" colspan="4"/>
+                        <group col="2">
+                            <field name="plan_per_day"/>
+                        </group>
+                        <separator string="wjzpw.order.paZongFa" colspan="4"/>
+                        <group col="2">
+                            <field name="p_pa_zong_fa"/>
+                        </group>
+                        <separator string="wjzpw.order.wenBanJiZhuYiShiXiang" colspan="4"/>
+                        <group col="4">
+                            <field name="grain_version"/>
+                            <field name="note"/>
+                        </group>
+                        <group col="2">
+                            <field name="remark"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义OrderPlan列表视图-->
+        <record model="ir.ui.view" id="wjzpw_order_plan_tree_view">
+            <field name="name">wjzpw.order.shengChanGongYiJiJiHuaAnPai</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.order.plan</field>
+            <field name="arch" type="xml">
+                <tree string="wjzpw.order.shengChanGongYiJiJiHuaAnPai" create="false">
+                    <field name="order_id"/>
+                    <field name="reed_no"/>
+                    <field name="penetration_number"/>
+                    <field name="door_width"/>
+                    <field name="machine_assign"/>
+                    <field name="texture_axis_number"/>
+                    <field name="texture_axis"/>
+                    <field name="amount"/>
+                    <field name="dead_line"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义OrderPlan视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_order_plan">
+            <field name="name">wjzpw.order.shengChanGongYiJiJiHuaAnPai</field>
+            <field name="res_model">wjzpw.order.plan</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wjzpw_order_plan_tree_view"/>
+        </record>
+
 
         <!--定义菜单-->
         <menuitem id="wjzpw_order_menu" name="wjzpw.order.dingDan"/>
         <!-- 订单入库 -->
         <menuitem id="wjzpw_order_management_menu" name="wjzpw.order.dingDanGuanLi" parent="wjzpw_order_menu"/>
         <menuitem id="wjzpw_order_input_menu" name="wjzpw.order.dingDanRuKu" parent="wjzpw_order_management_menu" action="action_wjzpw_order_input"/>
+        <menuitem id="wjzpw_order_plan_menu" name="wjzpw.order.shengChanGongYiJiJiHuaAnPai" parent="wjzpw_order_management_menu" action="action_wjzpw_order_plan"/>
     </data>
 </openerp>

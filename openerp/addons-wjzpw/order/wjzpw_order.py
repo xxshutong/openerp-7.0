@@ -151,10 +151,16 @@ class wjzpw_order(osv.osv):
         for id in ids:
             if vals.get('status') and vals.get('status') == 'processing':
                 new_vals = {}
-                new_vals['order'] = id
+                new_vals['order_id'] = id
                 wjzpw_order_plan_obj = self.pool.get('wjzpw.order.plan')
                 wjzpw_order_plan_obj.create(cr, user, new_vals, context=None)
         return result
+
+    def _name_get(self, cr, uid, ids, field_name, arg, context):
+        res = {}
+        for rec in self.browse(cr, uid, ids, context=context):
+            res[rec.id] = rec.order_no
+        return res
 
     _columns = {
         'order_no': fields.char('wjzpw.order.dingDanHao', required=True, readonly=True),
@@ -177,7 +183,8 @@ class wjzpw_order(osv.osv):
         # Function fields
         'company_no_product': fields.function(_company_no_product, string='wjzpw.order.gongSiBianHaoJiPinMing', type='char', method=True),  # 公司编号及品名
         'dead_line_str': fields.function(_dead_line_str, string='wjzpw.order.jiaoHuoQi', type='char', method=True),  # 交货期
-        'order_type': fields.function(_order_type, string='wjzpw.order.xinPinHuoFanDan', type='char', method=True)  # 新品或翻单
+        'order_type': fields.function(_order_type, string='wjzpw.order.xinPinHuoFanDan', type='char', method=True),  # 新品或翻单
+        'name': fields.function(_name_get, string="wjzpw.inventory.dingDanMing", type='char', method=True)
     }
 
     _defaults = {
@@ -203,22 +210,25 @@ class wjzpw_order_plan(osv.osv):
     _description = "wjzpw.order.shengChanGongYiJiJiHuaAnPai"
 
     _columns = {
-        'order': fields.many2one('wjzpw.order', 'wjzpw.order.dingDan', required=True),
+        'order_id': fields.many2one('wjzpw.order', 'wjzpw.order.dingDan', required=True),
         'amount': fields.float('wjzpw.order.shengChanShuLiangMi', required=True),  # 生产数量
         'dead_line': fields.char('wjzpw.order.jiaoHuoQi'),  # 交货期
         'machine_assign': fields.integer('wjzpw.order.anPaiJiTai'),  # 安排机台
         'machine_type': fields.selection((('pingJi', u'平机'), ('kuanPingJi', u'宽平机'), ('longTouJi', u'龙头机'), ('daLongTou', u'大龙头'), ('xiaoLongTou', u'小龙头')), 'wjzpw.order.jiXing'),  # 机型
-        'texture_axis': fields.float('wjzpw.order.zhiZhou'),  # 织轴
+        'texture_axis': fields.float('wjzpw.order.zhiZhouMiShi'),  # 织轴米数
+        'texture_axis_number': fields.integer('wjzpw.order.zhiZhouGeShu'),  # 织轴个数
         # 规格要求
-        'reed_no_and_penetration_number': fields.char('wjzpw.order.kouHaoJiChuanRuShu'),  # 筘号及穿入数
+        'reed_no': fields.char('wjzpw.order.kouHao'),  # 筘号
+        'penetration_number': fields.char('wjzpw.order.chuanRuShu'),  # 穿入数
         'door_width': fields.char('wjzpw.order.menFu'),  # 门幅
         'total_head_pattern': fields.char('wjzpw.order.zongTouWen'),  # 总头纹
-        'p_luo_pu_da_juan': fields.char('wjzpw.order.luoBuDaJuanDingChang'),  # 落布打卷定长
+        'drop_cloth_meter': fields.float('wjzpw.order.luoBuMiShu'),  # 落布米数
+        'clot_meter': fields.float('wjzpw.order.daJuanMiShu'),  # 打卷米数
         'on_weft': fields.char('wjzpw.order.shangJiWeiMi'),  # 上机纬密
         'off_weft': fields.char('wjzpw.order.xiaJiWeiMi'),  # 下机纬密
         'heald_number': fields.char('wjzpw.order.zongKuangShu'),  # 综框数
         'basic_organize': fields.char('wjzpw.order.jiBenZuZhi'),  # 基本组织
-        'cloth_requirement': fields.char('wjzpw.order.piBuYaoQiu'),  # 坯布要求
+        'cloth_requirement': fields.text('wjzpw.order.piBuYaoQiu'),  # 坯布要求
         'organzine_a': fields.char('wjzpw.order.jiaJing'),  # 甲经
         'organzine_a_twist': fields.char('wjzpw.order.jiaJingNianDuXiang'),  # 甲经捻度（向）
         'organzine_a_amount': fields.char('wjzpw.order.jiaJingYongLiang'),  # 甲经用量
@@ -252,7 +262,7 @@ class wjzpw_order_plan(osv.osv):
         ('order_unique', 'unique(order)', u'该订单号已经存在'),
         ]
 
-    _order = "order desc"
+    _order = "order_id desc"
 
 
 wjzpw_order_product()
