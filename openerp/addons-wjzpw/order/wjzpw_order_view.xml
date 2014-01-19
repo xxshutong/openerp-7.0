@@ -136,18 +136,18 @@
                         <group col="8">
                             <field name="organzine_a" colspan="4"/>
                             <field name="organzine_a_twist"/>
-                            <field name="organzine_a_amount"/>
+                            <field name="organzine_a_amount" attrs="{'required':'true'}"/>
                             <field name="organzine_b" colspan="4"/>
                             <field name="organzine_b_twist"/>
-                            <field name="organzine_b_amount"/>
+                            <field name="organzine_b_amount" attrs="{'required':'true'}"/>
                         </group>
                         <group col="8">
                             <field name="weft_a" colspan="4"/>
                             <field name="weft_a_twist"/>
-                            <field name="weft_a_amount"/>
+                            <field name="weft_a_amount" attrs="{'required':'true'}"/>
                             <field name="weft_b" colspan="4"/>
                             <field name="weft_b_twist"/>
-                            <field name="weft_b_amount"/>
+                            <field name="weft_b_amount" attrs="{'required':'true'}"/>
                         </group>
                         <separator string="wjzpw.order.xunHuanPaiLie" colspan="4"/>
                         <group col="2">
