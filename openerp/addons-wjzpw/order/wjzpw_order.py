@@ -171,7 +171,7 @@ class wjzpw_order(osv.osv):
         'customer_product': fields.many2one('wjzpw.order.product', 'wjzpw.order.keHuPinMing'),  # 公司品名
         'company_no': fields.char('wjzpw.order.keHuBianHao'),
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.order.gongSiPinMing', required=True),
-        'amount': fields.float('wjzpw.order.shuLiangMi', required=True),
+        'amount': fields.float('wjzpw.order.shuLiangMi', required=True),  # 生产数量
         'dead_line': fields.float('wjzpw.order.jiaoHuoQi'),
         'dead_line_unit': fields.selection(((u'天', u'天'), (u'周', u'周'), (u'月', u'月')), 'wjzpw.order.danWei', required=True),
         # 'order_type': fields.selection((('new', u'新品'), ('old', u'翻单')), 'wjzpw.order.xinPinHuoFanDan'),
@@ -235,11 +235,22 @@ class wjzpw_order_plan(osv.osv):
                 res[rec.id] = rec.order_id.order_type
         return res
 
+    def _get_amount(self, cr, uid, ids, field_name, arg, context):
+        """
+       从订单中获取生产米数
+       """
+        res = {}
+        for id in ids:
+            res.setdefault(id, '0')
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.order_id:
+                res[rec.id] = rec.order_id.amount
+        return res
+
     _columns = {
         'order_id': fields.many2one('wjzpw.order', 'wjzpw.order.dingDan', required=True),
         'create_date': fields.date('wjzpw.order.anPaiRiQi', readonly=True),  # 安排日期
         'company_product': fields.related('order_id', 'product_id', type='many2one', relation='wjzpw.product', string='wjzpw.order.gongSiPinMing', store=False, readonly=True),  # 公司品名
-        'amount': fields.float('wjzpw.order.shengChanShuLiangMi', required=True),  # 生产数量
         'dead_line': fields.char('wjzpw.order.jiaoHuoQi'),  # 交货期
         'machine_assign': fields.integer('wjzpw.order.anPaiJiTai'),  # 安排机台
         'machine_type': fields.selection((('pingJi', u'平机'), ('kuanPingJi', u'宽平机'), ('longTouJi', u'龙头机'), ('daLongTou', u'大龙头'), ('xiaoLongTou', u'小龙头')), 'wjzpw.order.jiXing'),  # 机型
@@ -286,6 +297,7 @@ class wjzpw_order_plan(osv.osv):
         # functions
         'texture_axis_total': fields.function(_total_texture_axis, string='wjzpw.order.zhiZhouZongMiShu', type='char', method=True),  # 织轴总米数
         'order_type': fields.function(_order_type, string='wjzpw.order.xinPinHuoFanDan', type='char', method=True),  # 新品或翻单
+        'amount': fields.function(_get_amount, string='wjzpw.order.shengChanShuLiangMi', type='char', method=True),  # 生产数量
     }
 
     _defaults = {
