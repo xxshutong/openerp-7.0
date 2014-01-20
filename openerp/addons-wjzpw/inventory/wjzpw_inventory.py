@@ -28,12 +28,42 @@ from openerp.osv import fields, osv
 _logger = logging.getLogger(__name__)
 
 
+class utils():
+    @classmethod
+    def get_default_value(cls, cr, uid, column):
+        """
+        获取最近输入数据的column值
+        """
+        query_sql = """
+            SELECT %s
+            FROM wjzpw_inventory_input
+            WHERE write_uid = %d ORDER BY id DESC LIMIT 1
+        """ % (column, uid)
+        cr.execute(query_sql)
+        result = cr.dictfetchone()
+        if result:
+            return result[column]
+        return None
+
+
 class wjzpw_inventory_input(osv.osv):
     """
     坯布入库
     """
     _name = "wjzpw.inventory.input"
     _description = "wjzpw.inventory.ruKuGuanLi"
+
+    def _get_default_machine_no(self, cr, uid, context=None):
+        return utils.get_default_value(cr, uid, 'machine_no')
+
+    def _get_default_input_date(self, cr, uid, context=None):
+        return utils.get_default_value(cr, uid, 'input_date')
+
+    def _get_default_product_id(self, cr, uid, context=None):
+        return utils.get_default_value(cr, uid, 'product_id')
+
+    def _get_default_batch_no(self, cr, uid, context=None):
+        return utils.get_default_value(cr, uid, 'batch_no')
 
     _columns = {
         'machine_no': fields.integer('wjzpw.inventory.jiHao', required=True),
@@ -50,7 +80,11 @@ class wjzpw_inventory_input(osv.osv):
     _defaults = {
         "superior_number": 0,
         "grade_a_number": 0,
-        "grade_b_number": 0
+        "grade_b_number": 0,
+        "machine_no": _get_default_machine_no,
+        "input_date": _get_default_input_date,
+        "product_id": _get_default_product_id,
+        "batch_no": _get_default_batch_no
     }
 
     _order = "product_id"
