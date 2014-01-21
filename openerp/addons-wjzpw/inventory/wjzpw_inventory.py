@@ -68,9 +68,9 @@ class wjzpw_inventory_input(osv.osv):
     _columns = {
         'machine_no': fields.integer('wjzpw.inventory.jiHao', required=True),
         'input_date': fields.date('wjzpw.inventory.luRuRiQi', required=True),
-        'superior_number': fields.float('wjzpw.inventory.youDengPin', required=True),
-        'grade_a_number': fields.float('wjzpw.inventory.yiDengPin', required=True),
-        'grade_b_number': fields.float('wjzpw.inventory.erDengPin', required=True),
+        'superior_number': fields.integer('wjzpw.inventory.youDengPin', required=True),
+        'grade_a_number': fields.integer('wjzpw.inventory.yiDengPin', required=True),
+        'grade_b_number': fields.integer('wjzpw.inventory.erDengPin', required=True),
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing', required=True),
         'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', required=True),
         'machine_output_id': fields.many2one('wjzpw.inventory.machine.output', 'wjzpw.inventory.jiTaiChanChu',
@@ -100,9 +100,9 @@ class wjzpw_inventory_output(osv.osv):
     _columns = {
         'input_date': fields.date('wjzpw.inventory.luRuRiQi', required=True),
         'code': fields.char('wjzpw.inventory.maDan', size=60, required=False),
-        'superior_number': fields.float('wjzpw.inventory.youDengPin', required=True),
-        'grade_a_number': fields.float('wjzpw.inventory.yiDengPin', required=True),
-        'grade_b_number': fields.float('wjzpw.inventory.erDengPin', required=True),
+        'superior_number': fields.integer('wjzpw.inventory.youDengPin', required=True),
+        'grade_a_number': fields.integer('wjzpw.inventory.yiDengPin', required=True),
+        'grade_b_number': fields.integer('wjzpw.inventory.erDengPin', required=True),
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing', required=True),
         'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', required=True),
         'customer': fields.many2one('res.partner', 'wjzpw.inventory.keHu', domain=[('customer', '=', True)],
@@ -865,9 +865,9 @@ class wjzpw_inventory(osv.osv):
     _rec_name = 'product_id'
 
     _columns = {
-        'superior_amount': fields.float('wjzpw.inventory.youDengPin', readonly=True),  # 优等品数量
-        'a_amount': fields.float('wjzpw.inventory.yiDengPin', readonly=True),  # 一等品数量
-        'b_amount': fields.float('wjzpw.inventory.erDengPin', readonly=True),  # 二等品数量
+        'superior_amount': fields.integer('wjzpw.inventory.youDengPin', readonly=True),  # 优等品数量
+        'a_amount': fields.integer('wjzpw.inventory.yiDengPin', readonly=True),  # 一等品数量
+        'b_amount': fields.integer('wjzpw.inventory.erDengPin', readonly=True),  # 二等品数量
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing', readonly=True),  # 品名
         'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', readonly=True)  # 批号
     }
