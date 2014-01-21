@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-05 14:11+0000\n"
-"PO-Revision-Date: 2014-01-05 14:11+0000\n"
+"POT-Creation-Date: 2014-01-21 15:19+0000\n"
+"PO-Revision-Date: 2014-01-21 15:19+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -106,6 +106,11 @@ msgid "wjzpw.inventory.keHu"
 msgstr ""
 
 #. module: inventory
+#: selection:wjzpw.organzine.output,department:0
+msgid "wjzpw.inventory.beiNian"
+msgstr ""
+
+#. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_cloth_input_menu
 #: model:ir.ui.menu,name:inventory.wjzpw_organzine_input_menu
 #: model:ir.ui.menu,name:inventory.wjzpw_reed_input_menu
@@ -138,6 +143,7 @@ msgstr ""
 #: field:wjzpw.inventory.input,product_id:0
 #: field:wjzpw.inventory.machine.output,product_id:0
 #: field:wjzpw.inventory.output,product_id:0
+#: field:wjzpw.organzine.output,product_id:0
 msgid "wjzpw.pinMing"
 msgstr ""
 
@@ -240,6 +246,11 @@ msgid "wjzpw.inventory.riQi"
 msgstr ""
 
 #. module: inventory
+#: selection:wjzpw.organzine.output,department:0
+msgid "wjzpw.inventory.zhengJiangBing"
+msgstr ""
+
+#. module: inventory
 #: view:wjzpw.inventory.output:0
 msgid "inventoryOutput"
 msgstr ""
@@ -255,20 +266,10 @@ msgid "wjzpw.inventory.weiSiKuCun"
 msgstr ""
 
 #. module: inventory
-#: field:wjzpw.inventory,batch_no:0
-#: field:wjzpw.inventory.input,batch_no:0
-#: field:wjzpw.inventory.machine.output,batch_no:0
-#: field:wjzpw.inventory.output,batch_no:0
-#: field:wjzpw.organzine.input,batch_no:0
-#: field:wjzpw.organzine.inventory,batch_no:0
-#: field:wjzpw.organzine.output,batch_no:0
-#: field:wjzpw.weft.input,batch_no:0
-#: field:wjzpw.weft.inventory,batch_no:0
-#: field:wjzpw.weft.output,batch_no:0
-#: field:wjzpw.weft.total.inventory,batch_no:0
-#: field:wjzpw.weft.workshop.left,batch_no:0
-#: field:wjzpw.weft.workshop.output,batch_no:0
-msgid "wjzpw.piHao"
+#: field:wjzpw.inventory,a_amount:0
+#: field:wjzpw.inventory.input,grade_a_number:0
+#: field:wjzpw.inventory.output,grade_a_number:0
+msgid "wjzpw.inventory.yiDengPin"
 msgstr ""
 
 #. module: inventory
@@ -337,6 +338,11 @@ msgid "wjzpw.inventory.wanChengBingJiSuanZhiSuoLv"
 msgstr ""
 
 #. module: inventory
+#: selection:wjzpw.organzine.output,department:0
+msgid "wjzpw.inventory.menShiBu"
+msgstr ""
+
+#. module: inventory
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_inventory_output
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_organzine_output
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_reed_output
@@ -386,15 +392,30 @@ msgid "wjzpw.inventory.jingSiRuKuGuanLi"
 msgstr ""
 
 #. module: inventory
-#: field:wjzpw.inventory,a_amount:0
-#: field:wjzpw.inventory.input,grade_a_number:0
-#: field:wjzpw.inventory.output,grade_a_number:0
-msgid "wjzpw.inventory.yiDengPin"
+#: field:wjzpw.inventory,batch_no:0
+#: field:wjzpw.inventory.input,batch_no:0
+#: field:wjzpw.inventory.machine.output,batch_no:0
+#: field:wjzpw.inventory.output,batch_no:0
+#: field:wjzpw.organzine.input,batch_no:0
+#: field:wjzpw.organzine.inventory,batch_no:0
+#: field:wjzpw.organzine.output,batch_no:0
+#: field:wjzpw.weft.input,batch_no:0
+#: field:wjzpw.weft.inventory,batch_no:0
+#: field:wjzpw.weft.output,batch_no:0
+#: field:wjzpw.weft.total.inventory,batch_no:0
+#: field:wjzpw.weft.workshop.left,batch_no:0
+#: field:wjzpw.weft.workshop.output,batch_no:0
+msgid "wjzpw.piHao"
 msgstr ""
 
 #. module: inventory
 #: selection:wjzpw.weft.output,department:0
 msgid "后道车间"
+msgstr ""
+
+#. module: inventory
+#: sql_constraint:wjzpw.flow.no:0
+msgid "该流程编号已经存在"
 msgstr ""
 
 #. module: inventory
@@ -408,6 +429,13 @@ msgstr ""
 #: model:ir.ui.menu,name:inventory.wjzpw_weft_workshop_input_menu
 #: view:wjzpw.weft.output:0
 msgid "wjzpw.inventory.cheJianRuKu"
+msgstr ""
+
+#. module: inventory
+#: view:wjzpw.flow.no:0
+#: field:wjzpw.flow.no,name:0
+#: field:wjzpw.flow.no,no:0
+msgid "wjzpw.inventory.liuChengBianHao"
 msgstr ""
 
 #. module: inventory
@@ -575,6 +603,13 @@ msgstr ""
 #. module: inventory
 #: view:wjzpw.weft.inventory:0
 msgid "weftInventory"
+msgstr ""
+
+#. module: inventory
+#: model:ir.model,name:inventory.model_wjzpw_flow_no
+#: view:wjzpw.flow.no:0
+#: field:wjzpw.organzine.output,flow_no:0
+msgid "wjzpw.liuChengBianHao"
 msgstr ""
 
 #. module: inventory

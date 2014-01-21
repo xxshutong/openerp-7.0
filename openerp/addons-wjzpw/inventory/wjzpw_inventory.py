@@ -202,6 +202,48 @@ class wjzpw_organzine_input(osv.osv):
     _order = "input_date desc"
 
 
+class wjzpw_flow_no(osv.osv):
+    """
+    牵经流程编号
+    """
+    _name = "wjzpw.flow.no"
+    _description = "wjzpw.liuChengBianHao"
+    _flow_prefix = "LC"
+
+    def _default_flow_no(self, cr, uid, context=None):
+        default_no = self._default_no(cr, uid, context=context)
+        return  '%s%05d' % (self._flow_prefix, default_no)
+
+    def _default_no(self, cr, uid, context=None):
+        query_sql = """
+            SELECT max(no)
+            FROM wjzpw_flow_no
+            """
+        cr.execute(query_sql)
+        order = cr.dictfetchone()['max']
+        if not order:
+            return 1
+        else:
+            return order + 1
+
+    _columns = {
+        'name': fields.char('wjzpw.inventory.liuChengBianHao', size=64, required=True),
+        'no': fields.integer('wjzpw.inventory.liuChengBianHao', required=True, readonly=True),
+    }
+
+    _defaults = {
+        'name': _default_flow_no,
+        'no': _default_no,
+    }
+
+    _sql_constraints = [
+        ('name_unique', 'unique(name)', u'该流程编号已经存在'),
+        ('no_unique', 'unique(no)', u'该流程编号已经存在'),
+        ]
+
+    _order = "name"
+
+
 class wjzpw_organzine_output(osv.osv):
     """
     经丝出库
@@ -334,6 +376,8 @@ class wjzpw_organzine_output(osv.osv):
         'weight': fields.float('wjzpw.inventory.xiangShuZhongLiang', required=True),  # 箱数重量（KG）
         'count': fields.integer('wjzpw.inventory.zhiShu'),  # 只数
         'count_weight': fields.float('wjzpw.inventory.zhiShuZhongLiang'),  # 只数重量
+        'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing'),  # 品名
+        'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.liuChengBianHao'),  # 流程编号
 
         # Function fields
         'total_count': fields.function(_total_count,
@@ -341,7 +385,8 @@ class wjzpw_organzine_output(osv.osv):
                                        type='integer',
                                        method=True),  # 总只数
         'total_weight': fields.function(_total_weight, string='wjzpw.inventory.zongZhongLiang', type='float', method=True),  #总重量
-        'department': fields.many2one('hr.department', 'wjzpw.inventory.shiYongBuMen', required=True)  # 使用部门
+        # 'department': fields.many2one('hr.department', 'wjzpw.inventory.shiYongBuMen', required=True)  # 使用部门
+        'department': fields.selection((('zjb', 'wjzpw.inventory.zhengJiangBing'), ('bn', 'wjzpw.inventory.beiNian'), ('msb', 'wjzpw.inventory.menShiBu')), 'wjzpw.inventory.shiYongBuMen', required=True)  # 使用部门
     }
 
     _defaults = {
@@ -1172,6 +1217,7 @@ wjzpw_inventory_output()
 wjzpw_inventory_machine_output()
 wjzpw_inventory()
 wjzpw_organzine_input()
+wjzpw_flow_no()
 wjzpw_organzine_output()
 wjzpw_organzine_inventory()
 wjzpw_weft_input()
