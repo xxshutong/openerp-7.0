@@ -49,29 +49,36 @@ class wjzpw_produce_qian_jing(osv.osv):
     #         return 1
     #     else:
     #         return order + 1
-    #
-    # def onchange_customer(self, cr, uid, ids, customer=None, context={}):
-    #     if not customer:
-    #         return {}
-    #     # Get existing company no
-    #     query_sql = """
-    #         SELECT count(company_no) AS num, company_no
-    #         FROM wjzpw_order
-    #         WHERE customer = %d GROUP BY company_no order by num desc limit 1
-    #     """ % customer
-    #     cr.execute(query_sql)
-    #     company_no_result = cr.dictfetchone()
-    #     company_no_value = ''
-    #     if company_no_result:
-    #         company_no_value = company_no_result['company_no']
-    #     return {
-    #         'domain': {
-    #             'customer_product': [('customer', '=', customer)]
-    #         },
-    #         'value': {
-    #             'company_no': company_no_value
-    #         }
-    #     }
+
+    def onchange_flow_no(self, cr, uid, ids, flow_no=None, context={}):
+        if not flow_no:
+            return {}
+        # Get existing company no
+        query_sql = """
+            SELECT *
+            FROM wjzpw_organzine_output
+            WHERE flow_no = %d
+        """ % flow_no
+        cr.execute(query_sql)
+        organize_output_list = cr.dictfetchall()
+        if organize_output_list:
+            if len(organize_output_list) == 1:
+                return {
+                    'value': {
+                        'process_unit': organize_output_list[0]['process_unit'],
+                        'product_id': organize_output_list[0]['product_id'],
+                        'material_specification': organize_output_list[0]['material_specification'],
+                        'batch_no': organize_output_list[0]['batch_no'],
+                        'material_area': organize_output_list[0]['material_area'],
+                        'weight_avg': organize_output_list[0]['weight_avg'],
+
+
+                    }
+                }
+            if len(organize_output_list) > 1:
+                # TODO
+                pass
+        return {}
     #
     # def _company_no_product(self, cr, uid, ids, field_name, arg, context):
     #     """

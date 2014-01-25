@@ -11,7 +11,7 @@
                     <sheet>
                         <group col="2">
                             <field name="machine_no"/>
-                            <field name="flow_no"/>
+                            <field name="flow_no" on_change="onchange_flow_no(flow_no)"/>
                         </group>
                         <group col="4">
                             <field name="process_unit"/>
@@ -19,15 +19,15 @@
                             <field name="material_specification"/>
                             <field name="batch_no"/>
                             <field name="material_area"/>
-                        </group>
-                        <group col="4">
+                        <!--</group>-->
+                        <!--<group col="4">-->
                             <field name="weight_avg"/>
-                            <field name="material_ft"/>
+                            <!--<field name="material_ft"/>-->
                         </group>
                         <group col="4">
                             <field name="swing_number"/>
                             <field name="axes_number"/>
-                            <field name="total_swing_number"/>
+                            <!--<field name="total_swing_number"/>-->
                         </group>
                         <group col="4">
                             <field name="total_length"/>
