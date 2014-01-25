@@ -22,7 +22,7 @@
                         <!--</group>-->
                         <!--<group col="4">-->
                             <field name="weight_avg"/>
-                            <!--<field name="material_ft"/>-->
+                            <field name="material_ft"/>
                         </group>
                         <group col="4">
                             <field name="swing_number"/>
