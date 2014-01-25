@@ -165,25 +165,24 @@ class wjzpw_produce_qian_jing(osv.osv):
     #     return res
 
     _columns = {
-        # 'machine_no':
-
-
-        'order_no': fields.char('wjzpw.order.dingDanHao', required=True, readonly=True),
-        'no': fields.integer('wjzpw.order.dingDanZhengShuHaoMa', required=True, readonly=True),
-        'input_date': fields.date('wjzpw.order.xiaDanRiQi', required=True),
-        'customer': fields.many2one('res.partner', 'wjzpw.order.keHu', domain=[('customer', '=', True)],
-                                    required=True),
-        'customer_product': fields.many2one('wjzpw.order.product', 'wjzpw.order.keHuPinMing'),  # 公司品名
-        'company_no': fields.char('wjzpw.order.keHuBianHao'),
-        'product_id': fields.many2one('wjzpw.product', 'wjzpw.order.gongSiPinMing', required=True),
-        'amount': fields.float('wjzpw.order.shuLiangMi', required=True),  # 生产数量
-        'dead_line': fields.float('wjzpw.order.jiaoHuoQi'),
-        'dead_line_unit': fields.selection(((u'天', u'天'), (u'周', u'周'), (u'月', u'月')), 'wjzpw.order.danWei', required=True),
-        # 'order_type': fields.selection((('new', u'新品'), ('old', u'翻单')), 'wjzpw.order.xinPinHuoFanDan'),
-        'product_type': fields.selection((('order', u'订单'), ('inventory', u'库存')), 'wjzpw.order.dingDanHuoKuCun'),
-        'customer_requirement': fields.text('wjzpw.order.keHuYaoQiu'),
-        'remark': fields.text('wjzpw.order.beiZhu'),
-        'status': fields.selection((('unfinished', u'已录入'), ('processing', u'安排生产计划'), ('finished', u'完成')), 'wjzpw.order.zhuangTai'),
+        'create_date': fields.datetime('wjzpw.order.anPaiRiQi', readonly=True),  # 数据创建日期
+        'machine_no': fields.char('wjzpw.produce.jiHao'),  # 机号
+        'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
+        'process_unit': fields.char('wjzpw.produce.jiaGongDanWei'),  # 加工单位
+        'product_id': fields.many2one('wjzpw.product', 'wjzpw.produce.pinMing', required=True),  # 品名
+        'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
+        'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.produce.piHao', required=True),  # 批号
+        'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.produce.yuanLiaoChanDi', required=True),  # 原料产地
+        'weight_avg': fields.float('wjzpw.produce.tongZiJingZhong'),  # 筒子净重
+        'material_ft': fields.char('wjzpw.produce.yuanLiaoFenTe'),  # 原料分特
+        'plan_meter': fields.float('wjzpw.produce.yuQianMiShu'),  # 预牵米数
+        'swing_number': fields.integer('wjzpw.produce.baiJingShu'),  # 摆经数
+        'axes_number': fields.integer('wjzpw.produce.bingZhouShu'),  # 并轴数
+        'total_length': fields.float('wjzpw.produce.sheDingZongChang'),  # 设定总长
+        'speed': fields.integer('wjzpw.produce.cheSu'),  # 车速
+        'off_axis_number': fields.integer('wjzpw.produce.qianJingLuoZhouShu'),  # 牵经落轴数
+        'start_date': fields.date('wjzpw.produce.qiJiShiJian'),  # 起机时间
+        'efficiency': fields.float('wjzpw.produce.xiaoLv'),  # 效率
 
         # Function fields
         # 'company_no_product': fields.function(_company_no_product, string='wjzpw.order.gongSiBianHaoJiPinMing', type='char', method=True),  # 公司编号及品名
@@ -195,17 +194,11 @@ class wjzpw_produce_qian_jing(osv.osv):
     _defaults = {
         # 'order_no': _default_order_no,
         # 'no': _default_no,
-        'dead_line_unit': u'天',
-        'status': 'unfinished'
+        # 'dead_line_unit': u'天',
+        # 'status': 'unfinished'
     }
 
-    _sql_constraints = [
-        ('no_unique', 'unique(no)', u'该订单号已经存在'),
-        ('order_no_unique', 'unique(order_no)', u'该订单号已经存在'),
-    ]
-
-    _order = "order_no desc"
-
+    _order = "create_date desc"
 
 
 wjzpw_produce_qian_jing()

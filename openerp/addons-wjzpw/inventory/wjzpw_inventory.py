@@ -241,7 +241,7 @@ class wjzpw_flow_no(osv.osv):
         ('no_unique', 'unique(no)', u'该流程编号已经存在'),
         ]
 
-    _order = "name"
+    _order = "no desc"
 
 
 class wjzpw_organzine_output(osv.osv):
@@ -369,7 +369,7 @@ class wjzpw_organzine_output(osv.osv):
         'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
         'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', required=True),  # 原料产地
         'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.piHao', required=True),  # 批号
-        'weight_avg': fields.float('wjzpw.inventory.tongZiJingZhong'),  # 筒子净重
+        'weight_avg': fields.float('wjzpw.inventory.yuanLiaoTongZiJingZhongKG'),  # 筒子净重
         'quantity_avg': fields.integer('wjzpw.inventory.meiBaoXiangZhiShu'),  # 每包箱只数
         'quantity': fields.integer('wjzpw.inventory.baoHuoXiangShu'),  # 包（或箱）数
         'quantity_count': fields.integer('wjzpw.inventory.baoXiangZhiShu'),  # 包/箱只数
