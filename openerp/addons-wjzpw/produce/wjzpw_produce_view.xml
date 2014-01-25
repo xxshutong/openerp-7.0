@@ -60,7 +60,6 @@
                     <field name="axes_number"/>
                     <field name="speed"/>
                     <field name="efficiency"/>
-
                     <field name="total_length"/>
                     <field name="off_axis_number"/>
                     <field name="already_off_axis_number"/>

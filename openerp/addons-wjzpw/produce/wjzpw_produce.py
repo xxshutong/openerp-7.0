@@ -96,7 +96,7 @@ class wjzpw_produce_qian_jing(osv.osv):
         # TODO 需要等获取人工数据后计算得到
         res = {}
         for id in ids:
-            res['id'] = 0
+            res[id] = 0
         return res
 
     def _get_already_meter(self, cr, uid, ids, field_name, arg, context):
@@ -106,7 +106,7 @@ class wjzpw_produce_qian_jing(osv.osv):
         # TODO 需要等获取人工数据后计算得到
         res = {}
         for id in ids:
-            res['id'] = 0
+            res[id] = 0
         return res
 
     def _get_plan_end_date(self, cr, uid, ids, field_name, arg, context):
@@ -116,7 +116,7 @@ class wjzpw_produce_qian_jing(osv.osv):
         # TODO 计算获得预计尽机时间
         res = {}
         for id in ids:
-            res['id'] = 'TODO'
+            res[id] = None
         return res
 
     def _get_plan_meter(self, cr, uid, ids, field_name, arg, context):
@@ -126,7 +126,7 @@ class wjzpw_produce_qian_jing(osv.osv):
         # TODO 计算预牵米数
         res = {}
         for id in ids:
-            res['id'] = 'TODO'
+            res[id] = 0
         return res
 
     def _get_total_swing_number(self, cr, uid, ids, field_name, arg, context):
@@ -136,7 +136,7 @@ class wjzpw_produce_qian_jing(osv.osv):
         # TODO 计算总经数
         res = {}
         for id in ids:
-            res['id'] = 0
+            res[id] = 0
         return res
 
     #
