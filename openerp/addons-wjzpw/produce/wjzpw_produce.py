@@ -54,8 +54,6 @@ class wjzpw_produce_qian_jing(osv.osv):
                         'batch_no': organize_output_list[0]['batch_no'],
                         'material_area': organize_output_list[0]['material_area'],
                         'weight_avg': organize_output_list[0]['weight_avg'],
-
-
                     }
                 }
             if len(organize_output_list) > 1:
@@ -128,19 +126,20 @@ class wjzpw_produce_qian_jing(osv.osv):
         for id in ids:
             res.setdefault(id, 0)
         for rec in self.browse(cr, uid, ids, context=context):
-            if rec.weight_avg and rec.material_specification:
-                # todo
-                pass
+            if rec.weight_avg and rec.material_specification and rec.material_ft:
+                res[rec.id] = rec.weight_avg / rec.material_ft * 10 * 7
         return res
 
     def _get_total_swing_number(self, cr, uid, ids, field_name, arg, context):
         """
         计算总经数
         """
-        # TODO 计算总经数
         res = {}
         for id in ids:
-            res[id] = 0
+            res.setdefault(id, 0)
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.swing_number and rec.axes_number:
+                res[rec.id] = rec.swing_number * rec.axes_number
         return res
 
     _columns = {
