@@ -31,8 +31,8 @@ class wjzpw_produce_qian_jing(osv.osv):
     """
     牵经
     """
-    _name = "wjzpw.order.qian.jing"
-    _description = "wjzpw.order.qianJing"
+    _name = "wjzpw.produce.qian.jing"
+    _description = "wjzpw.produce.qianJing"
 
     # def _default_order_no(self, cr, uid, context=None):
     #     default_no = self._default_no(cr, uid, context=context)
@@ -89,19 +89,56 @@ class wjzpw_produce_qian_jing(osv.osv):
     #         res[rec.id] = company_no_product
     #     return res
     #
-    # def _dead_line_str(self, cr, uid, ids, field_name, arg, context):
-    #     """
-    #     交货期
-    #     """
-    #     res = {}
-    #     for id in ids:
-    #         res.setdefault(id, u'无')
-    #     for rec in self.browse(cr, uid, ids, context=context):
-    #         dead_line = ''
-    #         if rec.dead_line and rec.dead_line_unit:
-    #             dead_line = str(rec.dead_line) + ' ' + rec.dead_line_unit
-    #         res[rec.id] = dead_line
-    #     return res
+    def _get_already_off_axis_number(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算牵经已落轴数
+        """
+        # TODO 需要等获取人工数据后计算得到
+        res = {}
+        for id in ids:
+            res['id'] = 0
+        return res
+
+    def _get_already_meter(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算已签米数
+        """
+        # TODO 需要等获取人工数据后计算得到
+        res = {}
+        for id in ids:
+            res['id'] = 0
+        return res
+
+    def _get_plan_end_date(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算预计尽机时间
+        """
+        # TODO 计算获得预计尽机时间
+        res = {}
+        for id in ids:
+            res['id'] = 'TODO'
+        return res
+
+    def _get_plan_meter(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算预牵米数
+        """
+        # TODO 计算预牵米数
+        res = {}
+        for id in ids:
+            res['id'] = 'TODO'
+        return res
+
+    def _get_total_swing_number(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算总经数
+        """
+        # TODO 计算总经数
+        res = {}
+        for id in ids:
+            res['id'] = 0
+        return res
+
     #
     # def _order_type(self, cr, uid, ids, field_name, arg, context):
     #     """
@@ -165,7 +202,7 @@ class wjzpw_produce_qian_jing(osv.osv):
     #     return res
 
     _columns = {
-        'create_date': fields.datetime('wjzpw.order.anPaiRiQi', readonly=True),  # 数据创建日期
+        'create_date': fields.datetime('wjzpw.produce.chuangJianRiQi', readonly=True),  # 数据创建日期
         'machine_no': fields.char('wjzpw.produce.jiHao'),  # 机号
         'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
         'process_unit': fields.char('wjzpw.produce.jiaGongDanWei'),  # 加工单位
@@ -175,7 +212,7 @@ class wjzpw_produce_qian_jing(osv.osv):
         'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.produce.yuanLiaoChanDi', required=True),  # 原料产地
         'weight_avg': fields.float('wjzpw.produce.tongZiJingZhong'),  # 筒子净重
         'material_ft': fields.char('wjzpw.produce.yuanLiaoFenTe'),  # 原料分特
-        'plan_meter': fields.float('wjzpw.produce.yuQianMiShu'),  # 预牵米数
+        # 'plan_meter': fields.integer('wjzpw.produce.yuQianMiShu'),  # 预牵米数
         'swing_number': fields.integer('wjzpw.produce.baiJingShu'),  # 摆经数
         'axes_number': fields.integer('wjzpw.produce.bingZhouShu'),  # 并轴数
         'total_length': fields.float('wjzpw.produce.sheDingZongChang'),  # 设定总长
@@ -183,9 +220,15 @@ class wjzpw_produce_qian_jing(osv.osv):
         'off_axis_number': fields.integer('wjzpw.produce.qianJingLuoZhouShu'),  # 牵经落轴数
         'start_date': fields.date('wjzpw.produce.qiJiShiJian'),  # 起机时间
         'efficiency': fields.float('wjzpw.produce.xiaoLv'),  # 效率
+        'status': fields.selection((('unfinished', 'wjzpw.produce.shengChanZhong'), ('finished', 'wjzpw.produce.yiWanCheng')), 'wjzpw.produce.zhuangTai'),  # 状态，是否完成
 
         # Function fields
-        # 'company_no_product': fields.function(_company_no_product, string='wjzpw.order.gongSiBianHaoJiPinMing', type='char', method=True),  # 公司编号及品名
+        'already_off_axis_number': fields.function(_get_already_off_axis_number, string='wjzpw.produce.qianJingYiLuoZhou', type='integer', method=True),  # 牵经已落轴
+        'plan_meter': fields.function(_get_plan_meter, string='wjzpw.produce.yuQianMiShu', type='integer', method=True),  # 预牵米数
+        'already_meter': fields.function(_get_already_meter, string='wjzpw.produce.yiQianMiShu', type='integer', method=True),  # 已牵米数
+        'plan_end_date': fields.function(_get_plan_end_date, string='wjzpw.produce.yuJiJinJiShiJian', type='char', method=True),  # 预计尽机时间
+        'total_swing_number': fields.function(_get_total_swing_number, string='wjzpw.produce.zongJingShu', type='integer', method=True)  # 计算总经数
+
         # 'dead_line_str': fields.function(_dead_line_str, string='wjzpw.order.jiaoHuoQi', type='char', method=True),  # 交货期
         # 'order_type': fields.function(_order_type, string='wjzpw.order.xinPinHuoFanDan', type='char', method=True),  # 新品或翻单
         # 'name': fields.function(_name_get, string="wjzpw.inventory.dingDanMing", type='char', method=True)
@@ -195,7 +238,7 @@ class wjzpw_produce_qian_jing(osv.osv):
         # 'order_no': _default_order_no,
         # 'no': _default_no,
         # 'dead_line_unit': u'天',
-        # 'status': 'unfinished'
+        'status': 'unfinished'
     }
 
     _order = "create_date desc"

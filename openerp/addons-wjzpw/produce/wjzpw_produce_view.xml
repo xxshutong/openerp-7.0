@@ -1,78 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <!--定义OrderInput表单视图-->
-        <record model="ir.ui.view" id="wjzpw_order_input_form_view">
-            <field name="name">wjzpw.order.ruKuGuanLi</field>
+        <!--定义QianJing表单视图-->
+        <record model="ir.ui.view" id="wjzpw_qian_jing_form_view">
+            <field name="name">wjzpw.produce.qianJing</field>
             <field name="type">form</field>
-            <field name="model">wjzpw.order</field>
+            <field name="model">wjzpw.produce.qian.jing</field>
             <field name="arch" type="xml">
-                <form string="orderInput" version="7.0">
-                    <header>
-                    </header>
+                <form string="wjzpw.produce.qian.jing" version="7.0">
                     <sheet>
                         <group col="2">
-                            <field name="order_no"/>
-                            <field name="input_date"/>
+                            <field name="machine_no"/>
+                            <field name="flow_no"/>
                         </group>
                         <group col="4">
-                            <field name="status"/>
-                        </group>
-                        <group col="4">
-                            <field name="customer" on_change="onchange_customer(customer)"/>
-                            <field name="company_no"/>
-                            <field name="customer_product" context="{'default_customer': customer}"/>
+                            <field name="process_unit"/>
                             <field name="product_id"/>
-                            <field name="amount"/>
+                            <field name="material_specification"/>
+                            <field name="batch_no"/>
+                            <field name="material_area"/>
                         </group>
                         <group col="4">
-                            <field name="dead_line"/>
-                            <field name="dead_line_unit"/>
-                            <field name="product_type"/>
+                            <field name="weight_avg"/>
+                            <field name="material_ft"/>
+                        </group>
+                        <group col="4">
+                            <field name="swing_number"/>
+                            <field name="axes_number"/>
+                            <field name="total_swing_number"/>
+                        </group>
+                        <group col="4">
+                            <field name="total_length"/>
+                            <field name="speed"/>
+                            <field name="off_axis_number"/>
                         </group>
                         <group col="2">
-                            <field name="customer_requirement"/>
-                            <field name="remark"/>
+                            <field name="start_date"/>
+                            <field name="efficiency"/>
                         </group>
                     </sheet>
                 </form>
             </field>
         </record>
-        <!--定义OrderInput列表视图-->
-        <record model="ir.ui.view" id="wjzpw_order_input_tree_view">
-            <field name="name">wjzpw.order.ruKuGuanLi</field>
+        <!--定义QianJing列表视图-->
+        <record model="ir.ui.view" id="wjzpw_qian_jing_tree_view">
+            <field name="name">wjzpw.produce.qianJing</field>
             <field name="type">tree</field>
-            <field name="model">wjzpw.order</field>
+            <field name="model">wjzpw.produce.qian.jing</field>
             <field name="arch" type="xml">
-                <tree string="orderInput">
-                    <field name="order_no"/>
-                    <field name="input_date"/>
-                    <field name="customer"/>
-                    <field name="company_no"/>
-                    <field name="customer_product"/>
+                <tree string="wjzpw.produce.qianJing">
+                    <field name="machine_no"/>
+                    <field name="process_unit"/>
+                    <field name="flow_no"/>
                     <field name="product_id"/>
-                    <field name="amount"/>
-                    <field name="dead_line_str"/>
-                    <field name="order_type"/>
-                    <field name="product_type"/>
-                    <field name="status"/>
+                    <field name="material_specification"/>
+                    <field name="material_area"/>
+                    <field name="batch_no"/>
+                    <field name="swing_number"/>
+                    <field name="axes_number"/>
+                    <field name="speed"/>
+                    <field name="efficiency"/>
+
+                    <field name="total_length"/>
+                    <field name="off_axis_number"/>
+                    <field name="already_off_axis_number"/>
+                    <field name="plan_meter"/>
+                    <field name="already_meter"/>
+                    <field name="start_date"/>
+                    <field name="plan_end_date"/>
                 </tree>
             </field>
         </record>
-        <!--定义OrderInput视图动作-->
-        <record model="ir.actions.act_window" id="action_wjzpw_order_input">
-            <field name="name">wjzpw.order.ruKuGuanLi</field>
-            <field name="res_model">wjzpw.order</field>
+        <!--定义QianJing视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_qian_jing">
+            <field name="name">wjzpw.produce.qianJing</field>
+            <field name="res_model">wjzpw.produce.qian.jing</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="view_id" ref="wjzpw_order_input_tree_view"/>
+            <field name="view_id" ref="wjzpw_qian_jing_tree_view"/>
         </record>
 
 
         <!--定义菜单-->
-        <menuitem id="wjzpw_order_menu" name="wjzpw.order.dingDan"/>
-        <!-- 订单入库 -->
-        <menuitem id="wjzpw_order_management_menu" name="wjzpw.order.dingDanGuanLi" parent="wjzpw_order_menu"/>
-        <menuitem id="wjzpw_order_input_menu" name="wjzpw.order.dingDanRuKu" parent="wjzpw_order_management_menu" action="action_wjzpw_order_input"/>
+        <menuitem id="wjzpw_produce_menu" name="wjzpw.produce.shengChan"/>
+        <!-- 整浆并车间 -->
+        <menuitem id="wjzpw_zheng_jiang_bing_menu" name="wjzpw.produce.zhengJiangBingCheJian" parent="wjzpw_produce_menu"/>
+        <menuitem id="wjzpw_qian_jing_menu" name="wjzpw.produce.qianJing" parent="wjzpw_zheng_jiang_bing_menu" action="action_wjzpw_qian_jing"/>
     </data>
 </openerp>
