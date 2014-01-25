@@ -639,11 +639,12 @@ class wjzpw_weft_output(osv.osv):
         new_vals['batch_no'] = vals['batch_no']
         new_vals['level'] = vals['level']
         # Get latest weft workshop left
+        # 每次仓库出库都需要在车间剩余里添加记录
         cr.execute(
             '''
             SELECT input_date, quantity, weight, count, count_weight
             FROM wjzpw_weft_workshop_left
-            WHERE material_specification = %d AND material_area = %d AND batch_no = %d AND level = '%s' ORDER BY input_date desc limit 1
+            WHERE material_specification = %d AND material_area = %d AND batch_no = %d AND level = '%s' ORDER BY input_date desc, quantity desc, count desc limit 1
             ''' % (vals['material_specification'], vals['material_area'], vals['batch_no'], vals['level'])
         )
         workshop_left = cr.dictfetchone()
@@ -665,7 +666,28 @@ class wjzpw_weft_output(osv.osv):
         weft_workshop_left_obj.create(cr, uid, new_vals, context=None)
         return left_output
 
+    def unlink(self, cr, uid, ids, context=None):
+        """
+        删除纬丝出库的时候需要把之前加入到车间剩余里的量重新回退出来
+        """
+        for rec in self.browse(cr, uid, ids, context=context):
+            cr.execute(
+                '''
+                SELECT id, input_date, quantity, weight, count, count_weight
+                FROM wjzpw_weft_workshop_left
+                WHERE material_specification = %d AND material_area = %d AND batch_no = %d AND level = '%s' ORDER BY input_date desc, quantity desc, count desc limit 1
+                ''' % (rec.material_specification, rec.material_area, rec.batch_no, rec.level)
+            )
+            workshop_left = cr.dictfetchone()
+            if workshop_left:
+                self.pool.get('wjzpw.weft.workshop.left') \
+                    .write(cr, uid, [workshop_left['id']],
+                           {'quantity': workshop_left['quantity'] - rec.quantity, 'weight': workshop_left['weight'] - rec.weight
+                               , 'count': workshop_left['count'] - rec.count, 'count_weight': workshop_left['count_weight'] - rec.count_weight})
+        return super(wjzpw_weft_output, self).unlink(cr, uid, ids, context=context)
+
     _columns = {
+        'create_date': fields.datetime('wjzpw.order.anPaiRiQi', readonly=True),  # 数据创建日期
         'output_date': fields.date('wjzpw.inventory.chuKuRiQi', required=True),
         'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
         'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.inventory.yuanLiaoChanDi', required=True),  # 原料产地
@@ -685,7 +707,7 @@ class wjzpw_weft_output(osv.osv):
         'weight': 0
     }
 
-    _order = "output_date desc"
+    _order = "create_date desc"
 
 
 class wjzpw_weft_workshop_left(osv.osv):

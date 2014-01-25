@@ -165,6 +165,9 @@ class wjzpw_produce_qian_jing(osv.osv):
     #     return res
 
     _columns = {
+        # 'machine_no':
+
+
         'order_no': fields.char('wjzpw.order.dingDanHao', required=True, readonly=True),
         'no': fields.integer('wjzpw.order.dingDanZhengShuHaoMa', required=True, readonly=True),
         'input_date': fields.date('wjzpw.order.xiaDanRiQi', required=True),
