@@ -31,12 +31,12 @@
                         </group>
                         <group col="4">
                             <field name="total_length"/>
-                            <field name="speed"/>
                             <field name="off_axis_number"/>
+                            <field name="speed"/>
+                            <field name="efficiency"/>
                         </group>
                         <group col="2">
-                            <field name="start_date"/>
-                            <field name="efficiency"/>
+                            <field name="start_time"/>
                         </group>
                     </sheet>
                 </form>
@@ -65,7 +65,7 @@
                     <field name="already_off_axis_number"/>
                     <field name="plan_meter"/>
                     <field name="already_meter"/>
-                    <field name="start_date"/>
+                    <field name="start_time"/>
                     <field name="plan_end_date"/>
                 </tree>
             </field>

@@ -1,0 +1,170 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* produce
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-25 16:34+0000\n"
+"PO-Revision-Date: 2014-01-25 16:34+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,flow_no:0
+msgid "wjzpw.produce.liuChengBianHao"
+msgstr ""
+
+#. module: produce
+#: selection:wjzpw.produce.qian.jing,status:0
+msgid "wjzpw.produce.yiWanCheng"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,speed:0
+msgid "wjzpw.produce.cheSu"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,plan_end_date:0
+msgid "wjzpw.produce.yuJiJinJiShiJian"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,weight_avg:0
+msgid "wjzpw.produce.tongZiJingZhong"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,off_axis_number:0
+msgid "wjzpw.produce.qianJingLuoZhouShu"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,material_specification:0
+msgid "wjzpw.inventory.yuanLiaoGuiGe"
+msgstr ""
+
+#. module: produce
+#: model:ir.actions.act_window,name:produce.action_wjzpw_qian_jing
+#: model:ir.model,name:produce.model_wjzpw_produce_qian_jing
+#: model:ir.ui.menu,name:produce.wjzpw_qian_jing_menu
+#: view:wjzpw.produce.qian.jing:0
+msgid "wjzpw.produce.qianJing"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,axes_number:0
+msgid "wjzpw.produce.bingZhouShu"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,material_ft:0
+msgid "wjzpw.produce.yuanLiaoFenTe"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,create_date:0
+msgid "wjzpw.produce.chuangJianRiQi"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,start_time:0
+msgid "wjzpw.produce.qiJiShiJian"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,efficiency:0
+msgid "wjzpw.produce.xiaoLv"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,already_off_axis_number:0
+msgid "wjzpw.produce.qianJingYiLuoZhou"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,machine_no:0
+msgid "wjzpw.produce.jiHao"
+msgstr ""
+
+#. module: produce
+#: model:ir.ui.menu,name:produce.wjzpw_produce_menu
+msgid "wjzpw.produce.shengChan"
+msgstr ""
+
+#. module: produce
+#: selection:wjzpw.produce.qian.jing,status:0
+msgid "wjzpw.produce.shengChanZhong"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,status:0
+msgid "wjzpw.produce.zhuangTai"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,material_area:0
+msgid "wjzpw.produce.yuanLiaoChanDi"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,swing_number:0
+msgid "wjzpw.produce.baiJingShu"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,total_swing_number:0
+msgid "wjzpw.produce.zongJingShu"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,product_id:0
+msgid "wjzpw.produce.pinMing"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,already_meter:0
+msgid "wjzpw.produce.yiQianMiShu"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,batch_no:0
+msgid "wjzpw.produce.piHao"
+msgstr ""
+
+#. module: produce
+#: view:wjzpw.produce.qian.jing:0
+msgid "wjzpw.produce.qian.jing"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,single_silk_length:0
+msgid "wjzpw.produce.dangSiChangDuWanMi"
+msgstr ""
+
+#. module: produce
+#: model:ir.ui.menu,name:produce.wjzpw_zheng_jiang_bing_menu
+msgid "wjzpw.produce.zhengJiangBingCheJian"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,process_unit:0
+msgid "wjzpw.produce.jiaGongDanWei"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,total_length:0
+msgid "wjzpw.produce.sheDingZongChang"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,plan_meter:0
+msgid "wjzpw.produce.yuQianMiShu"
+msgstr ""
+

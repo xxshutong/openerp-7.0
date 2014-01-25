@@ -1,0 +1,170 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+#	* produce
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-25 16:27+0000\n"
+"PO-Revision-Date: 2014-01-25 16:27+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,flow_no:0
+msgid "wjzpw.produce.liuChengBianHao"
+msgstr "流程编号"
+
+#. module: produce
+#: selection:wjzpw.produce.qian.jing,status:0
+msgid "wjzpw.produce.yiWanCheng"
+msgstr "已完成"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,speed:0
+msgid "wjzpw.produce.cheSu"
+msgstr "车速"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,plan_end_date:0
+msgid "wjzpw.produce.yuJiJinJiShiJian"
+msgstr "预计尽机时间"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,weight_avg:0
+msgid "wjzpw.produce.tongZiJingZhong"
+msgstr "筒子净重"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,off_axis_number:0
+msgid "wjzpw.produce.qianJingLuoZhouShu"
+msgstr "牵经落轴数"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,material_specification:0
+msgid "wjzpw.inventory.yuanLiaoGuiGe"
+msgstr "原料规格"
+
+#. module: produce
+#: model:ir.actions.act_window,name:produce.action_wjzpw_qian_jing
+#: model:ir.model,name:produce.model_wjzpw_produce_qian_jing
+#: model:ir.ui.menu,name:produce.wjzpw_qian_jing_menu
+#: view:wjzpw.produce.qian.jing:0
+msgid "wjzpw.produce.qianJing"
+msgstr "牵经"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,axes_number:0
+msgid "wjzpw.produce.bingZhouShu"
+msgstr "并轴数"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,material_ft:0
+msgid "wjzpw.produce.yuanLiaoFenTe"
+msgstr "原料分特"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,create_date:0
+msgid "wjzpw.produce.chuangJianRiQi"
+msgstr "创建日期"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,start_time:0
+msgid "wjzpw.produce.qiJiShiJian"
+msgstr "起机时间"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,efficiency:0
+msgid "wjzpw.produce.xiaoLv"
+msgstr "效率"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,already_off_axis_number:0
+msgid "wjzpw.produce.qianJingYiLuoZhou"
+msgstr "牵经已落轴"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,machine_no:0
+msgid "wjzpw.produce.jiHao"
+msgstr "机号"
+
+#. module: produce
+#: model:ir.ui.menu,name:produce.wjzpw_produce_menu
+msgid "wjzpw.produce.shengChan"
+msgstr "生产"
+
+#. module: produce
+#: selection:wjzpw.produce.qian.jing,status:0
+msgid "wjzpw.produce.shengChanZhong"
+msgstr "生产中"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,status:0
+msgid "wjzpw.produce.zhuangTai"
+msgstr "状态"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,material_area:0
+msgid "wjzpw.produce.yuanLiaoChanDi"
+msgstr "原料产地"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,swing_number:0
+msgid "wjzpw.produce.baiJingShu"
+msgstr "摆经数"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,total_swing_number:0
+msgid "wjzpw.produce.zongJingShu"
+msgstr "总经数"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,product_id:0
+msgid "wjzpw.produce.pinMing"
+msgstr "品名"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,already_meter:0
+msgid "wjzpw.produce.yiQianMiShu"
+msgstr "已牵米数"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,batch_no:0
+msgid "wjzpw.produce.piHao"
+msgstr "批号"
+
+#. module: produce
+#: view:wjzpw.produce.qian.jing:0
+msgid "wjzpw.produce.qian.jing"
+msgstr "牵经"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,single_silk_length:0
+msgid "wjzpw.produce.dangSiChangDuWanMi"
+msgstr "单丝长度(万米)"
+
+#. module: produce
+#: model:ir.ui.menu,name:produce.wjzpw_zheng_jiang_bing_menu
+msgid "wjzpw.produce.zhengJiangBingCheJian"
+msgstr "整浆并车间"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,process_unit:0
+msgid "wjzpw.produce.jiaGongDanWei"
+msgstr "加工单位"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,total_length:0
+msgid "wjzpw.produce.sheDingZongChang"
+msgstr "设定总长"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,plan_meter:0
+msgid "wjzpw.produce.yuQianMiShu"
+msgstr "预牵米数"
+

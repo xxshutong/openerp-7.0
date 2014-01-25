@@ -18,6 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+from datetime import timedelta, datetime
 
 import logging
 from openerp.osv import fields, osv
@@ -108,14 +109,23 @@ class wjzpw_produce_qian_jing(osv.osv):
             res[id] = 0
         return res
 
-    def _get_plan_end_date(self, cr, uid, ids, field_name, arg, context):
+    def _get_plan_end_time(self, cr, uid, ids, field_name, arg, context):
         """
         计算预计尽机时间
         """
-        # TODO 计算获得预计尽机时间
         res = {}
         for id in ids:
-            res[id] = None
+            res.setdefault(id, None)
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.start_time and rec.single_silk_length and rec.speed and rec.efficiency:
+                hours = int(rec.single_silk_length / (rec.speed * 60 * rec.efficiency))
+                if hours:
+                    # 获取datetime format配置
+                    pool_lang = self.pool.get('res.lang')
+                    lang_ids = pool_lang.search(cr, uid, [('code', '=', context['lang'])])[0]
+                    lang_obj = pool_lang.browse(cr,uid,lang_ids)
+                    datetime_format = lang_obj.date_format + " " + lang_obj.time_format
+                    res[rec.id] = (datetime.strptime(rec.start_time, datetime_format) + timedelta(hours=hours)).strftime(datetime_format)
         return res
 
     def _get_plan_meter(self, cr, uid, ids, field_name, arg, context):
@@ -159,18 +169,18 @@ class wjzpw_produce_qian_jing(osv.osv):
         'total_length': fields.float('wjzpw.produce.sheDingZongChang'),  # 设定总长
         'speed': fields.integer('wjzpw.produce.cheSu'),  # 车速
         'off_axis_number': fields.integer('wjzpw.produce.qianJingLuoZhouShu'),  # 牵经落轴数
-        'start_date': fields.date('wjzpw.produce.qiJiShiJian'),  # 起机时间
+        'start_time': fields.datetime('wjzpw.produce.qiJiShiJian'),  # 起机时间
         'efficiency': fields.float('wjzpw.produce.xiaoLv'),  # 效率
         'status': fields.selection((('unfinished', 'wjzpw.produce.shengChanZhong'), ('finished', 'wjzpw.produce.yiWanCheng')), 'wjzpw.produce.zhuangTai'),  # 状态，是否完成
 
         # Function fields
         'material_ft': fields.function(_get_material_ft, string='wjzpw.produce.yuanLiaoFenTe', type='integer', method=True),  # 原料分特
         'already_off_axis_number': fields.function(_get_already_off_axis_number, string='wjzpw.produce.qianJingYiLuoZhou', type='integer', method=True),  # 牵经已落轴
-        'plan_meter': fields.function(_get_plan_meter, string='wjzpw.produce.yuQianMiShu', type='integer', method=True),  # 预牵米数
+        'plan_meter': fields.function(_get_plan_meter, string='wjzpw.produce.yuQianMiShu', type='float', method=True),  # 预牵米数
         'already_meter': fields.function(_get_already_meter, string='wjzpw.produce.yiQianMiShu', type='integer', method=True),  # 已牵米数
-        'plan_end_date': fields.function(_get_plan_end_date, string='wjzpw.produce.yuJiJinJiShiJian', type='char', method=True),  # 预计尽机时间
+        'plan_end_date': fields.function(_get_plan_end_time, string='wjzpw.produce.yuJiJinJiShiJian', type='char', method=True),  # 预计尽机时间
         'total_swing_number': fields.function(_get_total_swing_number, string='wjzpw.produce.zongJingShu', type='integer', method=True),  # 计算总经数
-        'single_silk_length': fields.function(_get_plan_meter, string='wjzpw.produce.dangSiChangDuWanMi', type='integer', method=True),  # 计算单丝长度
+        'single_silk_length': fields.function(_get_plan_meter, string='wjzpw.produce.dangSiChangDuWanMi', type='float', method=True),  # 计算单丝长度
 
     }
 
