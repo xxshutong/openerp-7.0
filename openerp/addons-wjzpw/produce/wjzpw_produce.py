@@ -92,13 +92,13 @@ class wjzpw_produce_qian_jing(osv.osv):
         由原料规格中提取出分特
         """
         material_specification_upper = material_specification.upper()
-        if material_specification_upper.index('DT/') >= 0:
+        if 'DT/' in material_specification_upper:
             material_specification_upper_temp = material_specification_upper[:material_specification_upper.index('DT/')]
             if material_specification_upper_temp.index(' ') >= 0:
                 return int(material_specification_upper_temp[material_specification_upper_temp.rfind(' ') + 1:])
             else:
                 return int(material_specification_upper_temp)
-        return None
+        return 0
 
     def _get_material_ft(self, cr, uid, ids, field_name, arg, context):
         """
@@ -142,8 +142,8 @@ class wjzpw_produce_qian_jing(osv.osv):
         for id in ids:
             res.setdefault(id, None)
         for rec in self.browse(cr, uid, ids, context=context):
-            if rec.start_time and rec.single_silk_length and rec.speed and rec.efficiency:
-                hours = int(rec.single_silk_length / (rec.speed * 60 * rec.efficiency))
+            if rec.start_time and rec.plan_meter and rec.speed and rec.efficiency:
+                hours = int(rec.plan_meter / (rec.speed * 60 * rec.efficiency))
                 if hours:
                     # 获取datetime format配置
                     pool_lang = self.pool.get('res.lang')
@@ -162,7 +162,19 @@ class wjzpw_produce_qian_jing(osv.osv):
             res.setdefault(id, 0)
         for rec in self.browse(cr, uid, ids, context=context):
             if rec.weight_avg and rec.material_specification and rec.material_ft:
-                res[rec.id] = rec.weight_avg / rec.material_ft * 10 * 7
+                res[rec.id] = rec.weight_avg / rec.material_ft * 1000 * 10000
+        return res
+
+    def _get_single_silk_length(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算单丝长度
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, 0)
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.weight_avg and rec.material_specification and rec.material_ft:
+                res[rec.id] = rec.weight_avg / rec.material_ft * 1000
         return res
 
     def _get_total_swing_number(self, cr, uid, ids, field_name, arg, context):
@@ -179,7 +191,7 @@ class wjzpw_produce_qian_jing(osv.osv):
 
     _columns = {
         'create_date': fields.datetime('wjzpw.produce.chuangJianRiQi', readonly=True),  # 数据创建日期
-        'machine_no': fields.char('wjzpw.produce.jiHao'),  # 机号
+        'machine_no': fields.selection((('1', '1'), ('2', '2')), 'wjzpw.produce.jiHao'),  # 机号
         'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
         'process_unit': fields.char('wjzpw.produce.jiaGongDanWei'),  # 加工单位
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.produce.pinMing', required=True),  # 品名
@@ -205,8 +217,7 @@ class wjzpw_produce_qian_jing(osv.osv):
         'already_meter': fields.function(_get_already_meter, string='wjzpw.produce.yiQianMiShu', type='integer', method=True),  # 已牵米数
         'plan_end_date': fields.function(_get_plan_end_time, string='wjzpw.produce.yuJiJinJiShiJian', type='char', method=True),  # 预计尽机时间
         'total_swing_number': fields.function(_get_total_swing_number, string='wjzpw.produce.zongJingShu', type='integer', method=True),  # 计算总经数
-        'single_silk_length': fields.function(_get_plan_meter, string='wjzpw.produce.dangSiChangDuWanMi', type='float', method=True),  # 计算单丝长度
-
+        'single_silk_length': fields.function(_get_single_silk_length, string='wjzpw.produce.dangSiChangDuWanMi', type='float', method=True),  # 计算单丝长度
     }
 
     _defaults = {
