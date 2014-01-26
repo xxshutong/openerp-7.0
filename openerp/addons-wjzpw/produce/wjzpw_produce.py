@@ -62,6 +62,17 @@ class wjzpw_produce_qian_jing(osv.osv):
                 pass
         return {}
 
+    def onchange_swing_number_or_axes_number(self, cr, uid, ids, wing_number=None, axes_number=None, context={}):
+        """
+        计算总经数
+        """
+        if wing_number and axes_number:
+            return {
+                'value': {
+                    'total_swing_number': wing_number * axes_number
+                }
+            }
+
     def convert_material_specification_to_ft(self, material_specification):
         """
         由原料规格中提取出分特
