@@ -72,6 +72,20 @@ class wjzpw_produce_qian_jing(osv.osv):
                     'total_swing_number': wing_number * axes_number
                 }
             }
+        return {}
+
+    def onchange_material_specification(self, cr, uid, ids, material_specification=None, context={}):
+        """
+        计算原料分特
+        """
+        if material_specification:
+            material_specification_obj = self.pool.get('wjzpw.material.specification').browse(cr, uid, material_specification, context=context)
+            return {
+                'value': {
+                    'material_ft': self.convert_material_specification_to_ft(material_specification_obj.name)
+                }
+            }
+        return {}
 
     def convert_material_specification_to_ft(self, material_specification):
         """

@@ -16,7 +16,7 @@
                         <group col="4">
                             <field name="process_unit"/>
                             <field name="product_id"/>
-                            <field name="material_specification"/>
+                            <field name="material_specification" on_change="onchange_material_specification(material_specification)"/>
                             <field name="batch_no"/>
                             <field name="material_area"/>
                         <!--</group>-->
