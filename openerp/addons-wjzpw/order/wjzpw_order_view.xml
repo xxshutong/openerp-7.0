@@ -103,7 +103,7 @@
             <field name="type">form</field>
             <field name="model">wjzpw.order.plan</field>
             <field name="arch" type="xml">
-                <form string="wjzpw.order.shengChanGongYiJiJiHuaAnPai" version="7.0">
+                <form string="wjzpw.order.shengChanGongYiJiJiHuaAnPai" version="7.0" create="false">
                     <header>
                     </header>
                     <sheet>

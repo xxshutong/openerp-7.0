@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-19 09:14+0000\n"
-"PO-Revision-Date: 2014-01-19 09:14+0000\n"
+"POT-Creation-Date: 2014-01-27 14:57+0000\n"
+"PO-Revision-Date: 2014-01-27 14:57+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -127,13 +127,18 @@ msgid "wjzpw.order.jiBenZuZhi"
 msgstr ""
 
 #. module: order
+#: field:wjzpw.order.plan,texture_axis_number:0
+msgid "wjzpw.order.zhiZhouGeShu"
+msgstr ""
+
+#. module: order
 #: selection:wjzpw.order,status:0
 msgid "安排生产计划"
 msgstr ""
 
 #. module: order
-#: field:wjzpw.order.plan,texture_axis_number:0
-msgid "wjzpw.order.zhiZhouGeShu"
+#: model:ir.model,name:order.model_wjzpw_order_material_specification
+msgid "wjzpw.order.yuanLiaoGuiGeGuanLi"
 msgstr ""
 
 #. module: order
@@ -221,6 +226,11 @@ msgstr ""
 #. module: order
 #: selection:wjzpw.order,product_type:0
 msgid "订单"
+msgstr ""
+
+#. module: order
+#: field:wjzpw.order.material.specification,name:0
+msgid "wjzpw.order.guiGe"
 msgstr ""
 
 #. module: order
@@ -355,6 +365,11 @@ msgstr ""
 #. module: order
 #: field:wjzpw.order.plan,organzine_a:0
 msgid "wjzpw.order.jiaJing"
+msgstr ""
+
+#. module: order
+#: sql_constraint:wjzpw.order.material.specification:0
+msgid "该原料规格已经存在"
 msgstr ""
 
 #. module: order

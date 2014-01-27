@@ -290,16 +290,16 @@ class wjzpw_order_plan(osv.osv):
         'heald_number': fields.char('wjzpw.order.zongKuangShu'),  # 综框数
         'basic_organize': fields.many2one('wjzpw.basic.organization', 'wjzpw.order.jiBenZuZhi'),  # 基本组织
         'cloth_requirement': fields.many2one('wjzpw.cloth.requirement', 'wjzpw.order.piBuYaoQiu'),  # 坯布要求
-        'organzine_a': fields.many2one('wjzpw.material.specification', 'wjzpw.order.jiaJing'),  # 甲经
+        'organzine_a': fields.many2one('wjzpw.order.material.specification', 'wjzpw.order.jiaJing'),  # 甲经
         'organzine_a_twist': fields.char('wjzpw.order.jiaJingNianDuXiang'),  # 甲经捻度（向）
         'organzine_a_amount': fields.char('wjzpw.order.jiaJingYongLiang'),  # 甲经用量
-        'organzine_b': fields.many2one('wjzpw.material.specification', 'wjzpw.order.yiJing'),  # 乙经
+        'organzine_b': fields.many2one('wjzpw.order.material.specification', 'wjzpw.order.yiJing'),  # 乙经
         'organzine_b_twist': fields.char('wjzpw.order.yiJingNianDuXiang'),  # 乙经捻度（向）
         'organzine_b_amount': fields.char('wjzpw.order.yiJingYongLiang'),  # 乙经用量
-        'weft_a': fields.many2one('wjzpw.material.specification', 'wjzpw.order.jiaWei'),  # 甲纬
+        'weft_a': fields.many2one('wjzpw.order.material.specification', 'wjzpw.order.jiaWei'),  # 甲纬
         'weft_a_twist': fields.char('wjzpw.order.jiaWeiNianDuXiang'),  # 甲纬捻度（向）
         'weft_a_amount': fields.char('wjzpw.order.jiaWeiYongLiang'),  # 甲纬用量
-        'weft_b': fields.many2one('wjzpw.material.specification', 'wjzpw.order.yiWei'),  # 乙纬
+        'weft_b': fields.many2one('wjzpw.order.material.specification', 'wjzpw.order.yiWei'),  # 乙纬
         'weft_b_twist': fields.char('wjzpw.order.yiWeiNianDuXiang'),  # 乙纬捻度（向）
         'weft_b_amount': fields.char('wjzpw.order.yiWeiYongLiang'),  # 乙纬用量
         # 循环排列
@@ -333,6 +333,23 @@ class wjzpw_order_plan(osv.osv):
     _order = "order_id desc"
 
 
+class wjzpw_order_material_specifications(osv.osv):
+    """
+    工艺单原料规格管理
+    """
+    _name = "wjzpw.order.material.specification"
+    _description = "wjzpw.order.yuanLiaoGuiGeGuanLi"
+
+    _columns = {
+        'name': fields.char('wjzpw.order.guiGe', size=64, required=True),
+    }
+    _sql_constraints = [
+        ('name_unique', 'unique(name)', u'该原料规格已经存在'),
+        ]
+
+    _order = "name"
+
 wjzpw_order_product()
 wjzpw_order()
 wjzpw_order_plan()
+wjzpw_order_material_specifications()
