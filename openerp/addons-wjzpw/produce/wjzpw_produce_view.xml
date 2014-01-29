@@ -80,11 +80,63 @@
             <field name="view_id" ref="wjzpw_qian_jing_tree_view"/>
         </record>
 
+        <!--定义QianJingChanLiang表单视图-->
+        <record model="ir.ui.view" id="wjzpw_qian_jing_output_form_view">
+            <field name="name">wjzpw.produce.qianJingChanLiang</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.produce.qian.jing.output</field>
+            <field name="arch" type="xml">
+                <form string="wjzpw.produce.qianJingChanLiang" version="7.0">
+                    <sheet>
+                        <group col="4">
+                            <field name="flow_no" colspan="2"/>
+                        </group>
+                        <group col="4">
+                            <field name="process_unit"/>
+                            <field name="product_id"/>
+                            <field name="input_date"/>
+                            <field name="class_type"/>
+                            <field name="employee"/>
+                            <field name="machine_no"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义QianJingChanLiang列表视图-->
+        <record model="ir.ui.view" id="wjzpw_qian_jing_output_tree_view">
+            <field name="name">wjzpw.produce.qianJingChanLiang</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.produce.qian.jing.output</field>
+            <field name="arch" type="xml">
+                <tree string="wjzpw.produce.qianJingChanLiang">
+                    <field name="flow_no"/>
+                    <field name="process_unit"/>
+                    <field name="product_id"/>
+                    <field name="input_date"/>
+                    <field name="class_type"/>
+                    <field name="employee"/>
+                    <field name="machine_no"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义QianJingChanLiang视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_qian_jing_output">
+            <field name="name">wjzpw.produce.qianJingChanLiang</field>
+            <field name="res_model">wjzpw.produce.qian.jing.output</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wjzpw_qian_jing_output_tree_view"/>
+        </record>
 
         <!--定义菜单-->
         <menuitem id="wjzpw_produce_menu" name="wjzpw.produce.shengChan"/>
         <!-- 整浆并车间 -->
         <menuitem id="wjzpw_zheng_jiang_bing_menu" name="wjzpw.produce.zhengJiangBingCheJian" parent="wjzpw_produce_menu"/>
         <menuitem id="wjzpw_qian_jing_menu" name="wjzpw.produce.qianJing" parent="wjzpw_zheng_jiang_bing_menu" action="action_wjzpw_qian_jing"/>
+        <!-- 工人产量 -->
+        <menuitem id="wjzpw_employee_output_menu" name="wjzpw.produce.gongRenChanLiang" parent="wjzpw_produce_menu"/>
+        <menuitem id="wjzpw_zheng_jiang_bing_record_menu" name="wjzpw.produce.zhengJiangBingCheJianJiLu" parent="wjzpw_employee_output_menu"/>
+        <menuitem id="wjzpw_qian_jing_output_menu" name="wjzpw.produce.qianJingGongRenChanLiang" parent="wjzpw_zheng_jiang_bing_record_menu" action="action_wjzpw_qian_jing_output"/>
     </data>
 </openerp>

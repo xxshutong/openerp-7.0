@@ -230,4 +230,52 @@ class wjzpw_produce_qian_jing(osv.osv):
     _order = "create_date desc"
 
 
+class wjzpw_produce_qian_jing_output(osv.osv):
+    """
+    牵经工人产量
+    """
+    _name = "wjzpw.produce.qian.jing.output"
+    _description = "wjzpw.produce.qianJingGongRenChanLiang"
+
+    _columns = {
+        'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
+        'process_unit': fields.char('wjzpw.produce.jiaGongDanWei', required=True),  # 加工单位
+        'product_id': fields.many2one('wjzpw.product', 'wjzpw.produce.pinMing', required=True),  # 品名
+        'input_date': fields.date('wjzpw.produce.riQi', required=True),  # 日期
+        'class_type': fields.selection((('A', 'wjzpw.produce.jiaBan'), ('B', 'wjzpw.produce.yiBan'), ('C', 'wjzpw.produce.bingBan')), 'wjzpw.produce.banBie'),  # 班别
+        'employee': fields.char('wjzpw.produce.xingMing'),  # 姓名
+        'machine_no': fields.selection((('1', '1'), ('2', '2')), 'wjzpw.produce.jiHao'),  # 机号
+    }
+
+    _defaults = {
+        'input_date': datetime.today().strftime('%Y-%m-%d')
+    }
+
+    _order = "input_date desc"
+
+
+class wjzpw_produce_qian_jing_output_record(osv.osv):
+    """
+    牵经工人产量记录
+    """
+    _name = "wjzpw.produce.qian.jing.output.record"
+    _description = "wjzpw.produce.qianJingGongRenChanLiangJiLu"
+
+    _columns = {
+        'create_date': fields.datetime('wjzpw.produce.chuangJianRiQi', readonly=True),  # 数据创建日期
+        'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
+        'off_axis_number': fields.integer('wjzpw.produce.qianJingLuoZhouGeShu', required=True),  # 牵经落轴个数
+        'off_axis_meter': fields.integer('wjzpw.produce.qianJingLuoZhouMiShu', required=True),  # 牵经落轴米数
+        'remark': fields.char('wjzpw.produce.beiZhu')  # 备注
+    }
+
+    _defaults = {
+        'off_axis_number': 0
+    }
+
+    _order = "create_date"
+
+
 wjzpw_produce_qian_jing()
+wjzpw_produce_qian_jing_output()
+wjzpw_produce_qian_jing_output_record()
