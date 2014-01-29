@@ -237,6 +237,26 @@ class wjzpw_produce_qian_jing_output(osv.osv):
     _name = "wjzpw.produce.qian.jing.output"
     _description = "wjzpw.produce.qianJingGongRenChanLiang"
 
+    def onchange_flow_no(self, cr, uid, ids, flow_no=None, context={}):
+        if not flow_no:
+            return {}
+        # Get existing company no
+        query_sql = """
+            SELECT process_unit, product_id
+            FROM wjzpw_produce_qian_jing
+            WHERE flow_no = %d
+        """ % flow_no
+        cr.execute(query_sql)
+        wjzpw_produce_qian_jing = cr.dictfetchall()
+        if wjzpw_produce_qian_jing and len(wjzpw_produce_qian_jing) >= 1:
+            return {
+                'value': {
+                    'process_unit': wjzpw_produce_qian_jing[0]['process_unit'],
+                    'product_id': wjzpw_produce_qian_jing[0]['product_id'],
+                }
+            }
+        return {}
+
     _columns = {
         'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
         'process_unit': fields.char('wjzpw.produce.jiaGongDanWei', required=True),  # 加工单位
