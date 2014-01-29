@@ -110,13 +110,14 @@
             <field name="model">wjzpw.produce.qian.jing.output</field>
             <field name="arch" type="xml">
                 <tree string="wjzpw.produce.qianJingChanLiang">
-                    <field name="flow_no"/>
-                    <field name="process_unit"/>
-                    <field name="product_id"/>
                     <field name="input_date"/>
                     <field name="class_type"/>
                     <field name="employee"/>
                     <field name="machine_no"/>
+                    <field name="speed"/>
+                    <field name="process_unit"/>
+                    <field name="flow_no"/>
+                    <field name="product_id"/>
                 </tree>
             </field>
         </record>

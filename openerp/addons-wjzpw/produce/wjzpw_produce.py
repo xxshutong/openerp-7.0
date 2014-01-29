@@ -257,6 +257,26 @@ class wjzpw_produce_qian_jing_output(osv.osv):
             }
         return {}
 
+    def _get_speed(self, cr, uid, ids, field_name, arg, context):
+        """
+        获取车速
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, 0)
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.flow_no:
+                query_sql = """
+                    SELECT speed
+                    FROM wjzpw_produce_qian_jing
+                    WHERE flow_no = %d
+                """ % rec.flow_no
+                cr.execute(query_sql)
+                wjzpw_produce_qian_jing = cr.dictfetchall()
+                if wjzpw_produce_qian_jing and len(wjzpw_produce_qian_jing) >= 1:
+                    res[rec.id] = wjzpw_produce_qian_jing[0]['speed']
+        return res
+
     _columns = {
         'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
         'process_unit': fields.char('wjzpw.produce.jiaGongDanWei', required=True),  # 加工单位
@@ -265,6 +285,9 @@ class wjzpw_produce_qian_jing_output(osv.osv):
         'class_type': fields.selection((('A', 'wjzpw.produce.jiaBan'), ('B', 'wjzpw.produce.yiBan'), ('C', 'wjzpw.produce.bingBan')), 'wjzpw.produce.banBie'),  # 班别
         'employee': fields.char('wjzpw.produce.xingMing'),  # 姓名
         'machine_no': fields.selection((('1', '1'), ('2', '2')), 'wjzpw.produce.jiHao'),  # 机号
+
+        # functions
+        'speed': fields.function(_get_speed, string='wjzpw.produce.cheSuZhuanMeiFen', type='integer', method=True),  # 总只数
     }
 
     _defaults = {
