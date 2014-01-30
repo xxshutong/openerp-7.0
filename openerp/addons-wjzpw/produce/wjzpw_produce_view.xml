@@ -99,6 +99,17 @@
                             <field name="employee"/>
                             <field name="machine_no"/>
                         </group>
+                        <notebook>
+                            <page string="wjzpw.produce.chanLiangJiLu">
+                                <field name="records">
+                                    <tree string="wjzpw.produce.chanLiangJiLu" editable="bottom">
+                                        <field name="off_axis_number"/>
+                                        <field name="off_axis_meter"/>
+                                        <field name="remark"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>

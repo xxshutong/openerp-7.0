@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-25 16:34+0000\n"
-"PO-Revision-Date: 2014-01-25 16:34+0000\n"
+"POT-Creation-Date: 2014-01-30 07:33+0000\n"
+"PO-Revision-Date: 2014-01-30 07:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,6 +17,8 @@ msgstr ""
 
 #. module: produce
 #: field:wjzpw.produce.qian.jing,flow_no:0
+#: field:wjzpw.produce.qian.jing.output,flow_no:0
+#: field:wjzpw.produce.qian.jing.output.record,flow_no:0
 msgid "wjzpw.produce.liuChengBianHao"
 msgstr ""
 
@@ -46,8 +48,50 @@ msgid "wjzpw.produce.qianJingLuoZhouShu"
 msgstr ""
 
 #. module: produce
+#: selection:wjzpw.produce.qian.jing.output,class_type:0
+msgid "wjzpw.produce.bingBan"
+msgstr ""
+
+#. module: produce
 #: field:wjzpw.produce.qian.jing,material_specification:0
 msgid "wjzpw.inventory.yuanLiaoGuiGe"
+msgstr ""
+
+#. module: produce
+#: model:ir.model,name:produce.model_wjzpw_produce_qian_jing_output
+#: model:ir.ui.menu,name:produce.wjzpw_qian_jing_output_menu
+msgid "wjzpw.produce.qianJingGongRenChanLiang"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing.output.record,off_axis_number:0
+msgid "wjzpw.produce.qianJingLuoZhouGeShu"
+msgstr ""
+
+#. module: produce
+#: model:ir.ui.menu,name:produce.wjzpw_zheng_jiang_bing_record_menu
+msgid "wjzpw.produce.zhengJiangBingCheJianJiLu"
+msgstr ""
+
+#. module: produce
+#: model:ir.actions.act_window,name:produce.action_wjzpw_qian_jing_output
+#: view:wjzpw.produce.qian.jing.output:0
+msgid "wjzpw.produce.qianJingChanLiang"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing.output,employee:0
+msgid "wjzpw.produce.xingMing"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing,axes_number:0
+msgid "wjzpw.produce.bingZhouShu"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing.output,speed:0
+msgid "wjzpw.produce.cheSuZhuanMeiFen"
 msgstr ""
 
 #. module: produce
@@ -59,17 +103,8 @@ msgid "wjzpw.produce.qianJing"
 msgstr ""
 
 #. module: produce
-#: field:wjzpw.produce.qian.jing,axes_number:0
-msgid "wjzpw.produce.bingZhouShu"
-msgstr ""
-
-#. module: produce
-#: field:wjzpw.produce.qian.jing,material_ft:0
-msgid "wjzpw.produce.yuanLiaoFenTe"
-msgstr ""
-
-#. module: produce
 #: field:wjzpw.produce.qian.jing,create_date:0
+#: field:wjzpw.produce.qian.jing.output.record,create_date:0
 msgid "wjzpw.produce.chuangJianRiQi"
 msgstr ""
 
@@ -89,7 +124,13 @@ msgid "wjzpw.produce.qianJingYiLuoZhou"
 msgstr ""
 
 #. module: produce
+#: model:ir.model,name:produce.model_wjzpw_produce_qian_jing_output_record
+msgid "wjzpw.produce.qianJingGongRenChanLiangJiLu"
+msgstr ""
+
+#. module: produce
 #: field:wjzpw.produce.qian.jing,machine_no:0
+#: field:wjzpw.produce.qian.jing.output,machine_no:0
 msgid "wjzpw.produce.jiHao"
 msgstr ""
 
@@ -101,6 +142,26 @@ msgstr ""
 #. module: produce
 #: selection:wjzpw.produce.qian.jing,status:0
 msgid "wjzpw.produce.shengChanZhong"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing.output.record,remark:0
+msgid "wjzpw.produce.beiZhu"
+msgstr ""
+
+#. module: produce
+#: selection:wjzpw.produce.qian.jing.output,class_type:0
+msgid "wjzpw.produce.yiBan"
+msgstr ""
+
+#. module: produce
+#: selection:wjzpw.produce.qian.jing.output,class_type:0
+msgid "wjzpw.produce.jiaBan"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing.output,input_date:0
+msgid "wjzpw.produce.riQi"
 msgstr ""
 
 #. module: produce
@@ -125,12 +186,29 @@ msgstr ""
 
 #. module: produce
 #: field:wjzpw.produce.qian.jing,product_id:0
+#: field:wjzpw.produce.qian.jing.output,product_id:0
 msgid "wjzpw.produce.pinMing"
 msgstr ""
 
 #. module: produce
 #: field:wjzpw.produce.qian.jing,already_meter:0
 msgid "wjzpw.produce.yiQianMiShu"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing.output,class_type:0
+msgid "wjzpw.produce.banBie"
+msgstr ""
+
+#. module: produce
+#: view:wjzpw.produce.qian.jing.output:0
+#: field:wjzpw.produce.qian.jing.output,records:0
+msgid "wjzpw.produce.chanLiangJiLu"
+msgstr ""
+
+#. module: produce
+#: model:ir.ui.menu,name:produce.wjzpw_employee_output_menu
+msgid "wjzpw.produce.gongRenChanLiang"
 msgstr ""
 
 #. module: produce
@@ -149,12 +227,18 @@ msgid "wjzpw.produce.dangSiChangDuWanMi"
 msgstr ""
 
 #. module: produce
+#: field:wjzpw.produce.qian.jing,material_ft:0
+msgid "wjzpw.produce.yuanLiaoFenTe"
+msgstr ""
+
+#. module: produce
 #: model:ir.ui.menu,name:produce.wjzpw_zheng_jiang_bing_menu
 msgid "wjzpw.produce.zhengJiangBingCheJian"
 msgstr ""
 
 #. module: produce
 #: field:wjzpw.produce.qian.jing,process_unit:0
+#: field:wjzpw.produce.qian.jing.output,process_unit:0
 msgid "wjzpw.produce.jiaGongDanWei"
 msgstr ""
 
@@ -166,5 +250,10 @@ msgstr ""
 #. module: produce
 #: field:wjzpw.produce.qian.jing,plan_meter:0
 msgid "wjzpw.produce.yuQianMiShu"
+msgstr ""
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing.output.record,off_axis_meter:0
+msgid "wjzpw.produce.qianJingLuoZhouMiShu"
 msgstr ""
 

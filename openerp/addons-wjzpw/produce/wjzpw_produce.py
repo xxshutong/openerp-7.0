@@ -285,6 +285,7 @@ class wjzpw_produce_qian_jing_output(osv.osv):
         'class_type': fields.selection((('A', 'wjzpw.produce.jiaBan'), ('B', 'wjzpw.produce.yiBan'), ('C', 'wjzpw.produce.bingBan')), 'wjzpw.produce.banBie'),  # 班别
         'employee': fields.char('wjzpw.produce.xingMing'),  # 姓名
         'machine_no': fields.selection((('1', '1'), ('2', '2')), 'wjzpw.produce.jiHao'),  # 机号
+        'records': fields.one2many('wjzpw.produce.qian.jing.output.record', 'flow_no', 'wjzpw.produce.chanLiangJiLu', readonly=False),
 
         # functions
         'speed': fields.function(_get_speed, string='wjzpw.produce.cheSuZhuanMeiFen', type='integer', method=True),  # 总只数
