@@ -118,20 +118,34 @@ class wjzpw_produce_qian_jing(osv.osv):
         """
         计算牵经已落轴数
         """
-        # TODO 需要等获取人工数据后计算得到
         res = {}
         for id in ids:
             res[id] = 0
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.flow_no:
+                output_ids = self.pool.get('wjzpw.produce.qian.jing.output').search(cr, uid, [('flow_no', '=', rec.flow_no.id)])
+                value = 0
+                for output in self.pool.get('wjzpw.produce.qian.jing.output').browse(cr, uid, output_ids):
+                    if output.off_axis_total_number:
+                        value += output.off_axis_total_number
+                res[rec.id] = value
         return res
 
     def _get_already_meter(self, cr, uid, ids, field_name, arg, context):
         """
         计算已签米数
         """
-        # TODO 需要等获取人工数据后计算得到
         res = {}
         for id in ids:
             res[id] = 0
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.flow_no:
+                output_ids = self.pool.get('wjzpw.produce.qian.jing.output').search(cr, uid, [('flow_no', '=', rec.flow_no.id)])
+                value = 0
+                for output in self.pool.get('wjzpw.produce.qian.jing.output').browse(cr, uid, output_ids):
+                    if output.off_axis_total_meter:
+                        value += output.off_axis_total_meter
+                res[rec.id] = value
         return res
 
     def _get_plan_end_time(self, cr, uid, ids, field_name, arg, context):
