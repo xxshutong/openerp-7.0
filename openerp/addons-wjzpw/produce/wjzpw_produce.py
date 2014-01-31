@@ -277,6 +277,44 @@ class wjzpw_produce_qian_jing_output(osv.osv):
                     res[rec.id] = wjzpw_produce_qian_jing[0]['speed']
         return res
 
+    def _get_total_meter(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算牵经落轴米数
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, 0)
+        for id in ids:
+            query_sql = """
+                SELECT sum(off_axis_meter) as sum
+                FROM wjzpw_produce_qian_jing_output_record
+                WHERE wjzpw_produce_qian_jing_output = %d
+            """ % id
+            cr.execute(query_sql)
+            result = cr.dictfetchone()
+            if result and result['sum']:
+                res[id] = result['sum']
+        return res
+
+    def _get_total_number(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算牵经落轴数
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, 0)
+        for id in ids:
+            query_sql = """
+                SELECT sum(off_axis_number) as sum
+                FROM wjzpw_produce_qian_jing_output_record
+                WHERE wjzpw_produce_qian_jing_output = %d
+            """ % id
+            cr.execute(query_sql)
+            result = cr.dictfetchone()
+            if result and result['sum']:
+                res[id] = result['sum']
+        return res
+
     _columns = {
         'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
         'process_unit': fields.char('wjzpw.produce.jiaGongDanWei', required=True),  # 加工单位
@@ -285,10 +323,13 @@ class wjzpw_produce_qian_jing_output(osv.osv):
         'class_type': fields.selection((('A', 'wjzpw.produce.jiaBan'), ('B', 'wjzpw.produce.yiBan'), ('C', 'wjzpw.produce.bingBan')), 'wjzpw.produce.banBie'),  # 班别
         'employee': fields.char('wjzpw.produce.xingMing'),  # 姓名
         'machine_no': fields.selection((('1', '1'), ('2', '2')), 'wjzpw.produce.jiHao'),  # 机号
-        'records': fields.one2many('wjzpw.produce.qian.jing.output.record', 'flow_no', 'wjzpw.produce.chanLiangJiLu', readonly=False),
+        'records': fields.one2many('wjzpw.produce.qian.jing.output.record', 'wjzpw_produce_qian_jing_output', 'wjzpw.produce.chanLiangJiLu', readonly=False),
+        'remark': fields.char('wjzpw.produce.beiZhu'),  # 备注
 
         # functions
         'speed': fields.function(_get_speed, string='wjzpw.produce.cheSuZhuanMeiFen', type='integer', method=True),  # 总只数
+        'off_axis_total_meter': fields.function(_get_total_meter, string='wjzpw.produce.luoZhouMiShu', type='integer', method=True),  # 落轴米数
+        'off_axis_total_number': fields.function(_get_total_number, string='wjzpw.produce.luoZhouGeShu', type='integer', method=True)  # 落轴个数
     }
 
     _defaults = {
@@ -307,7 +348,7 @@ class wjzpw_produce_qian_jing_output_record(osv.osv):
 
     _columns = {
         'create_date': fields.datetime('wjzpw.produce.chuangJianRiQi', readonly=True),  # 数据创建日期
-        'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
+        'wjzpw_produce_qian_jing_output': fields.many2one('wjzpw.produce.qian.jing.output', 'wjzpw.produce.qianJingGongRenChanLiang', required=True),  # 流程编号
         'off_axis_number': fields.integer('wjzpw.produce.qianJingLuoZhouGeShu', required=True),  # 牵经落轴个数
         'off_axis_meter': fields.integer('wjzpw.produce.qianJingLuoZhouMiShu', required=True),  # 牵经落轴米数
         'remark': fields.char('wjzpw.produce.beiZhu')  # 备注

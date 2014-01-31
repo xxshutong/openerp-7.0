@@ -98,6 +98,7 @@
                             <field name="class_type"/>
                             <field name="employee"/>
                             <field name="machine_no"/>
+                            <field name="remark"/>
                         </group>
                         <notebook>
                             <page string="wjzpw.produce.chanLiangJiLu">
@@ -129,6 +130,8 @@
                     <field name="process_unit"/>
                     <field name="flow_no"/>
                     <field name="product_id"/>
+                    <field name="off_axis_total_meter"/>
+                    <field name="remark"/>
                 </tree>
             </field>
         </record>

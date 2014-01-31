@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-30 07:28+0000\n"
-"PO-Revision-Date: 2014-01-30 07:28+0000\n"
+"POT-Creation-Date: 2014-01-31 07:31+0000\n"
+"PO-Revision-Date: 2014-01-31 07:31+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,6 @@ msgstr ""
 #. module: produce
 #: field:wjzpw.produce.qian.jing,flow_no:0
 #: field:wjzpw.produce.qian.jing.output,flow_no:0
-#: field:wjzpw.produce.qian.jing.output.record,flow_no:0
 msgid "wjzpw.produce.liuChengBianHao"
 msgstr "流程编号"
 
@@ -60,6 +59,7 @@ msgstr "原料规格"
 #. module: produce
 #: model:ir.model,name:produce.model_wjzpw_produce_qian_jing_output
 #: model:ir.ui.menu,name:produce.wjzpw_qian_jing_output_menu
+#: field:wjzpw.produce.qian.jing.output.record,wjzpw_produce_qian_jing_output:0
 msgid "wjzpw.produce.qianJingGongRenChanLiang"
 msgstr "牵经工人产量"
 
@@ -74,10 +74,12 @@ msgid "wjzpw.produce.zhengJiangBingCheJianJiLu"
 msgstr "整浆并车间记录"
 
 #. module: produce
-#: model:ir.actions.act_window,name:produce.action_wjzpw_qian_jing_output
-#: view:wjzpw.produce.qian.jing.output:0
-msgid "wjzpw.produce.qianJingChanLiang"
-msgstr "牵经产量"
+#: model:ir.actions.act_window,name:produce.action_wjzpw_qian_jing
+#: model:ir.model,name:produce.model_wjzpw_produce_qian_jing
+#: model:ir.ui.menu,name:produce.wjzpw_qian_jing_menu
+#: view:wjzpw.produce.qian.jing:0
+msgid "wjzpw.produce.qianJing"
+msgstr "牵经"
 
 #. module: produce
 #: field:wjzpw.produce.qian.jing.output,employee:0
@@ -95,12 +97,10 @@ msgid "wjzpw.produce.cheSuZhuanMeiFen"
 msgstr "车速(转每分)"
 
 #. module: produce
-#: model:ir.actions.act_window,name:produce.action_wjzpw_qian_jing
-#: model:ir.model,name:produce.model_wjzpw_produce_qian_jing
-#: model:ir.ui.menu,name:produce.wjzpw_qian_jing_menu
-#: view:wjzpw.produce.qian.jing:0
-msgid "wjzpw.produce.qianJing"
-msgstr "牵经"
+#: model:ir.actions.act_window,name:produce.action_wjzpw_qian_jing_output
+#: view:wjzpw.produce.qian.jing.output:0
+msgid "wjzpw.produce.qianJingChanLiang"
+msgstr "牵经产量"
 
 #. module: produce
 #: field:wjzpw.produce.qian.jing,create_date:0
@@ -122,6 +122,11 @@ msgstr "效率"
 #: field:wjzpw.produce.qian.jing,already_off_axis_number:0
 msgid "wjzpw.produce.qianJingYiLuoZhou"
 msgstr "牵经已落轴"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing.output,off_axis_total_number:0
+msgid "wjzpw.produce.luoZhouGeShu"
+msgstr "落轴个数"
 
 #. module: produce
 #: model:ir.model,name:produce.model_wjzpw_produce_qian_jing_output_record
@@ -246,6 +251,11 @@ msgstr "加工单位"
 #: field:wjzpw.produce.qian.jing,total_length:0
 msgid "wjzpw.produce.sheDingZongChang"
 msgstr "设定总长"
+
+#. module: produce
+#: field:wjzpw.produce.qian.jing.output,off_axis_total_meter:0
+msgid "wjzpw.produce.luoZhouMiShu"
+msgstr "落轴米数"
 
 #. module: produce
 #: field:wjzpw.produce.qian.jing,plan_meter:0
