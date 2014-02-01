@@ -88,7 +88,7 @@
             <field name="type">tree</field>
             <field name="model">wjzpw.produce.qian.jing</field>
             <field name="arch" type="xml">
-                <tree string="wjzpw.produce.shangJiang">
+                <tree string="wjzpw.produce.shangJiang" edit="false" delete="false" create="false">
                     <field name="machine_no"/>
                     <field name="input_date"/>
                     <field name="process_unit"/>
@@ -122,8 +122,8 @@
             <field name="arch" type="xml">
                 <form string="wjzpw.produce.qianJingChanLiang" version="7.0">
                     <sheet>
-                        <group col="4">
-                            <field name="flow_no" colspan="2" on_change="onchange_flow_no(flow_no)"/>
+                        <group col="2">
+                            <field name="flow_no" on_change="onchange_flow_no(flow_no)"/>
                         </group>
                         <group col="4">
                             <field name="process_unit"/>
