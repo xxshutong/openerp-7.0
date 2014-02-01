@@ -11,6 +11,7 @@
                     <sheet>
                         <group col="2">
                             <field name="machine_no"/>
+                            <field name="input_date"/>
                             <field name="flow_no" on_change="onchange_flow_no(flow_no)"/>
                         </group>
                         <group col="4">
@@ -50,6 +51,7 @@
             <field name="arch" type="xml">
                 <tree string="wjzpw.produce.qianJing">
                     <field name="machine_no"/>
+                    <field name="input_date"/>
                     <field name="process_unit"/>
                     <field name="flow_no"/>
                     <field name="product_id"/>
@@ -88,6 +90,7 @@
             <field name="arch" type="xml">
                 <tree string="wjzpw.produce.shangJiang">
                     <field name="machine_no"/>
+                    <field name="input_date"/>
                     <field name="process_unit"/>
                     <field name="flow_no"/>
                     <field name="product_id"/>

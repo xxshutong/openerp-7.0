@@ -238,6 +238,7 @@ class wjzpw_produce_qian_jing(osv.osv):
         return res
 
     _columns = {
+        'input_date': fields.date('wjzpw.produce.riQi', required=True),  # 录入日期
         'create_date': fields.datetime('wjzpw.produce.chuangJianRiQi', readonly=True),  # 数据创建日期
         'machine_no': fields.selection((('1', '1'), ('2', '2')), 'wjzpw.produce.jiHao'),  # 机号
         'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
@@ -276,6 +277,7 @@ class wjzpw_produce_qian_jing(osv.osv):
         # 'order_no': _default_order_no,
         # 'no': _default_no,
         # 'dead_line_unit': u'天',
+        'input_date': datetime.today().strftime('%Y-%m-%d'),
         'status': 'unfinished'
     }
 
