@@ -131,6 +131,23 @@ class wjzpw_produce_qian_jing(osv.osv):
                 res[rec.id] = value
         return res
 
+    def _get_already_reed_number(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算套筘数
+        """
+        res = {}
+        for id in ids:
+            res[id] = 0
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.flow_no:
+                output_ids = self.pool.get('wjzpw.produce.shang.jiang.output').search(cr, uid, [('flow_no', '=', rec.flow_no.id)])
+                value = 0
+                for output in self.pool.get('wjzpw.produce.shang.jiang.output').browse(cr, uid, output_ids):
+                    if output.reed_number:
+                        value += output.reed_number
+                res[rec.id] = value
+        return res
+
     def _get_already_meter(self, cr, uid, ids, field_name, arg, context):
         """
         计算已签米数
@@ -145,6 +162,23 @@ class wjzpw_produce_qian_jing(osv.osv):
                 for output in self.pool.get('wjzpw.produce.qian.jing.output').browse(cr, uid, output_ids):
                     if output.off_axis_total_meter:
                         value += output.off_axis_total_meter
+                res[rec.id] = value
+        return res
+
+    def _get_already_sizing_meter(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算上浆米数
+        """
+        res = {}
+        for id in ids:
+            res[id] = 0
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.flow_no:
+                output_ids = self.pool.get('wjzpw.produce.shang.jiang.output').search(cr, uid, [('flow_no', '=', rec.flow_no.id)])
+                value = 0
+                for output in self.pool.get('wjzpw.produce.shang.jiang.output').browse(cr, uid, output_ids):
+                    if output.sizing_meter:
+                        value += output.sizing_meter
                 res[rec.id] = value
         return res
 
@@ -232,6 +266,10 @@ class wjzpw_produce_qian_jing(osv.osv):
         'plan_end_date': fields.function(_get_plan_end_time, string='wjzpw.produce.yuJiJinJiShiJian', type='char', method=True),  # 预计尽机时间
         'total_swing_number': fields.function(_get_total_swing_number, string='wjzpw.produce.zongJingShu', type='integer', method=True),  # 计算总经数
         'single_silk_length': fields.function(_get_single_silk_length, string='wjzpw.produce.dangSiChangDuWanMi', type='float', method=True),  # 计算单丝长度
+
+        # Function fields - For Shang Jiang
+        'already_reed_number': fields.function(_get_already_reed_number, string='wjzpw.produce.taoKouShu', type='integer', method=True),  # 套筘数
+        'already_sizing_meter': fields.function(_get_already_sizing_meter, string='wjzpw.produce.shangJiangMiShu', type='integer', method=True),  # 上浆米数
     }
 
     _defaults = {
@@ -341,7 +379,7 @@ class wjzpw_produce_qian_jing_output(osv.osv):
         'remark': fields.char('wjzpw.produce.beiZhu'),  # 备注
 
         # functions
-        'speed': fields.function(_get_speed, string='wjzpw.produce.cheSuZhuanMeiFen', type='integer', method=True),  # 总只数
+        'speed': fields.function(_get_speed, string='wjzpw.produce.cheSuZhuanMeiFen', type='integer', method=True),  # 车速
         'off_axis_total_meter': fields.function(_get_total_meter, string='wjzpw.produce.luoZhouMiShu', type='integer', method=True),  # 落轴米数
         'off_axis_total_number': fields.function(_get_total_number, string='wjzpw.produce.luoZhouGeShu', type='integer', method=True)  # 落轴个数
     }

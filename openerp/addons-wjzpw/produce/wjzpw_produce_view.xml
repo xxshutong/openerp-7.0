@@ -80,6 +80,36 @@
             <field name="view_id" ref="wjzpw_qian_jing_tree_view"/>
         </record>
 
+        <!--定义ShangJiang列表视图-->
+        <record model="ir.ui.view" id="wjzpw_shang_jiang_tree_view">
+            <field name="name">wjzpw.produce.shangJiang</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.produce.qian.jing</field>
+            <field name="arch" type="xml">
+                <tree string="wjzpw.produce.shangJiang">
+                    <field name="machine_no"/>
+                    <field name="process_unit"/>
+                    <field name="flow_no"/>
+                    <field name="product_id"/>
+                    <field name="swing_number"/>
+                    <field name="axes_number"/>
+                    <field name="off_axis_number"/>
+                    <field name="already_off_axis_number"/>
+                    <field name="already_meter"/>
+                    <field name="already_reed_number"/>
+                    <field name="already_sizing_meter"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义ShangJiang视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_shang_jiang">
+            <field name="name">wjzpw.produce.shangJiang</field>
+            <field name="res_model">wjzpw.produce.qian.jing</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wjzpw_shang_jiang_tree_view"/>
+        </record>
+
         <!--定义QianJingChanLiang表单视图-->
         <record model="ir.ui.view" id="wjzpw_qian_jing_output_form_view">
             <field name="name">wjzpw.produce.qianJingChanLiang</field>
@@ -213,6 +243,7 @@
         <!-- 整浆并车间 -->
         <menuitem id="wjzpw_zheng_jiang_bing_menu" name="wjzpw.produce.zhengJiangBingCheJian" parent="wjzpw_produce_menu"/>
         <menuitem id="wjzpw_qian_jing_menu" name="wjzpw.produce.qianJing" parent="wjzpw_zheng_jiang_bing_menu" action="action_wjzpw_qian_jing"/>
+        <menuitem id="wjzpw_shang_jiang_menu" name="wjzpw.produce.shangJiang" parent="wjzpw_zheng_jiang_bing_menu" action="action_wjzpw_shang_jiang"/>
         <!-- 工人产量 -->
         <menuitem id="wjzpw_employee_output_menu" name="wjzpw.produce.gongRenChanLiang" parent="wjzpw_produce_menu"/>
         <menuitem id="wjzpw_zheng_jiang_bing_record_menu" name="wjzpw.produce.zhengJiangBingCheJianJiLu" parent="wjzpw_employee_output_menu"/>
