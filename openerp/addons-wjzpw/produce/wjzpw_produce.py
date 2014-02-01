@@ -375,6 +375,117 @@ class wjzpw_produce_qian_jing_output_record(osv.osv):
     _order = "create_date"
 
 
+class wjzpw_produce_shang_jiang_output(osv.osv):
+    """
+    上浆工人产量
+    """
+    _name = "wjzpw.produce.shang.jiang.output"
+    _description = "wjzpw.produce.shangJiangGongRenChanLiang"
+
+    def onchange_flow_no(self, cr, uid, ids, flow_no=None, context={}):
+        if not flow_no:
+            return {}
+        query_sql = """
+            SELECT process_unit, product_id
+            FROM wjzpw_produce_qian_jing
+            WHERE flow_no = %d
+        """ % flow_no
+        cr.execute(query_sql)
+        wjzpw_produce_qian_jing = cr.dictfetchall()
+        if wjzpw_produce_qian_jing and len(wjzpw_produce_qian_jing) >= 1:
+            return {
+                'value': {
+                    'process_unit': wjzpw_produce_qian_jing[0]['process_unit'],
+                    'product_id': wjzpw_produce_qian_jing[0]['product_id'],
+                    }
+            }
+        return {}
+
+    def _get_total_meter(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算上浆米数
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, 0)
+        for id in ids:
+            query_sql = """
+                SELECT sum(sizing_meter) as sum
+                FROM wjzpw_produce_shang_jiang_output_record
+                WHERE wjzpw_produce_shang_jiang_output = %d
+            """ % id
+            cr.execute(query_sql)
+            result = cr.dictfetchone()
+            if result and result['sum']:
+                res[id] = result['sum']
+        return res
+
+    def _get_total_number(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算套筘数
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, 0)
+        for id in ids:
+            query_sql = """
+                SELECT sum(reed_number) as sum
+                FROM wjzpw_produce_shang_jiang_output_record
+                WHERE wjzpw_produce_shang_jiang_output = %d
+            """ % id
+            cr.execute(query_sql)
+            result = cr.dictfetchone()
+            if result and result['sum']:
+                res[id] = result['sum']
+        return res
+
+    _columns = {
+        'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
+        'process_unit': fields.char('wjzpw.produce.jiaGongDanWei', required=True),  # 加工单位
+        'product_id': fields.many2one('wjzpw.product', 'wjzpw.produce.pinMing', required=True),  # 品名
+        'input_date': fields.date('wjzpw.produce.riQi', required=True),  # 日期
+        'class_type': fields.selection((('A', 'wjzpw.produce.jiaBan'), ('B', 'wjzpw.produce.yiBan'), ('C', 'wjzpw.produce.bingBan')), 'wjzpw.produce.banBie'),  # 班别
+        'employee': fields.char('wjzpw.produce.xingMing'),  # 姓名
+        'machine_no': fields.selection((('1', '1'), ('2', '2')), 'wjzpw.produce.jiHao'),  # 机号
+        'records': fields.one2many('wjzpw.produce.shang.jiang.output.record', 'wjzpw_produce_shang_jiang_output', 'wjzpw.produce.chanLiangJiLu', readonly=False),
+        'remark': fields.char('wjzpw.produce.beiZhu'),  # 备注
+
+        # functions
+        'sizing_meter': fields.function(_get_total_meter, string='wjzpw.produce.shangJiangMiShu', type='integer', method=True),  # 上浆米数
+        'reed_number': fields.function(_get_total_number, string='wjzpw.produce.taoKouShu', type='integer', method=True)  # 套筘数
+    }
+
+    _defaults = {
+        'input_date': datetime.today().strftime('%Y-%m-%d')
+    }
+
+    _order = "input_date desc"
+
+
+class wjzpw_produce_shang_jiang_output_record(osv.osv):
+    """
+    上浆工人产量记录
+    """
+    _name = "wjzpw.produce.shang.jiang.output.record"
+    _description = "wjzpw.produce.shangJiangGongRenChanLiangJiLu"
+
+    _columns = {
+        'create_date': fields.datetime('wjzpw.produce.chuangJianRiQi', readonly=True),  # 数据创建日期
+        'wjzpw_produce_shang_jiang_output': fields.many2one('wjzpw.produce.shang.jiang.output', 'wjzpw.produce.shangJiangGongRenChanLiang', required=True),  # 上浆工人产量
+        'reed_number': fields.integer('wjzpw.produce.taoKouShu', required=True),  # 套筘数
+        'sizing_meter': fields.integer('wjzpw.produce.shangJiangMiShu', required=True),  # 上浆米数
+        'remark': fields.char('wjzpw.produce.beiZhu')  # 备注
+    }
+
+    _defaults = {
+        'reed_number': 0
+    }
+
+    _order = "create_date"
+
+
 wjzpw_produce_qian_jing()
 wjzpw_produce_qian_jing_output()
 wjzpw_produce_qian_jing_output_record()
+wjzpw_produce_shang_jiang_output()
+wjzpw_produce_shang_jiang_output_record()
