@@ -131,6 +131,23 @@ class wjzpw_produce_qian_jing(osv.osv):
                 res[rec.id] = value
         return res
 
+    def _get_total_sizing_axes_number(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算上浆上轴数
+        """
+        res = {}
+        for id in ids:
+            res[id] = 0
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.flow_no:
+                output_ids = self.pool.get('wjzpw.produce.shang.jiang.output').search(cr, uid, [('flow_no', '=', rec.flow_no.id)])
+                value = 0
+                for output in self.pool.get('wjzpw.produce.shang.jiang.output').browse(cr, uid, output_ids):
+                    if output.sizing_axes_number:
+                        value += output.sizing_axes_number
+                res[rec.id] = value
+        return res
+
     def _get_already_reed_number(self, cr, uid, ids, field_name, arg, context):
         """
         计算套筘数
@@ -269,6 +286,7 @@ class wjzpw_produce_qian_jing(osv.osv):
         'single_silk_length': fields.function(_get_single_silk_length, string='wjzpw.produce.dangSiChangDuWanMi', type='float', method=True),  # 计算单丝长度
 
         # Function fields - For Shang Jiang
+        'sizing_axes_number': fields.function(_get_total_sizing_axes_number, string='wjzpw.produce.shangJiangShangZhouShu', type='integer', method=True),  # 上浆上轴数
         'already_reed_number': fields.function(_get_already_reed_number, string='wjzpw.produce.taoKouShu', type='integer', method=True),  # 套筘数
         'already_sizing_meter': fields.function(_get_already_sizing_meter, string='wjzpw.produce.shangJiangMiShu', type='integer', method=True),  # 上浆米数
     }
@@ -479,6 +497,25 @@ class wjzpw_produce_shang_jiang_output(osv.osv):
                 res[id] = result['sum']
         return res
 
+    def _get_total_sizing_axes_number(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算上浆上轴数
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, 0)
+        for id in ids:
+            query_sql = """
+                SELECT count(*) as count
+                FROM wjzpw_produce_shang_jiang_output_record
+                WHERE wjzpw_produce_shang_jiang_output = %d and reed_number > 0
+            """ % id
+            cr.execute(query_sql)
+            result = cr.dictfetchone()
+            if result and result['count']:
+                res[id] = result['count']
+        return res
+
     _columns = {
         'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
         'process_unit': fields.char('wjzpw.produce.jiaGongDanWei', required=True),  # 加工单位
@@ -492,7 +529,8 @@ class wjzpw_produce_shang_jiang_output(osv.osv):
 
         # functions
         'sizing_meter': fields.function(_get_total_meter, string='wjzpw.produce.shangJiangMiShu', type='integer', method=True),  # 上浆米数
-        'reed_number': fields.function(_get_total_number, string='wjzpw.produce.taoKouShu', type='integer', method=True)  # 套筘数
+        'reed_number': fields.function(_get_total_number, string='wjzpw.produce.taoKouShu', type='integer', method=True),  # 套筘数
+        'sizing_axes_number': fields.function(_get_total_sizing_axes_number, string='wjzpw.produce.shangJiangShangZhouShu', type='integer', method=True)  # 上浆上轴数
     }
 
     _defaults = {

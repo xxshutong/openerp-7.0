@@ -99,6 +99,7 @@
                     <field name="off_axis_number"/>
                     <field name="already_off_axis_number"/>
                     <field name="already_meter"/>
+                    <field name="sizing_axes_number"/>
                     <field name="already_reed_number"/>
                     <field name="already_sizing_meter"/>
                 </tree>
