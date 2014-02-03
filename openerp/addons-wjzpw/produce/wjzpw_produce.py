@@ -562,8 +562,127 @@ class wjzpw_produce_shang_jiang_output_record(osv.osv):
     _order = "create_date"
 
 
+class wjzpw_produce_bing_zhou_output(osv.osv):
+    """
+    并轴工人产量
+    """
+    _name = "wjzpw.produce.bing.zhou.output"
+    _description = "wjzpw.produce.bingZhouGongRenChanLiang"
+
+    def onchange_flow_no(self, cr, uid, ids, flow_no=None, context={}):
+        if not flow_no:
+            return {}
+        query_sql = """
+            SELECT process_unit, product_id, material_specification, material_area, batch_no
+            FROM wjzpw_produce_qian_jing
+            WHERE flow_no = %d
+        """ % flow_no
+        cr.execute(query_sql)
+        wjzpw_produce_qian_jing = cr.dictfetchall()
+        if wjzpw_produce_qian_jing and len(wjzpw_produce_qian_jing) >= 1:
+            return {
+                'value': {
+                    'process_unit': wjzpw_produce_qian_jing[0]['process_unit'],
+                    'product_id': wjzpw_produce_qian_jing[0]['product_id'],
+                    'material_specification': wjzpw_produce_qian_jing[0]['material_specification'],
+                    'material_area': wjzpw_produce_qian_jing[0]['material_area'],
+                    'batch_no': wjzpw_produce_qian_jing[0]['batch_no']
+                    }
+            }
+        return {}
+
+    def _get_total_meter(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算并轴织轴米数
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, 0)
+        for id in ids:
+            query_sql = """
+                SELECT sum(texture_axis_meter) as sum
+                FROM wjzpw_produce_bing_zhou_output_record
+                WHERE wjzpw_produce_bing_zhou_output = %d
+            """ % id
+            cr.execute(query_sql)
+            result = cr.dictfetchone()
+            if result and result['sum']:
+                res[id] = result['sum']
+        return res
+
+    def _get_total_number(self, cr, uid, ids, field_name, arg, context):
+        """
+        计算轴号
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, 0)
+        # for id in ids:
+        #     query_sql = """
+        #         SELECT sum(reed_number) as sum
+        #         FROM wjzpw_produce_shang_jiang_output_record
+        #         WHERE wjzpw_produce_shang_jiang_output = %d
+        #     """ % id
+        #     cr.execute(query_sql)
+        #     result = cr.dictfetchone()
+        #     if result and result['sum']:
+        #         res[id] = result['sum']
+        # TODO
+        return res
+
+    _columns = {
+        'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
+        'process_unit': fields.char('wjzpw.produce.jiaGongDanWei', required=True),  # 加工单位
+        'product_id': fields.many2one('wjzpw.product', 'wjzpw.produce.pinMing', required=True),  # 品名
+        'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.produce.yuanLiaoGuiGe', required=True),  # 原料规格
+        'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.produce.yuanLiaoChanDi', required=True),  # 原料产地
+        'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.produce.piHao', required=True),  # 批号
+        'total_swing_number': fields.integer('wjzpw.produce.zongJingShu'),  # 总经数
+        'door_width': fields.char('wjzpw.produce.menFu'),  # 门幅
+        'input_date': fields.date('wjzpw.produce.riQi', required=True),  # 日期
+        'class_type': fields.selection((('A', 'wjzpw.produce.jiaBan'), ('B', 'wjzpw.produce.yiBan'), ('C', 'wjzpw.produce.bingBan')), 'wjzpw.produce.banBie'),  # 班别
+        'employee': fields.char('wjzpw.produce.xingMing'),  # 姓名
+        'machine_no': fields.selection((('1', '1'), ('2', '2')), 'wjzpw.produce.jiHao'),  # 机号
+        'records': fields.one2many('wjzpw.produce.bing.zhou.output.record', 'wjzpw_produce_bing_zhou_output', 'wjzpw.produce.chanLiangJiLu', readonly=False),
+        'remark': fields.char('wjzpw.produce.beiZhu'),  # 备注
+
+        # functions
+        'axes_no': fields.function(_get_total_number, string='wjzpw.produce.zhouHao', type='integer', method=True),  # 轴号
+        'texture_axis_meter': fields.function(_get_total_meter, string='wjzpw.produce.zhiZhouMiShu', type='integer', method=True),  # 织轴米数
+    }
+
+    _defaults = {
+        'input_date': datetime.today().strftime('%Y-%m-%d')
+    }
+
+    _order = "input_date desc"
+
+
+class wjzpw_produce_bing_zhou_output_record(osv.osv):
+    """
+    并轴工人产量记录
+    """
+    _name = "wjzpw.produce.bing.zhou.output.record"
+    _description = "wjzpw.produce.bingZhouGongRenChanLiangJiLu"
+
+    _columns = {
+        'create_date': fields.datetime('wjzpw.produce.chuangJianRiQi', readonly=True),  # 数据创建日期
+        'wjzpw_produce_bing_zhou_output': fields.many2one('wjzpw.produce.bing.zhou.output', 'wjzpw.produce.bingZhouGongRenChanLiang', required=True),  # 并轴工人产量
+        'axes_no': fields.char('wjzpw.produce.zhouHao', required=True),  # 轴号
+        'texture_axis_meter': fields.integer('wjzpw.produce.zhiZhouMiShu', required=True),  # 织轴米数
+        'remark': fields.char('wjzpw.produce.beiZhu')  # 备注
+    }
+
+    _defaults = {
+        'texture_axis_meter': 0
+    }
+
+    _order = "create_date"
+
 wjzpw_produce_qian_jing()
 wjzpw_produce_qian_jing_output()
 wjzpw_produce_qian_jing_output_record()
 wjzpw_produce_shang_jiang_output()
 wjzpw_produce_shang_jiang_output_record()
+wjzpw_produce_bing_zhou_output()
+wjzpw_produce_bing_zhou_output_record()
