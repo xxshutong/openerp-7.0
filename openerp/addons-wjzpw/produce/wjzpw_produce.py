@@ -21,6 +21,7 @@
 from datetime import timedelta, datetime
 
 import logging
+from openerp import tools
 from openerp.osv import fields, osv
 
 
@@ -679,6 +680,48 @@ class wjzpw_produce_bing_zhou_output_record(osv.osv):
 
     _order = "create_date"
 
+
+class wjzpw_produce_bing_zhou(osv.osv):
+    """
+    并轴生产记录
+    """
+    _name = "wjzpw.produce.bing.zhou"
+    _auto = False
+    _description = "wjzpw.produce.bingZhou"
+
+    _columns = {
+        'create_date': fields.datetime('wjzpw.produce.chuangJianRiQi', readonly=True),  # 数据创建日期
+        'machine_no': fields.char('wjzpw.produce.jiHao'),  # 机号
+        'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
+        'process_unit': fields.char('wjzpw.produce.jiaGongDanWei'),  # 加工单位
+        'product_id': fields.many2one('wjzpw.product', 'wjzpw.produce.pinMing', required=True),  # 品名
+        'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
+        'door_width': fields.char('wjzpw.produce.menFu'),  # 门幅
+        'total_swing_number': fields.integer('wjzpw.produce.zongJingShu'),  # 总经数
+        'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.produce.yuanLiaoChanDi'),  # 原料产地
+        'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.produce.piHao', required=True),  # 批号
+        'remark': fields.char('wjzpw.produce.beiZhu'),  # 备注
+        'axes_no': fields.char('wjzpw.produce.zhouHao'),  # 轴号
+        'texture_axis_meter': fields.integer('wjzpw.produce.zhiZhouMiShu'),  # 织轴米数
+    }
+
+    def init(self, cr):
+        """
+            获取并轴记录
+            @param cr: the current row, from the database cursor
+        """
+        tools.drop_view_if_exists(cr, 'wjzpw_reed_inventory')
+        cr.execute("""
+            CREATE OR REPLACE VIEW wjzpw_produce_bing_zhou AS (
+                SELECT row_number() over (order by wpbzor.create_date DESC) AS id, wpbzor.create_date, wpbzo.machine_no, wpqj.flow_no, wpqj.process_unit, wpqj.product_id, wpqj.material_area, wpqj.batch_no
+                , wpqj.material_specification, wpbzo.door_width, wpbzo.total_swing_number, wpbzor.remark, wpbzor.axes_no, wpbzor.texture_axis_meter
+                FROM wjzpw_produce_qian_jing wpqj, wjzpw_produce_bing_zhou_output wpbzo, wjzpw_produce_bing_zhou_output_record wpbzor
+                WHERE wpqj.flow_no = wpbzo.flow_no AND wpbzo.id = wpbzor.wjzpw_produce_bing_zhou_output
+                ORDER BY wpbzor.create_date DESC
+            )""")
+
+    _order = "create_date desc"
+
 wjzpw_produce_qian_jing()
 wjzpw_produce_qian_jing_output()
 wjzpw_produce_qian_jing_output_record()
@@ -686,3 +729,4 @@ wjzpw_produce_shang_jiang_output()
 wjzpw_produce_shang_jiang_output_record()
 wjzpw_produce_bing_zhou_output()
 wjzpw_produce_bing_zhou_output_record()
+wjzpw_produce_bing_zhou()

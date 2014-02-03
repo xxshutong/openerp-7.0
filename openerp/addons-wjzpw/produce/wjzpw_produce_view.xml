@@ -110,7 +110,7 @@
             <field name="name">wjzpw.produce.shangJiang</field>
             <field name="res_model">wjzpw.produce.qian.jing</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree</field>
             <field name="view_id" ref="wjzpw_shang_jiang_tree_view"/>
         </record>
 
@@ -314,12 +314,45 @@
             <field name="view_id" ref="wjzpw_bing_zhou_output_tree_view"/>
         </record>
 
+        <!--定义BingZhou列表视图-->
+        <record model="ir.ui.view" id="wjzpw_bing_zhou_tree_view">
+            <field name="name">wjzpw.produce.bingZhou</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.produce.bing.zhou</field>
+            <field name="arch" type="xml">
+                <tree string="wjzpw.produce.bingZhou" create="false" delete="false" edit="false">
+                    <field name="machine_no"/>
+                    <field name="create_date"/>
+                    <field name="process_unit"/>
+                    <field name="flow_no"/>
+                    <field name="product_id"/>
+                    <field name="door_width"/>
+                    <field name="total_swing_number"/>
+                    <field name="material_specification"/>
+                    <field name="material_area"/>
+                    <field name="batch_no"/>
+                    <field name="axes_no"/>
+                    <field name="texture_axis_meter"/>
+                    <field name="remark"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义BingZhou视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_bing_zhou">
+            <field name="name">wjzpw.produce.bingZhou</field>
+            <field name="res_model">wjzpw.produce.bing.zhou</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="wjzpw_bing_zhou_tree_view"/>
+        </record>
+
         <!--定义菜单-->
         <menuitem id="wjzpw_produce_menu" name="wjzpw.produce.shengChan"/>
         <!-- 整浆并车间 -->
         <menuitem id="wjzpw_zheng_jiang_bing_menu" name="wjzpw.produce.zhengJiangBingCheJian" parent="wjzpw_produce_menu"/>
         <menuitem id="wjzpw_qian_jing_menu" name="wjzpw.produce.qianJing" parent="wjzpw_zheng_jiang_bing_menu" action="action_wjzpw_qian_jing"/>
         <menuitem id="wjzpw_shang_jiang_menu" name="wjzpw.produce.shangJiang" parent="wjzpw_zheng_jiang_bing_menu" action="action_wjzpw_shang_jiang"/>
+        <menuitem id="wjzpw_bing_zhou_menu" name="wjzpw.produce.bingZhou" parent="wjzpw_zheng_jiang_bing_menu" action="action_wjzpw_bing_zhou"/>
         <!-- 工人产量 -->
         <menuitem id="wjzpw_employee_output_menu" name="wjzpw.produce.gongRenChanLiang" parent="wjzpw_produce_menu"/>
         <menuitem id="wjzpw_zheng_jiang_bing_record_menu" name="wjzpw.produce.zhengJiangBingCheJianJiLu" parent="wjzpw_employee_output_menu"/>
