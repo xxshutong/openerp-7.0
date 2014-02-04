@@ -592,43 +592,24 @@ class wjzpw_produce_bing_zhou_output(osv.osv):
             }
         return {}
 
-    def _get_total_meter(self, cr, uid, ids, field_name, arg, context):
+    def _get_total_swing_number(self, cr, uid, ids, field_name, arg, context):
         """
-        计算并轴织轴米数
-        """
-        res = {}
-        for id in ids:
-            res.setdefault(id, 0)
-        for id in ids:
-            query_sql = """
-                SELECT sum(texture_axis_meter) as sum
-                FROM wjzpw_produce_bing_zhou_output_record
-                WHERE wjzpw_produce_bing_zhou_output = %d
-            """ % id
-            cr.execute(query_sql)
-            result = cr.dictfetchone()
-            if result and result['sum']:
-                res[id] = result['sum']
-        return res
-
-    def _get_total_number(self, cr, uid, ids, field_name, arg, context):
-        """
-        计算轴号
+        计算总经数
         """
         res = {}
         for id in ids:
             res.setdefault(id, 0)
-        # for id in ids:
-        #     query_sql = """
-        #         SELECT sum(reed_number) as sum
-        #         FROM wjzpw_produce_shang_jiang_output_record
-        #         WHERE wjzpw_produce_shang_jiang_output = %d
-        #     """ % id
-        #     cr.execute(query_sql)
-        #     result = cr.dictfetchone()
-        #     if result and result['sum']:
-        #         res[id] = result['sum']
-        # TODO
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.flow_no:
+                query_sql = """
+                    SELECT swing_number, axes_number
+                    FROM wjzpw_produce_qian_jing
+                    WHERE flow_no = %d
+                """ % rec.flow_no.id
+                cr.execute(query_sql)
+                qian_jing_list = cr.dictfetchall()
+                if qian_jing_list and len(qian_jing_list) >= 1:
+                    res[rec.id] = qian_jing_list[0]['swing_number'] * qian_jing_list[0]['axes_number']
         return res
 
     _columns = {
@@ -638,7 +619,6 @@ class wjzpw_produce_bing_zhou_output(osv.osv):
         'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.produce.yuanLiaoGuiGe', required=True),  # 原料规格
         'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.produce.yuanLiaoChanDi', required=True),  # 原料产地
         'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.produce.piHao', required=True),  # 批号
-        'total_swing_number': fields.integer('wjzpw.produce.zongJingShu'),  # 总经数
         'door_width': fields.char('wjzpw.produce.menFu'),  # 门幅
         'input_date': fields.date('wjzpw.produce.riQi', required=True),  # 日期
         'class_type': fields.selection((('A', 'wjzpw.produce.jiaBan'), ('B', 'wjzpw.produce.yiBan'), ('C', 'wjzpw.produce.bingBan')), 'wjzpw.produce.banBie'),  # 班别
@@ -648,8 +628,7 @@ class wjzpw_produce_bing_zhou_output(osv.osv):
         'remark': fields.char('wjzpw.produce.beiZhu'),  # 备注
 
         # functions
-        'axes_no': fields.function(_get_total_number, string='wjzpw.produce.zhouHao', type='integer', method=True),  # 轴号
-        'texture_axis_meter': fields.function(_get_total_meter, string='wjzpw.produce.zhiZhouMiShu', type='integer', method=True),  # 织轴米数
+        'total_swing_number': fields.function(_get_total_swing_number, string='wjzpw.produce.zongJingShu', type='integer', method=True)  # 总经数
     }
 
     _defaults = {
@@ -714,7 +693,7 @@ class wjzpw_produce_bing_zhou(osv.osv):
         cr.execute("""
             CREATE OR REPLACE VIEW wjzpw_produce_bing_zhou AS (
                 SELECT row_number() over (order by wpbzor.create_date DESC) AS id, wpbzor.create_date, wpbzo.machine_no, wpqj.flow_no, wpqj.process_unit, wpqj.product_id, wpqj.material_area, wpqj.batch_no
-                , wpqj.material_specification, wpbzo.door_width, wpbzo.total_swing_number, wpbzor.remark, wpbzor.axes_no, wpbzor.texture_axis_meter
+                , wpqj.material_specification, wpbzo.door_width, wpqj.swing_number * wpqj.axes_number as total_swing_number, wpbzor.remark, wpbzor.axes_no, wpbzor.texture_axis_meter
                 FROM wjzpw_produce_qian_jing wpqj, wjzpw_produce_bing_zhou_output wpbzo, wjzpw_produce_bing_zhou_output_record wpbzor
                 WHERE wpqj.flow_no = wpbzo.flow_no AND wpbzo.id = wpbzor.wjzpw_produce_bing_zhou_output
                 ORDER BY wpbzor.create_date DESC
