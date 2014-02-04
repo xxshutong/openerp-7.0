@@ -394,7 +394,7 @@ class wjzpw_produce_qian_jing_output(osv.osv):
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.produce.pinMing', required=True),  # 品名
         'input_date': fields.date('wjzpw.produce.riQi', required=True),  # 日期
         'class_type': fields.selection((('A', 'wjzpw.produce.jiaBan'), ('B', 'wjzpw.produce.yiBan'), ('C', 'wjzpw.produce.bingBan')), 'wjzpw.produce.banBie'),  # 班别
-        'employee': fields.char('wjzpw.produce.xingMing'),  # 姓名
+        'employee': fields.many2one('hr.employee', 'wjzpw.produce.xingMing'),  # 姓名
         'machine_no': fields.selection((('1', '1'), ('2', '2')), 'wjzpw.produce.jiHao'),  # 机号
         'records': fields.one2many('wjzpw.produce.qian.jing.output.record', 'wjzpw_produce_qian_jing_output', 'wjzpw.produce.chanLiangJiLu', readonly=False),
         'remark': fields.char('wjzpw.produce.beiZhu'),  # 备注
@@ -523,7 +523,7 @@ class wjzpw_produce_shang_jiang_output(osv.osv):
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.produce.pinMing', required=True),  # 品名
         'input_date': fields.date('wjzpw.produce.riQi', required=True),  # 日期
         'class_type': fields.selection((('A', 'wjzpw.produce.jiaBan'), ('B', 'wjzpw.produce.yiBan'), ('C', 'wjzpw.produce.bingBan')), 'wjzpw.produce.banBie'),  # 班别
-        'employee': fields.char('wjzpw.produce.xingMing'),  # 姓名
+        'employee': fields.many2one('hr.employee', 'wjzpw.produce.xingMing'),  # 姓名
         'machine_no': fields.selection((('1', '1'), ('2', '2')), 'wjzpw.produce.jiHao'),  # 机号
         'records': fields.one2many('wjzpw.produce.shang.jiang.output.record', 'wjzpw_produce_shang_jiang_output', 'wjzpw.produce.chanLiangJiLu', readonly=False),
         'remark': fields.char('wjzpw.produce.beiZhu'),  # 备注
@@ -642,7 +642,7 @@ class wjzpw_produce_bing_zhou_output(osv.osv):
         'door_width': fields.char('wjzpw.produce.menFu'),  # 门幅
         'input_date': fields.date('wjzpw.produce.riQi', required=True),  # 日期
         'class_type': fields.selection((('A', 'wjzpw.produce.jiaBan'), ('B', 'wjzpw.produce.yiBan'), ('C', 'wjzpw.produce.bingBan')), 'wjzpw.produce.banBie'),  # 班别
-        'employee': fields.char('wjzpw.produce.xingMing'),  # 姓名
+        'employee': fields.many2one('hr.employee', 'wjzpw.produce.xingMing'),  # 姓名
         'machine_no': fields.selection((('1', '1'), ('2', '2')), 'wjzpw.produce.jiHao'),  # 机号
         'records': fields.one2many('wjzpw.produce.bing.zhou.output.record', 'wjzpw_produce_bing_zhou_output', 'wjzpw.produce.chanLiangJiLu', readonly=False),
         'remark': fields.char('wjzpw.produce.beiZhu'),  # 备注
