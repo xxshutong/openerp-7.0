@@ -797,10 +797,7 @@
         <menuitem id="wjzpw_reed_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_reed_menu" action="action_wjzpw_reed_inventory"/>
         <menuitem id="wjzpw_reed_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_reed_menu" action="action_wjzpw_reed_input"/>
         <menuitem id="wjzpw_reed_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_reed_menu" action="action_wjzpw_reed_output"/>
-        <!-- 经轴库存 -->
-        <!--<menuitem id="wjzpw_beam_menu" name="wjzpw.inventory.jingZhouKuCun" parent="wjzpw_inventory_menu"/>-->
-        <!--<menuitem id="wjzpw_beam_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>-->
-        <!--<menuitem id="wjzpw_czpk_menu" name="wjzpw.inventory.chuanZongPaKou" parent="wjzpw_beam_menu" action="wjzpw.action_wjzpw_product"/>-->
+
         <!-- 设置 -->
         <menuitem id="wjzpw_setting_menu" name="wjzpw.inventory.sheZhi" parent="wjzpw_inventory_menu"/>
         <menuitem id="wjzpw_product_menu" name="wjzpw.inventory.pinMing" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_product"/>
