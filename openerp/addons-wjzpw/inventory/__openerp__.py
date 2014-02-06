@@ -12,6 +12,7 @@
     ],
     'data': [
         'wjzpw_inventory_view.xml',
+        'wjzpw_inventory_warp_axes_view.xml'
         # 'wjzpw_data.xml',
         # 'report/module_report.xml',
         # 'wizard/module_wizard.xml',
