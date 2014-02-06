@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--定义菜单-->
+        <menuitem id="wjzpw_inventory_menu" name="wjzpw.inventory.kuCun"/>
+        <!-- 坯布库存 -->
+        <menuitem id="wjzpw_cloth_menu" name="wjzpw.inventory.piBuKuCun" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_cloth_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_cloth_menu" action="action_wjzpw_cloth_inventory"/>
+        <menuitem id="wjzpw_machine_output_menu" name="wjzpw.inventory.jiTaiChanLiang" parent="wjzpw_cloth_menu" action="inventory.action_wjzpw_inventory_machine_output"/>
+        <menuitem id="wjzpw_cloth_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_cloth_menu" action="inventory.action_wjzpw_inventory_input"/>
+        <menuitem id="wjzpw_cloth_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_cloth_menu" action="inventory.action_wjzpw_inventory_output"/>
+        <!-- 经丝库存 -->
+        <menuitem id="wjzpw_organzine_menu" name="wjzpw.inventory.jingSiKuCun" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_organzine_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_organzine_menu" action="action_wjzpw_organzine_inventory"/>
+        <menuitem id="wjzpw_organzine_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_organzine_menu" action="action_wjzpw_organzine_input"/>
+        <menuitem id="wjzpw_organzine_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_organzine_menu" action="action_wjzpw_organzine_output"/>
+
+        <!-- 纬丝库存 -->
+        <menuitem id="wjzpw_weft_menu" name="wjzpw.inventory.weiSiKuCun" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_weft_total_inventory_menu" name="wjzpw.inventory.zongKuCun" parent="wjzpw_weft_menu" action="action_wjzpw_weft_total_inventory"/>
+        <!-- 纬丝仓库库存 -->
+        <menuitem id="wjzpw_weft_warehouse_menu" name="wjzpw.inventory.cangKuKuCun" parent="wjzpw_weft_menu"/>
+        <menuitem id="wjzpw_weft_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_weft_warehouse_menu" action="action_wjzpw_weft_inventory"/>
+        <menuitem id="wjzpw_weft_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_weft_warehouse_menu" action="action_wjzpw_weft_input"/>
+        <menuitem id="wjzpw_weft_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_weft_warehouse_menu" action="action_wjzpw_weft_output"/>
+        <!-- 纬丝车间库存 -->
+        <menuitem id="wjzpw_weft_workshop_menu" name="wjzpw.inventory.cheJianShengYu" parent="wjzpw_weft_menu"/>
+        <menuitem id="wjzpw_weft_workshop_input_menu" name="wjzpw.inventory.cheJianRuKu" parent="wjzpw_weft_workshop_menu" action="action_wjzpw_weft_workshop_input"/>
+        <menuitem id="wjzpw_weft_workshop_left_menu" name="wjzpw.inventory.cheJianShengYu" parent="wjzpw_weft_workshop_menu" action="action_wjzpw_weft_workshop_left"/>
+        <menuitem id="wjzpw_weft_workshop_output_menu" name="wjzpw.inventory.meiRiXiaoHao" parent="wjzpw_weft_workshop_menu" action="action_wjzpw_weft_workshop_output"/>
+
+        <!-- 钢筘库存 -->
+        <menuitem id="wjzpw_reed_menu" name="wjzpw.inventory.gangKouKuCun" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_reed_inventory_menu" name="wjzpw.inventory.kuCun" parent="wjzpw_reed_menu" action="action_wjzpw_reed_inventory"/>
+        <menuitem id="wjzpw_reed_input_menu" name="wjzpw.inventory.ruKu" parent="wjzpw_reed_menu" action="action_wjzpw_reed_input"/>
+        <menuitem id="wjzpw_reed_output_menu" name="wjzpw.inventory.chuKu" parent="wjzpw_reed_menu" action="action_wjzpw_reed_output"/>
+
+        <!-- 经轴库存 -->
+        <menuitem id="wjzpw_warp_axes_menu" name="wjzpw.inventory.jingZhouKuCun" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_outside_warp_axes_menu" name="wjzpw.inventory.waiJiaGong" parent="wjzpw_warp_axes_menu"/>
+        <menuitem id="wjzpw_outside_warp_axes_input_menu" name="wjzpw.inventory.jingZhouRuKu" parent="wjzpw_outside_warp_axes_menu" action="action_wjzpw_outside_warp_axes_input"/>
+        <menuitem id="wjzpw_self_warp_axes_menu" name="wjzpw.inventory.benChang" parent="wjzpw_warp_axes_menu"/>
+        <menuitem id="wjzpw_self_warp_axes_input_menu" name="wjzpw.inventory.jingZhouRuKu" parent="wjzpw_self_warp_axes_menu" action="action_wjzpw_self_warp_axes_input"/>
+
+        <!-- 设置 -->
+        <menuitem id="wjzpw_setting_menu" name="wjzpw.inventory.sheZhi" parent="wjzpw_inventory_menu"/>
+        <menuitem id="wjzpw_product_menu" name="wjzpw.inventory.pinMing" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_product"/>
+        <menuitem id="wjzpw_batch_no_menu" name="wjzpw.inventory.piHao" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_batch_no"/>
+        <menuitem id="wjzpw_organzine_batch_no_menu" name="wjzpw.inventory.jingSiPiHao" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_organzine_batch_no"/>
+        <menuitem id="wjzpw_weft_batch_no_menu" name="wjzpw.inventory.weiSiPiHao" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_weft_batch_no"/>
+        <menuitem id="wjzpw_material_specification_menu" name="wjzpw.inventory.yuanLiaoGuiGe" parent="wjzpw_setting_menu" action="wjzpw.action_wjzpw_material_specification"/>
+    </data>
+</openerp>
