@@ -61,5 +61,76 @@
             <field name="view_mode">tree</field>
             <field name="view_id" ref="wjzpw_self_warp_axes_input_tree_view"/>
         </record>
+
+        <!--定义OutsideWarpAxesOutput表单视图-->
+        <record model="ir.ui.view" id="wjzpw_outside_warp_axes_output_form_view">
+            <field name="name">wjzpw.inventory.chuKuGuanLi</field>
+            <field name="type">form</field>
+            <field name="model">wjzpw.outside.warp.axes.output</field>
+            <field name="arch" type="xml">
+                <form string="wjzpw.inventory.waiJiaGongJingZhouChuKu" version="7.0">
+                    <sheet>
+                        <group col="4">
+                            <field name="input_date"/>
+                        </group>
+                        <separator string="wjzpw.inventory.jiBenXinXi" colspan="4"/>
+                        <group col="4">
+                            <field name="flow_no" on_change="onchange_flow_no(flow_no)"/>
+                            <field name="process_unit" attrs="{'readonly':'true'}"/>
+                            <field name="material_area" attrs="{'readonly':'true'}"/>
+                            <field name="material_specification" attrs="{'readonly':'true'}"/>
+                            <field name="batch_no" attrs="{'readonly':'true'}"/>
+                            <field name="product_id" attrs="{'readonly':'true'}"/>
+                            <field name="door_width" attrs="{'readonly':'true'}"/>
+                            <field name="total_swing_number" attrs="{'readonly':'true'}"/>
+                            <field name="axes_no"/>
+                            <field name="texture_axis_meter"/>
+                            <field name="axes_number"/>
+                        </group>
+                        <separator string="wjzpw.inventory.jiaGe" colspan="4"/>
+                        <group col="4">
+                            <field name="price_unit" on_change=""/>
+                            <field name="price"/>
+                        </group>
+                        <group col="2">
+                            <field name="remark"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--定义OutsideWarpAxesOutput列表视图-->
+        <record model="ir.ui.view" id="wjzpw_outside_warp_axes_output_tree_view">
+            <field name="name">wjzpw.inventory.chuKuGuanLi</field>
+            <field name="type">tree</field>
+            <field name="model">wjzpw.outside.warp.axes.output</field>
+            <field name="arch" type="xml">
+                <tree string="wjzpw.inventory.waiJiaGongJingZhouChuKu">
+                    <field name="input_date"/>
+                    <field name="flow_no"/>
+                    <field name="process_unit"/>
+                    <field name="material_area"/>
+                    <field name="material_specification"/>
+                    <field name="batch_no"/>
+                    <field name="product_id"/>
+                    <field name="door_width"/>
+                    <field name="total_swing_number"/>
+                    <field name="axes_no"/>
+                    <field name="texture_axis_meter"/>
+                    <field name="axes_number"/>
+                    <field name="price_unit"/>
+                    <field name="price"/>
+                    <field name="remark"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义OutsideWarpAxesOutput视图动作-->
+        <record model="ir.actions.act_window" id="action_wjzpw_outside_warp_axes_output">
+            <field name="name">wjzpw.inventory.chuKuGuanLi</field>
+            <field name="res_model">wjzpw.outside.warp.axes.output</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wjzpw_outside_warp_axes_output_tree_view"/>
+        </record>
     </data>
 </openerp>
