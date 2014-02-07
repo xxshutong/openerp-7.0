@@ -689,7 +689,7 @@ class wjzpw_produce_bing_zhou(osv.osv):
             获取并轴记录
             @param cr: the current row, from the database cursor
         """
-        tools.drop_view_if_exists(cr, 'wjzpw_reed_inventory')
+        tools.drop_view_if_exists(cr, 'wjzpw_produce_bing_zhou')
         cr.execute("""
             CREATE OR REPLACE VIEW wjzpw_produce_bing_zhou AS (
                 SELECT row_number() over (order by wpbzor.create_date DESC) AS id, wpbzor.create_date, wpbzo.machine_no, wpqj.flow_no, wpqj.process_unit, wpqj.product_id, wpqj.material_area, wpqj.batch_no
