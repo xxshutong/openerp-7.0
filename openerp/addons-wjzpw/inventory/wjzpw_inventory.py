@@ -630,6 +630,16 @@ class wjzpw_weft_output(osv.osv):
             return {}
 
     def create(self, cr, uid, vals, *args, **kwargs):
+        if vals['weight'] == 0.0:
+            query_sql = """
+                SELECT weight/quantity as unit
+                FROM wjzpw_weft_inventory
+                WHERE material_specification = %d AND material_area = %d AND batch_no = %d AND level = '%s'
+            """ % (vals['material_specification'], vals['material_area'], vals['batch_no'], vals['level'])
+            cr.execute(query_sql)
+            weft_inventory = cr.dictfetchone()
+            if weft_inventory and vals['quantity']:
+                vals['weight'] = weft_inventory['unit'] * vals['quantity']
         left_output = super(wjzpw_weft_output, self).create(cr, uid, vals, *args, **kwargs)
         if vals['department'] != 'hdcj':
             return left_output
