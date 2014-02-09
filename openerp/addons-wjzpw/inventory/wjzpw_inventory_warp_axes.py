@@ -201,18 +201,6 @@ class wjzpw_outside_warp_axes_output(osv.osv):
             keyValues.append((axes_no[0], axes_no[0]))
         return tuple(keyValues)
 
-    def _get_texture_axis_meter_options(self, cr, uid, context=None):
-        query_sql = """
-            SELECT DISTINCT texture_axis_meter, create_date
-            FROM wjzpw_produce_bing_zhou_output_record
-            ORDER BY create_date DESC
-            """
-        cr.execute(query_sql)
-        keyValues = []
-        for texture_axis_meter in cr.fetchall():
-            keyValues.append((str(texture_axis_meter[0]), str(texture_axis_meter[0])))
-        return tuple(keyValues)
-
     def _get_axes_number_options(self, cr, uid, context=None):
         query_sql = """
             SELECT DISTINCT axes_number, create_date
@@ -236,7 +224,7 @@ class wjzpw_outside_warp_axes_output(osv.osv):
         'door_width': fields.selection(_get_door_width_options, 'wjzpw.inventory.menFu'),  # 门幅
         'total_swing_number': fields.selection(_get_total_swing_number_options, 'wjzpw.inventory.touWen'),  # 总经数/头纹
         'axes_no': fields.selection(_get_axes_no_options, 'wjzpw.inventory.zhouHao'),  # 轴号
-        'texture_axis_meter': fields.selection(_get_texture_axis_meter_options, 'wjzpw.inventory.changDu'),  # 长度
+        'texture_axis_meter': fields.integer('wjzpw.inventory.changDu', required=True),  # 长度
         'axes_number': fields.selection(_get_axes_number_options, 'wjzpw.inventory.bingZhouShu'),  # 并轴数
         'price_unit': fields.float('wjzpw.inventory.danJiaYuanMeiBing'),  # 单价元/并
         'price': fields.float('wjzpw.inventory.jinEr'),  # 金额
@@ -334,18 +322,6 @@ class wjzpw_self_warp_axes_output(osv.osv):
             keyValues.append((axes_no[0], axes_no[0]))
         return tuple(keyValues)
 
-    def _get_texture_axis_meter_options(self, cr, uid, context=None):
-        query_sql = """
-            SELECT DISTINCT texture_axis_meter, create_date
-            FROM wjzpw_produce_bing_zhou_output_record
-            ORDER BY create_date DESC
-            """
-        cr.execute(query_sql)
-        keyValues = []
-        for texture_axis_meter in cr.fetchall():
-            keyValues.append((str(texture_axis_meter[0]), str(texture_axis_meter[0])))
-        return tuple(keyValues)
-
     _columns = {
         'input_date': fields.date('wjzpw.inventory.riQi', required=True),  # 录入日期
         'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.inventory.liuChengBianHao', required=True),  # 流程编号
@@ -357,7 +333,7 @@ class wjzpw_self_warp_axes_output(osv.osv):
         'door_width': fields.selection(_get_door_width_options, 'wjzpw.inventory.menFu'),  # 门幅
         'total_swing_number': fields.selection(_get_total_swing_number_options, 'wjzpw.inventory.touWen'),  # 总经数/头纹
         'axes_no': fields.selection(_get_axes_no_options, 'wjzpw.inventory.zhouHao'),  # 轴号
-        'texture_axis_meter': fields.selection(_get_texture_axis_meter_options, 'wjzpw.inventory.changDu'),  # 长度
+        'texture_axis_meter': fields.integer('wjzpw.inventory.changDu', required=True),  # 长度
         'employee': fields.many2one('hr.employee', 'wjzpw.produce.shangZhouGong'),  # 上轴工
         'remark': fields.char('wjzpw.inventory.beiZhu')  # 备注
     }
@@ -369,7 +345,106 @@ class wjzpw_self_warp_axes_output(osv.osv):
     _order = "input_date desc"
 
 
+class wjzpw_outside_warp_axes_inventory(osv.osv):
+    """
+    外加工经轴库存
+    """
+    _name = "wjzpw.outside.warp.axes.inventory"
+    _auto = False
+    _description = "wjzpw.inventory.kuCun"
+
+    _columns = {
+        'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
+        'process_unit': fields.char('wjzpw.produce.jiaGongDanWei'),  # 加工单位
+        'product_id': fields.many2one('wjzpw.product', 'wjzpw.produce.pinMing', required=True),  # 品名
+        'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
+        'door_width': fields.char('wjzpw.produce.menFu'),  # 门幅
+        'total_swing_number': fields.integer('wjzpw.produce.touWen'),  # 总经数/头纹
+        'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.produce.yuanLiaoChanDi'),  # 原料产地
+        'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.produce.piHao', required=True),  # 批号
+        'axes_no': fields.char('wjzpw.produce.zhouHao'),  # 轴号
+        'inventory_meter': fields.integer('wjzpw.produce.changDu'),  # 长度
+    }
+
+    def init(self, cr):
+        """
+            外加工经轴库存
+            @param cr: the current row, from the database cursor
+        """
+        tools.drop_view_if_exists(cr, 'wjzpw_outside_warp_axes_inventory')
+        cr.execute("""
+            CREATE OR REPLACE VIEW wjzpw_outside_warp_axes_inventory AS (
+                SELECT row_number() over (order by wpqj.flow_no, wpqj.process_unit, wpqj.material_area, wpqj.material_specification, wpqj.batch_no, wpqj.product_id, wpbzo.door_width, wpbzor.axes_no) AS id,
+                wpqj.flow_no, wpqj.process_unit, wpqj.product_id, wpqj.material_area, wpqj.batch_no
+                , wpqj.material_specification, wpbzo.door_width, wpqj.swing_number * wpqj.axes_number as total_swing_number, wpbzor.axes_no,
+                CASE
+                    WHEN ((SELECT count(wowao.id) AS count
+                        FROM wjzpw_outside_warp_axes_output wowao
+                        WHERE wpqj.flow_no = wowao.flow_no AND wpqj.process_unit = wowao.process_unit AND wpqj.material_specification = wowao.material_specification AND wpqj.material_area = wowao.material_area AND wpqj.batch_no = wowao.batch_no AND wpqj.product_id = wowao.product_id AND wpbzo.door_width = wowao.door_width AND wpbzor.axes_no = wowao.axes_no)) <> 0
+                        THEN
+                            (sum(wpbzor.texture_axis_meter) -
+                            (SELECT sum(wowao.texture_axis_meter) FROM wjzpw_outside_warp_axes_output wowao WHERE wpqj.flow_no = wowao.flow_no AND wpqj.process_unit = wowao.process_unit AND wpqj.material_specification = wowao.material_specification AND wpqj.material_area = wowao.material_area AND wpqj.batch_no = wowao.batch_no AND wpqj.product_id = wowao.product_id AND wpbzo.door_width = wowao.door_width AND wpbzor.axes_no = wowao.axes_no))
+                        ELSE
+                           sum(wpbzor.texture_axis_meter)
+                END AS inventory_meter
+                FROM wjzpw_produce_qian_jing wpqj, wjzpw_produce_bing_zhou_output wpbzo, wjzpw_produce_bing_zhou_output_record wpbzor
+                WHERE wpqj.flow_no = wpbzo.flow_no AND wpbzo.id = wpbzor.wjzpw_produce_bing_zhou_output AND wpqj.process_unit <> '%s'
+                GROUP BY wpqj.flow_no, wpqj.process_unit, wpqj.material_area, wpqj.material_specification, wpqj.batch_no, wpqj.product_id, wpbzo.door_width, wpbzor.axes_no,wpqj.swing_number,wpqj.axes_number
+                ORDER BY wpqj.flow_no, wpqj.process_unit, wpqj.material_area, wpqj.material_specification, wpqj.batch_no, wpqj.product_id, wpbzo.door_width, wpbzor.axes_no
+            )""" % u'本厂')
+
+
+class wjzpw_self_warp_axes_inventory(osv.osv):
+    """
+    本厂经轴库存
+    """
+    _name = "wjzpw.self.warp.axes.inventory"
+    _auto = False
+    _description = "wjzpw.inventory.kuCun"
+
+    _columns = {
+        'flow_no': fields.many2one('wjzpw.flow.no', 'wjzpw.produce.liuChengBianHao', required=True),  # 流程编号
+        'process_unit': fields.char('wjzpw.produce.jiaGongDanWei'),  # 加工单位
+        'material_area': fields.many2one('wjzpw.material.area', 'wjzpw.produce.yuanLiaoChanDi'),  # 原料产地
+        'material_specification': fields.many2one('wjzpw.material.specification', 'wjzpw.inventory.yuanLiaoGuiGe', required=True),  # 原料规格
+        'batch_no': fields.many2one('wjzpw.organzine.batch.no', 'wjzpw.produce.piHao', required=True),  # 批号
+        'product_id': fields.many2one('wjzpw.product', 'wjzpw.produce.pinMing', required=True),  # 品名
+        'door_width': fields.char('wjzpw.produce.menFu'),  # 门幅
+        'total_swing_number': fields.integer('wjzpw.produce.touWen'),  # 总经数/头纹
+        'axes_no': fields.char('wjzpw.produce.zhouHao'),  # 轴号
+        'inventory_meter': fields.integer('wjzpw.produce.changDu'),  # 长度
+    }
+
+    def init(self, cr):
+        """
+            本厂经轴库存
+            @param cr: the current row, from the database cursor
+        """
+        tools.drop_view_if_exists(cr, 'wjzpw_self_warp_axes_inventory')
+        cr.execute("""
+            CREATE OR REPLACE VIEW wjzpw_self_warp_axes_inventory AS (
+                SELECT row_number() over (order by wpqj.flow_no, wpqj.process_unit, wpqj.material_area, wpqj.material_specification, wpqj.batch_no, wpqj.product_id, wpbzo.door_width, wpbzor.axes_no) AS id,
+                wpqj.flow_no, wpqj.process_unit, wpqj.product_id, wpqj.material_area, wpqj.batch_no
+                , wpqj.material_specification, wpbzo.door_width, wpqj.swing_number * wpqj.axes_number as total_swing_number, wpbzor.axes_no,
+                CASE
+                    WHEN ((SELECT count(wowao.id) AS count
+                        FROM wjzpw_outside_warp_axes_output wowao
+                        WHERE wpqj.flow_no = wowao.flow_no AND wpqj.process_unit = wowao.process_unit AND wpqj.material_specification = wowao.material_specification AND wpqj.material_area = wowao.material_area AND wpqj.batch_no = wowao.batch_no AND wpqj.product_id = wowao.product_id AND wpbzo.door_width = wowao.door_width AND wpbzor.axes_no = wowao.axes_no)) <> 0
+                        THEN
+                            (sum(wpbzor.texture_axis_meter) -
+                            (SELECT sum(wowao.texture_axis_meter) FROM wjzpw_outside_warp_axes_output wowao WHERE wpqj.flow_no = wowao.flow_no AND wpqj.process_unit = wowao.process_unit AND wpqj.material_specification = wowao.material_specification AND wpqj.material_area = wowao.material_area AND wpqj.batch_no = wowao.batch_no AND wpqj.product_id = wowao.product_id AND wpbzo.door_width = wowao.door_width AND wpbzor.axes_no = wowao.axes_no))
+                        ELSE
+                           sum(wpbzor.texture_axis_meter)
+                END AS inventory_meter
+                FROM wjzpw_produce_qian_jing wpqj, wjzpw_produce_bing_zhou_output wpbzo, wjzpw_produce_bing_zhou_output_record wpbzor
+                WHERE wpqj.flow_no = wpbzo.flow_no AND wpbzo.id = wpbzor.wjzpw_produce_bing_zhou_output AND wpqj.process_unit = '%s'
+                GROUP BY wpqj.flow_no, wpqj.process_unit, wpqj.material_area, wpqj.material_specification, wpqj.batch_no, wpqj.product_id, wpbzo.door_width, wpbzor.axes_no,wpqj.swing_number,wpqj.axes_number
+                ORDER BY wpqj.flow_no, wpqj.process_unit, wpqj.material_area, wpqj.material_specification, wpqj.batch_no, wpqj.product_id, wpbzo.door_width, wpbzor.axes_no
+            )""" % u'本厂')
+
 wjzpw_outside_warp_axes_input()
 wjzpw_self_warp_axes_input()
 wjzpw_outside_warp_axes_output()
 wjzpw_self_warp_axes_output()
+wjzpw_outside_warp_axes_inventory()
+wjzpw_self_warp_axes_inventory()

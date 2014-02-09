@@ -39,9 +39,11 @@
         <!-- 经轴库存 -->
         <menuitem id="wjzpw_warp_axes_menu" name="wjzpw.inventory.jingZhouKuCun" parent="wjzpw_inventory_menu"/>
         <menuitem id="wjzpw_outside_warp_axes_menu" name="wjzpw.inventory.waiJiaGong" parent="wjzpw_warp_axes_menu"/>
+        <menuitem id="wjzpw_outside_warp_axes_inventory_menu" name="wjzpw.inventory.jingZhouKuCun" parent="wjzpw_outside_warp_axes_menu" action="action_wjzpw_outside_warp_axes_inventory"/>
         <menuitem id="wjzpw_outside_warp_axes_input_menu" name="wjzpw.inventory.jingZhouRuKu" parent="wjzpw_outside_warp_axes_menu" action="action_wjzpw_outside_warp_axes_input"/>
         <menuitem id="wjzpw_outside_warp_axes_output_menu" name="wjzpw.inventory.jingZhouChuKu" parent="wjzpw_outside_warp_axes_menu" action="action_wjzpw_outside_warp_axes_output"/>
         <menuitem id="wjzpw_self_warp_axes_menu" name="wjzpw.inventory.benChang" parent="wjzpw_warp_axes_menu"/>
+        <menuitem id="wjzpw_self_warp_axes_inventory_menu" name="wjzpw.inventory.jingZhouKuCun" parent="wjzpw_self_warp_axes_menu" action="action_wjzpw_self_warp_axes_inventory"/>
         <menuitem id="wjzpw_self_warp_axes_input_menu" name="wjzpw.inventory.jingZhouRuKu" parent="wjzpw_self_warp_axes_menu" action="action_wjzpw_self_warp_axes_input"/>
         <menuitem id="wjzpw_self_warp_axes_output_menu" name="wjzpw.inventory.jingZhouChuKuShangZhou" parent="wjzpw_self_warp_axes_menu" action="action_wjzpw_self_warp_axes_output"/>
 
