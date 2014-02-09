@@ -141,6 +141,18 @@ class wjzpw_outside_warp_axes_output(osv.osv):
                 }
         return {}
 
+    def onchange_axes_unit_price(self, cr, uid, ids, texture_axis_meter=None, axes_number=None, price_unit=None):
+        """
+        计算总金额
+        """
+        if texture_axis_meter and axes_number and price_unit:
+            return {
+                'value': {
+                    'price': float(texture_axis_meter) * float(axes_number) * price_unit
+                }
+            }
+        return {}
+
     def _get_process_unit_options(self, cr, uid, context=None):
         query_sql = """
             SELECT DISTINCT process_unit, create_date
@@ -174,7 +186,7 @@ class wjzpw_outside_warp_axes_output(osv.osv):
         cr.execute(query_sql)
         keyValues = []
         for total_swing_number in cr.fetchall():
-            keyValues.append((total_swing_number[0], total_swing_number[0]))
+            keyValues.append((str(total_swing_number[0]), str(total_swing_number[0])))
         return tuple(keyValues)
 
     def _get_axes_no_options(self, cr, uid, context=None):
@@ -198,7 +210,7 @@ class wjzpw_outside_warp_axes_output(osv.osv):
         cr.execute(query_sql)
         keyValues = []
         for texture_axis_meter in cr.fetchall():
-            keyValues.append((texture_axis_meter[0], texture_axis_meter[0]))
+            keyValues.append((str(texture_axis_meter[0]), str(texture_axis_meter[0])))
         return tuple(keyValues)
 
     def _get_axes_number_options(self, cr, uid, context=None):
@@ -210,7 +222,7 @@ class wjzpw_outside_warp_axes_output(osv.osv):
         cr.execute(query_sql)
         keyValues = []
         for axes_number in cr.fetchall():
-            keyValues.append((axes_number[0], axes_number[0]))
+            keyValues.append((str(axes_number[0]), str(axes_number[0])))
         return tuple(keyValues)
 
     _columns = {
