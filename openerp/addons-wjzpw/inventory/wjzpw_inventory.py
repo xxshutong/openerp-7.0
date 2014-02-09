@@ -115,7 +115,7 @@ class wjzpw_inventory_output(osv.osv):
         "grade_b_number": 0
     }
 
-    _order = "product_id"
+    _order = "input_date desc, customer, product_id"
 
 
 class wjzpw_organzine_input(osv.osv):

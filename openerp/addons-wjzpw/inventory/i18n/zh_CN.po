@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-21 15:17+0000\n"
-"PO-Revision-Date: 2014-01-21 15:17+0000\n"
+"POT-Creation-Date: 2014-02-09 14:40+0000\n"
+"PO-Revision-Date: 2014-02-09 14:40+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,8 +27,16 @@ msgstr "钢筘出库"
 
 #. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_batch_no_menu
+#: field:wjzpw.outside.warp.axes.output,batch_no:0
+#: field:wjzpw.self.warp.axes.output,batch_no:0
 msgid "wjzpw.inventory.piHao"
 msgstr "批号"
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.inventory,inventory_meter:0
+#: field:wjzpw.self.warp.axes.inventory,inventory_meter:0
+msgid "wjzpw.produce.changDu"
+msgstr "长度"
 
 #. module: inventory
 #: field:wjzpw.weft.input,weight_avg:0
@@ -36,16 +44,14 @@ msgid "wjzpw.inventory.meiXiangZhongLiang"
 msgstr "每箱重量 (KG)"
 
 #. module: inventory
-#: field:wjzpw.organzine.output,output_date:0
-#: field:wjzpw.reed.output,output_date:0
-#: field:wjzpw.weft.output,output_date:0
-msgid "wjzpw.inventory.chuKuRiQi"
-msgstr "出库日期"
+#: view:wjzpw.organzine.input:0
+msgid "wjzpw.inventory.zhiShuRuKu"
+msgstr "只数入库"
 
 #. module: inventory
-#: view:wjzpw.organzine.output:0
-msgid "wjzpw.inventory.zhengXiangChuKu"
-msgstr "整箱出库"
+#: view:wjzpw.inventory.machine.output:0
+msgid "inventoryMachineOutput"
+msgstr "机台产出"
 
 #. module: inventory
 #: view:wjzpw.weft.total.inventory:0
@@ -68,6 +74,12 @@ msgid "wjzpw.inventory.shuLiang"
 msgstr "数量"
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.input,create_date:0
+#: field:wjzpw.self.warp.axes.input,create_date:0
+msgid "wjzpw.produce.chuangJianRiQi"
+msgstr "创建日期"
+
+#. module: inventory
 #: field:wjzpw.reed.input,reed_no:0
 #: field:wjzpw.reed.inventory,reed_no:0
 #: field:wjzpw.reed.output,reed_no:0
@@ -86,9 +98,21 @@ msgid "wjzpw.inventory.wanChengShiJian"
 msgstr "完成时间"
 
 #. module: inventory
+#: view:wjzpw.outside.warp.axes.output:0
+#: view:wjzpw.self.warp.axes.output:0
+msgid "wjzpw.inventory.jiBenXinXi"
+msgstr "基本信息"
+
+#. module: inventory
 #: field:wjzpw.inventory.input,machine_output_id:0
 msgid "wjzpw.inventory.jiTaiChanChu"
 msgstr "机台产出"
+
+#. module: inventory
+#: model:ir.model,name:inventory.model_wjzpw_self_warp_axes_output
+#: view:wjzpw.self.warp.axes.output:0
+msgid "wjzpw.inventory.benChangJingZhouChuKu"
+msgstr "本厂经轴出库"
 
 #. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_setting_menu
@@ -101,6 +125,11 @@ msgid "weftInput"
 msgstr "纬丝入库"
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_self_warp_axes_menu
+msgid "wjzpw.inventory.benChang"
+msgstr "本厂"
+
+#. module: inventory
 #: field:wjzpw.inventory.output,customer:0
 msgid "wjzpw.inventory.keHu"
 msgstr "客户"
@@ -111,6 +140,13 @@ msgid "wjzpw.inventory.beiNian"
 msgstr "倍捻"
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_outside_warp_axes_inventory_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_self_warp_axes_inventory_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_warp_axes_menu
+msgid "wjzpw.inventory.jingZhouKuCun"
+msgstr "经轴库存"
+
+#. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_cloth_input_menu
 #: model:ir.ui.menu,name:inventory.wjzpw_organzine_input_menu
 #: model:ir.ui.menu,name:inventory.wjzpw_reed_input_menu
@@ -119,16 +155,43 @@ msgid "wjzpw.inventory.ruKu"
 msgstr "入库"
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_outside_warp_axes_output_menu
+msgid "wjzpw.inventory.jingZhouChuKu"
+msgstr "经轴出库"
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.input,batch_no:0
+#: field:wjzpw.outside.warp.axes.inventory,batch_no:0
+#: field:wjzpw.self.warp.axes.input,batch_no:0
+#: field:wjzpw.self.warp.axes.inventory,batch_no:0
+msgid "wjzpw.produce.piHao"
+msgstr "批号"
+
+#. module: inventory
 #: view:wjzpw.reed.input:0
 msgid "reedInput"
 msgstr "钢筘入库"
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.output,price_unit:0
+msgid "wjzpw.inventory.danJiaYuanMeiBing"
+msgstr "单价(元/并)"
+
+#. module: inventory
 #: field:wjzpw.organzine.input,process_unit:0
 #: field:wjzpw.organzine.inventory,process_unit:0
 #: field:wjzpw.organzine.output,process_unit:0
+#: field:wjzpw.outside.warp.axes.output,process_unit:0
+#: field:wjzpw.self.warp.axes.output,process_unit:0
 msgid "wjzpw.inventory.jiaGongDanWei"
 msgstr "加工单位"
+
+#. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_outside_warp_axes_input
+#: model:ir.model,name:inventory.model_wjzpw_outside_warp_axes_input
+#: view:wjzpw.outside.warp.axes.input:0
+msgid "wjzpw.inventory.waiJiaGongJingZhouRuKu"
+msgstr "外加工经轴入库"
 
 #. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_cloth_output_menu
@@ -148,9 +211,25 @@ msgid "wjzpw.pinMing"
 msgstr "品名"
 
 #. module: inventory
-#: view:wjzpw.inventory.machine.output:0
-msgid "inventoryMachineOutput"
-msgstr "机台产出"
+#: field:wjzpw.outside.warp.axes.input,door_width:0
+#: field:wjzpw.outside.warp.axes.inventory,door_width:0
+#: field:wjzpw.self.warp.axes.input,door_width:0
+#: field:wjzpw.self.warp.axes.inventory,door_width:0
+msgid "wjzpw.produce.menFu"
+msgstr "门幅"
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.input,flow_no:0
+#: field:wjzpw.outside.warp.axes.inventory,flow_no:0
+#: field:wjzpw.self.warp.axes.input,flow_no:0
+#: field:wjzpw.self.warp.axes.inventory,flow_no:0
+msgid "wjzpw.produce.liuChengBianHao"
+msgstr "流程编号"
+
+#. module: inventory
+#: view:wjzpw.organzine.output:0
+msgid "wjzpw.inventory.zhengXiangChuKu"
+msgstr "整箱出库"
 
 #. module: inventory
 #: view:wjzpw.weft.workshop.left:0
@@ -185,6 +264,14 @@ msgid "organzineInventory"
 msgstr "经丝库存"
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.input,material_area:0
+#: field:wjzpw.outside.warp.axes.inventory,material_area:0
+#: field:wjzpw.self.warp.axes.input,material_area:0
+#: field:wjzpw.self.warp.axes.inventory,material_area:0
+msgid "wjzpw.produce.yuanLiaoChanDi"
+msgstr "原料产地"
+
+#. module: inventory
 #: field:wjzpw.inventory.machine.output,output_amount:0
 #: field:wjzpw.inventory.machine.output,output_amount_fun:0
 msgid "wjzpw.inventory.leiJiChanLiang"
@@ -202,7 +289,9 @@ msgstr "重量 (KG)"
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_weft_inventory
 #: model:ir.model,name:inventory.model_wjzpw_inventory
 #: model:ir.model,name:inventory.model_wjzpw_organzine_inventory
+#: model:ir.model,name:inventory.model_wjzpw_outside_warp_axes_inventory
 #: model:ir.model,name:inventory.model_wjzpw_reed_inventory
+#: model:ir.model,name:inventory.model_wjzpw_self_warp_axes_inventory
 #: model:ir.model,name:inventory.model_wjzpw_weft_inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_cloth_inventory_menu
 #: model:ir.ui.menu,name:inventory.wjzpw_inventory_menu
@@ -219,20 +308,41 @@ msgid "wjzpw.inventory.meiBaoXiangZhiShu"
 msgstr "每包/箱只数"
 
 #. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_weft_workshop_output
+#: model:ir.ui.menu,name:inventory.wjzpw_weft_workshop_output_menu
+#: view:wjzpw.weft.workshop.output:0
+msgid "wjzpw.inventory.meiRiXiaoHao"
+msgstr "每日消耗"
+
+#. module: inventory
 #: field:wjzpw.organzine.input,total_count:0
 #: field:wjzpw.organzine.output,total_count:0
 msgid "wjzpw.inventory.zongZhiShu"
 msgstr "总只数"
 
 #. module: inventory
-#: view:wjzpw.organzine.input:0
-msgid "wjzpw.inventory.zhiShuRuKu"
-msgstr "只数入库"
+#: field:wjzpw.organzine.output,output_date:0
+#: field:wjzpw.reed.output,output_date:0
+#: field:wjzpw.weft.output,output_date:0
+msgid "wjzpw.inventory.chuKuRiQi"
+msgstr "出库日期"
 
 #. module: inventory
 #: field:wjzpw.inventory.machine.output,beam_amount:0
 msgid "wjzpw.inventory.jingZhouChangDu"
 msgstr "经轴长度"
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.output,door_width:0
+#: field:wjzpw.self.warp.axes.output,door_width:0
+msgid "wjzpw.inventory.menFu"
+msgstr "门幅"
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.input,remark:0
+#: field:wjzpw.self.warp.axes.input,remark:0
+msgid "wjzpw.produce.beiZhu"
+msgstr "备注"
 
 #. module: inventory
 #: field:wjzpw.inventory.input,machine_no:0
@@ -241,6 +351,8 @@ msgid "wjzpw.inventory.jiHao"
 msgstr "机号"
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.output,input_date:0
+#: field:wjzpw.self.warp.axes.output,input_date:0
 #: field:wjzpw.weft.workshop.output,output_date:0
 msgid "wjzpw.inventory.riQi"
 msgstr "日期"
@@ -256,9 +368,20 @@ msgid "inventoryOutput"
 msgstr "出库"
 
 #. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_outside_warp_axes_inventory
+#: view:wjzpw.outside.warp.axes.inventory:0
+msgid "wjzpw.inventory.waiJiaGongJingZhouKuCun"
+msgstr "外加工经轴库存"
+
+#. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_cloth_menu
 msgid "wjzpw.inventory.piBuKuCun"
 msgstr "坯布库存"
+
+#. module: inventory
+#: field:wjzpw.self.warp.axes.output,employee:0
+msgid "wjzpw.produce.shangZhouGong"
+msgstr "上轴工"
 
 #. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_weft_menu
@@ -273,8 +396,13 @@ msgid "wjzpw.inventory.yiDengPin"
 msgstr "一等品"
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_outside_warp_axes_input_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_self_warp_axes_input_menu
+msgid "wjzpw.inventory.jingZhouRuKu"
+msgstr "经轴入库"
+
+#. module: inventory
 #: field:wjzpw.organzine.input,weight_avg:0
-#: field:wjzpw.organzine.output,weight_avg:0
 msgid "wjzpw.inventory.tongZiJingZhong"
 msgstr "筒子净重"
 
@@ -291,10 +419,20 @@ msgid "wjzpw.inventory.gangKouChanDi"
 msgstr "钢筘产地"
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.output,remark:0
 #: field:wjzpw.reed.input,remark:0
 #: field:wjzpw.reed.output,remark:0
+#: field:wjzpw.self.warp.axes.output,remark:0
 msgid "wjzpw.inventory.beiZhu"
 msgstr "备注"
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.input,process_unit:0
+#: field:wjzpw.outside.warp.axes.inventory,process_unit:0
+#: field:wjzpw.self.warp.axes.input,process_unit:0
+#: field:wjzpw.self.warp.axes.inventory,process_unit:0
+msgid "wjzpw.produce.jiaGongDanWei"
+msgstr "加工单位"
 
 #. module: inventory
 #: view:wjzpw.organzine.input:0
@@ -320,6 +458,11 @@ msgid "wjzpw.inventory.jingSiKuCun"
 msgstr "经丝库存"
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_self_warp_axes_output_menu
+msgid "wjzpw.inventory.jingZhouChuKuShangZhou"
+msgstr "经轴出库(上轴)"
+
+#. module: inventory
 #: field:wjzpw.organzine.input,quantity:0
 #: field:wjzpw.organzine.inventory,quantity:0
 #: field:wjzpw.organzine.output,quantity:0
@@ -343,9 +486,16 @@ msgid "wjzpw.inventory.menShiBu"
 msgstr "门市部"
 
 #. module: inventory
+#: view:wjzpw.self.warp.axes.output:0
+msgid "wjzpw.inventory.shangZhou"
+msgstr "上轴"
+
+#. module: inventory
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_inventory_output
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_organzine_output
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_outside_warp_axes_output
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_reed_output
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_self_warp_axes_output
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_weft_output
 #: model:ir.model,name:inventory.model_wjzpw_inventory_output
 #: model:ir.model,name:inventory.model_wjzpw_organzine_output
@@ -357,6 +507,19 @@ msgstr "出库管理"
 #: view:wjzpw.organzine.output:0
 msgid "wjzpw.inventory.zhiShuChuKu"
 msgstr "只数出库"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_outside_warp_axes_menu
+msgid "wjzpw.inventory.waiJiaGong"
+msgstr "外加工"
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.input,axes_no:0
+#: field:wjzpw.outside.warp.axes.inventory,axes_no:0
+#: field:wjzpw.self.warp.axes.input,axes_no:0
+#: field:wjzpw.self.warp.axes.inventory,axes_no:0
+msgid "wjzpw.produce.zhouHao"
+msgstr "轴号"
 
 #. module: inventory
 #: field:wjzpw.organzine.input,quantity_count:0
@@ -392,6 +555,12 @@ msgid "wjzpw.inventory.jingSiRuKuGuanLi"
 msgstr "经丝入库管理"
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.output,total_swing_number:0
+#: field:wjzpw.self.warp.axes.output,total_swing_number:0
+msgid "wjzpw.inventory.touWen"
+msgstr "头纹"
+
+#. module: inventory
 #: field:wjzpw.inventory,batch_no:0
 #: field:wjzpw.inventory.input,batch_no:0
 #: field:wjzpw.inventory.machine.output,batch_no:0
@@ -414,9 +583,20 @@ msgid "后道车间"
 msgstr "后道车间"
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.output,axes_no:0
+#: field:wjzpw.self.warp.axes.output,axes_no:0
+msgid "wjzpw.inventory.zhouHao"
+msgstr "轴号"
+
+#. module: inventory
 #: sql_constraint:wjzpw.flow.no:0
 msgid "该流程编号已经存在"
 msgstr "该流程编号已经存在"
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.output,axes_number:0
+msgid "wjzpw.inventory.bingZhouShu"
+msgstr "并轴数"
 
 #. module: inventory
 #: field:wjzpw.inventory.input,input_date:0
@@ -435,6 +615,8 @@ msgstr "车间入库"
 #: view:wjzpw.flow.no:0
 #: field:wjzpw.flow.no,name:0
 #: field:wjzpw.flow.no,no:0
+#: field:wjzpw.outside.warp.axes.output,flow_no:0
+#: field:wjzpw.self.warp.axes.output,flow_no:0
 msgid "wjzpw.inventory.liuChengBianHao"
 msgstr "流程编号"
 
@@ -471,6 +653,17 @@ msgid "wjzpw.inventory.zhiShuZhongLiang"
 msgstr "只数重量 (KG)"
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.input,texture_axis_meter:0
+#: field:wjzpw.self.warp.axes.input,texture_axis_meter:0
+msgid "wjzpw.produce.zhiZhouMiShu"
+msgstr "织轴米数"
+
+#. module: inventory
+#: field:wjzpw.weft.output,create_date:0
+msgid "wjzpw.order.anPaiRiQi"
+msgstr "安排日期"
+
+#. module: inventory
 #: selection:wjzpw.weft.output,department:0
 msgid "门市部"
 msgstr "门市部"
@@ -485,6 +678,17 @@ msgstr "门市部"
 #: model:ir.model,name:inventory.model_wjzpw_reed_output
 msgid "wjzpw.inventory.ruKuGuanLi"
 msgstr "入库管理"
+
+#. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_self_warp_axes_inventory
+#: view:wjzpw.self.warp.axes.inventory:0
+msgid "wjzpw.inventory.benChangJingZhouKuCun"
+msgstr "本厂经轴库存"
+
+#. module: inventory
+#: view:wjzpw.outside.warp.axes.output:0
+msgid "wjzpw.inventory.jiaGe"
+msgstr "价格"
 
 #. module: inventory
 #: field:wjzpw.organzine.input,count:0
@@ -503,6 +707,12 @@ msgstr "只数"
 #: field:wjzpw.organzine.input,material_specification:0
 #: field:wjzpw.organzine.inventory,material_specification:0
 #: field:wjzpw.organzine.output,material_specification:0
+#: field:wjzpw.outside.warp.axes.input,material_specification:0
+#: field:wjzpw.outside.warp.axes.inventory,material_specification:0
+#: field:wjzpw.outside.warp.axes.output,material_specification:0
+#: field:wjzpw.self.warp.axes.input,material_specification:0
+#: field:wjzpw.self.warp.axes.inventory,material_specification:0
+#: field:wjzpw.self.warp.axes.output,material_specification:0
 #: field:wjzpw.weft.input,material_specification:0
 #: field:wjzpw.weft.inventory,material_specification:0
 #: field:wjzpw.weft.output,material_specification:0
@@ -518,9 +728,17 @@ msgid "wjzpw.inventory.weiSiRuKuGuanLi"
 msgstr "纬丝入库管理"
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_product_menu
-msgid "wjzpw.inventory.pinMing"
-msgstr "品名"
+#: field:wjzpw.outside.warp.axes.output,texture_axis_meter:0
+#: field:wjzpw.self.warp.axes.output,texture_axis_meter:0
+msgid "wjzpw.inventory.changDu"
+msgstr "长度"
+
+#. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_self_warp_axes_input
+#: model:ir.model,name:inventory.model_wjzpw_self_warp_axes_input
+#: view:wjzpw.self.warp.axes.input:0
+msgid "wjzpw.inventory.benChangJingZhouRuKu"
+msgstr "本厂经轴入库"
 
 #. module: inventory
 #: field:wjzpw.inventory,b_amount:0
@@ -528,6 +746,20 @@ msgstr "品名"
 #: field:wjzpw.inventory.output,grade_b_number:0
 msgid "wjzpw.inventory.erDengPin"
 msgstr "二等品"
+
+#. module: inventory
+#: model:ir.model,name:inventory.model_wjzpw_outside_warp_axes_output
+#: view:wjzpw.outside.warp.axes.output:0
+msgid "wjzpw.inventory.waiJiaGongJingZhouChuKu"
+msgstr "外加工经轴出库"
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.input,total_swing_number:0
+#: field:wjzpw.outside.warp.axes.inventory,total_swing_number:0
+#: field:wjzpw.self.warp.axes.input,total_swing_number:0
+#: field:wjzpw.self.warp.axes.inventory,total_swing_number:0
+msgid "wjzpw.produce.touWen"
+msgstr "头纹"
 
 #. module: inventory
 #: field:wjzpw.weft.input,level:0
@@ -576,11 +808,11 @@ msgid "wjzpw.inventory.weiSiPiHao"
 msgstr "纬丝批号"
 
 #. module: inventory
-#: model:ir.actions.act_window,name:inventory.action_wjzpw_weft_workshop_output
-#: model:ir.ui.menu,name:inventory.wjzpw_weft_workshop_output_menu
-#: view:wjzpw.weft.workshop.output:0
-msgid "wjzpw.inventory.meiRiXiaoHao"
-msgstr "每日消耗"
+#: model:ir.ui.menu,name:inventory.wjzpw_product_menu
+#: field:wjzpw.outside.warp.axes.output,product_id:0
+#: field:wjzpw.self.warp.axes.output,product_id:0
+msgid "wjzpw.inventory.pinMing"
+msgstr "品名"
 
 #. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_reed_menu
@@ -591,6 +823,8 @@ msgstr "钢筘库存"
 #: field:wjzpw.organzine.input,material_area:0
 #: field:wjzpw.organzine.inventory,material_area:0
 #: field:wjzpw.organzine.output,material_area:0
+#: field:wjzpw.outside.warp.axes.output,material_area:0
+#: field:wjzpw.self.warp.axes.output,material_area:0
 #: field:wjzpw.weft.input,material_area:0
 #: field:wjzpw.weft.inventory,material_area:0
 #: field:wjzpw.weft.output,material_area:0
@@ -599,6 +833,14 @@ msgstr "钢筘库存"
 #: field:wjzpw.weft.workshop.output,material_area:0
 msgid "wjzpw.inventory.yuanLiaoChanDi"
 msgstr "原料产地"
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.input,product_id:0
+#: field:wjzpw.outside.warp.axes.inventory,product_id:0
+#: field:wjzpw.self.warp.axes.input,product_id:0
+#: field:wjzpw.self.warp.axes.inventory,product_id:0
+msgid "wjzpw.produce.pinMing"
+msgstr "品名"
 
 #. module: inventory
 #: view:wjzpw.weft.inventory:0
@@ -616,6 +858,11 @@ msgstr "流程编号"
 #: selection:wjzpw.weft.output,department:0
 msgid "前道车间"
 msgstr "前道车间"
+
+#. module: inventory
+#: field:wjzpw.organzine.output,weight_avg:0
+msgid "wjzpw.inventory.yuanLiaoTongZiJingZhongKG"
+msgstr "原料筒子净重"
 
 #. module: inventory
 #: field:wjzpw.reed.input,reed_width:0
@@ -642,6 +889,7 @@ msgid "wjzpw.inventory.danJia"
 msgstr "单价"
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.output,price:0
 #: field:wjzpw.reed.input,total_price:0
 msgid "wjzpw.inventory.jinEr"
 msgstr "金额"

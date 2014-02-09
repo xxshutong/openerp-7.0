@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-21 15:19+0000\n"
-"PO-Revision-Date: 2014-01-21 15:19+0000\n"
+"POT-Creation-Date: 2014-02-09 14:48+0000\n"
+"PO-Revision-Date: 2014-02-09 14:48+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,15 @@ msgstr ""
 
 #. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_batch_no_menu
+#: field:wjzpw.outside.warp.axes.output,batch_no:0
+#: field:wjzpw.self.warp.axes.output,batch_no:0
 msgid "wjzpw.inventory.piHao"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.inventory,inventory_meter:0
+#: field:wjzpw.self.warp.axes.inventory,inventory_meter:0
+msgid "wjzpw.produce.changDu"
 msgstr ""
 
 #. module: inventory
@@ -36,15 +44,13 @@ msgid "wjzpw.inventory.meiXiangZhongLiang"
 msgstr ""
 
 #. module: inventory
-#: field:wjzpw.organzine.output,output_date:0
-#: field:wjzpw.reed.output,output_date:0
-#: field:wjzpw.weft.output,output_date:0
-msgid "wjzpw.inventory.chuKuRiQi"
+#: view:wjzpw.organzine.input:0
+msgid "wjzpw.inventory.zhiShuRuKu"
 msgstr ""
 
 #. module: inventory
-#: view:wjzpw.organzine.output:0
-msgid "wjzpw.inventory.zhengXiangChuKu"
+#: view:wjzpw.inventory.machine.output:0
+msgid "inventoryMachineOutput"
 msgstr ""
 
 #. module: inventory
@@ -68,6 +74,12 @@ msgid "wjzpw.inventory.shuLiang"
 msgstr ""
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.input,create_date:0
+#: field:wjzpw.self.warp.axes.input,create_date:0
+msgid "wjzpw.produce.chuangJianRiQi"
+msgstr ""
+
+#. module: inventory
 #: field:wjzpw.reed.input,reed_no:0
 #: field:wjzpw.reed.inventory,reed_no:0
 #: field:wjzpw.reed.output,reed_no:0
@@ -86,8 +98,20 @@ msgid "wjzpw.inventory.wanChengShiJian"
 msgstr ""
 
 #. module: inventory
+#: view:wjzpw.outside.warp.axes.output:0
+#: view:wjzpw.self.warp.axes.output:0
+msgid "wjzpw.inventory.jiBenXinXi"
+msgstr ""
+
+#. module: inventory
 #: field:wjzpw.inventory.input,machine_output_id:0
 msgid "wjzpw.inventory.jiTaiChanChu"
+msgstr ""
+
+#. module: inventory
+#: model:ir.model,name:inventory.model_wjzpw_self_warp_axes_output
+#: view:wjzpw.self.warp.axes.output:0
+msgid "wjzpw.inventory.benChangJingZhouChuKu"
 msgstr ""
 
 #. module: inventory
@@ -101,6 +125,11 @@ msgid "weftInput"
 msgstr ""
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_self_warp_axes_menu
+msgid "wjzpw.inventory.benChang"
+msgstr ""
+
+#. module: inventory
 #: field:wjzpw.inventory.output,customer:0
 msgid "wjzpw.inventory.keHu"
 msgstr ""
@@ -108,6 +137,13 @@ msgstr ""
 #. module: inventory
 #: selection:wjzpw.organzine.output,department:0
 msgid "wjzpw.inventory.beiNian"
+msgstr ""
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_outside_warp_axes_inventory_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_self_warp_axes_inventory_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_warp_axes_menu
+msgid "wjzpw.inventory.jingZhouKuCun"
 msgstr ""
 
 #. module: inventory
@@ -119,15 +155,42 @@ msgid "wjzpw.inventory.ruKu"
 msgstr ""
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_outside_warp_axes_output_menu
+msgid "wjzpw.inventory.jingZhouChuKu"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.input,batch_no:0
+#: field:wjzpw.outside.warp.axes.inventory,batch_no:0
+#: field:wjzpw.self.warp.axes.input,batch_no:0
+#: field:wjzpw.self.warp.axes.inventory,batch_no:0
+msgid "wjzpw.produce.piHao"
+msgstr ""
+
+#. module: inventory
 #: view:wjzpw.reed.input:0
 msgid "reedInput"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.output,price_unit:0
+msgid "wjzpw.inventory.danJiaYuanMeiBing"
 msgstr ""
 
 #. module: inventory
 #: field:wjzpw.organzine.input,process_unit:0
 #: field:wjzpw.organzine.inventory,process_unit:0
 #: field:wjzpw.organzine.output,process_unit:0
+#: field:wjzpw.outside.warp.axes.output,process_unit:0
+#: field:wjzpw.self.warp.axes.output,process_unit:0
 msgid "wjzpw.inventory.jiaGongDanWei"
+msgstr ""
+
+#. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_outside_warp_axes_input
+#: model:ir.model,name:inventory.model_wjzpw_outside_warp_axes_input
+#: view:wjzpw.outside.warp.axes.input:0
+msgid "wjzpw.inventory.waiJiaGongJingZhouRuKu"
 msgstr ""
 
 #. module: inventory
@@ -148,8 +211,24 @@ msgid "wjzpw.pinMing"
 msgstr ""
 
 #. module: inventory
-#: view:wjzpw.inventory.machine.output:0
-msgid "inventoryMachineOutput"
+#: field:wjzpw.outside.warp.axes.input,door_width:0
+#: field:wjzpw.outside.warp.axes.inventory,door_width:0
+#: field:wjzpw.self.warp.axes.input,door_width:0
+#: field:wjzpw.self.warp.axes.inventory,door_width:0
+msgid "wjzpw.produce.menFu"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.input,flow_no:0
+#: field:wjzpw.outside.warp.axes.inventory,flow_no:0
+#: field:wjzpw.self.warp.axes.input,flow_no:0
+#: field:wjzpw.self.warp.axes.inventory,flow_no:0
+msgid "wjzpw.produce.liuChengBianHao"
+msgstr ""
+
+#. module: inventory
+#: view:wjzpw.organzine.output:0
+msgid "wjzpw.inventory.zhengXiangChuKu"
 msgstr ""
 
 #. module: inventory
@@ -185,6 +264,14 @@ msgid "organzineInventory"
 msgstr ""
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.input,material_area:0
+#: field:wjzpw.outside.warp.axes.inventory,material_area:0
+#: field:wjzpw.self.warp.axes.input,material_area:0
+#: field:wjzpw.self.warp.axes.inventory,material_area:0
+msgid "wjzpw.produce.yuanLiaoChanDi"
+msgstr ""
+
+#. module: inventory
 #: field:wjzpw.inventory.machine.output,output_amount:0
 #: field:wjzpw.inventory.machine.output,output_amount_fun:0
 msgid "wjzpw.inventory.leiJiChanLiang"
@@ -202,7 +289,9 @@ msgstr ""
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_weft_inventory
 #: model:ir.model,name:inventory.model_wjzpw_inventory
 #: model:ir.model,name:inventory.model_wjzpw_organzine_inventory
+#: model:ir.model,name:inventory.model_wjzpw_outside_warp_axes_inventory
 #: model:ir.model,name:inventory.model_wjzpw_reed_inventory
+#: model:ir.model,name:inventory.model_wjzpw_self_warp_axes_inventory
 #: model:ir.model,name:inventory.model_wjzpw_weft_inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_cloth_inventory_menu
 #: model:ir.ui.menu,name:inventory.wjzpw_inventory_menu
@@ -219,19 +308,40 @@ msgid "wjzpw.inventory.meiBaoXiangZhiShu"
 msgstr ""
 
 #. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_weft_workshop_output
+#: model:ir.ui.menu,name:inventory.wjzpw_weft_workshop_output_menu
+#: view:wjzpw.weft.workshop.output:0
+msgid "wjzpw.inventory.meiRiXiaoHao"
+msgstr ""
+
+#. module: inventory
 #: field:wjzpw.organzine.input,total_count:0
 #: field:wjzpw.organzine.output,total_count:0
 msgid "wjzpw.inventory.zongZhiShu"
 msgstr ""
 
 #. module: inventory
-#: view:wjzpw.organzine.input:0
-msgid "wjzpw.inventory.zhiShuRuKu"
+#: field:wjzpw.organzine.output,output_date:0
+#: field:wjzpw.reed.output,output_date:0
+#: field:wjzpw.weft.output,output_date:0
+msgid "wjzpw.inventory.chuKuRiQi"
 msgstr ""
 
 #. module: inventory
 #: field:wjzpw.inventory.machine.output,beam_amount:0
 msgid "wjzpw.inventory.jingZhouChangDu"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.output,door_width:0
+#: field:wjzpw.self.warp.axes.output,door_width:0
+msgid "wjzpw.inventory.menFu"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.input,remark:0
+#: field:wjzpw.self.warp.axes.input,remark:0
+msgid "wjzpw.produce.beiZhu"
 msgstr ""
 
 #. module: inventory
@@ -241,6 +351,8 @@ msgid "wjzpw.inventory.jiHao"
 msgstr ""
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.output,input_date:0
+#: field:wjzpw.self.warp.axes.output,input_date:0
 #: field:wjzpw.weft.workshop.output,output_date:0
 msgid "wjzpw.inventory.riQi"
 msgstr ""
@@ -256,8 +368,19 @@ msgid "inventoryOutput"
 msgstr ""
 
 #. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_outside_warp_axes_inventory
+#: view:wjzpw.outside.warp.axes.inventory:0
+msgid "wjzpw.inventory.waiJiaGongJingZhouKuCun"
+msgstr ""
+
+#. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_cloth_menu
 msgid "wjzpw.inventory.piBuKuCun"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.self.warp.axes.output,employee:0
+msgid "wjzpw.produce.shangZhouGong"
 msgstr ""
 
 #. module: inventory
@@ -273,8 +396,13 @@ msgid "wjzpw.inventory.yiDengPin"
 msgstr ""
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_outside_warp_axes_input_menu
+#: model:ir.ui.menu,name:inventory.wjzpw_self_warp_axes_input_menu
+msgid "wjzpw.inventory.jingZhouRuKu"
+msgstr ""
+
+#. module: inventory
 #: field:wjzpw.organzine.input,weight_avg:0
-#: field:wjzpw.organzine.output,weight_avg:0
 msgid "wjzpw.inventory.tongZiJingZhong"
 msgstr ""
 
@@ -291,9 +419,19 @@ msgid "wjzpw.inventory.gangKouChanDi"
 msgstr ""
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.output,remark:0
 #: field:wjzpw.reed.input,remark:0
 #: field:wjzpw.reed.output,remark:0
+#: field:wjzpw.self.warp.axes.output,remark:0
 msgid "wjzpw.inventory.beiZhu"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.input,process_unit:0
+#: field:wjzpw.outside.warp.axes.inventory,process_unit:0
+#: field:wjzpw.self.warp.axes.input,process_unit:0
+#: field:wjzpw.self.warp.axes.inventory,process_unit:0
+msgid "wjzpw.produce.jiaGongDanWei"
 msgstr ""
 
 #. module: inventory
@@ -320,6 +458,11 @@ msgid "wjzpw.inventory.jingSiKuCun"
 msgstr ""
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_self_warp_axes_output_menu
+msgid "wjzpw.inventory.jingZhouChuKuShangZhou"
+msgstr ""
+
+#. module: inventory
 #: field:wjzpw.organzine.input,quantity:0
 #: field:wjzpw.organzine.inventory,quantity:0
 #: field:wjzpw.organzine.output,quantity:0
@@ -343,9 +486,16 @@ msgid "wjzpw.inventory.menShiBu"
 msgstr ""
 
 #. module: inventory
+#: view:wjzpw.self.warp.axes.output:0
+msgid "wjzpw.inventory.shangZhou"
+msgstr ""
+
+#. module: inventory
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_inventory_output
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_organzine_output
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_outside_warp_axes_output
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_reed_output
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_self_warp_axes_output
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_weft_output
 #: model:ir.model,name:inventory.model_wjzpw_inventory_output
 #: model:ir.model,name:inventory.model_wjzpw_organzine_output
@@ -356,6 +506,19 @@ msgstr ""
 #. module: inventory
 #: view:wjzpw.organzine.output:0
 msgid "wjzpw.inventory.zhiShuChuKu"
+msgstr ""
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_outside_warp_axes_menu
+msgid "wjzpw.inventory.waiJiaGong"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.input,axes_no:0
+#: field:wjzpw.outside.warp.axes.inventory,axes_no:0
+#: field:wjzpw.self.warp.axes.input,axes_no:0
+#: field:wjzpw.self.warp.axes.inventory,axes_no:0
+msgid "wjzpw.produce.zhouHao"
 msgstr ""
 
 #. module: inventory
@@ -392,6 +555,12 @@ msgid "wjzpw.inventory.jingSiRuKuGuanLi"
 msgstr ""
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.output,total_swing_number:0
+#: field:wjzpw.self.warp.axes.output,total_swing_number:0
+msgid "wjzpw.inventory.touWen"
+msgstr ""
+
+#. module: inventory
 #: field:wjzpw.inventory,batch_no:0
 #: field:wjzpw.inventory.input,batch_no:0
 #: field:wjzpw.inventory.machine.output,batch_no:0
@@ -414,8 +583,19 @@ msgid "后道车间"
 msgstr ""
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.output,axes_no:0
+#: field:wjzpw.self.warp.axes.output,axes_no:0
+msgid "wjzpw.inventory.zhouHao"
+msgstr ""
+
+#. module: inventory
 #: sql_constraint:wjzpw.flow.no:0
 msgid "该流程编号已经存在"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.output,axes_number:0
+msgid "wjzpw.inventory.bingZhouShu"
 msgstr ""
 
 #. module: inventory
@@ -435,6 +615,8 @@ msgstr ""
 #: view:wjzpw.flow.no:0
 #: field:wjzpw.flow.no,name:0
 #: field:wjzpw.flow.no,no:0
+#: field:wjzpw.outside.warp.axes.output,flow_no:0
+#: field:wjzpw.self.warp.axes.output,flow_no:0
 msgid "wjzpw.inventory.liuChengBianHao"
 msgstr ""
 
@@ -471,6 +653,17 @@ msgid "wjzpw.inventory.zhiShuZhongLiang"
 msgstr ""
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.input,texture_axis_meter:0
+#: field:wjzpw.self.warp.axes.input,texture_axis_meter:0
+msgid "wjzpw.produce.zhiZhouMiShu"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.weft.output,create_date:0
+msgid "wjzpw.order.anPaiRiQi"
+msgstr ""
+
+#. module: inventory
 #: selection:wjzpw.weft.output,department:0
 msgid "门市部"
 msgstr ""
@@ -484,6 +677,17 @@ msgstr ""
 #: model:ir.model,name:inventory.model_wjzpw_reed_input
 #: model:ir.model,name:inventory.model_wjzpw_reed_output
 msgid "wjzpw.inventory.ruKuGuanLi"
+msgstr ""
+
+#. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_self_warp_axes_inventory
+#: view:wjzpw.self.warp.axes.inventory:0
+msgid "wjzpw.inventory.benChangJingZhouKuCun"
+msgstr ""
+
+#. module: inventory
+#: view:wjzpw.outside.warp.axes.output:0
+msgid "wjzpw.inventory.jiaGe"
 msgstr ""
 
 #. module: inventory
@@ -503,6 +707,12 @@ msgstr ""
 #: field:wjzpw.organzine.input,material_specification:0
 #: field:wjzpw.organzine.inventory,material_specification:0
 #: field:wjzpw.organzine.output,material_specification:0
+#: field:wjzpw.outside.warp.axes.input,material_specification:0
+#: field:wjzpw.outside.warp.axes.inventory,material_specification:0
+#: field:wjzpw.outside.warp.axes.output,material_specification:0
+#: field:wjzpw.self.warp.axes.input,material_specification:0
+#: field:wjzpw.self.warp.axes.inventory,material_specification:0
+#: field:wjzpw.self.warp.axes.output,material_specification:0
 #: field:wjzpw.weft.input,material_specification:0
 #: field:wjzpw.weft.inventory,material_specification:0
 #: field:wjzpw.weft.output,material_specification:0
@@ -518,8 +728,16 @@ msgid "wjzpw.inventory.weiSiRuKuGuanLi"
 msgstr ""
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_product_menu
-msgid "wjzpw.inventory.pinMing"
+#: field:wjzpw.outside.warp.axes.output,texture_axis_meter:0
+#: field:wjzpw.self.warp.axes.output,texture_axis_meter:0
+msgid "wjzpw.inventory.changDu"
+msgstr ""
+
+#. module: inventory
+#: model:ir.actions.act_window,name:inventory.action_wjzpw_self_warp_axes_input
+#: model:ir.model,name:inventory.model_wjzpw_self_warp_axes_input
+#: view:wjzpw.self.warp.axes.input:0
+msgid "wjzpw.inventory.benChangJingZhouRuKu"
 msgstr ""
 
 #. module: inventory
@@ -527,6 +745,20 @@ msgstr ""
 #: field:wjzpw.inventory.input,grade_b_number:0
 #: field:wjzpw.inventory.output,grade_b_number:0
 msgid "wjzpw.inventory.erDengPin"
+msgstr ""
+
+#. module: inventory
+#: model:ir.model,name:inventory.model_wjzpw_outside_warp_axes_output
+#: view:wjzpw.outside.warp.axes.output:0
+msgid "wjzpw.inventory.waiJiaGongJingZhouChuKu"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.input,total_swing_number:0
+#: field:wjzpw.outside.warp.axes.inventory,total_swing_number:0
+#: field:wjzpw.self.warp.axes.input,total_swing_number:0
+#: field:wjzpw.self.warp.axes.inventory,total_swing_number:0
+msgid "wjzpw.produce.touWen"
 msgstr ""
 
 #. module: inventory
@@ -576,10 +808,10 @@ msgid "wjzpw.inventory.weiSiPiHao"
 msgstr ""
 
 #. module: inventory
-#: model:ir.actions.act_window,name:inventory.action_wjzpw_weft_workshop_output
-#: model:ir.ui.menu,name:inventory.wjzpw_weft_workshop_output_menu
-#: view:wjzpw.weft.workshop.output:0
-msgid "wjzpw.inventory.meiRiXiaoHao"
+#: model:ir.ui.menu,name:inventory.wjzpw_product_menu
+#: field:wjzpw.outside.warp.axes.output,product_id:0
+#: field:wjzpw.self.warp.axes.output,product_id:0
+msgid "wjzpw.inventory.pinMing"
 msgstr ""
 
 #. module: inventory
@@ -591,6 +823,8 @@ msgstr ""
 #: field:wjzpw.organzine.input,material_area:0
 #: field:wjzpw.organzine.inventory,material_area:0
 #: field:wjzpw.organzine.output,material_area:0
+#: field:wjzpw.outside.warp.axes.output,material_area:0
+#: field:wjzpw.self.warp.axes.output,material_area:0
 #: field:wjzpw.weft.input,material_area:0
 #: field:wjzpw.weft.inventory,material_area:0
 #: field:wjzpw.weft.output,material_area:0
@@ -598,6 +832,14 @@ msgstr ""
 #: field:wjzpw.weft.workshop.left,material_area:0
 #: field:wjzpw.weft.workshop.output,material_area:0
 msgid "wjzpw.inventory.yuanLiaoChanDi"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.input,product_id:0
+#: field:wjzpw.outside.warp.axes.inventory,product_id:0
+#: field:wjzpw.self.warp.axes.input,product_id:0
+#: field:wjzpw.self.warp.axes.inventory,product_id:0
+msgid "wjzpw.produce.pinMing"
 msgstr ""
 
 #. module: inventory
@@ -615,6 +857,11 @@ msgstr ""
 #. module: inventory
 #: selection:wjzpw.weft.output,department:0
 msgid "前道车间"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.organzine.output,weight_avg:0
+msgid "wjzpw.inventory.yuanLiaoTongZiJingZhongKG"
 msgstr ""
 
 #. module: inventory
@@ -642,6 +889,7 @@ msgid "wjzpw.inventory.danJia"
 msgstr ""
 
 #. module: inventory
+#: field:wjzpw.outside.warp.axes.output,price:0
 #: field:wjzpw.reed.input,total_price:0
 msgid "wjzpw.inventory.jinEr"
 msgstr ""
