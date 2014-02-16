@@ -461,7 +461,6 @@
                     <field name="weight"/>
                     <field name="count"/>
                     <field name="count_weight"/>
-                    <field name="percent"/>
                 </tree>
             </field>
         </record>
@@ -726,7 +725,6 @@
                     <field name="weight"/>
                     <field name="count"/>
                     <field name="count_weight"/>
-                    <field name="percent"/>
                 </tree>
             </field>
         </record>

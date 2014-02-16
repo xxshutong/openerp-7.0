@@ -1074,7 +1074,8 @@ class wjzpw_weft_inventory(osv.osv):
         'weight': fields.float('wjzpw.inventory.xiangShuZhongLiang', required=True),  # 重量（KG）
         'count': fields.integer('wjzpw.inventory.zhiShu', readonly=True),  # 二次入库零散个数
         'count_weight': fields.float('wjzpw.inventory.zhiShuZhongLiang', readonly=True),  # 只数重量
-        'percent': fields.float('wjzpw.inventory.shiYongLv', readonly=True)  # 使用率
+        'week_count': fields.float('wjzpw.inventory.shiYongLv', readonly=True),  # 周使用次数
+        'month_count': fields.float('wjzpw.inventory.shiYongLv', readonly=True)  # 月使用次数
     }
 
     def init(self, cr):
@@ -1126,15 +1127,16 @@ class wjzpw_weft_inventory(osv.osv):
                         ELSE
                            sum(wwi.count_weight)
                 END AS count_weight
-                , ((SELECT COUNT(id) FROM wjzpw_weft_output weo WHERE weo.level = wwi.level AND weo.material_specification = wwi.material_specification AND weo.material_area = wwi.material_area and weo.batch_no = wwi.batch_no)
-                  + (SELECT COUNT(id) FROM wjzpw_weft_workshop_output wwwo WHERE wwwo.level = wwi.level AND wwwo.material_specification = wwi.material_specification AND wwwo.material_area = wwi.material_area and wwwo.batch_no = wwi.batch_no))
-                  * 1.0 /
-                  ((SELECT COUNT(id) FROM wjzpw_weft_output)
-                  + (SELECT COUNT(id) FROM wjzpw_weft_workshop_output)) AS percent
+                , ((SELECT COUNT(id) FROM wjzpw_weft_output weo WHERE weo.level = wwi.level AND weo.material_specification = wwi.material_specification AND weo.material_area = wwi.material_area and weo.batch_no = wwi.batch_no AND weo.create_date > (now() - INTERVAL '7 day'))
+                  + (SELECT COUNT(id) FROM wjzpw_weft_workshop_output wwwo WHERE wwwo.level = wwi.level AND wwwo.material_specification = wwi.material_specification AND wwwo.material_area = wwi.material_area and wwwo.batch_no = wwi.batch_no AND wwwo.create_date > (now() - INTERVAL '7 day')))
+                  AS week_count
+                , ((SELECT COUNT(id) FROM wjzpw_weft_output weo WHERE weo.level = wwi.level AND weo.material_specification = wwi.material_specification AND weo.material_area = wwi.material_area and weo.batch_no = wwi.batch_no AND weo.create_date > (now() - INTERVAL '30 day'))
+                  + (SELECT COUNT(id) FROM wjzpw_weft_workshop_output wwwo WHERE wwwo.level = wwi.level AND wwwo.material_specification = wwi.material_specification AND wwwo.material_area = wwi.material_area and wwwo.batch_no = wwi.batch_no AND wwwo.create_date > (now() - INTERVAL '30 day')))
+                  AS month_count
                 FROM wjzpw_weft_input wwi GROUP BY wwi.material_specification, wwi.material_area, wwi.batch_no, wwi.level
             )""")
 
-    _order = "percent desc, material_specification, material_area, batch_no, level"
+    _order = "week_count desc, month_count desc, material_specification, material_area, batch_no, level"
 
 
 class wjzpw_weft_total_inventory(osv.osv):
@@ -1154,7 +1156,8 @@ class wjzpw_weft_total_inventory(osv.osv):
         'weight': fields.float('wjzpw.inventory.xiangShuZhongLiang', required=True),  # 重量（KG）
         'count': fields.integer('wjzpw.inventory.zhiShu', readonly=True),  # 二次入库零散个数
         'count_weight': fields.float('wjzpw.inventory.zhiShuZhongLiang', readonly=True),
-        'percent': fields.float('wjzpw.inventory.shiYongLv', readonly=True)  # 使用率
+        'week_count': fields.float('wjzpw.inventory.shiYongLv', readonly=True),  # 周使用次数
+        'month_count': fields.float('wjzpw.inventory.shiYongLv', readonly=True)  # 月使用次数
     }
 
     def init(self, cr):
@@ -1206,15 +1209,16 @@ class wjzpw_weft_total_inventory(osv.osv):
                         ELSE
                            wwi.count_weight
                 END AS count_weight
-                , ((SELECT COUNT(id) FROM wjzpw_weft_output weo WHERE weo.level = wwi.level AND weo.material_specification = wwi.material_specification AND weo.material_area = wwi.material_area and weo.batch_no = wwi.batch_no)
-                  + (SELECT COUNT(id) FROM wjzpw_weft_workshop_output wwwo WHERE wwwo.level = wwi.level AND wwwo.material_specification = wwi.material_specification AND wwwo.material_area = wwi.material_area and wwwo.batch_no = wwi.batch_no))
-                  * 1.0 /
-                  ((SELECT COUNT(id) FROM wjzpw_weft_output)
-                  + (SELECT COUNT(id) FROM wjzpw_weft_workshop_output)) AS percent
+                , ((SELECT COUNT(id) FROM wjzpw_weft_output weo WHERE weo.level = wwi.level AND weo.material_specification = wwi.material_specification AND weo.material_area = wwi.material_area and weo.batch_no = wwi.batch_no AND weo.create_date > (now() - INTERVAL '7 day'))
+                  + (SELECT COUNT(id) FROM wjzpw_weft_workshop_output wwwo WHERE wwwo.level = wwi.level AND wwwo.material_specification = wwi.material_specification AND wwwo.material_area = wwi.material_area and wwwo.batch_no = wwi.batch_no AND wwwo.create_date > (now() - INTERVAL '7 day')))
+                  AS week_count
+                , ((SELECT COUNT(id) FROM wjzpw_weft_output weo WHERE weo.level = wwi.level AND weo.material_specification = wwi.material_specification AND weo.material_area = wwi.material_area and weo.batch_no = wwi.batch_no AND weo.create_date > (now() - INTERVAL '30 day'))
+                  + (SELECT COUNT(id) FROM wjzpw_weft_workshop_output wwwo WHERE wwwo.level = wwi.level AND wwwo.material_specification = wwi.material_specification AND wwwo.material_area = wwi.material_area and wwwo.batch_no = wwi.batch_no AND wwwo.create_date > (now() - INTERVAL '30 day')))
+                  AS month_count
                 FROM wjzpw_weft_inventory wwi
             )""")
 
-    _order = "percent desc, material_specification, material_area, batch_no, level"
+    _order = "week_count desc, month_count desc, material_specification, material_area, batch_no, level"
 
 
 class wjzpw_reed_inventory(osv.osv):
