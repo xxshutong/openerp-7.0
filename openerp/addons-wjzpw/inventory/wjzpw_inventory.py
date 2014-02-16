@@ -87,7 +87,7 @@ class wjzpw_inventory_input(osv.osv):
         "batch_no": _get_default_batch_no
     }
 
-    _order = "product_id"
+    _order = "input_date desc, product_id, batch_no, machine_no"
 
 
 class wjzpw_inventory_output(osv.osv):
