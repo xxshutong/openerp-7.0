@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-09 14:48+0000\n"
-"PO-Revision-Date: 2014-02-09 14:48+0000\n"
+"POT-Creation-Date: 2014-02-16 10:14+0000\n"
+"PO-Revision-Date: 2014-02-16 10:14+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -36,6 +36,11 @@ msgstr ""
 #: field:wjzpw.outside.warp.axes.inventory,inventory_meter:0
 #: field:wjzpw.self.warp.axes.inventory,inventory_meter:0
 msgid "wjzpw.produce.changDu"
+msgstr ""
+
+#. module: inventory
+#: view:wjzpw.inventory:0
+msgid "Group By..."
 msgstr ""
 
 #. module: inventory
@@ -232,8 +237,8 @@ msgid "wjzpw.inventory.zhengXiangChuKu"
 msgstr ""
 
 #. module: inventory
-#: view:wjzpw.weft.workshop.left:0
-msgid "weftWorkshopLeft"
+#: view:wjzpw.inventory:0
+msgid "total_superior_amount"
 msgstr ""
 
 #. module: inventory
@@ -345,6 +350,14 @@ msgid "wjzpw.produce.beiZhu"
 msgstr ""
 
 #. module: inventory
+#: field:wjzpw.weft.inventory,month_count:0
+#: field:wjzpw.weft.inventory,week_count:0
+#: field:wjzpw.weft.total.inventory,month_count:0
+#: field:wjzpw.weft.total.inventory,week_count:0
+msgid "wjzpw.inventory.shiYongLv"
+msgstr ""
+
+#. module: inventory
 #: field:wjzpw.inventory.input,machine_no:0
 #: field:wjzpw.inventory.machine.output,machine_no:0
 msgid "wjzpw.inventory.jiHao"
@@ -368,14 +381,19 @@ msgid "inventoryOutput"
 msgstr ""
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_cloth_menu
+msgid "wjzpw.inventory.piBuKuCun"
+msgstr ""
+
+#. module: inventory
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_outside_warp_axes_inventory
 #: view:wjzpw.outside.warp.axes.inventory:0
 msgid "wjzpw.inventory.waiJiaGongJingZhouKuCun"
 msgstr ""
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_cloth_menu
-msgid "wjzpw.inventory.piBuKuCun"
+#: view:wjzpw.inventory:0
+msgid "total_b_amount"
 msgstr ""
 
 #. module: inventory
@@ -528,6 +546,11 @@ msgid "wjzpw.inventory.baoXiangZhiShu"
 msgstr ""
 
 #. module: inventory
+#: view:wjzpw.weft.workshop.left:0
+msgid "weftWorkshopLeft"
+msgstr ""
+
+#. module: inventory
 #: selection:wjzpw.reed.output,status:0
 msgid "维修"
 msgstr ""
@@ -575,6 +598,11 @@ msgstr ""
 #: field:wjzpw.weft.workshop.left,batch_no:0
 #: field:wjzpw.weft.workshop.output,batch_no:0
 msgid "wjzpw.piHao"
+msgstr ""
+
+#. module: inventory
+#: view:wjzpw.inventory:0
+msgid "total_a_amount"
 msgstr ""
 
 #. module: inventory
@@ -809,6 +837,7 @@ msgstr ""
 
 #. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_product_menu
+#: view:wjzpw.inventory:0
 #: field:wjzpw.outside.warp.axes.output,product_id:0
 #: field:wjzpw.self.warp.axes.output,product_id:0
 msgid "wjzpw.inventory.pinMing"

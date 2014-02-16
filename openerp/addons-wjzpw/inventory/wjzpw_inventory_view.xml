@@ -291,22 +291,43 @@
             <field name="type">tree</field>
             <field name="model">wjzpw.inventory</field>
             <field name="arch" type="xml">
-                <tree string="inventoryInput" create="false" edit="false">
+                <tree string="inventoryInput">
                     <field name="product_id"/>
+                    <field name="batch_no"/>
+                    <field name="superior_amount" sum="total_superior_amount"/>
+                    <field name="a_amount" sum="total_a_amount"/>
+                    <field name="b_amount" sum="total_b_amount"/>
+                </tree>
+            </field>
+        </record>
+        <!--定义Inventory搜索视图-->
+        <record model="ir.ui.view" id="wjzpw_inventory_search_view">
+            <field name="name">wjzpw.inventory.kuCun</field>
+            <field name="type">search</field>
+            <field name="model">wjzpw.inventory</field>
+            <field name="arch" type="xml">
+                <search string="inventoryInput">
+                    <!--<field name="product_id"/>-->
                     <field name="batch_no"/>
                     <field name="superior_amount"/>
                     <field name="a_amount"/>
                     <field name="b_amount"/>
-                </tree>
+                    <group expand="1" string="Group By...">
+                        <filter name="groupby_product" context="{'group_by' : 'product_id'}" string="wjzpw.inventory.pinMing"/>
+                    </group>
+                </search>
             </field>
         </record>
         <!--定义Inventory视图动作-->
         <record model="ir.actions.act_window" id="action_wjzpw_cloth_inventory">
             <field name="name">wjzpw.inventory.kuCun</field>
             <field name="res_model">wjzpw.inventory</field>
+            <field eval="False" name="filter"/>
             <field name="view_type">form</field>
             <field name="view_mode">tree</field>
+            <field name="context">{"search_default_groupby_product" : True}</field>
             <field name="view_id" ref="wjzpw_inventory_tree_view"/>
+            <field name="search_view_id" ref="wjzpw_inventory_search_view"/>
         </record>
 
         <!--定义OrganzineInventory列表视图-->

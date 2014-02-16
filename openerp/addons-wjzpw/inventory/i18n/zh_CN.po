@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-09 14:40+0000\n"
-"PO-Revision-Date: 2014-02-09 14:40+0000\n"
+"POT-Creation-Date: 2014-02-16 10:05+0000\n"
+"PO-Revision-Date: 2014-02-16 10:05+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -37,6 +37,11 @@ msgstr "批号"
 #: field:wjzpw.self.warp.axes.inventory,inventory_meter:0
 msgid "wjzpw.produce.changDu"
 msgstr "长度"
+
+#. module: inventory
+#: view:wjzpw.inventory:0
+msgid "Group By..."
+msgstr "分组"
 
 #. module: inventory
 #: field:wjzpw.weft.input,weight_avg:0
@@ -232,9 +237,9 @@ msgid "wjzpw.inventory.zhengXiangChuKu"
 msgstr "整箱出库"
 
 #. module: inventory
-#: view:wjzpw.weft.workshop.left:0
-msgid "weftWorkshopLeft"
-msgstr "车间剩余"
+#: view:wjzpw.inventory:0
+msgid "total_superior_amount"
+msgstr "优等品总数"
 
 #. module: inventory
 #: view:wjzpw.organzine.input:0
@@ -345,6 +350,14 @@ msgid "wjzpw.produce.beiZhu"
 msgstr "备注"
 
 #. module: inventory
+#: field:wjzpw.weft.inventory,month_count:0
+#: field:wjzpw.weft.inventory,week_count:0
+#: field:wjzpw.weft.total.inventory,month_count:0
+#: field:wjzpw.weft.total.inventory,week_count:0
+msgid "wjzpw.inventory.shiYongLv"
+msgstr "使用率"
+
+#. module: inventory
 #: field:wjzpw.inventory.input,machine_no:0
 #: field:wjzpw.inventory.machine.output,machine_no:0
 msgid "wjzpw.inventory.jiHao"
@@ -368,15 +381,20 @@ msgid "inventoryOutput"
 msgstr "出库"
 
 #. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_cloth_menu
+msgid "wjzpw.inventory.piBuKuCun"
+msgstr "坯布库存"
+
+#. module: inventory
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_outside_warp_axes_inventory
 #: view:wjzpw.outside.warp.axes.inventory:0
 msgid "wjzpw.inventory.waiJiaGongJingZhouKuCun"
 msgstr "外加工经轴库存"
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_cloth_menu
-msgid "wjzpw.inventory.piBuKuCun"
-msgstr "坯布库存"
+#: view:wjzpw.inventory:0
+msgid "total_b_amount"
+msgstr "一等品总量"
 
 #. module: inventory
 #: field:wjzpw.self.warp.axes.output,employee:0
@@ -528,6 +546,11 @@ msgid "wjzpw.inventory.baoXiangZhiShu"
 msgstr "包/箱内只数"
 
 #. module: inventory
+#: view:wjzpw.weft.workshop.left:0
+msgid "weftWorkshopLeft"
+msgstr "车间剩余"
+
+#. module: inventory
 #: selection:wjzpw.reed.output,status:0
 msgid "维修"
 msgstr "维修"
@@ -576,6 +599,11 @@ msgstr "头纹"
 #: field:wjzpw.weft.workshop.output,batch_no:0
 msgid "wjzpw.piHao"
 msgstr "批号"
+
+#. module: inventory
+#: view:wjzpw.inventory:0
+msgid "total_a_amount"
+msgstr "一等品总量"
 
 #. module: inventory
 #: selection:wjzpw.weft.output,department:0
@@ -809,6 +837,7 @@ msgstr "纬丝批号"
 
 #. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_product_menu
+#: view:wjzpw.inventory:0
 #: field:wjzpw.outside.warp.axes.output,product_id:0
 #: field:wjzpw.self.warp.axes.output,product_id:0
 msgid "wjzpw.inventory.pinMing"
