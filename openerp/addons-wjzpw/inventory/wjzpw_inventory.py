@@ -65,6 +65,21 @@ class wjzpw_inventory_input(osv.osv):
     def _get_default_batch_no(self, cr, uid, context=None):
         return utils.get_default_value(cr, uid, 'batch_no')
 
+    def _input_date_str(self, cr, uid, ids, field_name, arg, context):
+        """
+        字符串入库日期
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, '')
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.input_date:
+                res[rec.id] = rec.input_date
+        return res
+
+    def search(self, cr, user, args, offset=0, limit=None, order=None, context=None, count=False):
+        return super(wjzpw_inventory_input, self).search(cr, user, args, offset, limit, 'input_date desc', context, count)
+
     _columns = {
         'machine_no': fields.integer('wjzpw.inventory.jiHao', required=True),
         'input_date': fields.date('wjzpw.inventory.luRuRiQi', required=True),
@@ -74,7 +89,10 @@ class wjzpw_inventory_input(osv.osv):
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing', required=True),
         'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', required=True),
         'machine_output_id': fields.many2one('wjzpw.inventory.machine.output', 'wjzpw.inventory.jiTaiChanChu',
-                                             required=False)
+                                             required=False),
+
+        # functions
+        'input_date_str': fields.function(_input_date_str, string='wjzpw.inventory.luRuRiQi', type='char', method=True, store=True),  # 字符串入库日期
     }
 
     _defaults = {

@@ -30,7 +30,7 @@
             <field name="arch" type="xml">
                 <tree string="inventoryInput">
                     <field name="machine_no"/>
-                    <field name="input_date"/>
+                    <!--<field name="input_date"/>-->
                     <field name="product_id"/>
                     <field name="batch_no"/>
                     <field name="superior_number"/>
@@ -39,13 +39,36 @@
                 </tree>
             </field>
         </record>
+        <!--定义InventoryInput搜索视图-->
+        <record model="ir.ui.view" id="wjzpw_inventory_input_search_view">
+            <field name="name">wjzpw.inventory.ruKuGuanLi</field>
+            <field name="type">search</field>
+            <field name="model">wjzpw.inventory.input</field>
+            <field name="arch" type="xml">
+                <search string="inventoryInput">
+                    <field name="machine_no"/>
+                    <!--<field name="input_date"/>-->
+                    <field name="product_id"/>
+                    <field name="batch_no"/>
+                    <field name="superior_number"/>
+                    <field name="grade_a_number"/>
+                    <field name="grade_b_number"/>
+                    <group expand="1" string="Group By...">
+                        <filter name="groupby_input_date" context="{'group_by' : 'input_date_str'}" string="wjzpw.inventory.luRuRiQi"/>
+                        <filter name="groupby_product" context="{'group_by' : 'product_id'}" string="wjzpw.inventory.pinMing"/>
+                    </group>
+                </search>
+            </field>
+        </record>
         <!--定义InventoryInput视图动作-->
         <record model="ir.actions.act_window" id="action_wjzpw_inventory_input">
             <field name="name">wjzpw.inventory.ruKuGuanLi</field>
             <field name="res_model">wjzpw.inventory.input</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_groupby_input_date" : True, "search_default_groupby_product": True}</field>
             <field name="view_id" ref="wjzpw_inventory_input_tree_view"/>
+            <field name="search_view_id" ref="wjzpw_inventory_input_search_view"/>
         </record>
 
         <!--定义InventoryOutput表单视图-->
