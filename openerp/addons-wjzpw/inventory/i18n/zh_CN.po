@@ -95,7 +95,7 @@ msgstr "筘号"
 #. module: inventory
 #: field:wjzpw.inventory.input,a_rate:0
 msgid "wjzpw.inventory.yiDengCiPinLv"
-msgstr "wjzpw.inventory.yiDengCiPinLv"
+msgstr "一等次品率"
 
 #. module: inventory
 #: selection:wjzpw.reed.output,status:0
