@@ -18,12 +18,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+import calendar
 
 import logging
 import datetime
 from openerp import tools
 
-from openerp.osv import fields, osv
+from openerp.osv import fields, osv, orm
 
 _logger = logging.getLogger(__name__)
 
@@ -77,8 +78,194 @@ class wjzpw_inventory_input(osv.osv):
                 res[rec.id] = rec.input_date
         return res
 
+    def _total_number(self, cr, uid, ids, field_name, arg, context):
+        """
+        合计
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, 0)
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.superior_number and rec.grade_a_number and rec.grade_b_number:
+                res[rec.id] = rec.superior_number + rec.grade_a_number + rec.grade_b_number
+        return res
+
+    def _a_rate(self, cr, uid, ids, field_name, arg, context):
+        """
+        一等次品率
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, '')
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.grade_a_number:
+                rate = rec.grade_a_number * 1.0 / (rec.superior_number + rec.grade_a_number + rec.grade_b_number)
+                res[rec.id] = '0' if rate == 0.0 else ("%.2f%s" % (rate, '%'))
+        return res
+
+    def _b_rate(self, cr, uid, ids, field_name, arg, context):
+        """
+        二等次品率
+        """
+        res = {}
+        for id in ids:
+            res.setdefault(id, '')
+        for rec in self.browse(cr, uid, ids, context=context):
+            if rec.grade_b_number:
+                rate = rec.grade_b_number * 1.0 / (rec.superior_number + rec.grade_a_number + rec.grade_b_number)
+                res[rec.id] = '0' if rate == 0.0 else ("%.2f%s" % (rate, '%'))
+        return res
+
     def search(self, cr, user, args, offset=0, limit=None, order=None, context=None, count=False):
         return super(wjzpw_inventory_input, self).search(cr, user, args, offset, limit, 'input_date desc', context, count)
+
+    def read_group(self, cr, uid, domain, fields, groupby, offset=0, limit=None, context=None, orderby=False):
+        """
+        Get the list of records in list view grouped by the given ``groupby`` fields
+
+        :param cr: database cursor
+        :param uid: current user id
+        :param domain: list specifying search criteria [['field_name', 'operator', 'value'], ...]
+        :param list fields: list of fields present in the list view specified on the object
+        :param list groupby: fields by which the records will be grouped
+        :param int offset: optional number of records to skip
+        :param int limit: optional max number of records to return
+        :param dict context: context arguments, like lang, time zone
+        :param list orderby: optional ``order by`` specification, for
+                             overriding the natural sort ordering of the
+                             groups, see also :py:meth:`~osv.osv.osv.search`
+                             (supported only for many2one fields currently)
+        :return: list of dictionaries(one dictionary for each record) containing:
+
+                    * the values of fields grouped by the fields in ``groupby`` argument
+                    * __domain: list of tuples specifying the search criteria
+                    * __context: dictionary with argument like ``groupby``
+        :rtype: [{'field_name_1': value, ...]
+        :raise AccessError: * if user has no read rights on the requested object
+                            * if user tries to bypass access rules for read on the requested object
+
+        """
+        context = context or {}
+        self.check_access_rights(cr, uid, 'read')
+        if not fields:
+            fields = self._columns.keys()
+
+        query = self._where_calc(cr, uid, domain, context=context)
+        self._apply_ir_rules(cr, uid, query, 'read', context=context)
+
+        # Take care of adding join(s) if groupby is an '_inherits'ed field
+        groupby_list = groupby
+        qualified_groupby_field = groupby
+        if groupby:
+            if isinstance(groupby, list):
+                groupby = groupby[0]
+            qualified_groupby_field = self._inherits_join_calc(groupby, query)
+
+        if groupby:
+            assert not groupby or groupby in fields, "Fields in 'groupby' must appear in the list of fields to read (perhaps it's missing in the list view?)"
+            groupby_def = self._columns.get(groupby) or (self._inherit_fields.get(groupby) and self._inherit_fields.get(groupby)[2])
+            assert groupby_def and groupby_def._classic_write, "Fields in 'groupby' must be regular database-persisted fields (no function or related fields), or function fields with store=True"
+
+        # TODO it seems fields_get can be replaced by _all_columns (no need for translation)
+        fget = self.fields_get(cr, uid, fields)
+        flist = ''
+        group_count = group_by = groupby
+        if groupby:
+            if fget.get(groupby):
+                groupby_type = fget[groupby]['type']
+                if groupby_type in ('date', 'datetime'):
+                    qualified_groupby_field = "to_char(%s,'yyyy-mm')" % qualified_groupby_field
+                    flist = "%s as %s " % (qualified_groupby_field, groupby)
+                elif groupby_type == 'boolean':
+                    qualified_groupby_field = "coalesce(%s,false)" % qualified_groupby_field
+                    flist = "%s as %s " % (qualified_groupby_field, groupby)
+                else:
+                    flist = qualified_groupby_field
+            else:
+                # Don't allow arbitrary values, as this would be a SQL injection vector!
+                raise orm.except_orm('Invalid group_by',
+                                 'Invalid group_by specification: "%s".\nA group_by specification must be a list of valid fields.'%(groupby,))
+
+        #TODO custom appregated fields - From WJZPW
+        aggregated_fields = ['superior_number', 'grade_a_number', 'grade_b_number']
+        for f in aggregated_fields:
+            if flist:
+                flist += ', '
+            if f == 'superior_number' or f == 'grade_a_number' or f == 'grade_b_number':
+                qualified_field = '"%s"."%s"' % (self._table, f)
+                flist += "sum(%s) AS %s" % (qualified_field, f)
+        # total number calculate
+        total_number = '(sum("%s".superior_number) + sum("%s".grade_a_number) + sum("%s".grade_b_number))' % (self._table, self._table, self._table)
+        if flist:
+            flist += ', '
+        flist += "%s AS total_number" % total_number
+
+        # a_rate and b_rate calculate
+        aggregated_fields = ['a_rate', 'b_rate']
+        aggregated_fields_cols = {"a_rate": "grade_a_number", "b_rate": "grade_b_number"}
+        for f in aggregated_fields:
+            if flist:
+                flist += ', '
+            qualified_field = '"%s"."%s"' % (self._table, aggregated_fields_cols[f])
+            flist += "(CASE WHEN sum(%s) > 0 THEN sum(%s)*1.0/%s ELSE 0 END ) AS %s " % (qualified_field, qualified_field, total_number, f)
+
+        gb = groupby and (' GROUP BY ' + qualified_groupby_field) or ''
+
+        from_clause, where_clause, where_clause_params = query.get_sql()
+        where_clause = where_clause and ' WHERE ' + where_clause
+        limit_str = limit and ' limit %d' % limit or ''
+        offset_str = offset and ' offset %d' % offset or ''
+        if len(groupby_list) < 2 and context.get('group_by_no_leaf'):
+            group_count = '_'
+        cr.execute('SELECT min(%s.id) AS id, count(%s.id) AS %s_count' % (self._table, self._table, group_count) + (flist and ',') + flist + ' FROM ' + from_clause + where_clause + gb + limit_str + offset_str, where_clause_params)
+        alldata = {}
+        groupby = group_by
+        for r in cr.dictfetchall():
+            for fld, val in r.items():
+                if val is None: r[fld] = False
+            alldata[r['id']] = r
+            del r['id']
+
+        order = orderby or groupby
+        data_ids = self.search(cr, uid, [('id', 'in', alldata.keys())], order=order, context=context)
+
+        # the IDs of records that have groupby field value = False or '' should be included too
+        data_ids += set(alldata.keys()).difference(data_ids)
+
+        if groupby:
+            data = self.read(cr, uid, data_ids, [groupby], context=context)
+            # restore order of the search as read() uses the default _order (this is only for groups, so the footprint of data should be small):
+            data_dict = dict((d['id'], d[groupby] ) for d in data)
+            result = [{'id': i, groupby: data_dict[i]} for i in data_ids]
+        else:
+            result = [{'id': i} for i in data_ids]
+
+        for d in result:
+            if groupby:
+                d['__domain'] = [(groupby, '=', alldata[d['id']][groupby] or False)] + domain
+                if not isinstance(groupby_list, (str, unicode)):
+                    if groupby or not context.get('group_by_no_leaf', False):
+                        d['__context'] = {'group_by': groupby_list[1:]}
+            if groupby and groupby in fget:
+                if d[groupby] and fget[groupby]['type'] in ('date', 'datetime'):
+                    dt = datetime.datetime.strptime(alldata[d['id']][groupby][:7], '%Y-%m')
+                    days = calendar.monthrange(dt.year, dt.month)[1]
+
+                    date_value = datetime.datetime.strptime(d[groupby][:10], '%Y-%m-%d')
+                    d[groupby] = babel.dates.format_date(
+                        date_value, format='MMMM yyyy', locale=context.get('lang', 'en_US'))
+                    d['__domain'] = [(groupby, '>=', alldata[d['id']][groupby] and datetime.datetime.strptime(alldata[d['id']][groupby][:7] + '-01', '%Y-%m-%d').strftime('%Y-%m-%d') or False), \
+                                     (groupby, '<=', alldata[d['id']][groupby] and datetime.datetime.strptime(alldata[d['id']][groupby][:7] + '-' + str(days), '%Y-%m-%d').strftime('%Y-%m-%d') or False)] + domain
+                del alldata[d['id']][groupby]
+            d.update(alldata[d['id']])
+            del d['id']
+
+        if groupby and groupby in self._group_by_full:
+            result = self._read_group_fill_results(cr, uid, domain, groupby, groupby_list,
+                                                   aggregated_fields, result, read_group_order=order,
+                                                   context=context)
+
+        return result
 
     _columns = {
         'machine_no': fields.integer('wjzpw.inventory.jiHao', required=True),
@@ -93,6 +280,9 @@ class wjzpw_inventory_input(osv.osv):
 
         # functions
         'input_date_str': fields.function(_input_date_str, string='wjzpw.inventory.luRuRiQi', type='char', method=True, store=True),  # 字符串入库日期
+        'total_number': fields.function(_total_number, string='wjzpw.inventory.heJi', type='integer', method=True),  # 产量合计
+        'a_rate': fields.function(_a_rate, string='wjzpw.inventory.yiDengCiPinLv', type='char', method=True),  # 一等次品率
+        'b_rate': fields.function(_b_rate, string='wjzpw.inventory.erDengCiPinLv', type='char', method=True),  # 二等次品率
     }
 
     _defaults = {
