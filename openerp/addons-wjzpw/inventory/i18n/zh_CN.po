@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-16 10:05+0000\n"
-"PO-Revision-Date: 2014-02-16 10:05+0000\n"
+"POT-Creation-Date: 2014-02-23 14:55+0000\n"
+"PO-Revision-Date: 2014-02-23 14:55+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -40,6 +40,7 @@ msgstr "长度"
 
 #. module: inventory
 #: view:wjzpw.inventory:0
+#: view:wjzpw.inventory.input:0
 msgid "Group By..."
 msgstr "分组"
 
@@ -92,6 +93,11 @@ msgid "wjzpw.inventory.kouHao"
 msgstr "筘号"
 
 #. module: inventory
+#: field:wjzpw.inventory.input,a_rate:0
+msgid "wjzpw.inventory.yiDengCiPinLv"
+msgstr "wjzpw.inventory.yiDengCiPinLv"
+
+#. module: inventory
 #: selection:wjzpw.reed.output,status:0
 msgid "报废"
 msgstr "报废"
@@ -120,9 +126,11 @@ msgid "wjzpw.inventory.benChangJingZhouChuKu"
 msgstr "本厂经轴出库"
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_setting_menu
-msgid "wjzpw.inventory.sheZhi"
-msgstr "设置"
+#: field:wjzpw.inventory,b_amount:0
+#: field:wjzpw.inventory.input,grade_b_number:0
+#: field:wjzpw.inventory.output,grade_b_number:0
+msgid "wjzpw.inventory.erDengPin"
+msgstr "二等品"
 
 #. module: inventory
 #: view:wjzpw.weft.input:0
@@ -240,6 +248,13 @@ msgstr "整箱出库"
 #: view:wjzpw.inventory:0
 msgid "total_superior_amount"
 msgstr "优等品总数"
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.output,input_date:0
+#: field:wjzpw.self.warp.axes.output,input_date:0
+#: field:wjzpw.weft.workshop.output,output_date:0
+msgid "wjzpw.inventory.riQi"
+msgstr "日期"
 
 #. module: inventory
 #: view:wjzpw.organzine.input:0
@@ -364,11 +379,9 @@ msgid "wjzpw.inventory.jiHao"
 msgstr "机号"
 
 #. module: inventory
-#: field:wjzpw.outside.warp.axes.output,input_date:0
-#: field:wjzpw.self.warp.axes.output,input_date:0
-#: field:wjzpw.weft.workshop.output,output_date:0
-msgid "wjzpw.inventory.riQi"
-msgstr "日期"
+#: field:wjzpw.inventory.input,b_rate:0
+msgid "wjzpw.inventory.erDengCiPinLv"
+msgstr "二等次品率"
 
 #. module: inventory
 #: selection:wjzpw.organzine.output,department:0
@@ -492,6 +505,11 @@ msgstr "经轴出库(上轴)"
 #: field:wjzpw.weft.workshop.output,quantity:0
 msgid "wjzpw.inventory.baoHuoXiangShu"
 msgstr "包（箱）数"
+
+#. module: inventory
+#: field:wjzpw.inventory.input,total_number:0
+msgid "wjzpw.inventory.heJi"
+msgstr "合计"
 
 #. module: inventory
 #: view:wjzpw.inventory.machine.output:0
@@ -627,7 +645,9 @@ msgid "wjzpw.inventory.bingZhouShu"
 msgstr "并轴数"
 
 #. module: inventory
+#: view:wjzpw.inventory.input:0
 #: field:wjzpw.inventory.input,input_date:0
+#: field:wjzpw.inventory.input,input_date_str:0
 #: field:wjzpw.inventory.output,input_date:0
 msgid "wjzpw.inventory.luRuRiQi"
 msgstr "录入日期"
@@ -769,11 +789,9 @@ msgid "wjzpw.inventory.benChangJingZhouRuKu"
 msgstr "本厂经轴入库"
 
 #. module: inventory
-#: field:wjzpw.inventory,b_amount:0
-#: field:wjzpw.inventory.input,grade_b_number:0
-#: field:wjzpw.inventory.output,grade_b_number:0
-msgid "wjzpw.inventory.erDengPin"
-msgstr "二等品"
+#: model:ir.ui.menu,name:inventory.wjzpw_setting_menu
+msgid "wjzpw.inventory.sheZhi"
+msgstr "设置"
 
 #. module: inventory
 #: model:ir.model,name:inventory.model_wjzpw_outside_warp_axes_output
@@ -838,6 +856,7 @@ msgstr "纬丝批号"
 #. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_product_menu
 #: view:wjzpw.inventory:0
+#: view:wjzpw.inventory.input:0
 #: field:wjzpw.outside.warp.axes.output,product_id:0
 #: field:wjzpw.self.warp.axes.output,product_id:0
 msgid "wjzpw.inventory.pinMing"

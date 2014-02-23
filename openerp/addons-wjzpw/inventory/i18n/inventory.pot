@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-16 10:14+0000\n"
-"PO-Revision-Date: 2014-02-16 10:14+0000\n"
+"POT-Creation-Date: 2014-02-23 14:42+0000\n"
+"PO-Revision-Date: 2014-02-23 14:42+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -40,6 +40,7 @@ msgstr ""
 
 #. module: inventory
 #: view:wjzpw.inventory:0
+#: view:wjzpw.inventory.input:0
 msgid "Group By..."
 msgstr ""
 
@@ -92,6 +93,11 @@ msgid "wjzpw.inventory.kouHao"
 msgstr ""
 
 #. module: inventory
+#: field:wjzpw.inventory.input,a_rate:0
+msgid "wjzpw.inventory.yiDengCiPinLv"
+msgstr ""
+
+#. module: inventory
 #: selection:wjzpw.reed.output,status:0
 msgid "报废"
 msgstr ""
@@ -120,8 +126,10 @@ msgid "wjzpw.inventory.benChangJingZhouChuKu"
 msgstr ""
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_setting_menu
-msgid "wjzpw.inventory.sheZhi"
+#: field:wjzpw.inventory,b_amount:0
+#: field:wjzpw.inventory.input,grade_b_number:0
+#: field:wjzpw.inventory.output,grade_b_number:0
+msgid "wjzpw.inventory.erDengPin"
 msgstr ""
 
 #. module: inventory
@@ -239,6 +247,13 @@ msgstr ""
 #. module: inventory
 #: view:wjzpw.inventory:0
 msgid "total_superior_amount"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.outside.warp.axes.output,input_date:0
+#: field:wjzpw.self.warp.axes.output,input_date:0
+#: field:wjzpw.weft.workshop.output,output_date:0
+msgid "wjzpw.inventory.riQi"
 msgstr ""
 
 #. module: inventory
@@ -364,10 +379,8 @@ msgid "wjzpw.inventory.jiHao"
 msgstr ""
 
 #. module: inventory
-#: field:wjzpw.outside.warp.axes.output,input_date:0
-#: field:wjzpw.self.warp.axes.output,input_date:0
-#: field:wjzpw.weft.workshop.output,output_date:0
-msgid "wjzpw.inventory.riQi"
+#: field:wjzpw.inventory.input,b_rate:0
+msgid "wjzpw.inventory.erDengCiPinLv"
 msgstr ""
 
 #. module: inventory
@@ -491,6 +504,11 @@ msgstr ""
 #: field:wjzpw.weft.workshop.left,quantity:0
 #: field:wjzpw.weft.workshop.output,quantity:0
 msgid "wjzpw.inventory.baoHuoXiangShu"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.inventory.input,total_number:0
+msgid "wjzpw.inventory.heJi"
 msgstr ""
 
 #. module: inventory
@@ -627,7 +645,9 @@ msgid "wjzpw.inventory.bingZhouShu"
 msgstr ""
 
 #. module: inventory
+#: view:wjzpw.inventory.input:0
 #: field:wjzpw.inventory.input,input_date:0
+#: field:wjzpw.inventory.input,input_date_str:0
 #: field:wjzpw.inventory.output,input_date:0
 msgid "wjzpw.inventory.luRuRiQi"
 msgstr ""
@@ -769,10 +789,8 @@ msgid "wjzpw.inventory.benChangJingZhouRuKu"
 msgstr ""
 
 #. module: inventory
-#: field:wjzpw.inventory,b_amount:0
-#: field:wjzpw.inventory.input,grade_b_number:0
-#: field:wjzpw.inventory.output,grade_b_number:0
-msgid "wjzpw.inventory.erDengPin"
+#: model:ir.ui.menu,name:inventory.wjzpw_setting_menu
+msgid "wjzpw.inventory.sheZhi"
 msgstr ""
 
 #. module: inventory
@@ -838,6 +856,7 @@ msgstr ""
 #. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_product_menu
 #: view:wjzpw.inventory:0
+#: view:wjzpw.inventory.input:0
 #: field:wjzpw.outside.warp.axes.output,product_id:0
 #: field:wjzpw.self.warp.axes.output,product_id:0
 msgid "wjzpw.inventory.pinMing"

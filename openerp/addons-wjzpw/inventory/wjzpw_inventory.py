@@ -207,7 +207,7 @@ class wjzpw_inventory_input(osv.osv):
             if flist:
                 flist += ', '
             qualified_field = '"%s"."%s"' % (self._table, aggregated_fields_cols[f])
-            flist += "(CASE WHEN sum(%s) > 0 THEN sum(%s)*1.0/%s ELSE 0 END ) AS %s " % (qualified_field, qualified_field, total_number, f)
+            flist += "round((CASE WHEN sum(%s) > 0 THEN sum(%s)*1.0/%s ELSE 0 END ), 2) AS %s " % (qualified_field, qualified_field, total_number, f)
 
         gb = groupby and (' GROUP BY ' + qualified_groupby_field) or ''
 
