@@ -28,7 +28,7 @@
         <menuitem id="wjzpw_weft_workshop_menu" name="wjzpw.inventory.cheJianShengYu" parent="wjzpw_weft_menu"/>
         <menuitem id="wjzpw_weft_workshop_input_menu" name="wjzpw.inventory.cheJianRuKu" parent="wjzpw_weft_workshop_menu" action="action_wjzpw_weft_workshop_input"/>
         <menuitem id="wjzpw_weft_workshop_left_menu" name="wjzpw.inventory.cheJianShengYu" parent="wjzpw_weft_workshop_menu" action="action_wjzpw_weft_workshop_left"/>
-        <menuitem id="wjzpw_weft_workshop_output_menu" name="wjzpw.inventory.meiRiXiaoHao" parent="wjzpw_weft_workshop_menu" action="action_wjzpw_weft_workshop_output"/>
+        <!--<menuitem id="wjzpw_weft_workshop_output_menu" name="wjzpw.inventory.meiRiXiaoHao" parent="wjzpw_weft_workshop_menu" action="action_wjzpw_weft_workshop_output"/>-->
 
         <!-- 钢筘库存 -->
         <menuitem id="wjzpw_reed_menu" name="wjzpw.inventory.gangKouKuCun" parent="wjzpw_inventory_menu"/>

@@ -991,45 +991,45 @@ class wjzpw_weft_workshop_left(osv.osv):
 
     def create(self, cr, uid, vals, *args, **kwargs):
         left_obj = super(wjzpw_weft_workshop_left, self).create(cr, uid, vals, *args, **kwargs)
-        # Get total input
-        cr.execute(
-            '''
-            SELECT sum(quantity) as quantity, sum(weight) as weight, sum(count) as count, sum(count_weight) as count_weight
-            FROM wjzpw_weft_output
-            WHERE department = 'hdcj' AND material_specification = %d AND material_area = %d AND batch_no = %d AND level = '%s'
-            ''' %
-            (vals['material_specification'], vals['material_area'], vals['batch_no'], vals['level'])
-        )
-        input = cr.dictfetchone()
-        # Get total output
-        cr.execute(
-            '''
-            SELECT sum(quantity) as quantity, sum(weight) as weight, sum(count) as count, sum(count_weight) as count_weight
-            FROM wjzpw_weft_workshop_output
-            WHERE material_specification = %d AND material_area = %d AND batch_no = %d AND level = '%s'
-            ''' %
-            (vals['material_specification'], vals['material_area'], vals['batch_no'], vals['level'])
-        )
-        output = cr.dictfetchone()
-        # Calculate
-        if not input['quantity'] and not input['weight'] and not input['count'] and not input['count_weight']:
-            return left_obj
-        new_vals = vals.copy()
-        if output['quantity'] or output['weight'] or output['count'] or output['count_weight']:
-            new_vals['quantity'] = input['quantity'] - output['quantity'] - vals['quantity']
-            new_vals['weight'] = input['weight'] - output['weight'] - vals['weight']
-            new_vals['count'] = input['count'] - output['count'] - vals['count']
-            new_vals['count_weight'] = input['count_weight'] - output['count_weight'] - vals['count_weight']
-        else:
-            new_vals['quantity'] = input['quantity'] - vals['quantity']
-            new_vals['weight'] = input['weight'] - vals['weight']
-            new_vals['count'] = input['count'] - vals['count']
-            new_vals['count_weight'] = input['count_weight'] - vals['count_weight']
-        output_date = datetime.datetime.strptime(new_vals['input_date'], "%Y-%m-%d") - datetime.timedelta(1)
-        new_vals['output_date'] = output_date.strftime('%Y-%m-%d')
-        del new_vals['input_date']
-        weft_workshop_output_obj = self.pool.get('wjzpw.weft.workshop.output')
-        weft_workshop_output_obj.create(cr, uid, new_vals, context=None)
+        # # Get total input
+        # cr.execute(
+        #     '''
+        #     SELECT sum(quantity) as quantity, sum(weight) as weight, sum(count) as count, sum(count_weight) as count_weight
+        #     FROM wjzpw_weft_output
+        #     WHERE department = 'hdcj' AND material_specification = %d AND material_area = %d AND batch_no = %d AND level = '%s'
+        #     ''' %
+        #     (vals['material_specification'], vals['material_area'], vals['batch_no'], vals['level'])
+        # )
+        # input = cr.dictfetchone()
+        # # Get total output
+        # cr.execute(
+        #     '''
+        #     SELECT sum(quantity) as quantity, sum(weight) as weight, sum(count) as count, sum(count_weight) as count_weight
+        #     FROM wjzpw_weft_workshop_output
+        #     WHERE material_specification = %d AND material_area = %d AND batch_no = %d AND level = '%s'
+        #     ''' %
+        #     (vals['material_specification'], vals['material_area'], vals['batch_no'], vals['level'])
+        # )
+        # output = cr.dictfetchone()
+        # # Calculate
+        # if not input['quantity'] and not input['weight'] and not input['count'] and not input['count_weight']:
+        #     return left_obj
+        # new_vals = vals.copy()
+        # if output['quantity'] or output['weight'] or output['count'] or output['count_weight']:
+        #     new_vals['quantity'] = input['quantity'] - output['quantity'] - vals['quantity']
+        #     new_vals['weight'] = input['weight'] - output['weight'] - vals['weight']
+        #     new_vals['count'] = input['count'] - output['count'] - vals['count']
+        #     new_vals['count_weight'] = input['count_weight'] - output['count_weight'] - vals['count_weight']
+        # else:
+        #     new_vals['quantity'] = input['quantity'] - vals['quantity']
+        #     new_vals['weight'] = input['weight'] - vals['weight']
+        #     new_vals['count'] = input['count'] - vals['count']
+        #     new_vals['count_weight'] = input['count_weight'] - vals['count_weight']
+        # output_date = datetime.datetime.strptime(new_vals['input_date'], "%Y-%m-%d") - datetime.timedelta(1)
+        # new_vals['output_date'] = output_date.strftime('%Y-%m-%d')
+        # del new_vals['input_date']
+        # weft_workshop_output_obj = self.pool.get('wjzpw.weft.workshop.output')
+        # weft_workshop_output_obj.create(cr, uid, new_vals, context=None)
         return left_obj
 
     _columns = {
