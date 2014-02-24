@@ -201,13 +201,13 @@ class wjzpw_inventory_input(osv.osv):
         flist += "%s AS total_number" % total_number
 
         # a_rate and b_rate calculate
-        aggregated_fields = ['a_rate', 'b_rate']
-        aggregated_fields_cols = {"a_rate": "grade_a_number", "b_rate": "grade_b_number"}
-        for f in aggregated_fields:
-            if flist:
-                flist += ', '
-            qualified_field = '"%s"."%s"' % (self._table, aggregated_fields_cols[f])
-            flist += "round((CASE WHEN sum(%s) > 0 THEN sum(%s)*1.0/%s ELSE 0 END ), 2) AS %s " % (qualified_field, qualified_field, total_number, f)
+        # aggregated_fields = ['a_rate', 'b_rate']
+        # aggregated_fields_cols = {"a_rate": "grade_a_number", "b_rate": "grade_b_number"}
+        # for f in aggregated_fields:
+        #     if flist:
+        #         flist += ', '
+        #     qualified_field = '"%s"."%s"' % (self._table, aggregated_fields_cols[f])
+        #     flist += "round((CASE WHEN sum(%s) > 0 THEN sum(%s)*1.0/%s ELSE 0 END ), 2) AS %s " % (qualified_field, qualified_field, total_number, f)
 
         gb = groupby and (' GROUP BY ' + qualified_groupby_field) or ''
 
@@ -281,8 +281,8 @@ class wjzpw_inventory_input(osv.osv):
         # functions
         'input_date_str': fields.function(_input_date_str, string='wjzpw.inventory.luRuRiQi', type='char', method=True, store=True),  # 字符串入库日期
         'total_number': fields.function(_total_number, string='wjzpw.inventory.heJi', type='integer', method=True),  # 产量合计
-        'a_rate': fields.function(_a_rate, string='wjzpw.inventory.yiDengCiPinLv', type='char', method=True),  # 一等次品率
-        'b_rate': fields.function(_b_rate, string='wjzpw.inventory.erDengCiPinLv', type='char', method=True),  # 二等次品率
+        # 'a_rate': fields.function(_a_rate, string='wjzpw.inventory.yiDengCiPinLv', type='char', method=True),  # 一等次品率
+        # 'b_rate': fields.function(_b_rate, string='wjzpw.inventory.erDengCiPinLv', type='char', method=True),  # 二等次品率
     }
 
     _defaults = {

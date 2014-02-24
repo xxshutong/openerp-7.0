@@ -37,8 +37,8 @@
                     <field name="grade_a_number"/>
                     <field name="grade_b_number"/>
                     <field name="total_number"/>
-                    <field name="a_rate"/>
-                    <field name="b_rate"/>
+                    <!--<field name="a_rate"/>-->
+                    <!--<field name="b_rate"/>-->
                 </tree>
             </field>
         </record>
@@ -57,8 +57,8 @@
                     <field name="grade_a_number"/>
                     <field name="grade_b_number"/>
                     <field name="total_number"/>
-                    <field name="a_rate"/>
-                    <field name="b_rate"/>
+                    <!--<field name="a_rate"/>-->
+                    <!--<field name="b_rate"/>-->
                     <group expand="1" string="Group By...">
                         <filter name="groupby_input_date" context="{'group_by' : 'input_date_str'}" string="wjzpw.inventory.luRuRiQi"/>
                         <filter name="groupby_product" context="{'group_by' : 'product_id'}" string="wjzpw.inventory.pinMing"/>
