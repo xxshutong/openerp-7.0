@@ -117,7 +117,7 @@ class wjzpw_inventory_input(osv.osv):
         return res
 
     def search(self, cr, user, args, offset=0, limit=None, order=None, context=None, count=False):
-        return super(wjzpw_inventory_input, self).search(cr, user, args, offset, limit, 'input_date desc', context, count)
+        return super(wjzpw_inventory_input, self).search(cr, user, args, offset, limit, 'input_date desc, product_id', context, count)
 
     def read_group(self, cr, uid, domain, fields, groupby, offset=0, limit=None, context=None, orderby=False):
         """
