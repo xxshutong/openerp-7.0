@@ -278,6 +278,11 @@ class wjzpw_inventory_input(osv.osv):
         'machine_output_id': fields.many2one('wjzpw.inventory.machine.output', 'wjzpw.inventory.jiTaiChanChu',
                                              required=False),
 
+        # 质量
+        'department': fields.many2one('hr.department', 'wjzpw.inventory.zeRenBuMen'),  # 责任部门
+        'owner': fields.many2one('hr.employee', 'wjzpw.inventory.zeRenRen'),  # 责任人
+        'defect_reason': fields.text('wjzpw.inventory.ciDianYuanYin'), # 疵点原因
+
         # functions
         'input_date_str': fields.function(_input_date_str, string='wjzpw.inventory.luRuRiQi', type='char', method=True, store=True),  # 字符串入库日期
         'total_number': fields.function(_total_number, string='wjzpw.inventory.heJi', type='integer', method=True),  # 产量合计

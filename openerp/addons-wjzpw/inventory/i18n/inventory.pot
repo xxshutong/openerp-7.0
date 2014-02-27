@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-23 14:42+0000\n"
-"PO-Revision-Date: 2014-02-23 14:42+0000\n"
+"POT-Creation-Date: 2014-02-27 13:56+0000\n"
+"PO-Revision-Date: 2014-02-27 13:56+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,6 +26,11 @@ msgid "reedOutput"
 msgstr ""
 
 #. module: inventory
+#: field:wjzpw.inventory.input,department:0
+msgid "wjzpw.inventory.zeRenBuMen"
+msgstr ""
+
+#. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_batch_no_menu
 #: field:wjzpw.outside.warp.axes.output,batch_no:0
 #: field:wjzpw.self.warp.axes.output,batch_no:0
@@ -36,6 +41,11 @@ msgstr ""
 #: field:wjzpw.outside.warp.axes.inventory,inventory_meter:0
 #: field:wjzpw.self.warp.axes.inventory,inventory_meter:0
 msgid "wjzpw.produce.changDu"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.inventory.input,owner:0
+msgid "wjzpw.inventory.zeRenRen"
 msgstr ""
 
 #. module: inventory
@@ -93,11 +103,6 @@ msgid "wjzpw.inventory.kouHao"
 msgstr ""
 
 #. module: inventory
-#: field:wjzpw.inventory.input,a_rate:0
-msgid "wjzpw.inventory.yiDengCiPinLv"
-msgstr ""
-
-#. module: inventory
 #: selection:wjzpw.reed.output,status:0
 msgid "报废"
 msgstr ""
@@ -120,16 +125,19 @@ msgid "wjzpw.inventory.jiTaiChanChu"
 msgstr ""
 
 #. module: inventory
+#: view:wjzpw.inventory.input:0
+msgid "wjzpw.inventory.zhiLiangGuanLi"
+msgstr ""
+
+#. module: inventory
 #: model:ir.model,name:inventory.model_wjzpw_self_warp_axes_output
 #: view:wjzpw.self.warp.axes.output:0
 msgid "wjzpw.inventory.benChangJingZhouChuKu"
 msgstr ""
 
 #. module: inventory
-#: field:wjzpw.inventory,b_amount:0
-#: field:wjzpw.inventory.input,grade_b_number:0
-#: field:wjzpw.inventory.output,grade_b_number:0
-msgid "wjzpw.inventory.erDengPin"
+#: model:ir.ui.menu,name:inventory.wjzpw_setting_menu
+msgid "wjzpw.inventory.sheZhi"
 msgstr ""
 
 #. module: inventory
@@ -165,6 +173,11 @@ msgstr ""
 #: model:ir.ui.menu,name:inventory.wjzpw_reed_input_menu
 #: model:ir.ui.menu,name:inventory.wjzpw_weft_input_menu
 msgid "wjzpw.inventory.ruKu"
+msgstr ""
+
+#. module: inventory
+#: view:wjzpw.organzine.output:0
+msgid "wjzpw.inventory.zhiShuChuKu"
 msgstr ""
 
 #. module: inventory
@@ -250,13 +263,6 @@ msgid "total_superior_amount"
 msgstr ""
 
 #. module: inventory
-#: field:wjzpw.outside.warp.axes.output,input_date:0
-#: field:wjzpw.self.warp.axes.output,input_date:0
-#: field:wjzpw.weft.workshop.output,output_date:0
-msgid "wjzpw.inventory.riQi"
-msgstr ""
-
-#. module: inventory
 #: view:wjzpw.organzine.input:0
 msgid "wjzpw.inventory.zhengXiangRuKu"
 msgstr ""
@@ -329,7 +335,6 @@ msgstr ""
 
 #. module: inventory
 #: model:ir.actions.act_window,name:inventory.action_wjzpw_weft_workshop_output
-#: model:ir.ui.menu,name:inventory.wjzpw_weft_workshop_output_menu
 #: view:wjzpw.weft.workshop.output:0
 msgid "wjzpw.inventory.meiRiXiaoHao"
 msgstr ""
@@ -379,8 +384,10 @@ msgid "wjzpw.inventory.jiHao"
 msgstr ""
 
 #. module: inventory
-#: field:wjzpw.inventory.input,b_rate:0
-msgid "wjzpw.inventory.erDengCiPinLv"
+#: field:wjzpw.outside.warp.axes.output,input_date:0
+#: field:wjzpw.self.warp.axes.output,input_date:0
+#: field:wjzpw.weft.workshop.output,output_date:0
+msgid "wjzpw.inventory.riQi"
 msgstr ""
 
 #. module: inventory
@@ -540,8 +547,8 @@ msgid "wjzpw.inventory.chuKuGuanLi"
 msgstr ""
 
 #. module: inventory
-#: view:wjzpw.organzine.output:0
-msgid "wjzpw.inventory.zhiShuChuKu"
+#: view:wjzpw.inventory.input:0
+msgid "wjzpw.inventory.ruKuXinXi"
 msgstr ""
 
 #. module: inventory
@@ -789,8 +796,10 @@ msgid "wjzpw.inventory.benChangJingZhouRuKu"
 msgstr ""
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_setting_menu
-msgid "wjzpw.inventory.sheZhi"
+#: field:wjzpw.inventory,b_amount:0
+#: field:wjzpw.inventory.input,grade_b_number:0
+#: field:wjzpw.inventory.output,grade_b_number:0
+msgid "wjzpw.inventory.erDengPin"
 msgstr ""
 
 #. module: inventory
@@ -805,6 +814,11 @@ msgstr ""
 #: field:wjzpw.self.warp.axes.input,total_swing_number:0
 #: field:wjzpw.self.warp.axes.inventory,total_swing_number:0
 msgid "wjzpw.produce.touWen"
+msgstr ""
+
+#. module: inventory
+#: field:wjzpw.inventory.input,defect_reason:0
+msgid "wjzpw.inventory.ciDianYuanYin"
 msgstr ""
 
 #. module: inventory

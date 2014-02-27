@@ -9,6 +9,7 @@
             <field name="arch" type="xml">
                 <form string="inventoryInput" version="7.0">
                     <sheet>
+                        <separator string="wjzpw.inventory.ruKuXinXi" colspan="4"/>
                         <group col="4">
                             <field name="machine_no"/>
                             <field name="input_date"/>
@@ -17,6 +18,12 @@
                             <field name="superior_number"/>
                             <field name="grade_a_number"/>
                             <field name="grade_b_number"/>
+                        </group>
+                        <separator string="wjzpw.inventory.zhiLiangGuanLi" colspan="4"/>
+                        <group col="4">
+                            <field name="department"/>
+                            <field name="owner"/>
+                            <field name="defect_reason" colspan="4"/>
                         </group>
                     </sheet>
                 </form>
