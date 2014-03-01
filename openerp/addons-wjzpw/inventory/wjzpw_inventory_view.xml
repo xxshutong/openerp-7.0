@@ -21,9 +21,12 @@
                         </group>
                         <separator string="wjzpw.inventory.zhiLiangGuanLi" colspan="4"/>
                         <group col="4">
-                            <field name="department"/>
-                            <field name="owner"/>
-                            <field name="defect_reason" colspan="4"/>
+                            <field name="a_department"/>
+                            <field name="a_defect_reason"/>
+                            <field name="b_department"/>
+                            <field name="b_defect_reason"/>
+                            <field name="b_class_owner"/>
+                            <field name="b_owner"/>
                         </group>
                     </sheet>
                 </form>

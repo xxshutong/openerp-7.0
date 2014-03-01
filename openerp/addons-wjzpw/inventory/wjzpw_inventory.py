@@ -279,9 +279,13 @@ class wjzpw_inventory_input(osv.osv):
                                              required=False),
 
         # 质量
-        'department': fields.many2one('hr.department', 'wjzpw.inventory.zeRenBuMen'),  # 责任部门
-        'owner': fields.many2one('hr.employee', 'wjzpw.inventory.zeRenRen'),  # 责任人
-        'defect_reason': fields.text('wjzpw.inventory.ciDianYuanYin'), # 疵点原因
+        'a_department': fields.many2one('hr.department', 'wjzpw.inventory.yiDengZeRenBuMen'),  # 一等责任部门
+        'a_defect_reason': fields.text('wjzpw.inventory.yiDengCiDianYuanYin'),  # 一等疵点原因
+        'b_department': fields.many2one('hr.department', 'wjzpw.inventory.erDengZeRenBuMen'),  # 二等责任部门
+        'b_defect_reason': fields.text('wjzpw.inventory.erDengCiDianYuanYin'),  # 二等疵点原因
+        'b_class_owner': fields.many2one('hr.employee', 'wjzpw.inventory.erDengZeRenBanZhang'),  # 二等责任班长
+        'b_owner': fields.many2one('hr.employee', 'wjzpw.inventory.erDengZeRenRen'),  # 二等责任人
+
 
         # functions
         'input_date_str': fields.function(_input_date_str, string='wjzpw.inventory.luRuRiQi', type='char', method=True, store=True),  # 字符串入库日期

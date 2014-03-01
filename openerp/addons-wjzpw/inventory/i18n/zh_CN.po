@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenERP Server 7.0-20131107-002453\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-27 13:55+0000\n"
-"PO-Revision-Date: 2014-02-27 13:55+0000\n"
+"POT-Creation-Date: 2014-03-01 08:24+0000\n"
+"PO-Revision-Date: 2014-03-01 08:24+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,11 +26,6 @@ msgid "reedOutput"
 msgstr "钢筘出库"
 
 #. module: inventory
-#: field:wjzpw.inventory.input,department:0
-msgid "wjzpw.inventory.zeRenBuMen"
-msgstr "责任部门"
-
-#. module: inventory
 #: model:ir.ui.menu,name:inventory.wjzpw_batch_no_menu
 #: field:wjzpw.outside.warp.axes.output,batch_no:0
 #: field:wjzpw.self.warp.axes.output,batch_no:0
@@ -42,11 +37,6 @@ msgstr "批号"
 #: field:wjzpw.self.warp.axes.inventory,inventory_meter:0
 msgid "wjzpw.produce.changDu"
 msgstr "长度"
-
-#. module: inventory
-#: field:wjzpw.inventory.input,owner:0
-msgid "wjzpw.inventory.zeRenRen"
-msgstr "责任人"
 
 #. module: inventory
 #: view:wjzpw.inventory:0
@@ -96,6 +86,11 @@ msgid "wjzpw.produce.chuangJianRiQi"
 msgstr "创建日期"
 
 #. module: inventory
+#: field:wjzpw.inventory.input,b_class_owner:0
+msgid "wjzpw.inventory.erDengZeRenBanZhang"
+msgstr "二等责任班长"
+
+#. module: inventory
 #: field:wjzpw.reed.input,reed_no:0
 #: field:wjzpw.reed.inventory,reed_no:0
 #: field:wjzpw.reed.output,reed_no:0
@@ -136,9 +131,11 @@ msgid "wjzpw.inventory.benChangJingZhouChuKu"
 msgstr "本厂经轴出库"
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_setting_menu
-msgid "wjzpw.inventory.sheZhi"
-msgstr "设置"
+#: field:wjzpw.inventory,b_amount:0
+#: field:wjzpw.inventory.input,grade_b_number:0
+#: field:wjzpw.inventory.output,grade_b_number:0
+msgid "wjzpw.inventory.erDengPin"
+msgstr "二等品"
 
 #. module: inventory
 #: view:wjzpw.weft.input:0
@@ -253,6 +250,11 @@ msgid "wjzpw.produce.liuChengBianHao"
 msgstr "流程编号"
 
 #. module: inventory
+#: field:wjzpw.inventory.input,a_department:0
+msgid "wjzpw.inventory.yiDengZeRenBuMen"
+msgstr "一等责任部门"
+
+#. module: inventory
 #: view:wjzpw.organzine.output:0
 msgid "wjzpw.inventory.zhengXiangChuKu"
 msgstr "整箱出库"
@@ -351,6 +353,11 @@ msgstr "总只数"
 #: field:wjzpw.weft.output,output_date:0
 msgid "wjzpw.inventory.chuKuRiQi"
 msgstr "出库日期"
+
+#. module: inventory
+#: field:wjzpw.inventory.input,a_defect_reason:0
+msgid "wjzpw.inventory.yiDengCiDianYuanYin"
+msgstr "一等疵点原因"
 
 #. module: inventory
 #: field:wjzpw.inventory.machine.output,beam_amount:0
@@ -496,9 +503,9 @@ msgid "wjzpw.inventory.jingSiKuCun"
 msgstr "经丝库存"
 
 #. module: inventory
-#: model:ir.ui.menu,name:inventory.wjzpw_self_warp_axes_output_menu
-msgid "wjzpw.inventory.jingZhouChuKuShangZhou"
-msgstr "经轴出库(上轴)"
+#: field:wjzpw.inventory.output,code:0
+msgid "wjzpw.inventory.maDan"
+msgstr "码单"
 
 #. module: inventory
 #: field:wjzpw.organzine.input,quantity:0
@@ -522,6 +529,11 @@ msgstr "合计"
 #: view:wjzpw.inventory.machine.output:0
 msgid "wjzpw.inventory.wanChengBingJiSuanZhiSuoLv"
 msgstr "完成并计算织缩率"
+
+#. module: inventory
+#: field:wjzpw.inventory.input,b_defect_reason:0
+msgid "wjzpw.inventory.erDengCiDianYuanYin"
+msgstr "二等疵点原因"
 
 #. module: inventory
 #: selection:wjzpw.organzine.output,department:0
@@ -587,15 +599,20 @@ msgid "wjzpw.inventory.zongZhongLiang"
 msgstr "总重量"
 
 #. module: inventory
-#: field:wjzpw.inventory.output,code:0
-msgid "wjzpw.inventory.maDan"
-msgstr "码单"
+#: field:wjzpw.inventory.input,b_owner:0
+msgid "wjzpw.inventory.erDengZeRenRen"
+msgstr "二等责任人"
 
 #. module: inventory
 #: field:wjzpw.inventory.machine.output,woven_shrinkage:0
 #: field:wjzpw.inventory.machine.output,woven_shrinkage_fun:0
 msgid "wjzpw.inventory.zhiSuoLv"
 msgstr "织缩率"
+
+#. module: inventory
+#: field:wjzpw.inventory.input,b_department:0
+msgid "wjzpw.inventory.erDengZeRenBuMen"
+msgstr "二等责任部门"
 
 #. module: inventory
 #: model:ir.model,name:inventory.model_wjzpw_organzine_input
@@ -796,11 +813,9 @@ msgid "wjzpw.inventory.benChangJingZhouRuKu"
 msgstr "本厂经轴入库"
 
 #. module: inventory
-#: field:wjzpw.inventory,b_amount:0
-#: field:wjzpw.inventory.input,grade_b_number:0
-#: field:wjzpw.inventory.output,grade_b_number:0
-msgid "wjzpw.inventory.erDengPin"
-msgstr "二等品"
+#: model:ir.ui.menu,name:inventory.wjzpw_setting_menu
+msgid "wjzpw.inventory.sheZhi"
+msgstr "设置"
 
 #. module: inventory
 #: model:ir.model,name:inventory.model_wjzpw_outside_warp_axes_output
@@ -815,11 +830,6 @@ msgstr "外加工经轴出库"
 #: field:wjzpw.self.warp.axes.inventory,total_swing_number:0
 msgid "wjzpw.produce.touWen"
 msgstr "头纹"
-
-#. module: inventory
-#: field:wjzpw.inventory.input,defect_reason:0
-msgid "wjzpw.inventory.ciDianYuanYin"
-msgstr "疵点原因"
 
 #. module: inventory
 #: field:wjzpw.weft.input,level:0
@@ -944,6 +954,11 @@ msgstr "筘幅"
 #: field:wjzpw.weft.workshop.output,weight:0
 msgid "wjzpw.inventory.xiangShuZhongLiang"
 msgstr "箱数重量 (KG)"
+
+#. module: inventory
+#: model:ir.ui.menu,name:inventory.wjzpw_self_warp_axes_output_menu
+msgid "wjzpw.inventory.jingZhouChuKuShangZhou"
+msgstr "经轴出库(上轴)"
 
 #. module: inventory
 #: field:wjzpw.reed.input,price:0
