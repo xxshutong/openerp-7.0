@@ -267,6 +267,31 @@ class wjzpw_inventory_input(osv.osv):
 
         return result
 
+    def onchange_product_id(self, cr, uid, ids, product_id):
+        '''
+        根据品名的变动来更新品名的可选项
+        :param cr:
+        :param uid:
+        :param ids:
+        :param product_id:
+        :return:
+        '''
+        query_sql = """
+            SELECT DISTINCT batch_no
+            FROM wjzpw_inventory_input
+            WHERE product_id = '%s' ORDER BY batch_no
+            """ % product_id
+        cr.execute(query_sql)
+        batch_no_ids = []
+        for id in cr.fetchall():
+            batch_no_ids.append(id[0])
+
+        return {
+            'domain': {
+                'batch_no': [('id', 'in', batch_no_ids)]
+            }
+        }
+
     _columns = {
         'machine_no': fields.integer('wjzpw.inventory.jiHao', required=True),
         'input_date': fields.date('wjzpw.inventory.luRuRiQi', required=True),
