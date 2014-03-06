@@ -66,6 +66,23 @@ class wjzpw_inventory_input(osv.osv):
     def _get_default_batch_no(self, cr, uid, context=None):
         return utils.get_default_value(cr, uid, 'batch_no')
 
+    def onchange_product_id(self, cr, uid, ids, product_id):
+        query_sql = """
+            SELECT DISTINCT batch_no
+            FROM wjzpw_inventory_input
+            WHERE product_id = %d ORDER BY batch_no
+            """ % product_id
+        cr.execute(query_sql)
+        batch_no_ids = []
+        for id in cr.fetchall():
+            batch_no_ids.append(id[0])
+
+        return {
+            'domain': {
+                'batch_no': [('id', 'in', batch_no_ids)]
+            }
+        }
+
     def _input_date_str(self, cr, uid, ids, field_name, arg, context):
         """
         字符串入库日期
@@ -266,23 +283,6 @@ class wjzpw_inventory_input(osv.osv):
                                                    context=context)
 
         return result
-
-    def onchange_product_id(self, cr, uid, ids, product_id):
-        query_sql = """
-            SELECT DISTINCT batch_no
-            FROM wjzpw_inventory_input
-            WHERE product_id = %d ORDER BY batch_no
-            """ % product_id
-        cr.execute(query_sql)
-        batch_no_ids = []
-        for id in cr.fetchall():
-            batch_no_ids.append(id[0])
-
-        return {
-            'domain': {
-                'batch_no': [('id', 'in', batch_no_ids)]
-            }
-        }
 
     _columns = {
         'machine_no': fields.integer('wjzpw.inventory.jiHao', required=True),
