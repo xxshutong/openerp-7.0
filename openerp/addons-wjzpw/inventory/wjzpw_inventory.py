@@ -66,7 +66,7 @@ class wjzpw_inventory_input(osv.osv):
     def _get_default_batch_no(self, cr, uid, context=None):
         return utils.get_default_value(cr, uid, 'batch_no')
 
-    def onchange_product_id(self, cr, uid, ids, product_id=None):
+    def onchange_fields(self, cr, uid, ids, product_id=None):
         if not product_id:
             return {}
         query_sql = """
