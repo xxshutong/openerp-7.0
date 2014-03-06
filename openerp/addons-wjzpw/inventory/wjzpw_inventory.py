@@ -63,8 +63,8 @@ class wjzpw_inventory_input(osv.osv):
     def _get_default_product_id(self, cr, uid, context=None):
         return utils.get_default_value(cr, uid, 'product_id')
 
-    def _get_default_batch_no(self, cr, uid, context=None):
-        return utils.get_default_value(cr, uid, 'batch_no')
+    # def _get_default_batch_no(self, cr, uid, context=None):
+    #     return utils.get_default_value(cr, uid, 'batch_no')
 
     def onchange_fields(self, cr, uid, ids, product_id=None):
         if not product_id:
@@ -320,7 +320,7 @@ class wjzpw_inventory_input(osv.osv):
         "machine_no": _get_default_machine_no,
         "input_date": _get_default_input_date,
         "product_id": _get_default_product_id,
-        "batch_no": _get_default_batch_no
+        # "batch_no": _get_default_batch_no
     }
 
     _order = "input_date desc, product_id, batch_no, machine_no"
