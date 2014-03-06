@@ -63,27 +63,27 @@ class wjzpw_inventory_input(osv.osv):
     def _get_default_product_id(self, cr, uid, context=None):
         return utils.get_default_value(cr, uid, 'product_id')
 
-    # def _get_default_batch_no(self, cr, uid, context=None):
-    #     return utils.get_default_value(cr, uid, 'batch_no')
+    def _get_default_batch_no(self, cr, uid, context=None):
+        return utils.get_default_value(cr, uid, 'batch_no')
 
-    def onchange_fields(self, cr, uid, ids, product_id=None):
-        if not product_id:
-            return {}
-        query_sql = """
-            SELECT DISTINCT batch_no
-            FROM wjzpw_inventory_input
-            WHERE product_id = %d ORDER BY batch_no
-            """ % product_id
-        cr.execute(query_sql)
-        batch_no_ids = []
-        for id in cr.fetchall():
-            batch_no_ids.append(id[0])
-
-        return {
-            'domain': {
-                'batch_no': [('id', 'in', batch_no_ids)]
-            }
-        }
+    # def onchange_fields(self, cr, uid, ids, product_id=None):
+    #     if not product_id:
+    #         return {}
+    #     query_sql = """
+    #         SELECT DISTINCT batch_no
+    #         FROM wjzpw_inventory_input
+    #         WHERE product_id = %d ORDER BY batch_no
+    #         """ % product_id
+    #     cr.execute(query_sql)
+    #     batch_no_ids = []
+    #     for id in cr.fetchall():
+    #         batch_no_ids.append(id[0])
+    #
+    #     return {
+    #         'domain': {
+    #             'batch_no': [('id', 'in', batch_no_ids)]
+    #         }
+    #     }
 
     def _input_date_str(self, cr, uid, ids, field_name, arg, context):
         """
@@ -320,7 +320,7 @@ class wjzpw_inventory_input(osv.osv):
         "machine_no": _get_default_machine_no,
         "input_date": _get_default_input_date,
         "product_id": _get_default_product_id,
-        # "batch_no": _get_default_batch_no
+        "batch_no": _get_default_batch_no
     }
 
     _order = "input_date desc, product_id, batch_no, machine_no"
