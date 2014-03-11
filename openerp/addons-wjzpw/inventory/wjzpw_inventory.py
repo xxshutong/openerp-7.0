@@ -333,6 +333,25 @@ class wjzpw_inventory_output(osv.osv):
     _name = "wjzpw.inventory.output"
     _description = "wjzpw.inventory.chuKuGuanLi"
 
+    def onchange_fields(self, cr, uid, ids, product_id=None):
+        if not product_id:
+            return {}
+        query_sql = """
+            SELECT DISTINCT batch_no
+            FROM wjzpw_inventory_input
+            WHERE product_id = %d ORDER BY batch_no
+            """ % product_id
+        cr.execute(query_sql)
+        batch_no_ids = []
+        for id in cr.fetchall():
+            batch_no_ids.append(id[0])
+
+        return {
+            'domain': {
+                'batch_no': [('id', 'in', batch_no_ids)]
+            }
+        }
+
     _columns = {
         'input_date': fields.date('wjzpw.inventory.luRuRiQi', required=True),
         'code': fields.char('wjzpw.inventory.maDan', size=60, required=False),
