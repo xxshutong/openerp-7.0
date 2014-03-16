@@ -662,7 +662,7 @@ class wjzpw_inventory_machine_output(osv.osv):
             res.setdefault(id, '未完成')
         for rec in self.browse(cr, uid, ids, context=context):
             if rec.complete_date:
-                res[rec.id] = rec.complete_date
+                res[rec.id] = rec.complete_date[0:13]
             else:
                 res[rec.id] = '未完成'
         return res
@@ -673,7 +673,7 @@ class wjzpw_inventory_machine_output(osv.osv):
             res.setdefault(id, '未知')
         for rec in self.browse(cr, uid, ids, context=context):
             if rec.woven_shrinkage:
-                res[rec.id] = rec.woven_shrinkage
+                res[rec.id] = round(rec.woven_shrinkage, 3)
         return res
 
     def _output_amount(self, cr, uid, ids, field_name, arg, context):
@@ -752,7 +752,7 @@ class wjzpw_inventory_machine_output(osv.osv):
         'output_amount': fields.float('wjzpw.inventory.leiJiChanLiang'),
         'is_completed': fields.boolean('wjzpw.inventory.yiWanCheng', required=True),
         'complete_date': fields.datetime('wjzpw.inventory.wanChengShiJian'),
-        'woven_shrinkage': fields.float('wjzpw.inventory.zhiSuoLv'),
+        'woven_shrinkage': fields.float('wjzpw.inventory.zhiSuoLv'),  # 织缩率
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing', required=True),
         'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', required=True),
 
