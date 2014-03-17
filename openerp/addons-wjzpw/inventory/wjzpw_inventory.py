@@ -333,24 +333,39 @@ class wjzpw_inventory_output(osv.osv):
     _name = "wjzpw.inventory.output"
     _description = "wjzpw.inventory.chuKuGuanLi"
 
-    def onchange_fields(self, cr, uid, ids, product_id=None):
-        if not product_id:
-            return {}
-        query_sql = """
-            SELECT DISTINCT batch_no
-            FROM wjzpw_inventory_input
-            WHERE product_id = %d ORDER BY batch_no
-            """ % product_id
-        cr.execute(query_sql)
-        batch_no_ids = []
-        for id in cr.fetchall():
-            batch_no_ids.append(id[0])
+    def onchange_fields(self, cr, uid, ids, product_id=None, batch_no=None):
+        change = {}
+        if product_id:
+            # Filter batch no base on product id
+            query_sql = """
+                SELECT DISTINCT batch_no
+                FROM wjzpw_inventory_input
+                WHERE product_id = %d ORDER BY batch_no
+                """ % product_id
+            cr.execute(query_sql)
+            batch_no_ids = []
+            for id in cr.fetchall():
+                batch_no_ids.append(id[0])
 
-        return {
-            'domain': {
+            change['domain'] = {
                 'batch_no': [('id', 'in', batch_no_ids)]
             }
-        }
+        if product_id and batch_no:
+            # Show available numbers
+            query_sql = """
+                SELECT superior_amount, a_amount, b_amount
+                FROM wjzpw_inventory
+                WHERE product_id = %d AND batch_no = %d
+                """ % (product_id, batch_no)
+            cr.execute(query_sql)
+            result = cr.dictfetchone()
+            if result:
+                change['value'] = {
+                    'available_superior_number': result['superior_amount'],
+                    'available_grade_a_number': result['a_amount'],
+                    'available_grade_b_number': result['b_amount']
+                }
+        return change
 
     _columns = {
         'input_date': fields.date('wjzpw.inventory.luRuRiQi', required=True),
@@ -361,7 +376,12 @@ class wjzpw_inventory_output(osv.osv):
         'product_id': fields.many2one('wjzpw.product', 'wjzpw.pinMing', required=True),
         'batch_no': fields.many2one('wjzpw.batch.no', 'wjzpw.piHao', required=True),
         'customer': fields.many2one('res.partner', 'wjzpw.inventory.keHu', domain=[('customer', '=', True)],
-                                    required=True)
+                                    required=True),
+
+        # Show only
+        'available_superior_number': fields.integer('wjzpw.inventory.cunLiang', readonly=True),
+        'available_grade_a_number': fields.integer('wjzpw.inventory.cunLiang', readonly=True),
+        'available_grade_b_number': fields.integer('wjzpw.inventory.cunLiang', readonly=True)
     }
 
     _defaults = {

@@ -98,12 +98,17 @@
                         <group col="4">
                             <field name="input_date"/>
                             <field name="customer"/>
-                            <field name="product_id" on_change="onchange_fields(product_id)"/>
-                            <field name="batch_no"/>
+                            <field name="product_id" on_change="onchange_fields(product_id, batch_no)"/>
+                            <field name="batch_no" on_change="onchange_fields(product_id, batch_no)"/>
                             <field name="code"/>
+                        </group>
+                        <group col="4">
                             <field name="superior_number"/>
+                            <field name="available_superior_number"/>
                             <field name="grade_a_number"/>
+                            <field name="available_grade_a_number"/>
                             <field name="grade_b_number"/>
+                            <field name="available_grade_b_number"/>
                         </group>
                     </sheet>
                 </form>
